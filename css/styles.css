@@ -17,6 +17,9 @@
   --cocoa: #241811;         /* deep feature sections */
   --cocoa-2: #33231a;
   --cocoa-3: #46332a;
+  --sage: #7e8c6c;          /* conscious-living green */
+  --sage-light: #aab797;
+  --sage-tint: #edefe4;
   --text: #2c1e15;
   --text-inv: #f7f1e8;
   --muted: #6f5d50;
@@ -159,7 +162,7 @@ body::after {
 .hero { position: relative; min-height: 100svh; display: flex; align-items: center; overflow: hidden; }
 .hero__bg { position: absolute; inset: -10% 0; width: 100%; height: 120%; object-fit: cover; }
 @supports (animation-timeline: scroll()) {
-  .hero__bg {
+  .hero__bg, .hero__drift {
     animation: hero-drift linear both;
     animation-timeline: scroll();
     animation-range: 0 100svh;
@@ -168,6 +171,87 @@ body::after {
     from { transform: translateY(0) scale(1.06); }
     to   { transform: translateY(9%) scale(1.12); }
   }
+}
+
+/* --- pillar scene stack (home hero) --- */
+.hero__drift { position: absolute; inset: -10% 0; height: 120%; }
+.hero__depth { position: absolute; inset: 0; will-change: transform;
+  transform: translate3d(calc(var(--mx, 0) * -16px), calc(var(--my, 0) * -10px), 0);
+  transition: transform .6s var(--ease-soft); }
+.hero__slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  opacity: 0; transition: opacity 1.4s var(--ease-soft); }
+.hero__slide.is-active { opacity: 1; animation: slide-breathe 9s var(--ease-soft) both; }
+@keyframes slide-breathe { from { transform: scale(1.0); } to { transform: scale(1.07); } }
+
+/* --- aurora wash --- */
+.hero__aurora { position: absolute; inset: -15%; pointer-events: none; opacity: .8;
+  background:
+    radial-gradient(42% 36% at 72% 24%, rgba(207,160,90,.20), transparent 65%),
+    radial-gradient(38% 42% at 22% 72%, rgba(191,95,58,.22), transparent 65%),
+    radial-gradient(30% 30% at 58% 84%, rgba(126,140,108,.20), transparent 65%);
+  filter: blur(46px);
+  animation: aurora-drift 16s ease-in-out infinite alternate; }
+@keyframes aurora-drift {
+  from { transform: translate3d(-2.5%, -1.5%, 0) rotate(-1.2deg) scale(1); }
+  to   { transform: translate3d(2.5%, 2%, 0) rotate(1.2deg) scale(1.06); }
+}
+
+/* --- drifting motes --- */
+.mote { position: absolute; bottom: -3%; border-radius: 50%;
+  background: radial-gradient(circle, rgba(226,188,125,.9) 0%, rgba(226,188,125,0) 70%);
+  opacity: 0; pointer-events: none;
+  animation: mote-rise var(--mt, 16s) linear infinite; animation-delay: var(--md, 0s); }
+@keyframes mote-rise {
+  0% { transform: translate3d(0, 0, 0); opacity: 0; }
+  12% { opacity: var(--mo, .5); }
+  85% { opacity: var(--mo, .5); }
+  100% { transform: translate3d(var(--mxs, 30px), -108svh, 0); opacity: 0; }
+}
+
+/* --- pillar word rotator --- */
+.rotator { position: relative; display: block; height: 1.18em; overflow: hidden; }
+.rotator .hr-word { position: absolute; inset-inline-start: 0; top: 0; width: 100%;
+  white-space: nowrap; opacity: 0; transform: translateY(70%);
+  filter: blur(8px); pointer-events: none;
+  transition: opacity .65s var(--ease-out), transform .75s var(--ease-out), filter .65s var(--ease-out); }
+.rotator .hr-word.is-in { opacity: 1; transform: translateY(0); filter: blur(0); }
+.rotator .hr-word.is-out { opacity: 0; transform: translateY(-65%); filter: blur(10px); }
+
+/* --- pillar chips --- */
+.chips { display: flex; flex-wrap: wrap; gap: .55rem; }
+.chip { display: inline-flex; align-items: center; gap: .55rem;
+  padding: .58rem 1.05rem; border-radius: 999px; min-height: 40px;
+  border: 1px solid rgba(247,241,232,.28); color: rgba(247,241,232,.82);
+  font-size: .72rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+  background: rgba(36,24,17,.25);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  transition: background-color .3s, border-color .3s, color .3s, transform .3s var(--ease-out); }
+.chip i { font-style: normal; font-family: var(--serif); font-size: .78rem; opacity: .6; }
+.chip:hover { border-color: var(--gold); color: var(--gold-bright); transform: translateY(-2px); }
+.chip.is-active { background: var(--clay); border-color: var(--clay); color: #fff; }
+.chip.is-active i { opacity: .85; }
+[dir="rtl"] .chip { letter-spacing: .02em; }
+
+/* --- hero pillar counter --- */
+.hero__counter { position: absolute; bottom: 2.6rem; inset-inline-end: 3rem; z-index: 5;
+  font-family: var(--serif); font-variation-settings: 'opsz' 144;
+  font-size: clamp(3.4rem, 6vw, 5.6rem); line-height: 1; font-weight: 300;
+  color: transparent; -webkit-text-stroke: 1px rgba(226,188,125,.55); }
+html[lang="fa"] .hero__counter { -webkit-text-stroke: 0; color: rgba(226,188,125,.4); }
+
+/* --- five paths (pillars) section --- */
+.pillar-row { display: grid; grid-template-columns: auto 1fr; gap: 1.2rem 2rem;
+  align-items: baseline; padding: 2rem 1rem;
+  border-top: 1px solid var(--border); position: relative;
+  transition: background-color .4s, padding-inline-start .4s var(--ease-out); }
+.pillar-row:last-child { border-bottom: 1px solid var(--border); }
+.pillar-row:hover { background: var(--sage-tint); padding-inline-start: 1.7rem; }
+.pillar-row .pr-num { font-family: var(--serif); font-variation-settings: 'opsz' 144;
+  font-size: 1.05rem; color: var(--sage); letter-spacing: .1em; }
+.pillar-row h3 { font-size: clamp(1.45rem, 3vw, 2.1rem); }
+.pillar-row p { color: var(--muted); max-width: 46ch; }
+@media (min-width: 768px) {
+  .pillar-row { grid-template-columns: 5rem minmax(16rem, 22rem) 1fr; }
 }
 .hero__scrim {
   position: absolute; inset: 0;
@@ -296,7 +380,10 @@ html[lang="fa"] .num-ghost { -webkit-text-stroke: 0; color: var(--clay-light); o
   .reveal, .reveal-left, .reveal-right, .reveal-scale { opacity: 1 !important; transform: none !important; transition: none !important; }
   .mask-line > span { transform: none; animation: none; }
   .fade-up { opacity: 1; transform: none; animation: none; }
-  .parallax__img, .hero__bg { animation: none !important; transform: none !important; }
-  .ribbon__track, .breathe, .wisp, .shimmer, .scroll-cue span { animation: none !important; }
-  .card, .card__media img, .btn { transition: none; }
+  .parallax__img, .hero__bg, .hero__drift, .hero__slide.is-active { animation: none !important; transform: none !important; }
+  .ribbon__track, .breathe, .wisp, .shimmer, .scroll-cue span, .hero__aurora, .mote { animation: none !important; }
+  .mote { display: none; }
+  .hero__depth { transform: none !important; transition: none; }
+  .rotator .hr-word { transition: none; filter: none; }
+  .card, .card__media img, .btn, .pillar-row, .chip { transition: none; }
 }

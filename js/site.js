@@ -108,10 +108,73 @@
   document.querySelectorAll(".reveal, .reveal-left, .reveal-right, .reveal-scale")
     .forEach(el => io.observe(el));
 
+  /* ---------- five-pillar hero (home) ---------- */
+  const rotator = document.getElementById("pillarRotator");
+  if (rotator) {
+    const words = [...rotator.querySelectorAll(".hr-word")];
+    const slides = [...document.querySelectorAll(".hero__slide")];
+    const chips = [...document.querySelectorAll("#pillarChips .chip")];
+    const counter = document.getElementById("pillarCounter");
+    const HOLD = 4200;
+    let current = 0, timer = null;
+
+    const show = (n) => {
+      if (n === current) return;
+      words[current].classList.remove("is-in");
+      words[current].classList.add("is-out");
+      const prev = current;
+      setTimeout(() => words[prev].classList.remove("is-out"), 750);
+      words[n].classList.add("is-in");
+      slides[current].classList.remove("is-active");
+      slides[n].classList.add("is-active");
+      chips[current].classList.remove("is-active");
+      chips[n].classList.add("is-active");
+      counter.textContent = String(n + 1).padStart(2, "0");
+      current = n;
+    };
+    const cycle = () => show((current + 1) % words.length);
+    const restart = () => { if (timer) clearInterval(timer); if (!reduceMotion) timer = setInterval(cycle, HOLD); };
+
+    chips.forEach((c) => c.addEventListener("click", () => { show(+c.dataset.pillar); restart(); }));
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) { if (timer) clearInterval(timer), timer = null; }
+      else restart();
+    });
+    restart();
+
+    /* drifting motes */
+    const field = document.getElementById("moteField");
+    if (field && !reduceMotion) {
+      for (let i = 0; i < 16; i++) {
+        const m = document.createElement("span");
+        const size = 2 + Math.random() * 4;
+        m.className = "mote";
+        m.style.cssText = `left:${(Math.random() * 100).toFixed(1)}%;width:${size.toFixed(1)}px;height:${size.toFixed(1)}px;` +
+          `--mt:${(12 + Math.random() * 14).toFixed(1)}s;--md:${(-Math.random() * 20).toFixed(1)}s;` +
+          `--mo:${(0.25 + Math.random() * 0.45).toFixed(2)};--mxs:${((Math.random() - 0.5) * 120).toFixed(0)}px;`;
+        field.appendChild(m);
+      }
+    }
+
+    /* pointer-reactive depth */
+    const hero = document.getElementById("pillarHero");
+    const depth = hero.querySelector(".hero__depth");
+    if (depth && !reduceMotion && window.matchMedia("(pointer: fine)").matches) {
+      hero.addEventListener("pointermove", (e) => {
+        const r = hero.getBoundingClientRect();
+        depth.style.setProperty("--mx", ((e.clientX - r.left) / r.width - 0.5).toFixed(3));
+        depth.style.setProperty("--my", ((e.clientY - r.top) / r.height - 0.5).toFixed(3));
+      });
+      hero.addEventListener("pointerleave", () => {
+        depth.style.setProperty("--mx", 0); depth.style.setProperty("--my", 0);
+      });
+    }
+  }
+
   /* ---------- parallax fallback (no CSS scroll-timeline) ---------- */
   if (!reduceMotion && !CSS.supports("animation-timeline: scroll()")) {
     const bands = [...document.querySelectorAll(".parallax__img")];
-    const hero = document.querySelector(".hero__bg");
+    const hero = document.querySelector(".hero__bg") || document.querySelector(".hero__drift");
     let raf = null;
     const tick = () => {
       raf = null;

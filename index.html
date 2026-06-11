@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Munay · Holistic Massage — Sacred Valley, Písac</title>
-  <meta name="description" content="Holistic massage in Písac, Sacred Valley. Relax, restore and rebalance body, mind and spirit beneath the Andes." />
-  <meta property="og:title" content="Munay · Holistic Massage — Sacred Valley" />
-  <meta property="og:description" content="Holistic massage in Písac, Sacred Valley, Cusco. Relax, restore, rebalance." />
+  <title>Munay · Holistic Wellness — Sacred Valley, Písac</title>
+  <meta name="description" content="Holistic wellness, life coaching, yoga, retreats and conscious living in Písac, Sacred Valley — five paths, one practice." />
+  <meta property="og:title" content="Munay · Holistic Wellness — Sacred Valley" />
+  <meta property="og:description" content="Holistic wellness · life coaching · yoga · retreats · conscious living — Písac, Sacred Valley, Cusco." />
   <meta property="og:image" content="https://ashdabash2926.github.io/Munay2/assets/og.jpg" />
   <meta property="og:type" content="website" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
@@ -22,11 +22,30 @@
 
   <main id="page-home">
 
-    <!-- ============ HERO ============ -->
-    <section class="hero">
-      <img class="hero__bg" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=2000&auto=format&fit=crop"
-           alt="Warm candlelit massage stones and orchid in a quiet spa room" fetchpriority="high" />
+    <!-- ============ HERO — five-pillar rotator ============ -->
+    <section class="hero" id="pillarHero">
+      <div class="hero__drift">
+        <div class="hero__depth">
+          <img class="hero__slide is-active" data-pillar-slide="0"
+               src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=2000&auto=format&fit=crop"
+               alt="Warm candlelit massage in a quiet spa room" fetchpriority="high" />
+          <img class="hero__slide" data-pillar-slide="1" loading="lazy"
+               src="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?q=80&w=2000&auto=format&fit=crop"
+               alt="Person opening their arms to the sunrise" />
+          <img class="hero__slide" data-pillar-slide="2" loading="lazy"
+               src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=2000&auto=format&fit=crop"
+               alt="Yoga asana silhouetted against the evening sky" />
+          <img class="hero__slide" data-pillar-slide="3" loading="lazy"
+               src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?q=80&w=2000&auto=format&fit=crop"
+               alt="Lakeside lodge beneath quiet mountains" />
+          <img class="hero__slide" data-pillar-slide="4" loading="lazy"
+               src="https://images.unsplash.com/photo-1508672019048-805c876b67e2?q=80&w=2000&auto=format&fit=crop"
+               alt="Sitting in stillness on a dock between mountains" />
+        </div>
+      </div>
       <div class="hero__scrim"></div>
+      <div class="hero__aurora" aria-hidden="true"></div>
+      <div id="moteField" class="absolute inset-0 pointer-events-none" aria-hidden="true"></div>
 
       <!-- palo santo smoke wisp -->
       <svg class="wisp w-40 h-72 bottom-[18%] right-[12%] hidden md:block" viewBox="0 0 100 220" fill="none" aria-hidden="true">
@@ -34,16 +53,30 @@
               stroke="rgba(247,241,232,.55)" stroke-width="2" stroke-linecap="round"/>
       </svg>
 
-      <div class="relative z-10 max-w-6xl mx-auto px-5 pt-28 pb-24 w-full">
+      <div class="hero__counter" id="pillarCounter" aria-hidden="true">01</div>
+
+      <div class="relative z-10 max-w-6xl mx-auto px-5 pt-28 pb-24 w-full hero__content">
         <p class="kicker kicker--gold fade-up" style="--d:.15s" data-i18n="home.hero.kicker">Písac · Sacred Valley · Peru</p>
-        <h1 class="mt-6 text-[var(--text-inv)] font-display text-[clamp(2.9rem,8vw,6.2rem)] max-w-4xl">
-          <span class="mask-line"><span style="--d:.3s" data-i18n="home.hero.l1">Where the body</span></span>
-          <span class="mask-line"><span style="--d:.45s"><em class="shimmer not-italic" data-i18n="home.hero.l2">remembers</em></span></span>
-          <span class="mask-line"><span style="--d:.6s" data-i18n="home.hero.l3">how to rest.</span></span>
+        <h1 class="mt-6 text-[var(--text-inv)] font-display text-[clamp(2.7rem,7vw,5.6rem)] max-w-5xl">
+          <span class="mask-line"><span class="font-light italic text-[.62em] text-[rgba(247,241,232,.9)]" style="--d:.3s" data-i18n="home.hero.lead">A sanctuary for</span></span>
+          <span class="rotator fade-up" id="pillarRotator" style="--d:.5s">
+            <span class="hr-word is-in shimmer" data-i18n="pillar.1">Holistic Wellness</span>
+            <span class="hr-word shimmer" data-i18n="pillar.2">Life Coaching</span>
+            <span class="hr-word shimmer" data-i18n="pillar.3">Yoga</span>
+            <span class="hr-word shimmer" data-i18n="pillar.4">Retreats</span>
+            <span class="hr-word shimmer" data-i18n="pillar.5">Conscious Living</span>
+          </span>
         </h1>
-        <p class="fade-up mt-7 max-w-xl text-[1.08rem] font-light leading-relaxed text-[rgba(247,241,232,.85)]"
-           style="--d:.85s" data-i18n="home.hero.sub"></p>
-        <div class="fade-up mt-10 flex flex-wrap items-center gap-4" style="--d:1.05s">
+        <div class="chips fade-up mt-8" id="pillarChips" style="--d:.75s">
+          <button class="chip is-active" data-pillar="0"><i>01</i><span data-i18n="pillar.1"></span></button>
+          <button class="chip" data-pillar="1"><i>02</i><span data-i18n="pillar.2"></span></button>
+          <button class="chip" data-pillar="2"><i>03</i><span data-i18n="pillar.3"></span></button>
+          <button class="chip" data-pillar="3"><i>04</i><span data-i18n="pillar.4"></span></button>
+          <button class="chip" data-pillar="4"><i>05</i><span data-i18n="pillar.5"></span></button>
+        </div>
+        <p class="fade-up mt-8 max-w-xl text-[1.08rem] font-light leading-relaxed text-[rgba(247,241,232,.85)]"
+           style="--d:.95s" data-i18n="home.hero.sub"></p>
+        <div class="fade-up mt-10 flex flex-wrap items-center gap-4" style="--d:1.15s">
           <a href="contact.html" class="btn btn-primary" data-i18n="cta.book"></a>
           <a href="treatments.html" class="btn btn-ghost btn-ghost--inv" data-i18n="home.hero.cta2"></a>
         </div>
@@ -52,14 +85,15 @@
       <div class="scroll-cue" aria-hidden="true"><span></span></div>
     </section>
 
-    <!-- ============ WORD RIBBON ============ -->
+    <!-- ============ WORD RIBBON — the five pillars ============ -->
     <section class="on-dark py-7 border-y border-[var(--border-dark)]" aria-hidden="true">
       <div class="ribbon">
         <div class="ribbon__track">
-          <span><i class="not-italic" data-i18n="ribbon.relax">Relax</i><i class="dot"></i></span>
-          <span><i class="not-italic" data-i18n="ribbon.restore">Restore</i><i class="dot"></i></span>
-          <span><i class="not-italic" data-i18n="ribbon.rebalance">Rebalance</i><i class="dot"></i></span>
-          <span><i class="not-italic" data-i18n="ribbon.breathe">Breathe</i><i class="dot"></i></span>
+          <span><i class="not-italic" data-i18n="pillar.1">Holistic Wellness</i><i class="dot"></i></span>
+          <span><i class="not-italic" data-i18n="pillar.2">Life Coaching</i><i class="dot"></i></span>
+          <span><i class="not-italic" data-i18n="pillar.3">Yoga</i><i class="dot"></i></span>
+          <span><i class="not-italic" data-i18n="pillar.4">Retreats</i><i class="dot"></i></span>
+          <span><i class="not-italic" data-i18n="pillar.5">Conscious Living</i><i class="dot"></i></span>
         </div>
       </div>
     </section>
@@ -85,6 +119,41 @@
         <p class="reveal lead mt-6" style="--d:.2s" data-i18n="home.mission.body"></p>
         <a href="about.html" class="reveal link-line inline-block mt-8 text-[.82rem] font-semibold tracking-[.2em] uppercase text-[var(--clay)]"
            style="--d:.3s" data-i18n="home.mission.link"></a>
+      </div>
+    </section>
+
+    <!-- ============ FIVE PATHS ============ -->
+    <section class="max-w-6xl mx-auto px-5 pb-24 md:pb-36">
+      <div class="max-w-2xl">
+        <p class="kicker reveal" data-i18n="home.pillars.kicker"></p>
+        <h2 class="reveal mt-5 text-[clamp(2rem,4.4vw,3.2rem)]" style="--d:.1s" data-i18n="home.pillars.title"></h2>
+      </div>
+      <div class="mt-12">
+        <div class="pillar-row reveal">
+          <span class="pr-num">— 01</span>
+          <h3 data-i18n="pillar.1"></h3>
+          <p data-i18n="pillar.1.desc"></p>
+        </div>
+        <div class="pillar-row reveal" style="--d:.08s">
+          <span class="pr-num">— 02</span>
+          <h3 data-i18n="pillar.2"></h3>
+          <p data-i18n="pillar.2.desc"></p>
+        </div>
+        <div class="pillar-row reveal" style="--d:.16s">
+          <span class="pr-num">— 03</span>
+          <h3 data-i18n="pillar.3"></h3>
+          <p data-i18n="pillar.3.desc"></p>
+        </div>
+        <div class="pillar-row reveal" style="--d:.24s">
+          <span class="pr-num">— 04</span>
+          <h3 data-i18n="pillar.4"></h3>
+          <p data-i18n="pillar.4.desc"></p>
+        </div>
+        <div class="pillar-row reveal" style="--d:.32s">
+          <span class="pr-num">— 05</span>
+          <h3 data-i18n="pillar.5"></h3>
+          <p data-i18n="pillar.5.desc"></p>
+        </div>
       </div>
     </section>
 
