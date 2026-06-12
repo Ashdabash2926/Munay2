@@ -1,0 +1,819 @@
+{
+  "version": 1,
+  "site": {
+    "name": "Munay Holistic Wellness",
+    "url": "https://munay-site.pages.dev"
+  },
+  "fields": [
+    {
+      "id": "price_t1",
+      "label": "Andean Hot Stone — price (S/)",
+      "group": "Prices",
+      "type": "text",
+      "maxLength": 12,
+      "file": "content/site.json",
+      "key": "prices.t1"
+    },
+    {
+      "id": "price_t2",
+      "label": "Holistic Full-Body Relaxation — price (S/)",
+      "group": "Prices",
+      "type": "text",
+      "maxLength": 12,
+      "file": "content/site.json",
+      "key": "prices.t2"
+    },
+    {
+      "id": "price_t3",
+      "label": "Aromatherapy Oil Massage — price (S/)",
+      "group": "Prices",
+      "type": "text",
+      "maxLength": 12,
+      "file": "content/site.json",
+      "key": "prices.t3"
+    },
+    {
+      "id": "price_t4",
+      "label": "Deep Tissue / Therapeutic — price (S/)",
+      "group": "Prices",
+      "type": "text",
+      "maxLength": 12,
+      "file": "content/site.json",
+      "key": "prices.t4"
+    },
+    {
+      "id": "price_t5",
+      "label": "Chakra & Energy Balancing — price (S/)",
+      "group": "Prices",
+      "type": "text",
+      "maxLength": 12,
+      "file": "content/site.json",
+      "key": "prices.t5"
+    },
+    {
+      "id": "whatsapp",
+      "label": "WhatsApp number (international format, digits only — e.g. 51984123456)",
+      "group": "Contact",
+      "type": "text",
+      "maxLength": 20,
+      "file": "content/site.json",
+      "key": "contact.whatsapp"
+    },
+    {
+      "id": "hero_slide_1",
+      "label": "Homepage hero photo 1 (rotating)",
+      "group": "Photos",
+      "type": "image",
+      "dir": "assets/uploads",
+      "file": "content/site.json",
+      "key": "hero.slide1"
+    },
+    {
+      "id": "hero_slide_2",
+      "label": "Homepage hero photo 2 (rotating)",
+      "group": "Photos",
+      "type": "image",
+      "dir": "assets/uploads",
+      "file": "content/site.json",
+      "key": "hero.slide2"
+    },
+    {
+      "id": "hero_slide_3",
+      "label": "Homepage hero photo 3 (rotating)",
+      "group": "Photos",
+      "type": "image",
+      "dir": "assets/uploads",
+      "file": "content/site.json",
+      "key": "hero.slide3"
+    },
+    {
+      "id": "hero_slide_4",
+      "label": "Homepage hero photo 4 (rotating)",
+      "group": "Photos",
+      "type": "image",
+      "dir": "assets/uploads",
+      "file": "content/site.json",
+      "key": "hero.slide4"
+    },
+    {
+      "id": "hero_slide_5",
+      "label": "Homepage hero photo 5 (rotating)",
+      "group": "Photos",
+      "type": "image",
+      "dir": "assets/uploads",
+      "file": "content/site.json",
+      "key": "hero.slide5"
+    },
+    {
+      "id": "escape_image",
+      "label": "\"Your escape\" section photo",
+      "group": "Photos",
+      "type": "image",
+      "dir": "assets/uploads",
+      "file": "content/site.json",
+      "key": "escape.image"
+    },
+    {
+      "id": "home_sub_en",
+      "label": "Homepage intro paragraph",
+      "group": "English",
+      "type": "textarea",
+      "maxLength": 600,
+      "file": "content/i18n/en.json",
+      "key": "home.hero.sub"
+    },
+    {
+      "id": "home_mission_en",
+      "label": "\"Our intention\" paragraph",
+      "group": "English",
+      "type": "textarea",
+      "maxLength": 1200,
+      "file": "content/i18n/en.json",
+      "key": "home.mission.body"
+    },
+    {
+      "id": "t1_name_en",
+      "label": "Andean Hot Stone — name",
+      "group": "English",
+      "type": "text",
+      "maxLength": 80,
+      "file": "content/i18n/en.json",
+      "key": "treat.t1.name"
+    },
+    {
+      "id": "t1_desc_en",
+      "label": "Andean Hot Stone — description",
+      "group": "English",
+      "type": "textarea",
+      "maxLength": 600,
+      "file": "content/i18n/en.json",
+      "key": "treat.t1.desc"
+    },
+    {
+      "id": "t1_duration_en",
+      "label": "Andean Hot Stone — duration text",
+      "group": "English",
+      "type": "text",
+      "maxLength": 40,
+      "file": "content/i18n/en.json",
+      "key": "treat.t1.duration"
+    },
+    {
+      "id": "t2_name_en",
+      "label": "Holistic Full-Body Relaxation — name",
+      "group": "English",
+      "type": "text",
+      "maxLength": 80,
+      "file": "content/i18n/en.json",
+      "key": "treat.t2.name"
+    },
+    {
+      "id": "t2_desc_en",
+      "label": "Holistic Full-Body Relaxation — description",
+      "group": "English",
+      "type": "textarea",
+      "maxLength": 600,
+      "file": "content/i18n/en.json",
+      "key": "treat.t2.desc"
+    },
+    {
+      "id": "t2_duration_en",
+      "label": "Holistic Full-Body Relaxation — duration text",
+      "group": "English",
+      "type": "text",
+      "maxLength": 40,
+      "file": "content/i18n/en.json",
+      "key": "treat.t2.duration"
+    },
+    {
+      "id": "t3_name_en",
+      "label": "Aromatherapy Oil Massage — name",
+      "group": "English",
+      "type": "text",
+      "maxLength": 80,
+      "file": "content/i18n/en.json",
+      "key": "treat.t3.name"
+    },
+    {
+      "id": "t3_desc_en",
+      "label": "Aromatherapy Oil Massage — description",
+      "group": "English",
+      "type": "textarea",
+      "maxLength": 600,
+      "file": "content/i18n/en.json",
+      "key": "treat.t3.desc"
+    },
+    {
+      "id": "t3_duration_en",
+      "label": "Aromatherapy Oil Massage — duration text",
+      "group": "English",
+      "type": "text",
+      "maxLength": 40,
+      "file": "content/i18n/en.json",
+      "key": "treat.t3.duration"
+    },
+    {
+      "id": "t4_name_en",
+      "label": "Deep Tissue / Therapeutic — name",
+      "group": "English",
+      "type": "text",
+      "maxLength": 80,
+      "file": "content/i18n/en.json",
+      "key": "treat.t4.name"
+    },
+    {
+      "id": "t4_desc_en",
+      "label": "Deep Tissue / Therapeutic — description",
+      "group": "English",
+      "type": "textarea",
+      "maxLength": 600,
+      "file": "content/i18n/en.json",
+      "key": "treat.t4.desc"
+    },
+    {
+      "id": "t4_duration_en",
+      "label": "Deep Tissue / Therapeutic — duration text",
+      "group": "English",
+      "type": "text",
+      "maxLength": 40,
+      "file": "content/i18n/en.json",
+      "key": "treat.t4.duration"
+    },
+    {
+      "id": "t5_name_en",
+      "label": "Chakra & Energy Balancing — name",
+      "group": "English",
+      "type": "text",
+      "maxLength": 80,
+      "file": "content/i18n/en.json",
+      "key": "treat.t5.name"
+    },
+    {
+      "id": "t5_desc_en",
+      "label": "Chakra & Energy Balancing — description",
+      "group": "English",
+      "type": "textarea",
+      "maxLength": 600,
+      "file": "content/i18n/en.json",
+      "key": "treat.t5.desc"
+    },
+    {
+      "id": "t5_duration_en",
+      "label": "Chakra & Energy Balancing — duration text",
+      "group": "English",
+      "type": "text",
+      "maxLength": 40,
+      "file": "content/i18n/en.json",
+      "key": "treat.t5.duration"
+    },
+    {
+      "id": "hb1_en",
+      "label": "Homepage featured card 1 — short blurb",
+      "group": "English",
+      "type": "textarea",
+      "maxLength": 300,
+      "file": "content/i18n/en.json",
+      "key": "home.t1.blurb"
+    },
+    {
+      "id": "hb2_en",
+      "label": "Homepage featured card 2 — short blurb",
+      "group": "English",
+      "type": "textarea",
+      "maxLength": 300,
+      "file": "content/i18n/en.json",
+      "key": "home.t2.blurb"
+    },
+    {
+      "id": "hb3_en",
+      "label": "Homepage featured card 3 — short blurb",
+      "group": "English",
+      "type": "textarea",
+      "maxLength": 300,
+      "file": "content/i18n/en.json",
+      "key": "home.t3.blurb"
+    },
+    {
+      "id": "about_phil_1_en",
+      "label": "About — philosophy paragraph 1",
+      "group": "English",
+      "type": "textarea",
+      "maxLength": 1200,
+      "file": "content/i18n/en.json",
+      "key": "about.phil.b1"
+    },
+    {
+      "id": "about_phil_2_en",
+      "label": "About — philosophy paragraph 2",
+      "group": "English",
+      "type": "textarea",
+      "maxLength": 1200,
+      "file": "content/i18n/en.json",
+      "key": "about.phil.b2"
+    },
+    {
+      "id": "about_story_en",
+      "label": "About — story paragraph",
+      "group": "English",
+      "type": "textarea",
+      "maxLength": 1200,
+      "file": "content/i18n/en.json",
+      "key": "about.story.body"
+    },
+    {
+      "id": "visit_en",
+      "label": "Contact — how to find us",
+      "group": "English",
+      "type": "textarea",
+      "maxLength": 600,
+      "file": "content/i18n/en.json",
+      "key": "contact.visit.body"
+    },
+    {
+      "id": "hours_1_en",
+      "label": "Opening hours — line 1",
+      "group": "English",
+      "type": "text",
+      "maxLength": 120,
+      "file": "content/i18n/en.json",
+      "key": "contact.hours.line1"
+    },
+    {
+      "id": "hours_2_en",
+      "label": "Opening hours — line 2",
+      "group": "English",
+      "type": "text",
+      "maxLength": 120,
+      "file": "content/i18n/en.json",
+      "key": "contact.hours.line2"
+    },
+    {
+      "id": "home_sub_es",
+      "label": "Homepage intro paragraph",
+      "group": "Español",
+      "type": "textarea",
+      "maxLength": 600,
+      "file": "content/i18n/es.json",
+      "key": "home.hero.sub"
+    },
+    {
+      "id": "home_mission_es",
+      "label": "\"Our intention\" paragraph",
+      "group": "Español",
+      "type": "textarea",
+      "maxLength": 1200,
+      "file": "content/i18n/es.json",
+      "key": "home.mission.body"
+    },
+    {
+      "id": "t1_name_es",
+      "label": "Andean Hot Stone — name",
+      "group": "Español",
+      "type": "text",
+      "maxLength": 80,
+      "file": "content/i18n/es.json",
+      "key": "treat.t1.name"
+    },
+    {
+      "id": "t1_desc_es",
+      "label": "Andean Hot Stone — description",
+      "group": "Español",
+      "type": "textarea",
+      "maxLength": 600,
+      "file": "content/i18n/es.json",
+      "key": "treat.t1.desc"
+    },
+    {
+      "id": "t1_duration_es",
+      "label": "Andean Hot Stone — duration text",
+      "group": "Español",
+      "type": "text",
+      "maxLength": 40,
+      "file": "content/i18n/es.json",
+      "key": "treat.t1.duration"
+    },
+    {
+      "id": "t2_name_es",
+      "label": "Holistic Full-Body Relaxation — name",
+      "group": "Español",
+      "type": "text",
+      "maxLength": 80,
+      "file": "content/i18n/es.json",
+      "key": "treat.t2.name"
+    },
+    {
+      "id": "t2_desc_es",
+      "label": "Holistic Full-Body Relaxation — description",
+      "group": "Español",
+      "type": "textarea",
+      "maxLength": 600,
+      "file": "content/i18n/es.json",
+      "key": "treat.t2.desc"
+    },
+    {
+      "id": "t2_duration_es",
+      "label": "Holistic Full-Body Relaxation — duration text",
+      "group": "Español",
+      "type": "text",
+      "maxLength": 40,
+      "file": "content/i18n/es.json",
+      "key": "treat.t2.duration"
+    },
+    {
+      "id": "t3_name_es",
+      "label": "Aromatherapy Oil Massage — name",
+      "group": "Español",
+      "type": "text",
+      "maxLength": 80,
+      "file": "content/i18n/es.json",
+      "key": "treat.t3.name"
+    },
+    {
+      "id": "t3_desc_es",
+      "label": "Aromatherapy Oil Massage — description",
+      "group": "Español",
+      "type": "textarea",
+      "maxLength": 600,
+      "file": "content/i18n/es.json",
+      "key": "treat.t3.desc"
+    },
+    {
+      "id": "t3_duration_es",
+      "label": "Aromatherapy Oil Massage — duration text",
+      "group": "Español",
+      "type": "text",
+      "maxLength": 40,
+      "file": "content/i18n/es.json",
+      "key": "treat.t3.duration"
+    },
+    {
+      "id": "t4_name_es",
+      "label": "Deep Tissue / Therapeutic — name",
+      "group": "Español",
+      "type": "text",
+      "maxLength": 80,
+      "file": "content/i18n/es.json",
+      "key": "treat.t4.name"
+    },
+    {
+      "id": "t4_desc_es",
+      "label": "Deep Tissue / Therapeutic — description",
+      "group": "Español",
+      "type": "textarea",
+      "maxLength": 600,
+      "file": "content/i18n/es.json",
+      "key": "treat.t4.desc"
+    },
+    {
+      "id": "t4_duration_es",
+      "label": "Deep Tissue / Therapeutic — duration text",
+      "group": "Español",
+      "type": "text",
+      "maxLength": 40,
+      "file": "content/i18n/es.json",
+      "key": "treat.t4.duration"
+    },
+    {
+      "id": "t5_name_es",
+      "label": "Chakra & Energy Balancing — name",
+      "group": "Español",
+      "type": "text",
+      "maxLength": 80,
+      "file": "content/i18n/es.json",
+      "key": "treat.t5.name"
+    },
+    {
+      "id": "t5_desc_es",
+      "label": "Chakra & Energy Balancing — description",
+      "group": "Español",
+      "type": "textarea",
+      "maxLength": 600,
+      "file": "content/i18n/es.json",
+      "key": "treat.t5.desc"
+    },
+    {
+      "id": "t5_duration_es",
+      "label": "Chakra & Energy Balancing — duration text",
+      "group": "Español",
+      "type": "text",
+      "maxLength": 40,
+      "file": "content/i18n/es.json",
+      "key": "treat.t5.duration"
+    },
+    {
+      "id": "hb1_es",
+      "label": "Homepage featured card 1 — short blurb",
+      "group": "Español",
+      "type": "textarea",
+      "maxLength": 300,
+      "file": "content/i18n/es.json",
+      "key": "home.t1.blurb"
+    },
+    {
+      "id": "hb2_es",
+      "label": "Homepage featured card 2 — short blurb",
+      "group": "Español",
+      "type": "textarea",
+      "maxLength": 300,
+      "file": "content/i18n/es.json",
+      "key": "home.t2.blurb"
+    },
+    {
+      "id": "hb3_es",
+      "label": "Homepage featured card 3 — short blurb",
+      "group": "Español",
+      "type": "textarea",
+      "maxLength": 300,
+      "file": "content/i18n/es.json",
+      "key": "home.t3.blurb"
+    },
+    {
+      "id": "about_phil_1_es",
+      "label": "About — philosophy paragraph 1",
+      "group": "Español",
+      "type": "textarea",
+      "maxLength": 1200,
+      "file": "content/i18n/es.json",
+      "key": "about.phil.b1"
+    },
+    {
+      "id": "about_phil_2_es",
+      "label": "About — philosophy paragraph 2",
+      "group": "Español",
+      "type": "textarea",
+      "maxLength": 1200,
+      "file": "content/i18n/es.json",
+      "key": "about.phil.b2"
+    },
+    {
+      "id": "about_story_es",
+      "label": "About — story paragraph",
+      "group": "Español",
+      "type": "textarea",
+      "maxLength": 1200,
+      "file": "content/i18n/es.json",
+      "key": "about.story.body"
+    },
+    {
+      "id": "visit_es",
+      "label": "Contact — how to find us",
+      "group": "Español",
+      "type": "textarea",
+      "maxLength": 600,
+      "file": "content/i18n/es.json",
+      "key": "contact.visit.body"
+    },
+    {
+      "id": "hours_1_es",
+      "label": "Opening hours — line 1",
+      "group": "Español",
+      "type": "text",
+      "maxLength": 120,
+      "file": "content/i18n/es.json",
+      "key": "contact.hours.line1"
+    },
+    {
+      "id": "hours_2_es",
+      "label": "Opening hours — line 2",
+      "group": "Español",
+      "type": "text",
+      "maxLength": 120,
+      "file": "content/i18n/es.json",
+      "key": "contact.hours.line2"
+    },
+    {
+      "id": "home_sub_fa",
+      "label": "Homepage intro paragraph",
+      "group": "فارسی (Farsi)",
+      "type": "textarea",
+      "maxLength": 600,
+      "file": "content/i18n/fa.json",
+      "key": "home.hero.sub"
+    },
+    {
+      "id": "home_mission_fa",
+      "label": "\"Our intention\" paragraph",
+      "group": "فارسی (Farsi)",
+      "type": "textarea",
+      "maxLength": 1200,
+      "file": "content/i18n/fa.json",
+      "key": "home.mission.body"
+    },
+    {
+      "id": "t1_name_fa",
+      "label": "Andean Hot Stone — name",
+      "group": "فارسی (Farsi)",
+      "type": "text",
+      "maxLength": 80,
+      "file": "content/i18n/fa.json",
+      "key": "treat.t1.name"
+    },
+    {
+      "id": "t1_desc_fa",
+      "label": "Andean Hot Stone — description",
+      "group": "فارسی (Farsi)",
+      "type": "textarea",
+      "maxLength": 600,
+      "file": "content/i18n/fa.json",
+      "key": "treat.t1.desc"
+    },
+    {
+      "id": "t1_duration_fa",
+      "label": "Andean Hot Stone — duration text",
+      "group": "فارسی (Farsi)",
+      "type": "text",
+      "maxLength": 40,
+      "file": "content/i18n/fa.json",
+      "key": "treat.t1.duration"
+    },
+    {
+      "id": "t2_name_fa",
+      "label": "Holistic Full-Body Relaxation — name",
+      "group": "فارسی (Farsi)",
+      "type": "text",
+      "maxLength": 80,
+      "file": "content/i18n/fa.json",
+      "key": "treat.t2.name"
+    },
+    {
+      "id": "t2_desc_fa",
+      "label": "Holistic Full-Body Relaxation — description",
+      "group": "فارسی (Farsi)",
+      "type": "textarea",
+      "maxLength": 600,
+      "file": "content/i18n/fa.json",
+      "key": "treat.t2.desc"
+    },
+    {
+      "id": "t2_duration_fa",
+      "label": "Holistic Full-Body Relaxation — duration text",
+      "group": "فارسی (Farsi)",
+      "type": "text",
+      "maxLength": 40,
+      "file": "content/i18n/fa.json",
+      "key": "treat.t2.duration"
+    },
+    {
+      "id": "t3_name_fa",
+      "label": "Aromatherapy Oil Massage — name",
+      "group": "فارسی (Farsi)",
+      "type": "text",
+      "maxLength": 80,
+      "file": "content/i18n/fa.json",
+      "key": "treat.t3.name"
+    },
+    {
+      "id": "t3_desc_fa",
+      "label": "Aromatherapy Oil Massage — description",
+      "group": "فارسی (Farsi)",
+      "type": "textarea",
+      "maxLength": 600,
+      "file": "content/i18n/fa.json",
+      "key": "treat.t3.desc"
+    },
+    {
+      "id": "t3_duration_fa",
+      "label": "Aromatherapy Oil Massage — duration text",
+      "group": "فارسی (Farsi)",
+      "type": "text",
+      "maxLength": 40,
+      "file": "content/i18n/fa.json",
+      "key": "treat.t3.duration"
+    },
+    {
+      "id": "t4_name_fa",
+      "label": "Deep Tissue / Therapeutic — name",
+      "group": "فارسی (Farsi)",
+      "type": "text",
+      "maxLength": 80,
+      "file": "content/i18n/fa.json",
+      "key": "treat.t4.name"
+    },
+    {
+      "id": "t4_desc_fa",
+      "label": "Deep Tissue / Therapeutic — description",
+      "group": "فارسی (Farsi)",
+      "type": "textarea",
+      "maxLength": 600,
+      "file": "content/i18n/fa.json",
+      "key": "treat.t4.desc"
+    },
+    {
+      "id": "t4_duration_fa",
+      "label": "Deep Tissue / Therapeutic — duration text",
+      "group": "فارسی (Farsi)",
+      "type": "text",
+      "maxLength": 40,
+      "file": "content/i18n/fa.json",
+      "key": "treat.t4.duration"
+    },
+    {
+      "id": "t5_name_fa",
+      "label": "Chakra & Energy Balancing — name",
+      "group": "فارسی (Farsi)",
+      "type": "text",
+      "maxLength": 80,
+      "file": "content/i18n/fa.json",
+      "key": "treat.t5.name"
+    },
+    {
+      "id": "t5_desc_fa",
+      "label": "Chakra & Energy Balancing — description",
+      "group": "فارسی (Farsi)",
+      "type": "textarea",
+      "maxLength": 600,
+      "file": "content/i18n/fa.json",
+      "key": "treat.t5.desc"
+    },
+    {
+      "id": "t5_duration_fa",
+      "label": "Chakra & Energy Balancing — duration text",
+      "group": "فارسی (Farsi)",
+      "type": "text",
+      "maxLength": 40,
+      "file": "content/i18n/fa.json",
+      "key": "treat.t5.duration"
+    },
+    {
+      "id": "hb1_fa",
+      "label": "Homepage featured card 1 — short blurb",
+      "group": "فارسی (Farsi)",
+      "type": "textarea",
+      "maxLength": 300,
+      "file": "content/i18n/fa.json",
+      "key": "home.t1.blurb"
+    },
+    {
+      "id": "hb2_fa",
+      "label": "Homepage featured card 2 — short blurb",
+      "group": "فارسی (Farsi)",
+      "type": "textarea",
+      "maxLength": 300,
+      "file": "content/i18n/fa.json",
+      "key": "home.t2.blurb"
+    },
+    {
+      "id": "hb3_fa",
+      "label": "Homepage featured card 3 — short blurb",
+      "group": "فارسی (Farsi)",
+      "type": "textarea",
+      "maxLength": 300,
+      "file": "content/i18n/fa.json",
+      "key": "home.t3.blurb"
+    },
+    {
+      "id": "about_phil_1_fa",
+      "label": "About — philosophy paragraph 1",
+      "group": "فارسی (Farsi)",
+      "type": "textarea",
+      "maxLength": 1200,
+      "file": "content/i18n/fa.json",
+      "key": "about.phil.b1"
+    },
+    {
+      "id": "about_phil_2_fa",
+      "label": "About — philosophy paragraph 2",
+      "group": "فارسی (Farsi)",
+      "type": "textarea",
+      "maxLength": 1200,
+      "file": "content/i18n/fa.json",
+      "key": "about.phil.b2"
+    },
+    {
+      "id": "about_story_fa",
+      "label": "About — story paragraph",
+      "group": "فارسی (Farsi)",
+      "type": "textarea",
+      "maxLength": 1200,
+      "file": "content/i18n/fa.json",
+      "key": "about.story.body"
+    },
+    {
+      "id": "visit_fa",
+      "label": "Contact — how to find us",
+      "group": "فارسی (Farsi)",
+      "type": "textarea",
+      "maxLength": 600,
+      "file": "content/i18n/fa.json",
+      "key": "contact.visit.body"
+    },
+    {
+      "id": "hours_1_fa",
+      "label": "Opening hours — line 1",
+      "group": "فارسی (Farsi)",
+      "type": "text",
+      "maxLength": 120,
+      "file": "content/i18n/fa.json",
+      "key": "contact.hours.line1"
+    },
+    {
+      "id": "hours_2_fa",
+      "label": "Opening hours — line 2",
+      "group": "فارسی (Farsi)",
+      "type": "text",
+      "maxLength": 120,
+      "file": "content/i18n/fa.json",
+      "key": "contact.hours.line2"
+    }
+  ]
+}

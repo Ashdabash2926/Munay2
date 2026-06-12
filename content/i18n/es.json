@@ -1,0 +1,210 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Nosotros",
+    "treatments": "Tratamientos",
+    "contact": "Contacto"
+  },
+  "cta": {
+    "book": "Reservar",
+    "whatsapp": "Reservar por WhatsApp"
+  },
+  "brand": {
+    "tagline": "Bienestar Holístico · Valle Sagrado"
+  },
+  "footer": {
+    "blurb": "Un pequeño santuario para el descanso profundo en Písac, Valle Sagrado.",
+    "explore": "Explorar",
+    "visit": "Visítanos",
+    "location": "Písac, Valle Sagrado, Cusco — Perú",
+    "rights": "Todos los derechos reservados."
+  },
+  "pillar": {
+    "1": {
+      "word": "Bienestar Holístico",
+      "desc": "Masaje, respiración y trabajo corporal que te tratan como un todo — nunca como partes."
+    },
+    "2": {
+      "word": "Coaching de Vida",
+      "desc": "Acompañamiento individual para ordenar la mente y andar tu camino con intención."
+    },
+    "3": {
+      "word": "Yoga",
+      "desc": "Práctica lenta y enraizada en la altura — fuerza para el camino, quietud para el descanso."
+    },
+    "4": {
+      "word": "Retiros",
+      "desc": "Días de ceremonia, silencio y caminatas por el valle — grupos pequeños, descanso profundo."
+    },
+    "5": {
+      "word": "Vida Consciente",
+      "desc": "Herramientas y rituales para llevar la calma del valle a la vida diaria."
+    }
+  },
+  "home": {
+    "pillars": {
+      "kicker": "Lo que ofrecemos",
+      "title": "Cinco caminos, una práctica"
+    },
+    "hero": {
+      "kicker": "Písac · Valle Sagrado · Perú",
+      "lead": "Un santuario para",
+      "sub": "Masaje, movimiento y acompañamiento en el corazón del Valle Sagrado — cinco caminos, una práctica: volver a ti, tres mil metros más cerca del cielo.",
+      "cta2": "Ver tratamientos"
+    },
+    "mission": {
+      "kicker": "Nuestra intención",
+      "title": "Munay significa amor en quechua.",
+      "body": "Es la energía del corazón en el centro de la cosmovisión andina — y el centro de esta práctica. Cada sesión es un ritual pausado: aceites tibios de plantas del valle, humo de palo santo y manos que escuchan antes de trabajar. Nada se apresura. Nada es rutina.",
+      "link": "Nuestra filosofía"
+    },
+    "featured": {
+      "kicker": "El menú",
+      "title": "Tres maneras de llegar",
+      "all": "Ver todos los tratamientos"
+    },
+    "t1": {
+      "blurb": "Piedras volcánicas templadas en agua de manantial deshacen la tensión capa a capa, como el sol sobre el hielo de la montaña."
+    },
+    "t2": {
+      "blurb": "Muña, eucalipto y lavanda mezclados según tu ánimo — para respirar y trabajar tibios y profundos en la piel."
+    },
+    "t3": {
+      "blurb": "Trabajo energético suave e intuitivo para serenar la mente y dejar fluir de nuevo la corriente del cuerpo."
+    },
+    "escape": {
+      "kicker": "Tu refugio",
+      "title": "Deja que el valle te sostenga.",
+      "sub": "Una hora sin prisa puede cambiar la forma de todo un viaje."
+    },
+    "testimonial": {
+      "quote": "«Llegué con una mochila llena de tensión y salí sintiendo que las montañas se la habían llevado. El masaje más presente e intuitivo que he encontrado en el mundo.»",
+      "name": "Maya · Berlín"
+    },
+    "cta": {
+      "title": "Tu cuerpo conoce el camino.",
+      "sub": "Reserva tu sesión — las mañanas y los atardeceres se llenan rápido."
+    }
+  },
+  "about": {
+    "hero": {
+      "kicker": "Sobre Munay",
+      "title": "Una práctica de presencia",
+      "sub": "Un pequeño santuario sobre el mercado de Písac, construido sobre una sola creencia: la sanación comienza en el momento en que te sientes a salvo para soltar."
+    },
+    "phil": {
+      "kicker": "Filosofía",
+      "title": "Todo tu ser es bienvenido aquí.",
+      "b1": "No tratamos espaldas, cuellos ni hombros — recibimos personas completas. El cansancio, la altura, la pena, la alegría, el largo camino que te trajo hasta aquí: todo sube a la camilla contigo, y todo es escuchado.",
+      "b2": "Las sesiones combinan movimientos suecos lentos, trabajo energético andino y respiración — guiadas menos por la rutina que por lo que tu cuerpo pide ese día."
+    },
+    "story": {
+      "kicker": "Tu terapeuta",
+      "title": "Manos formadas por dos mundos",
+      "body": "Formada en masaje clásico y aprendiz de curanderos del valle, tu terapeuta ha pasado la última década aprendiendo una misma lección una y otra vez: el cuerpo sana a la velocidad de la confianza. (Historia provisional — reemplazar por la real.)"
+    },
+    "oils": {
+      "kicker": "El ritual",
+      "title": "Aceites, humo y manos cálidas",
+      "b1": "Cada sesión se abre con palo santo y se cierra con mate de coca. Entre ambos: aceites templados a la vela y mezclados para ti esa misma mañana."
+    },
+    "oil1": {
+      "name": "Muña",
+      "desc": "Menta silvestre andina; abre la respiración en la altura."
+    },
+    "oil2": {
+      "name": "Eucalipto",
+      "desc": "Despeja la mente y refresca los músculos cansados."
+    },
+    "oil3": {
+      "name": "Lavanda",
+      "desc": "Calma el sistema nervioso hacia el descanso."
+    },
+    "oil4": {
+      "name": "Palo Santo",
+      "desc": "Humo de madera sagrada para marcar comienzos y finales."
+    },
+    "valley": {
+      "kicker": "El entorno",
+      "title": "Písac, a 2.970 m del ruido",
+      "body": "Písac está donde el aire de eucalipto, el sonido del río y los Apus — los espíritus de la montaña — hacen la mitad del trabajo antes de empezar. Sal de tu sesión hacia las terrazas y el ritmo lento del valle."
+    },
+    "cta": {
+      "title": "Ven tal como eres.",
+      "sub": "Sesiones con cita previa, todos los días excepto los lunes."
+    }
+  },
+  "treat": {
+    "hero": {
+      "kicker": "Tratamientos",
+      "title": "Elige tu medicina",
+      "sub": "Cinco rituales, una intención: devolverte a ti. Cada sesión incluye palo santo, aceites cálidos y mate de coca."
+    },
+    "t1": {
+      "name": "Piedras Calientes Andinas",
+      "desc": "Piedras volcánicas templadas en agua de manantial recorren los meridianos del cuerpo, deshaciendo la tensión profunda capa a capa. El calor logra lo que la presión sola no puede.",
+      "duration": "90 min"
+    },
+    "t2": {
+      "name": "Relajación Holística de Cuerpo Entero",
+      "desc": "Movimientos largos y lentos por todo el cuerpo que bajan el pulso y aquietan la mente — el descanso profundo clásico, hecho con una paciencia poco común.",
+      "duration": "60 / 90 min"
+    },
+    "t3": {
+      "name": "Masaje con Aceites y Aromaterapia",
+      "desc": "Una mezcla de muña, eucalipto y lavanda elegida contigo antes de empezar — para respirarla y trabajarla tibia y profunda en la piel.",
+      "duration": "60 min"
+    },
+    "t4": {
+      "name": "Tejido Profundo / Terapéutico",
+      "desc": "Trabajo enfocado y deliberado sobre lo que duele — nudos antiguos, piernas de trekking, hombros de escritorio. Firme, nunca apresurado, siempre en diálogo contigo.",
+      "duration": "60 / 75 min"
+    },
+    "t5": {
+      "name": "Equilibrio de Chakras y Energía",
+      "desc": "Trabajo energético suave e intuitivo sobre los centros del cuerpo, entretejido con respiración y quietud, para que tu propia corriente vuelva a fluir.",
+      "duration": "75 min"
+    },
+    "cta": {
+      "title": "¿No sabes cuál elegir?",
+      "sub": "Cuéntanos cómo te sientes — te escucharemos y daremos forma a la sesión a tu medida."
+    }
+  },
+  "contact": {
+    "hero": {
+      "kicker": "Contacto",
+      "title": "Encuentra el camino hacia nosotros",
+      "sub": "Dos calles arriba del mercado de Písac, tras la puerta azul. Llega temprano, vete despacio."
+    },
+    "visit": {
+      "title": "Visítanos",
+      "body": "Calle [XXX] s/n, Písac, Valle Sagrado, Cusco — Perú"
+    },
+    "hours": {
+      "title": "Horario",
+      "line1": "Martes — Domingo · 9:00 – 19:00",
+      "line2": "Lunes cerrado · sesiones con cita previa"
+    },
+    "wa": {
+      "title": "La vía más rápida",
+      "body": "Escríbenos por WhatsApp para reservar una sesión o preguntar lo que quieras."
+    },
+    "form": {
+      "title": "O escríbenos unas líneas",
+      "name": {
+        "word": "Nombre",
+        "ph": "Tu nombre"
+      },
+      "email": {
+        "word": "Correo",
+        "ph": "tu@ejemplo.com"
+      },
+      "message": {
+        "word": "Mensaje",
+        "ph": "¿Cómo podemos ayudarte?"
+      },
+      "submit": "Enviar mensaje",
+      "note": "Respondemos en un día."
+    }
+  }
+}

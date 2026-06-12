@@ -27,19 +27,19 @@
       <div class="hero__drift">
         <div class="hero__depth">
           <img class="hero__slide is-active" data-pillar-slide="0"
-               src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=2000&auto=format&fit=crop"
+               src="{{ site.hero.slide1 | imgsrc }}"
                alt="Warm candlelit massage in a quiet spa room" fetchpriority="high" />
           <img class="hero__slide" data-pillar-slide="1" loading="lazy"
-               src="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?q=80&w=2000&auto=format&fit=crop"
+               src="{{ site.hero.slide2 | imgsrc }}"
                alt="Person opening their arms to the sunrise" />
           <img class="hero__slide" data-pillar-slide="2" loading="lazy"
-               src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=2000&auto=format&fit=crop"
+               src="{{ site.hero.slide3 | imgsrc }}"
                alt="Yoga asana silhouetted against the evening sky" />
           <img class="hero__slide" data-pillar-slide="3" loading="lazy"
-               src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?q=80&w=2000&auto=format&fit=crop"
+               src="{{ site.hero.slide4 | imgsrc }}"
                alt="Lakeside lodge beneath quiet mountains" />
           <img class="hero__slide" data-pillar-slide="4" loading="lazy"
-               src="https://images.unsplash.com/photo-1508672019048-805c876b67e2?q=80&w=2000&auto=format&fit=crop"
+               src="{{ site.hero.slide5 | imgsrc }}"
                alt="Sitting in stillness on a dock between mountains" />
         </div>
       </div>
@@ -103,7 +103,7 @@
       <div class="relative">
         <div class="reveal-left parallax aspect-[4/5] max-w-md">
           <img class="parallax__img" loading="lazy"
-               src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?q=80&w=1200&auto=format&fit=crop"
+               src="{{ site.escape.image | imgsrc }}"
                alt="Warm massage oils and folded linen in soft light" />
         </div>
         <div class="reveal-scale absolute -bottom-10 -right-2 sm:right-6 md:-right-8 w-44 sm:w-52 shadow-[var(--shadow-lift)] border-4 border-[var(--cream)]"
@@ -251,7 +251,7 @@
         <p class="reveal lead lead--inv mt-6" style="--d:.12s" data-i18n="home.cta.sub"></p>
         <div class="reveal mt-10 flex flex-wrap justify-center gap-4" style="--d:.24s">
           <a href="contact.html" class="btn btn-primary" data-i18n="cta.book"></a>
-          <a href="https://wa.me/XXXXXXXXX" class="btn btn-ghost btn-ghost--inv" data-i18n="cta.whatsapp"></a>
+          <a href="https://wa.me/{{ site.contact.whatsapp }}" class="btn btn-ghost btn-ghost--inv" data-i18n="cta.whatsapp"></a>
         </div>
       </div>
     </section>

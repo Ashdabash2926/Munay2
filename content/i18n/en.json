@@ -1,0 +1,210 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "treatments": "Treatments",
+    "contact": "Contact"
+  },
+  "cta": {
+    "book": "Book Now",
+    "whatsapp": "Book on WhatsApp"
+  },
+  "brand": {
+    "tagline": "Holistic Wellness · Sacred Valley"
+  },
+  "footer": {
+    "blurb": "A small sanctuary for deep rest in Písac, Sacred Valley.",
+    "explore": "Explore",
+    "visit": "Visit",
+    "location": "Písac, Sacred Valley, Cusco — Peru",
+    "rights": "All rights reserved."
+  },
+  "pillar": {
+    "1": {
+      "word": "Holistic Wellness",
+      "desc": "Massage, breath and bodywork that treat you as one whole — never parts."
+    },
+    "2": {
+      "word": "Life Coaching",
+      "desc": "One-to-one guidance to untangle the mind and walk your path with intention."
+    },
+    "3": {
+      "word": "Yoga",
+      "desc": "Slow, grounded practice at altitude — strength for the trail, stillness for the rest."
+    },
+    "4": {
+      "word": "Retreats",
+      "desc": "Days of ceremony, silence and valley walks — small groups, deep rest."
+    },
+    "5": {
+      "word": "Conscious Living",
+      "desc": "Tools and rituals to carry the valley's calm into everyday life."
+    }
+  },
+  "home": {
+    "pillars": {
+      "kicker": "What we hold",
+      "title": "Five paths, one practice"
+    },
+    "hero": {
+      "kicker": "Písac · Sacred Valley · Peru",
+      "lead": "A sanctuary for",
+      "sub": "Massage, movement and mentorship in the heart of the Sacred Valley — five paths, one practice: coming home to yourself, three thousand metres closer to the sky.",
+      "cta2": "Explore treatments"
+    },
+    "mission": {
+      "kicker": "Our intention",
+      "title": "Munay means love in Quechua.",
+      "body": "It is the heart-energy at the centre of Andean cosmovision — and the centre of this practice. Every session is a slow ritual: warm oils pressed from valley plants, palo santo smoke, and hands that listen before they work. Nothing is rushed. Nothing is routine.",
+      "link": "Our philosophy"
+    },
+    "featured": {
+      "kicker": "The menu",
+      "title": "Three ways to arrive",
+      "all": "View all treatments"
+    },
+    "t1": {
+      "blurb": "Volcanic stones warmed in spring water melt tension layer by layer, like sun on mountain ice."
+    },
+    "t2": {
+      "blurb": "Muña, eucalyptus and lavender blended to your mood — breathed in, worked warm and deep into the skin."
+    },
+    "t3": {
+      "blurb": "Gentle, intuitive energy work to settle the mind and let the body's own current flow again."
+    },
+    "escape": {
+      "kicker": "Your escape",
+      "title": "Let the valley hold you.",
+      "sub": "One unhurried hour can change the shape of a whole journey."
+    },
+    "testimonial": {
+      "quote": "“I arrived with a backpack full of tension and left feeling like the mountains had carried it away. The most present, intuitive massage I have found anywhere in the world.”",
+      "name": "Maya · Berlin"
+    },
+    "cta": {
+      "title": "Your body knows the way.",
+      "sub": "Reserve your session — mornings and sunsets fill quickly."
+    }
+  },
+  "about": {
+    "hero": {
+      "kicker": "About Munay",
+      "title": "A practice of presence",
+      "sub": "A small sanctuary above the Písac market, built on one belief: healing begins the moment you feel safe enough to soften."
+    },
+    "phil": {
+      "kicker": "Philosophy",
+      "title": "The whole of you, welcome here.",
+      "b1": "We don't treat backs, necks or shoulders — we welcome whole people. Tiredness, altitude, grief, joy, the long road that brought you here: all of it comes onto the table with you, and all of it is listened to.",
+      "b2": "Sessions blend slow Swedish strokes, Andean energy work and breath — guided less by routine than by what your body asks for on the day."
+    },
+    "story": {
+      "kicker": "Your practitioner",
+      "title": "Hands shaped by two worlds",
+      "body": "Trained in classical massage and apprenticed with curanderos of the valley, your practitioner has spent the last decade learning one lesson again and again: the body heals at the speed of trust. (Placeholder story — replace with the real one.)"
+    },
+    "oils": {
+      "kicker": "The ritual",
+      "title": "Oils, smoke & warm hands",
+      "b1": "Every session opens with palo santo and closes with coca-leaf tea. Between them: oils warmed over a candle and blended for you that morning."
+    },
+    "oil1": {
+      "name": "Muña",
+      "desc": "Wild Andean mint; opens the breath at altitude."
+    },
+    "oil2": {
+      "name": "Eucalyptus",
+      "desc": "Clears the head, cools tired muscles."
+    },
+    "oil3": {
+      "name": "Lavender",
+      "desc": "Quiets the nervous system into rest."
+    },
+    "oil4": {
+      "name": "Palo Santo",
+      "desc": "Sacred wood smoke to mark beginnings and endings."
+    },
+    "valley": {
+      "kicker": "The setting",
+      "title": "Písac, 2,970 m above the noise",
+      "body": "Písac sits where eucalyptus air, river sound and the Apus — the mountain spirits — do half the work before we even begin. Step out of your session into terraced hills and the slow rhythm of the valley."
+    },
+    "cta": {
+      "title": "Come as you are.",
+      "sub": "Sessions by appointment, every day except Monday."
+    }
+  },
+  "treat": {
+    "hero": {
+      "kicker": "Treatments",
+      "title": "Choose your medicine",
+      "sub": "Five rituals, one intention: to return you to yourself. Every session includes palo santo, warm oils and coca-leaf tea."
+    },
+    "t1": {
+      "name": "Andean Hot Stone",
+      "desc": "Volcanic stones warmed in spring water are drawn along the body's meridians, melting deep tension layer by layer. Heat does what pressure alone cannot.",
+      "duration": "90 min"
+    },
+    "t2": {
+      "name": "Holistic Full-Body Relaxation",
+      "desc": "Long, slow, full-body strokes that lower the heart rate and quiet the mind — the classic deep rest, done with unusual patience.",
+      "duration": "60 / 90 min"
+    },
+    "t3": {
+      "name": "Aromatherapy Oil Massage",
+      "desc": "A blend of muña, eucalyptus and lavender chosen with you before we begin — breathed in, then worked warm and deep into the skin.",
+      "duration": "60 min"
+    },
+    "t4": {
+      "name": "Deep Tissue / Therapeutic",
+      "desc": "Focused, deliberate work on what hurts — old knots, trekking legs, desk-bound shoulders. Strong, never rushed, always in conversation with you.",
+      "duration": "60 / 75 min"
+    },
+    "t5": {
+      "name": "Chakra & Energy Balancing",
+      "desc": "Gentle, intuitive energy work along the body's centres, woven with breath and stillness, to let your own current flow again.",
+      "duration": "75 min"
+    },
+    "cta": {
+      "title": "Not sure which to choose?",
+      "sub": "Tell us how you feel — we'll listen and shape the session around you."
+    }
+  },
+  "contact": {
+    "hero": {
+      "kicker": "Contact",
+      "title": "Find your way to us",
+      "sub": "Two streets above the Písac market, behind the blue door. Come early, leave slowly."
+    },
+    "visit": {
+      "title": "Visit",
+      "body": "Calle [XXX] s/n, Písac, Valle Sagrado, Cusco — Peru"
+    },
+    "hours": {
+      "title": "Hours",
+      "line1": "Tuesday — Sunday · 9:00 – 19:00",
+      "line2": "Mondays closed · sessions by appointment"
+    },
+    "wa": {
+      "title": "The fastest way",
+      "body": "Message us on WhatsApp to book a session or ask anything at all."
+    },
+    "form": {
+      "title": "Or write us a note",
+      "name": {
+        "word": "Name",
+        "ph": "Your name"
+      },
+      "email": {
+        "word": "Email",
+        "ph": "you@example.com"
+      },
+      "message": {
+        "word": "Message",
+        "ph": "How can we help?"
+      },
+      "submit": "Send message",
+      "note": "We reply within a day."
+    }
+  }
+}
