@@ -1,49 +1,47 @@
-# Munay 2 · Holistic Massage — Sacred Valley
+# Parastoo · Embodiment, Plant Medicine & Conscious Living
 
-**Live:** https://munay-site.pages.dev/
+Private practitioner site for Parastoo — a guide in embodiment, plant medicine, bodywork, ceremony, conscious living, and private chef experiences.
 
-A warm, calming, trilingual (English / Español / فارسی) four-page website for a holistic
-massage practice in Písac, Sacred Valley (Cusco), Peru. Flat static site — no build step.
+Trilingual: English / Español / فارسی (with true RTL layout for Farsi). Eleventy static site with content extracted to `content/` and a JS i18n dictionary auto-generated at build time.
 
-Second-generation rebuild of `munay-massage` from the same approved spec
-(`docs/superpowers/specs/2026-06-09-munay-massage-design.md`).
-
-- **Design system:** "Earthen Sanctuary II" — terracotta / cream / cocoa with muted gold,
-  Fraunces (variable, soft optical axis) + Barlow + Vazirmatn, film-grain texture,
-  scroll-driven parallax, masked headline reveals, chakana-motif dividers.
-- **Stack:** HTML + Tailwind (CDN) + CSS custom properties + vanilla JS.
-- **i18n:** EN / ES / FA with true RTL flip for Farsi; choice persists in `localStorage`.
-
-## Structure
+## Pages
 
 | File | Purpose |
 |------|---------|
-| `index.html` | Home |
-| `about.html` | About (philosophy + oils/aromatherapy + Sacred Valley) |
-| `treatments.html` | Treatments menu |
-| `contact.html` | Contact + form + map |
-| `css/styles.css` | Design tokens, motion system, components, RTL overrides |
-| `js/i18n.js` | Translation dictionary + language switcher |
-| `js/site.js` | Injects shared nav/footer; wires scroll-reveal + parallax |
-| `assets/` | Favicon, OG image |
+| `index.html` | Home — hero, philosophy, testimonial |
+| `about.html` | About Parastoo — story, approach, method |
+| `offerings.html` | Services: 1:1 mentorship, The Embodied Plant Medicine Method™, bodywork, psilocybin ceremony, private chef |
+| `retreats.html` | The Way Home — 7-Day Retreat, Lake Atitlán, Guatemala, Dec 17–23 2026 |
+| `faq.html` | Frequently asked questions |
+| `contact.html` | Discovery call booking + contact form |
 
-## ⚠️ Placeholders to replace before launch
+## Stack
 
-- [ ] **Brand name** — "Munay" is a placeholder (Quechua: *love / heart-energy*).
-- [ ] **Treatment names, durations & prices** — currently illustrative ("S/ XXX").
-- [ ] **WhatsApp / booking number** — `https://wa.me/XXXXXXXXX`.
-- [ ] **Opening hours** — placeholder values on Contact.
-- [ ] **Map location** — Contact map points to a Písac placeholder query; set real coords.
-- [ ] **Photography** — hero/treatment images are curated Unsplash placeholders; swap for
-      real photos of the studio/practitioner.
-- [ ] **Contact form action** — `action="#"`; wire to a real handler (Formspree, Worker, etc.).
-- [ ] **Practitioner story** on About — placeholder copy.
+- **HTML + Tailwind (CDN) + CSS custom properties + vanilla JS** — no framework
+- **Eleventy** — builds i18n.js from `content/i18n/` JSON + injects content
+- **i18n:** EN / ES / FA with RTL flip for Farsi; persisted in `localStorage`
+- **Fonts:** Fraunces (variable) + Barlow + Vazirmatn (for Farsi)
+- **Assets:** `assets/favicon.svg`, `assets/og.jpg`
 
-## Local preview
+## Build & Dev
 
-Open `index.html` in a browser (no server needed). For map/iframe testing a local server
-helps: `python3 -m http.server`.
+```bash
+npm install
+npm run build   # outputs to _site/
+npm run dev     # Eleventy watch + local server
+```
+
+## Placeholders to replace before launch
+
+- [ ] **Real session prices & durations** — offerings page uses illustrative values
+- [ ] **In-person city / location** — currently "in person & online"; add real city once confirmed
+- [ ] **Real testimonials** — home page uses a holding quote
+- [ ] **Photography** — ceremony, method, retreat, and private chef sections need real Parastoo images; `assets/og.jpg` should be re-shot as a Parastoo-branded OG card
+- [ ] **Retreat booking URL** — `content/site.json` → `retreat.bookingUrl`, currently `#`
+- [ ] **Contact form action** — `contact.html` form `action` is `#`; wire to Formspree, Cloudflare Worker, etc.
+- [ ] **Absolute og:image URL** — set a fully-qualified URL on the final domain (currently relative `assets/og.jpg`)
+- [ ] **Native ES / FA translation review** — have a fluent speaker check the Spanish and Farsi copy
 
 ## Deploy
 
-GitHub Pages from `main` (root), repo `Ashdabash2926/Munay2`.
+Cloudflare Pages from private GitHub repo `Ashdabash2926/Munay2` (branch: `main`).
