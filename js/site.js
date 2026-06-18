@@ -1,17 +1,18 @@
-/* Munay — shared chrome (nav + footer), language switcher, motion wiring. */
+/* Parastoo — shared chrome (nav + footer), language switcher, motion wiring. */
 (function () {
   const page = document.body.dataset.page || "home";
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* chakana-inspired mark, used in nav + footer */
+  /* simple sun/seed glyph — non-region, used in nav + footer + dividers */
   const mark = (cls) => `
     <svg class="${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-      <path d="M12 2.8 14.4 7l4.6.4-3 3.6 3 3.6-4.6.4L12 19.2 9.6 15l-4.6-.4 3-3.6-3-3.6L9.6 7 12 2.8Z"/>
-      <circle cx="12" cy="11" r="2.2"/>
+      <circle cx="12" cy="12" r="3.4"/>
+      <path d="M12 2v3.4M12 18.6V22M2 12h3.4M18.6 12H22M4.9 4.9l2.4 2.4M16.7 16.7l2.4 2.4M19.1 4.9l-2.4 2.4M7.3 16.7l-2.4 2.4"/>
     </svg>`;
 
   const links = [["home", "index.html"], ["about", "about.html"],
-                 ["treatments", "treatments.html"], ["contact", "contact.html"]];
+                 ["offerings", "offerings.html"], ["retreats", "retreats.html"],
+                 ["faq", "faq.html"], ["contact", "contact.html"]];
 
   const navLinks = (cls) => links.map(([k, href]) =>
     `<a href="${href}" data-i18n="nav.${k}" class="nav-link ${cls}"
@@ -25,9 +26,9 @@
   document.getElementById("site-nav").innerHTML = `
     <nav id="navbar" class="fixed top-0 inset-x-0 z-50">
       <div class="max-w-6xl mx-auto flex items-center justify-between px-5 py-4">
-        <a href="index.html" class="nav-ink flex items-center gap-2.5 text-[var(--text-inv)] transition-colors" aria-label="Munay — home">
+        <a href="index.html" class="nav-ink flex items-center gap-2.5 text-[var(--text-inv)] transition-colors" aria-label="Parastoo — home">
           <span class="text-[var(--gold)]">${mark("w-6 h-6 breathe")}</span>
-          <span class="font-display text-[1.55rem] tracking-wide">Munay</span>
+          <span class="font-display text-[1.55rem] tracking-wide">Parastoo</span>
         </a>
         <div class="hidden md:flex items-center gap-1">
           ${navLinks("nav-ink px-3 py-2 text-[.78rem] tracking-[.18em] uppercase text-[var(--text-inv)] transition-colors")}
@@ -54,7 +55,7 @@
       <div class="max-w-6xl mx-auto px-5 pt-16 pb-10 grid sm:grid-cols-3 gap-10 relative">
         <div>
           <div class="flex items-center gap-2.5 text-[var(--gold)]">${mark("w-7 h-7")}
-            <span class="font-display text-3xl text-[var(--text-inv)]">Munay</span></div>
+            <span class="font-display text-3xl text-[var(--text-inv)]">Parastoo</span></div>
           <p class="text-sm mt-3 max-w-xs text-[var(--muted-inv)]" data-i18n="footer.blurb"></p>
         </div>
         <nav aria-label="Footer">
@@ -64,14 +65,14 @@
           </div>
         </nav>
         <div>
-          <h3 class="kicker kicker--gold !text-[.66rem]" data-i18n="footer.visit"></h3>
+          <h3 class="kicker kicker--gold !text-[.66rem]" data-i18n="footer.connect"></h3>
           <p class="mt-4 text-sm text-[var(--muted-inv)]" data-i18n="footer.location"></p>
           <a href="contact.html" data-i18n="cta.book" class="btn btn-ghost btn-ghost--inv mt-5 !px-6 !py-2.5 !min-h-0 text-[.68rem]"></a>
         </div>
       </div>
       <div class="chakana pb-2 opacity-60">${mark("w-4 h-4")}</div>
       <div class="text-center text-xs pb-7 text-[var(--muted-inv)] opacity-70">
-        <span data-i18n="footer.rights"></span> · Munay © <span id="year"></span>
+        <span data-i18n="footer.rights"></span> · Parastoo © <span id="year"></span>
       </div>
     </footer>`;
   document.getElementById("year").textContent = new Date().getFullYear();
@@ -84,7 +85,7 @@
 
   /* ---------- language switcher ---------- */
   document.querySelectorAll(".lang-btn").forEach(b =>
-    b.addEventListener("click", () => window.MunayI18N.applyLang(b.dataset.lang)));
+    b.addEventListener("click", () => window.ParastooI18N.applyLang(b.dataset.lang)));
 
   /* ---------- mobile menu ---------- */
   const toggle = document.getElementById("navToggle");
@@ -195,5 +196,5 @@
     addEventListener("resize", onMove, { passive: true });
   }
 
-  window.MunayI18N.initLang();
+  window.ParastooI18N.initLang();
 })();
