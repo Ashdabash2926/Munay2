@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Offerings · Parastoo — Embodiment, Plant Medicine & Conscious Living</title>
+  <meta name="description" content="Work with Parastoo — 1:1 mentorship, The Embodied Plant Medicine Method™, bodywork, psilocybin ceremonies, and private chef experiences." />
+  <meta property="og:title" content="Offerings · Parastoo" />
+  <meta property="og:description" content="Every offering is a doorway back to yourself." />
+  <meta property="og:image" content="https://munay-site.pages.dev/assets/og.jpg" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..600,0..100;1,9..144,300..600,0..100&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* ── Sticky sub-nav ── */
+    #offer-subnav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: var(--cream-2);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 2px 8px rgba(44,30,21,.06);
+    }
+    .subnav-inner {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: .6rem 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .3rem .5rem;
+      align-items: center;
+    }
+    .subnav-link {
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: .45rem .9rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: color .25s, border-color .25s, background-color .25s;
+    }
+    .subnav-link:hover {
+      color: var(--clay);
+      border-color: var(--border);
+      background: var(--cream);
+    }
+    /* ── pull-quote ── */
+    .pull-quote {
+      border-left: 2px solid var(--gold);
+      padding-left: 1.5rem;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      line-height: 1.7;
+      color: var(--muted-inv);
+    }
+    .pull-quote p + p { margin-top: .7em; }
+    /* cream pull-quote variant (on cream bg) */
+    .pull-quote--cream {
+      color: var(--muted);
+      border-color: var(--clay-light);
+    }
+    /* ── invite passage ── */
+    .invite-block {
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+      margin-top: 1.5rem;
+      font-style: italic;
+      color: var(--muted);
+      line-height: 1.85;
+    }
+    .invite-block p + p { margin-top: .6em; }
+    /* ── support list ── */
+    .support-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: .55rem;
+    }
+    .support-list li {
+      display: flex;
+      align-items: baseline;
+      gap: .75rem;
+      font-size: .97rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+    .support-list li::before {
+      content: '';
+      flex: none;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--clay-light);
+      margin-top: .42em;
+    }
+    .on-dark .support-list li { color: var(--muted-inv); }
+    .on-dark .support-list li::before { background: var(--gold); }
+    /* ── section divider ── */
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
+    }
+  </style>
+</head>
+<body data-page="offerings">
+  <div id="site-nav"></div>
+
+  <main id="page-offerings">
+
+    <!-- ============ PAGE HERO ============ -->
+    <section class="hero !min-h-[64svh]">
+      <img class="hero__bg" src="assets/img/header-treatments.webp"
+           alt="Bodywork session — hands on a client's back" fetchpriority="high" />
+      <div class="hero__scrim"></div>
+      <div class="relative z-10 max-w-6xl mx-auto px-5 pt-28 pb-16 w-full">
+        <p class="kicker kicker--gold fade-up" style="--d:.15s" data-i18n="offer.hero.kicker"></p>
+        <h1 class="mt-6 text-[var(--text-inv)] font-display text-[clamp(2.6rem,6.4vw,4.8rem)] max-w-3xl">
+          <span class="mask-line"><span style="--d:.3s" data-i18n="offer.hero.title"></span></span>
+        </h1>
+        <p class="fade-up mt-6 max-w-xl text-[1.05rem] font-light leading-relaxed text-[rgba(247,241,232,.85)]"
+           style="--d:.55s" data-i18n="offer.hero.sub"></p>
+      </div>
+    </section>
+
+    <!-- ============ STICKY SUB-NAV ============ -->
+    <nav id="offer-subnav" aria-label="Offerings navigation">
+      <div class="subnav-inner">
+        <a href="#mentorship" class="subnav-link" data-i18n="offer.nav.mentorship"></a>
+        <a href="#method" class="subnav-link" data-i18n="offer.nav.method"></a>
+        <a href="#bodywork" class="subnav-link" data-i18n="offer.nav.bodywork"></a>
+        <a href="#ceremony" class="subnav-link" data-i18n="offer.nav.ceremony"></a>
+        <a href="#chef" class="subnav-link" data-i18n="offer.nav.chef"></a>
+      </div>
+    </nav>
+
+    <!-- ============ MENTORSHIP ============ -->
+    <section id="mentorship" class="bg-[var(--cream)] border-b border-[var(--border)]">
+      <div class="max-w-6xl mx-auto px-5 py-20 md:py-28">
+
+        <!-- Section header -->
+        <div class="mb-16 md:mb-20">
+          <p class="kicker reveal" data-i18n="offer.mentorship.kicker"></p>
+          <h2 class="reveal mt-5 text-[clamp(2rem,4.2vw,3.1rem)]" style="--d:.1s" data-i18n="offer.mentorship.title"></h2>
+        </div>
+
+        <!-- Mentor 1 -->
+        <article class="grid md:grid-cols-2 gap-10 md:gap-16 items-start mb-20 md:mb-28 pb-20 md:pb-28 border-b border-[var(--border)]">
+          <div class="relative">
+            <div class="reveal-left parallax aspect-[5/4]">
+              <img class="parallax__img" loading="lazy"
+                   src="assets/img/treatment-relaxation.webp"
+                   alt="1:1 Embodiment Mentorship" />
+            </div>
+            <span class="num-ghost absolute -top-10 -start-2" aria-hidden="true">01</span>
+          </div>
+          <div class="space-y-4">
+            <h3 class="reveal text-[clamp(1.5rem,3vw,2.1rem)]" data-i18n="mentor.1.name"></h3>
+            <p class="reveal text-[.8rem] font-semibold tracking-[.18em] uppercase text-[var(--clay)]" style="--d:.08s" data-i18n="mentor.1.meta"></p>
+            <p class="reveal lead mt-2" style="--d:.12s" data-i18n="mentor.1.subtitle"></p>
+            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.16s" data-i18n="mentor.1.intro"></p>
+            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.18s" data-i18n="mentor.1.intro2"></p>
+            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.20s" data-i18n="mentor.1.intro3"></p>
+            <p class="reveal text-[var(--muted)] leading-relaxed italic" style="--d:.22s" data-i18n="mentor.1.intro4"></p>
+            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.24s" data-i18n="mentor.1.intro5"></p>
+            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.26s" data-i18n="mentor.1.intro6"></p>
+            <div class="reveal pt-2" style="--d:.30s">
+              <p class="text-[.8rem] font-semibold tracking-[.18em] uppercase text-[var(--text)] mb-3" data-i18n="mentor.1.supportTitle"></p>
+              <ul class="support-list">
+                <li><span data-i18n="mentor.1.s1"></span></li>
+                <li><span data-i18n="mentor.1.s2"></span></li>
+                <li><span data-i18n="mentor.1.s3"></span></li>
+                <li><span data-i18n="mentor.1.s4"></span></li>
+                <li><span data-i18n="mentor.1.s5"></span></li>
+                <li><span data-i18n="mentor.1.s6"></span></li>
+                <li><span data-i18n="mentor.1.s7"></span></li>
+                <li><span data-i18n="mentor.1.s8"></span></li>
+                <li><span data-i18n="mentor.1.s9"></span></li>
+                <li><span data-i18n="mentor.1.s10"></span></li>
+              </ul>
+            </div>
+            <div class="invite-block reveal" style="--d:.36s">
+              <p data-i18n="mentor.1.invite"></p>
+            </div>
+            <a href="contact.html" class="reveal btn btn-ghost mt-4" style="--d:.42s" data-i18n="cta.call"></a>
+          </div>
+        </article>
+
+        <!-- Mentor 2 -->
+        <article class="grid md:grid-cols-2 gap-10 md:gap-16 items-start mb-20 md:mb-28 pb-20 md:pb-28 border-b border-[var(--border)]">
+          <div class="relative md:order-last">
+            <div class="reveal-right parallax aspect-[5/4]">
+              <img class="parallax__img" loading="lazy"
+                   src="assets/img/treatment-energy.webp"
+                   alt="1:1 DNA Healing Session" />
+            </div>
+            <span class="num-ghost absolute -top-10 -end-2" aria-hidden="true">02</span>
+          </div>
+          <div class="space-y-4">
+            <h3 class="reveal text-[clamp(1.5rem,3vw,2.1rem)]" data-i18n="mentor.2.name"></h3>
+            <p class="reveal text-[.8rem] font-semibold tracking-[.18em] uppercase text-[var(--clay)]" style="--d:.08s" data-i18n="mentor.2.meta"></p>
+            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.14s" data-i18n="mentor.2.intro"></p>
+            <div class="reveal pull-quote--cream pull-quote" style="--d:.20s">
+              <p data-i18n="mentor.2.intro2"></p>
+              <p class="mt-3" data-i18n="mentor.2.intro3"></p>
+            </div>
+            <a href="contact.html" class="reveal btn btn-ghost mt-4" style="--d:.30s" data-i18n="cta.call"></a>
+          </div>
+        </article>
+
+        <!-- Mentor 3 -->
+        <article class="grid md:grid-cols-2 gap-10 md:gap-16 items-start mb-20 md:mb-28 pb-20 md:pb-28 border-b border-[var(--border)]">
+          <div class="relative">
+            <div class="reveal-left parallax aspect-[5/4]">
+              <img class="parallax__img" loading="lazy"
+                   src="assets/img/oils-ritual.webp"
+                   alt="1:1 Journey Through the Chakras" />
+            </div>
+            <span class="num-ghost absolute -top-10 -start-2" aria-hidden="true">03</span>
+          </div>
+          <div class="space-y-4">
+            <h3 class="reveal text-[clamp(1.5rem,3vw,2.1rem)]" data-i18n="mentor.3.name"></h3>
+            <p class="reveal text-[.8rem] font-semibold tracking-[.18em] uppercase text-[var(--clay)]" style="--d:.08s" data-i18n="mentor.3.meta"></p>
+            <p class="reveal lead mt-2" style="--d:.12s" data-i18n="mentor.3.subtitle"></p>
+            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.16s" data-i18n="mentor.3.intro"></p>
+            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.18s" data-i18n="mentor.3.intro2"></p>
+            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.20s" data-i18n="mentor.3.intro3"></p>
+            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.22s" data-i18n="mentor.3.intro4"></p>
+            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.24s" data-i18n="mentor.3.intro5"></p>
+            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.26s" data-i18n="mentor.3.intro6"></p>
+            <p class="reveal text-[var(--muted)] leading-relaxed italic" style="--d:.28s" data-i18n="mentor.3.intro7"></p>
+            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.30s" data-i18n="mentor.3.intro8"></p>
+            <div class="reveal pt-2" style="--d:.34s">
+              <p class="text-[.8rem] font-semibold tracking-[.18em] uppercase text-[var(--text)] mb-3" data-i18n="mentor.3.supportTitle"></p>
+              <ul class="support-list">
+                <li><span data-i18n="mentor.3.s1"></span></li>
+                <li><span data-i18n="mentor.3.s2"></span></li>
+                <li><span data-i18n="mentor.3.s3"></span></li>
+                <li><span data-i18n="mentor.3.s4"></span></li>
+                <li><span data-i18n="mentor.3.s5"></span></li>
+                <li><span data-i18n="mentor.3.s6"></span></li>
+                <li><span data-i18n="mentor.3.s7"></span></li>
+                <li><span data-i18n="mentor.3.s8"></span></li>
+                <li><span data-i18n="mentor.3.s9"></span></li>
+              </ul>
+            </div>
+            <div class="invite-block reveal" style="--d:.40s">
+              <p data-i18n="mentor.3.invite"></p>
+            </div>
+            <a href="contact.html" class="reveal btn btn-ghost mt-4" style="--d:.46s" data-i18n="cta.call"></a>
+          </div>
+        </article>
+
+        <!-- Mentor 4 -->
+        <article class="grid md:grid-cols-2 gap-10 md:gap-16 items-start">
+          <div class="relative md:order-last">
+            <div class="reveal-right parallax aspect-[5/4]">
+              <img class="parallax__img" loading="lazy"
+                   src="assets/img/treatment-aromatherapy.webp"
+                   alt="1:1 Plant Medicine Preparation & Integration Mentorship" />
+            </div>
+            <span class="num-ghost absolute -top-10 -end-2" aria-hidden="true">04</span>
+          </div>
+          <div class="space-y-4">
+            <h3 class="reveal text-[clamp(1.5rem,3vw,2.1rem)]" data-i18n="mentor.4.name"></h3>
+            <p class="reveal text-[.8rem] font-semibold tracking-[.18em] uppercase text-[var(--clay)]" style="--d:.08s" data-i18n="mentor.4.meta"></p>
+            <p class="reveal lead mt-2" style="--d:.12s" data-i18n="mentor.4.subtitle"></p>
+            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.16s" data-i18n="mentor.4.intro"></p>
+            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.18s" data-i18n="mentor.4.intro2"></p>
+            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.20s" data-i18n="mentor.4.intro3"></p>
+            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.22s" data-i18n="mentor.4.intro4"></p>
+            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.24s" data-i18n="mentor.4.intro5"></p>
+            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.26s" data-i18n="mentor.4.intro6"></p>
+            <div class="reveal pt-2" style="--d:.30s">
+              <p class="text-[.8rem] font-semibold tracking-[.18em] uppercase text-[var(--text)] mb-3" data-i18n="mentor.4.supportTitle"></p>
+              <ul class="support-list">
+                <li><span data-i18n="mentor.4.s1"></span></li>
+                <li><span data-i18n="mentor.4.s2"></span></li>
+                <li><span data-i18n="mentor.4.s3"></span></li>
+                <li><span data-i18n="mentor.4.s4"></span></li>
+                <li><span data-i18n="mentor.4.s5"></span></li>
+                <li><span data-i18n="mentor.4.s6"></span></li>
+                <li><span data-i18n="mentor.4.s7"></span></li>
+                <li><span data-i18n="mentor.4.s8"></span></li>
+                <li><span data-i18n="mentor.4.s9"></span></li>
+                <li><span data-i18n="mentor.4.s10"></span></li>
+                <li><span data-i18n="mentor.4.s11"></span></li>
+              </ul>
+            </div>
+            <div class="invite-block reveal" style="--d:.38s">
+              <p data-i18n="mentor.4.invite"></p>
+            </div>
+            <a href="contact.html" class="reveal btn btn-ghost mt-4" style="--d:.44s" data-i18n="cta.call"></a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ============ THE EMBODIED PLANT MEDICINE METHOD™ ============ -->
+    <section id="method" class="on-dark border-y border-[var(--border-dark)] relative overflow-hidden">
+      <div class="absolute -top-32 -right-32 w-[40rem] h-[40rem] rounded-full opacity-[.06]"
+           style="background: radial-gradient(circle, var(--gold) 0%, transparent 70%)" aria-hidden="true"></div>
+      <div class="max-w-6xl mx-auto px-5 py-20 md:py-32">
+
+        <!-- Method header -->
+        <div class="text-center mb-16 md:mb-20">
+          <p class="kicker kicker--gold kicker--center reveal" data-i18n="offer.method.kicker"></p>
+          <h2 class="reveal mt-6 font-display text-[clamp(2rem,4.5vw,3.4rem)] text-[var(--text-inv)]" style="--d:.1s" data-i18n="offer.method.title"></h2>
+          <p class="reveal lead lead--inv mt-4 max-w-2xl mx-auto" style="--d:.2s" data-i18n="offer.method.subtitle"></p>
+        </div>
+
+        <!-- Method intro paragraphs -->
+        <div class="max-w-3xl mx-auto space-y-4 mb-14">
+          <p class="reveal text-[var(--muted-inv)] leading-relaxed" style="--d:.05s" data-i18n="offer.method.intro1"></p>
+          <p class="reveal text-[var(--muted-inv)] leading-relaxed italic" style="--d:.07s" data-i18n="offer.method.intro2"></p>
+          <p class="reveal text-[var(--muted-inv)] leading-relaxed" style="--d:.09s" data-i18n="offer.method.intro3"></p>
+          <p class="reveal text-[var(--muted-inv)] leading-relaxed" style="--d:.11s" data-i18n="offer.method.intro4"></p>
+          <p class="reveal text-[var(--muted-inv)] leading-relaxed font-display italic text-[clamp(1.1rem,2.2vw,1.35rem)] text-[var(--text-inv)]" style="--d:.13s" data-i18n="offer.method.intro5"></p>
+          <p class="reveal text-[var(--muted-inv)] leading-relaxed" style="--d:.15s" data-i18n="offer.method.intro6"></p>
+          <p class="reveal text-[var(--muted-inv)] leading-relaxed" style="--d:.17s" data-i18n="offer.method.intro7"></p>
+          <p class="reveal text-[var(--muted-inv)] leading-relaxed" style="--d:.19s" data-i18n="offer.method.intro8"></p>
+          <p class="reveal text-[var(--muted-inv)] leading-relaxed italic" style="--d:.21s" data-i18n="offer.method.intro9"></p>
+          <p class="reveal text-[var(--muted-inv)] leading-relaxed font-display italic text-[clamp(1.1rem,2.2vw,1.35rem)] text-[var(--text-inv)]" style="--d:.23s" data-i18n="offer.method.intro10"></p>
+          <p class="reveal text-[var(--muted-inv)] leading-relaxed" style="--d:.25s" data-i18n="offer.method.intro11"></p>
+          <p class="reveal text-[var(--muted-inv)] leading-relaxed" style="--d:.27s" data-i18n="offer.method.intro12"></p>
+        </div>
+
+        <!-- What Makes This Method Unique? — pull-quote -->
+        <div class="max-w-3xl mx-auto mb-14 reveal" style="--d:.3s">
+          <p class="text-[.7rem] font-semibold tracking-[.28em] uppercase text-[var(--gold)] mb-5">What Makes This Method Unique?</p>
+          <blockquote class="pull-quote">
+            <p data-i18n="offer.method.unique"></p>
+          </blockquote>
+        </div>
+
+        <!-- Support list + medicines -->
+        <div class="max-w-3xl mx-auto mb-14">
+          <p class="reveal text-[.8rem] font-semibold tracking-[.18em] uppercase text-[var(--gold)] mb-5" data-i18n="offer.method.supportTitle"></p>
+          <ul class="support-list reveal" style="--d:.1s">
+            <li><span data-i18n="offer.method.s1"></span></li>
+            <li><span data-i18n="offer.method.s2"></span></li>
+            <li><span data-i18n="offer.method.s3"></span></li>
+            <li><span data-i18n="offer.method.s4"></span></li>
+            <li><span data-i18n="offer.method.s5"></span></li>
+            <li><span data-i18n="offer.method.s6"></span></li>
+            <li><span data-i18n="offer.method.s7"></span></li>
+            <li><span data-i18n="offer.method.s8"></span></li>
+            <li><span data-i18n="offer.method.s9"></span></li>
+          </ul>
+          <p class="reveal mt-8 text-[var(--muted-inv)] italic leading-relaxed" style="--d:.2s" data-i18n="offer.method.medicines"></p>
+        </div>
+
+        <!-- Invite pull-quote -->
+        <div class="max-w-3xl mx-auto reveal" style="--d:.35s">
+          <p class="text-[.7rem] font-semibold tracking-[.28em] uppercase text-[var(--gold)] mb-5">The Invitation</p>
+          <blockquote class="pull-quote">
+            <p data-i18n="offer.method.invite"></p>
+          </blockquote>
+        </div>
+
+        <!-- CTA -->
+        <div class="text-center mt-14 reveal" style="--d:.4s">
+          <a href="contact.html" class="btn btn-primary" data-i18n="cta.call"></a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============ BODYWORK ============ -->
+    <section id="bodywork" class="bg-[var(--cream-2)] border-b border-[var(--border)]">
+      <div class="max-w-6xl mx-auto px-5 py-20 md:py-28">
+
+        <!-- Section header -->
+        <div class="mb-16 md:mb-20">
+          <p class="kicker reveal" data-i18n="offer.bodywork.kicker"></p>
+          <h2 class="reveal mt-5 text-[clamp(2rem,4.2vw,3.1rem)]" style="--d:.1s" data-i18n="offer.bodywork.title"></h2>
+        </div>
+
+        <!-- Body 1 — Ayurveda Massage -->
+        <article class="grid md:grid-cols-2 gap-10 md:gap-16 items-center mb-20 md:mb-28 pb-20 md:pb-28 border-b border-[var(--border)]">
+          <div class="relative">
+            <div class="reveal-left parallax aspect-[5/4]">
+              <img class="parallax__img" loading="lazy"
+                   src="assets/img/treatment-hot-stone.webp"
+                   alt="Ayurveda Massage — nervous system regulation" />
+            </div>
+            <span class="num-ghost absolute -top-10 -start-2" aria-hidden="true">01</span>
+          </div>
+          <div class="space-y-4">
+            <h3 class="reveal text-[clamp(1.5rem,3vw,2.1rem)]" data-i18n="body.1.name"></h3>
+            <p class="reveal text-[.8rem] font-semibold tracking-[.18em] uppercase text-[var(--clay)]" style="--d:.08s" data-i18n="body.1.meta"></p>
+            <p class="reveal lead mt-2" style="--d:.12s" data-i18n="body.1.subtitle"></p>
+            <div class="reveal pull-quote--cream pull-quote mt-4" style="--d:.18s">
+              <p data-i18n="body.1.desc"></p>
+            </div>
+            <a href="contact.html" class="reveal btn btn-ghost mt-6" style="--d:.28s" data-i18n="cta.book"></a>
+          </div>
+        </article>
+
+        <!-- Body 2 — Tantra Massage -->
+        <article class="grid md:grid-cols-2 gap-10 md:gap-16 items-center mb-20 md:mb-28 pb-20 md:pb-28 border-b border-[var(--border)]">
+          <div class="relative md:order-last">
+            <div class="reveal-right parallax aspect-[5/4]">
+              <img class="parallax__img" loading="lazy"
+                   src="assets/img/mission-hands.webp"
+                   alt="Tantra Massage — lifeforce energy and prana" />
+            </div>
+            <span class="num-ghost absolute -top-10 -end-2" aria-hidden="true">02</span>
+          </div>
+          <div class="space-y-4">
+            <h3 class="reveal text-[clamp(1.5rem,3vw,2.1rem)]" data-i18n="body.2.name"></h3>
+            <p class="reveal text-[.8rem] font-semibold tracking-[.18em] uppercase text-[var(--clay)]" style="--d:.08s" data-i18n="body.2.meta"></p>
+            <p class="reveal lead mt-2" style="--d:.12s" data-i18n="body.2.subtitle"></p>
+            <div class="reveal pull-quote--cream pull-quote mt-4" style="--d:.18s">
+              <p data-i18n="body.2.desc"></p>
+            </div>
+            <a href="contact.html" class="reveal btn btn-ghost mt-6" style="--d:.28s" data-i18n="cta.book"></a>
+          </div>
+        </article>
+
+        <!-- Body 3 — Deep Tissue Massage -->
+        <article class="grid md:grid-cols-2 gap-10 md:gap-16 items-start">
+          <div class="relative">
+            <div class="reveal-left parallax aspect-[5/4]">
+              <img class="parallax__img" loading="lazy"
+                   src="assets/img/treatment-deep-tissue.webp"
+                   alt="Deep Tissue Massage — releasing tension" />
+            </div>
+            <span class="num-ghost absolute -top-10 -start-2" aria-hidden="true">03</span>
+          </div>
+          <div class="space-y-4">
+            <h3 class="reveal text-[clamp(1.5rem,3vw,2.1rem)]" data-i18n="body.3.name"></h3>
+            <p class="reveal text-[.8rem] font-semibold tracking-[.18em] uppercase text-[var(--clay)]" style="--d:.08s" data-i18n="body.3.meta"></p>
+            <p class="reveal lead mt-2" style="--d:.12s" data-i18n="body.3.subtitle"></p>
+            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.16s" data-i18n="body.3.desc"></p>
+            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.18s" data-i18n="body.3.desc2"></p>
+            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.20s" data-i18n="body.3.desc3"></p>
+            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.22s" data-i18n="body.3.desc4"></p>
+            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.24s" data-i18n="body.3.desc5"></p>
+            <div class="reveal pt-2" style="--d:.28s">
+              <p class="text-[.8rem] font-semibold tracking-[.18em] uppercase text-[var(--text)] mb-3" data-i18n="body.3.supportTitle"></p>
+              <ul class="support-list">
+                <li><span data-i18n="body.3.s1"></span></li>
+                <li><span data-i18n="body.3.s2"></span></li>
+                <li><span data-i18n="body.3.s3"></span></li>
+                <li><span data-i18n="body.3.s4"></span></li>
+                <li><span data-i18n="body.3.s5"></span></li>
+                <li><span data-i18n="body.3.s6"></span></li>
+                <li><span data-i18n="body.3.s7"></span></li>
+                <li><span data-i18n="body.3.s8"></span></li>
+              </ul>
+            </div>
+            <a href="contact.html" class="reveal btn btn-ghost mt-4" style="--d:.36s" data-i18n="cta.book"></a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ============ CEREMONIES ============ -->
+    <section id="ceremony" class="bg-[var(--cream)] border-b border-[var(--border)]">
+      <div class="max-w-6xl mx-auto px-5 py-20 md:py-28">
+
+        <!-- Section header -->
+        <div class="text-center mb-14 md:mb-18 max-w-3xl mx-auto">
+          <p class="kicker kicker--center reveal" data-i18n="offer.ceremony.kicker"></p>
+          <h2 class="reveal mt-6 text-[clamp(2rem,4.2vw,3.1rem)]" style="--d:.1s" data-i18n="offer.ceremony.title"></h2>
+          <p class="reveal lead mt-4" style="--d:.2s" data-i18n="offer.ceremony.subtitle"></p>
+        </div>
+
+        <!-- Ceremony intro paragraphs -->
+        <div class="max-w-3xl mx-auto space-y-4 mb-14">
+          <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.05s" data-i18n="offer.ceremony.intro1"></p>
+          <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.07s" data-i18n="offer.ceremony.intro2"></p>
+          <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.09s" data-i18n="offer.ceremony.intro3"></p>
+          <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.11s" data-i18n="offer.ceremony.intro4"></p>
+          <p class="reveal text-[var(--muted)] leading-relaxed italic" style="--d:.13s" data-i18n="offer.ceremony.intro5"></p>
+          <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.15s" data-i18n="offer.ceremony.intro6"></p>
+        </div>
+
+        <!-- Two-column lists -->
+        <div class="grid md:grid-cols-2 gap-12 md:gap-16 max-w-5xl mx-auto">
+
+          <!-- Support list -->
+          <div>
+            <p class="reveal text-[.8rem] font-semibold tracking-[.18em] uppercase text-[var(--text)] mb-5" data-i18n="offer.ceremony.supportTitle"></p>
+            <ul class="support-list reveal" style="--d:.1s">
+              <li><span data-i18n="offer.ceremony.s1"></span></li>
+              <li><span data-i18n="offer.ceremony.s2"></span></li>
+              <li><span data-i18n="offer.ceremony.s3"></span></li>
+              <li><span data-i18n="offer.ceremony.s4"></span></li>
+              <li><span data-i18n="offer.ceremony.s5"></span></li>
+              <li><span data-i18n="offer.ceremony.s6"></span></li>
+              <li><span data-i18n="offer.ceremony.s7"></span></li>
+              <li><span data-i18n="offer.ceremony.s8"></span></li>
+              <li><span data-i18n="offer.ceremony.s9"></span></li>
+              <li><span data-i18n="offer.ceremony.s10"></span></li>
+            </ul>
+          </div>
+
+          <!-- Included list -->
+          <div>
+            <p class="reveal text-[.8rem] font-semibold tracking-[.18em] uppercase text-[var(--text)] mb-5" data-i18n="offer.ceremony.includedTitle"></p>
+            <ul class="support-list reveal" style="--d:.12s">
+              <li><span data-i18n="offer.ceremony.inc1"></span></li>
+              <li><span data-i18n="offer.ceremony.inc2"></span></li>
+              <li><span data-i18n="offer.ceremony.inc3"></span></li>
+              <li><span data-i18n="offer.ceremony.inc4"></span></li>
+              <li><span data-i18n="offer.ceremony.inc5"></span></li>
+              <li><span data-i18n="offer.ceremony.inc6"></span></li>
+              <li><span data-i18n="offer.ceremony.inc7"></span></li>
+              <li><span data-i18n="offer.ceremony.inc8"></span></li>
+              <li><span data-i18n="offer.ceremony.inc9"></span></li>
+              <li><span data-i18n="offer.ceremony.inc10"></span></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="text-center mt-14 reveal" style="--d:.3s">
+          <a href="contact.html" class="btn btn-ghost" data-i18n="cta.call"></a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============ PRIVATE CHEF ============ -->
+    <section id="chef" class="bg-[var(--cream-2)] border-b border-[var(--border)]">
+      <div class="max-w-6xl mx-auto px-5 py-20 md:py-28">
+
+        <!-- Section header -->
+        <div class="mb-14 md:mb-18">
+          <p class="kicker reveal" data-i18n="offer.chef.kicker"></p>
+          <h2 class="reveal mt-5 text-[clamp(2rem,4.2vw,3.1rem)]" style="--d:.1s" data-i18n="offer.chef.title"></h2>
+          <p class="reveal lead mt-4" style="--d:.2s" data-i18n="offer.chef.subtitle"></p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12 md:gap-20 items-start">
+
+          <!-- Left: intro prose -->
+          <div class="space-y-4">
+            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.05s" data-i18n="offer.chef.intro1"></p>
+            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.07s" data-i18n="offer.chef.intro2"></p>
+            <p class="reveal font-display italic text-[clamp(1.1rem,2.2vw,1.4rem)] text-[var(--text)] leading-snug" style="--d:.09s" data-i18n="offer.chef.intro3"></p>
+            <p class="reveal font-display italic text-[clamp(1.1rem,2.2vw,1.4rem)] text-[var(--text)] leading-snug" style="--d:.11s" data-i18n="offer.chef.intro4"></p>
+            <p class="reveal font-display italic text-[clamp(1.1rem,2.2vw,1.4rem)] text-[var(--text)] leading-snug" style="--d:.13s" data-i18n="offer.chef.intro5"></p>
+            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.15s" data-i18n="offer.chef.intro6"></p>
+            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.17s" data-i18n="offer.chef.intro7"></p>
+            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.19s" data-i18n="offer.chef.intro8"></p>
+            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.21s" data-i18n="offer.chef.intro9"></p>
+          </div>
+
+          <!-- Right: available for + invite -->
+          <div class="space-y-8">
+            <div>
+              <p class="reveal text-[.8rem] font-semibold tracking-[.18em] uppercase text-[var(--text)] mb-4" data-i18n="offer.chef.availableTitle"></p>
+              <ul class="support-list reveal" style="--d:.08s">
+                <li><span data-i18n="offer.chef.a1"></span></li>
+                <li><span data-i18n="offer.chef.a2"></span></li>
+                <li><span data-i18n="offer.chef.a3"></span></li>
+                <li><span data-i18n="offer.chef.a4"></span></li>
+                <li><span data-i18n="offer.chef.a5"></span></li>
+                <li><span data-i18n="offer.chef.a6"></span></li>
+              </ul>
+            </div>
+            <div class="invite-block reveal" style="--d:.18s">
+              <p data-i18n="offer.chef.invite"></p>
+            </div>
+            <a href="contact.html" class="reveal btn btn-ghost" style="--d:.28s" data-i18n="cta.call"></a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============ BOOKING CTA BAND ============ -->
+    <section class="on-dark relative overflow-hidden">
+      <div class="absolute -bottom-28 -left-28 w-[28rem] h-[28rem] rounded-full opacity-[.07]"
+           style="background: radial-gradient(circle, var(--gold) 0%, transparent 70%)" aria-hidden="true"></div>
+      <div class="max-w-4xl mx-auto px-5 py-24 md:py-32 text-center relative">
+        <div class="chakana reveal text-[var(--gold)]" aria-hidden="true">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+            <path d="M12 2.8 14.4 7l4.6.4-3 3.6 3 3.6-4.6.4L12 19.2 9.6 15l-4.6-.4 3-3.6-3-3.6L9.6 7 12 2.8Z"/></svg>
+        </div>
+        <h2 class="reveal mt-8 font-display text-[clamp(2.2rem,5.4vw,4rem)]" style="--d:.12s" data-i18n="offer.cta.title"></h2>
+        <p class="reveal lead lead--inv mt-6" style="--d:.24s" data-i18n="offer.cta.sub"></p>
+        <div class="reveal mt-10 flex flex-wrap justify-center gap-4" style="--d:.36s">
+          <a href="contact.html" class="btn btn-primary" data-i18n="cta.book"></a>
+          <a href="https://wa.me/{{ site.contact.whatsapp }}" class="btn btn-ghost btn-ghost--inv" data-i18n="cta.whatsapp"></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="js/i18n.js"></script>
+  <script src="js/site.js"></script>
+</body>
+</html>
