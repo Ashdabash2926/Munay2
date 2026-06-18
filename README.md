@@ -47,21 +47,31 @@ npm run dev     # Eleventy watch + local server
 These came out of the redesign review and are **not blocking the deploy**, but should be
 addressed before treating the site as final. Listed most → least important.
 
-1. **No visual QA has been done.** Every check during the build was static (Eleventy build,
-   i18n key parity, forbidden-string sweeps) — the rendered pages were never opened in a real
-   browser. Worth eyeballing before launch: the long `offerings.html` (sticky sub-nav
-   behaviour, section spacing), the 10-card values grid on `about.html`, the `faq.html`
-   accordion, and especially **Farsi RTL layout** across all pages. The CSS rules exist; only a
-   visual pass will confirm there are no overflow / wrapping / sticky-positioning bugs.
+1. **Visual QA — partial pass done (2026-06-18).** A headless (Brave/Chromium) render pass was
+   attempted; it was flaky (intermittent profile hangs), so only three screenshots were
+   actually captured and reviewed: **`index.html` in Farsi (RTL)**, **`contact.html` in Farsi
+   (RTL)**, and `offerings.html` in English (full-page, zoomed out). On the two Farsi shots the
+   header mirrored correctly (logo right, lang switcher left), the hero text was right-aligned
+   in Vazirmatn, and no overflow was visible above the fold. The EN offerings shot showed a
+   coherent layout at full-page zoom (detail not readable). Everything else below was checked
+   **statically, not visually**: the offerings sticky sub-nav CSS is sound
+   (`position:sticky; top:0; z-index:40`), and one real RTL bug was found and fixed
+   (`offerings.html .pull-quote` used hardcoded `border-left`/`padding-left`, so its accent bar
+   wouldn't flip in Farsi — now logical properties). **Still needs a proper human browser
+   pass** before launch — nothing was viewed at readable zoom and several areas were never
+   rendered visually at all: the `about.html` values grid, the `faq.html` accordion, the Farsi
+   *offerings*/*about*/*retreats*/*faq* pages, and all mobile widths. (Minor: a few faint
+   decorative blur-circles use `-right-*/-left-*` Tailwind utilities that don't mirror in RTL —
+   cosmetic only.)
 
-2. **All body text is injected client-side by JavaScript (i18n).** Every paragraph lives in a
-   `data-i18n` attribute and is filled in after the page loads from `js/i18n.js`. Consequences:
-   visitors with JS disabled, and many SEO / social-preview crawlers that don't execute JS, see
-   pages that are nearly empty (only `<title>`, meta description, and image `alt` text render
-   without JS). This is the original site's architecture (not a regression), but now that the
-   copy is the whole point it's a real SEO / link-preview weakness. Fixing it properly means
-   server-rendering the default-language text into the HTML at build time (an Eleventy change),
-   not just the i18n swap layer.
+2. **~~All body text is injected client-side by JavaScript (i18n).~~ RESOLVED (2026-06-18).**
+   The default-language (English) copy is now **prerendered into the HTML at build time** by an
+   Eleventy transform (`eleventy.config.mjs` → `i18n-prerender`), so crawlers and no-JS
+   visitors see real content (all 400 `[data-i18n]` elements + form placeholders). The
+   client-side `js/i18n.js` still runs on top for language switching. Dictionary logic is shared
+   via `lib/i18n-dict.mjs` so the prerender and the generated JS can't drift. Tradeoff: a
+   returning ES/FA visitor now sees a brief flash of English before the JS swaps — acceptable,
+   and strictly better than the previous blank-until-JS behaviour.
 
 3. **The home page (`index.html`) uses summary copy written by Claude, not Parastoo's verbatim
    words.** Her brief has no home-page source text, so the five realm descriptions
