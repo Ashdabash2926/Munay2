@@ -44,4 +44,6 @@ npm run dev     # Eleventy watch + local server
 
 ## Deploy
 
-Cloudflare Pages from private GitHub repo `Ashdabash2926/Munay2` (branch: `main`).
+Cloudflare Pages (canonical, live at `munay-site.pages.dev`) builds from GitHub repo
+`Ashdabash2926/munay-site` (`origin`, branch `main`): runs `npm run build` and serves `_site/`.
+Pushing to `origin/main` triggers a fresh deploy.
