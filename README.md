@@ -94,6 +94,40 @@ addressed before treating the site as final. Listed most → least important.
    says only "in person & online"). This follows the brief, but going live with it warrants her
    explicit sign-off given the legal sensitivity.
 
+### ⏸ RESUME HERE — visual proofreading pass (paused 2026-06-18)
+
+Mid-task: doing a real-browser visual QA of the whole site. Was blocked because the
+terminal lacked macOS **Screen Recording** permission, so `screencapture` returned
+"could not create image from display". User is restarting the terminal to apply the
+permission. **When the terminal reopens, resume the visual proofread:**
+
+1. Rebuild + serve the current build:
+   ```bash
+   cd ~/Projects/Munay2 && rm -rf _site && npm run build
+   nohup python3 -m http.server 8099 --directory _site >/tmp/srv.log 2>&1 &
+   ```
+2. Open a page in the real browser and capture the screen (this is what needs the
+   permission — verify it works first with one capture):
+   ```bash
+   open -a "Brave Browser" "http://localhost:8099/index.html"
+   osascript -e 'tell application "Brave Browser" to activate'
+   sleep 5 && screencapture -x /tmp/cap.png   # then read /tmp/cap.png
+   ```
+   Scroll with AppleScript System Events `key code 121` (Page Down) between captures.
+   For **Farsi (RTL)** proofing: click the `فا` switcher, or pre-set it by injecting
+   `localStorage.setItem("parastoo-lang","fa")` into a temp `_site/__fa_<page>.html`
+   copy (the inline-setter trick used earlier) and open that.
+3. **What still needs eyeballing** (rest of concern #1): scroll the full **home** page
+   to confirm the new verbatim copy lays out well (mission "I am a student of life…",
+   the 5 pillar cards, values teaser, CTA); the **`about.html`** 10-card values grid;
+   the **`faq.html`** accordion open/close; **Farsi RTL** on offerings/about/retreats/
+   faq; and **mobile widths** (narrow the window or use a ~430px capture).
+
+Already visually confirmed: home **hero** (EN) renders correctly in the real browser;
+home + contact in **Farsi RTL** (earlier headless shots) — nav mirrors, text right-
+aligned, no overflow. (Note: headless Brave was flaky here — silent first-run hangs —
+so the real-browser + screencapture route above is the reliable one now.)
+
 ### Useful context for picking this up in a fresh chat
 
 - Design spec: `docs/superpowers/specs/2026-06-18-parastoo-redesign-design.md`
