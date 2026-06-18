@@ -1,4 +1,9 @@
 import { readFileSync } from "node:fs";
+import { buildDict } from "./lib/i18n-dict.mjs";
+
+const escapeText = (s) =>
+  String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+const escapeAttr = (s) => escapeText(s).replace(/"/g, "&quot;");
 
 export default function (eleventyConfig) {
   // CMS-edited content (re-read every build so --serve picks up changes)
@@ -18,6 +23,38 @@ export default function (eleventyConfig) {
 
   eleventyConfig.ignores.add("README.md");
   eleventyConfig.ignores.add("docs/**");
+
+  // Prerender the default-language (English) copy into the HTML at build time so
+  // crawlers / no-JS visitors see real content. The client-side js/i18n.js still
+  // runs on top: it overwrites textContent on load (no-op for English, swaps for
+  // ES/FA). data-i18n elements are verified text-only leaves, so a scoped regex
+  // is safe; see lib/i18n-dict.mjs for the (shared) dictionary source.
+  eleventyConfig.addTransform("i18n-prerender", function (content) {
+    if (!(this.page.outputPath || "").endsWith(".html")) return content;
+    const en = buildDict().en;
+
+    // Fill textContent of <tag ... data-i18n="key">…</tag>
+    let out = content.replace(
+      /(<([a-zA-Z0-9]+)\b[^>]*\bdata-i18n="([^"]+)"[^>]*>)([\s\S]*?)(<\/\2>)/g,
+      (m, open, _tag, key, _inner, close) =>
+        en[key] == null ? m : open + escapeText(en[key]) + close
+    );
+
+    // Set placeholder="…" on <tag ... data-i18n-ph="key" …> (often self-closing)
+    out = out.replace(
+      /<([a-zA-Z0-9]+)\b([^>]*\bdata-i18n-ph="([^"]+)"[^>]*?)(\s*\/?)>/g,
+      (m, tag, attrs, key, tail) => {
+        if (en[key] == null) return m;
+        const ph = `placeholder="${escapeAttr(en[key])}"`;
+        const next = /\bplaceholder="[^"]*"/.test(attrs)
+          ? attrs.replace(/\bplaceholder="[^"]*"/, ph)
+          : `${attrs} ${ph}`;
+        return `<${tag}${next}${tail}>`;
+      }
+    );
+
+    return out;
+  });
 
   // Keep original URLs (about.html, not /about/) so existing links don't break.
   eleventyConfig.addGlobalData("permalink", () => (data) => `${data.page.filePathStem}.html`);

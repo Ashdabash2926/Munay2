@@ -1,19 +1,8 @@
 // Generates js/i18n.js from the CMS-edited content files.
 // The runtime (applyLang etc.) is identical to the original hand-written file;
-// only the dictionary is now assembled at build time:
-//   - nested content/i18n/{en,es,fa}.json flattened back to dotted keys
-//   - ".word" alias keys folded back (pillar.N, contact.form.*)
+// only the dictionary is now assembled at build time (see lib/i18n-dict.mjs).
 
-import { readFileSync } from "node:fs";
-
-const flatten = (obj, prefix = "", out = {}) => {
-  for (const [k, v] of Object.entries(obj)) {
-    const key = prefix ? `${prefix}.${k}` : k;
-    if (typeof v === "object" && v !== null) flatten(v, key, out);
-    else out[key] = v;
-  }
-  return out;
-};
+import { buildDict } from "./lib/i18n-dict.mjs";
 
 const RUNTIME = `
 const RTL = new Set(["fa"]);
@@ -51,17 +40,7 @@ export default class {
   }
 
   render() {
-    const dict = {};
-    for (const lang of ["en", "es", "fa"]) {
-      const flat = flatten(JSON.parse(readFileSync(`content/i18n/${lang}.json`, "utf8")));
-      for (const k of Object.keys(flat)) {
-        if (k.endsWith(".word")) {
-          flat[k.slice(0, -".word".length)] = flat[k];
-          delete flat[k];
-        }
-      }
-      dict[lang] = flat;
-    }
+    const dict = buildDict();
     return `/* Parastoo — trilingual dictionary (EN / ES / FA) + language switcher.
    GENERATED FILE — edit content/i18n/*.json instead. */
 
