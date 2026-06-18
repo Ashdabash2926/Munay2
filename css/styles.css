@@ -1,5 +1,5 @@
 /* ============================================================
-   Munay — Earthen Sanctuary II
+   Parastoo — Earthen Sanctuary
    Design tokens, base, motion system, components, RTL
    ============================================================ */
 
@@ -9,7 +9,7 @@
   --clay-dark: #9c4a28;
   --clay-deep: #7e3a1f;
   --clay-light: #d98c63;
-  --gold: #cfa05a;          /* muted Andean gold */
+  --gold: #cfa05a;          /* muted gold */
   --gold-bright: #e2bc7d;
   --cream: #f7f1e8;         /* page background */
   --cream-2: #efe5d6;

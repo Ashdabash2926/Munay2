@@ -43,7 +43,6 @@ function initLang() {
 }
 
 window.ParastooI18N = { applyLang, initLang, I18N };
-window.MunayI18N = window.ParastooI18N;
 `;
 
 export default class {
