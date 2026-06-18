@@ -47,22 +47,29 @@ npm run dev     # Eleventy watch + local server
 These came out of the redesign review and are **not blocking the deploy**, but should be
 addressed before treating the site as final. Listed most → least important.
 
-1. **Visual QA — partial pass done (2026-06-18).** A headless (Brave/Chromium) render pass was
-   attempted; it was flaky (intermittent profile hangs), so only three screenshots were
-   actually captured and reviewed: **`index.html` in Farsi (RTL)**, **`contact.html` in Farsi
-   (RTL)**, and `offerings.html` in English (full-page, zoomed out). On the two Farsi shots the
-   header mirrored correctly (logo right, lang switcher left), the hero text was right-aligned
-   in Vazirmatn, and no overflow was visible above the fold. The EN offerings shot showed a
-   coherent layout at full-page zoom (detail not readable). Everything else below was checked
-   **statically, not visually**: the offerings sticky sub-nav CSS is sound
-   (`position:sticky; top:0; z-index:40`), and one real RTL bug was found and fixed
-   (`offerings.html .pull-quote` used hardcoded `border-left`/`padding-left`, so its accent bar
-   wouldn't flip in Farsi — now logical properties). **Still needs a proper human browser
-   pass** before launch — nothing was viewed at readable zoom and several areas were never
-   rendered visually at all: the `about.html` values grid, the `faq.html` accordion, the Farsi
-   *offerings*/*about*/*retreats*/*faq* pages, and all mobile widths. (Minor: a few faint
-   decorative blur-circles use `-right-*/-left-*` Tailwind utilities that don't mirror in RTL —
-   cosmetic only.)
+1. **~~Visual QA — partial pass done.~~ FULL VISUAL PASS DONE (2026-06-18).** Completed a
+   real-browser (Brave + macOS `screencapture`) proofread at readable zoom across the whole
+   site. **Everything passed — no layout bugs found.** Checked:
+   - **Home (EN), full scroll:** rotating hero, "Five realms" list (01–05), "Meet Parastoo"
+     mission ("I am a student of life…"), featured cards, "You are not broken." values teaser,
+     holding testimonial, "Come home to yourself." CTA, footer — all verbatim copy lays out
+     cleanly.
+   - **about.html values grid:** all 10 cards render in an even 3-column grid (card 10 sits
+     alone in the last row, correct).
+   - **faq.html accordion:** native `<details>` open/close confirmed — open item shows accent
+     summary + rotated chevron + readable answer; closed items keep dark text + down-chevron.
+   - **Farsi (RTL) on offerings / about / retreats / faq:** header mirrors (logo right, lang
+     switcher left), headings right-aligned in Vazirmatn, grids flow right-to-left with Persian
+     numerals top-right, accordion chevrons move to the left, and the fixed `.pull-quote` accent
+     bar correctly sits on the right (the `border-inline-start` fix works).
+   - **Mobile:** hamburger menu opens a clean stacked nav (Home/About/Offerings/Retreats/FAQ/
+     Contact); offerings sticky sub-nav wraps to two centered rows; about values grid stacks to
+     one column; faq accordion + contact form go full-width and stack. Caveat: Brave clamps its
+     window to a **500px minimum**, so exact phone widths (375/390/430px) weren't captured — but
+     500px is inside the mobile breakpoint range (below `sm` 640 / `md` 768) and the layouts are
+     fluid, so they scale down cleanly.
+   - Minor (unchanged, cosmetic): a few faint decorative blur-circles use `-right-*/-left-*`
+     Tailwind utilities that don't mirror in RTL.
 
 2. **~~All body text is injected client-side by JavaScript (i18n).~~ RESOLVED (2026-06-18).**
    The default-language (English) copy is now **prerendered into the HTML at build time** by an
@@ -94,39 +101,14 @@ addressed before treating the site as final. Listed most → least important.
    says only "in person & online"). This follows the brief, but going live with it warrants her
    explicit sign-off given the legal sensitivity.
 
-### ⏸ RESUME HERE — visual proofreading pass (paused 2026-06-18)
+### ✅ Visual proofreading pass — DONE (2026-06-18)
 
-Mid-task: doing a real-browser visual QA of the whole site. Was blocked because the
-terminal lacked macOS **Screen Recording** permission, so `screencapture` returned
-"could not create image from display". User is restarting the terminal to apply the
-permission. **When the terminal reopens, resume the visual proofread:**
-
-1. Rebuild + serve the current build:
-   ```bash
-   cd ~/Projects/Munay2 && rm -rf _site && npm run build
-   nohup python3 -m http.server 8099 --directory _site >/tmp/srv.log 2>&1 &
-   ```
-2. Open a page in the real browser and capture the screen (this is what needs the
-   permission — verify it works first with one capture):
-   ```bash
-   open -a "Brave Browser" "http://localhost:8099/index.html"
-   osascript -e 'tell application "Brave Browser" to activate'
-   sleep 5 && screencapture -x /tmp/cap.png   # then read /tmp/cap.png
-   ```
-   Scroll with AppleScript System Events `key code 121` (Page Down) between captures.
-   For **Farsi (RTL)** proofing: click the `فا` switcher, or pre-set it by injecting
-   `localStorage.setItem("parastoo-lang","fa")` into a temp `_site/__fa_<page>.html`
-   copy (the inline-setter trick used earlier) and open that.
-3. **What still needs eyeballing** (rest of concern #1): scroll the full **home** page
-   to confirm the new verbatim copy lays out well (mission "I am a student of life…",
-   the 5 pillar cards, values teaser, CTA); the **`about.html`** 10-card values grid;
-   the **`faq.html`** accordion open/close; **Farsi RTL** on offerings/about/retreats/
-   faq; and **mobile widths** (narrow the window or use a ~430px capture).
-
-Already visually confirmed: home **hero** (EN) renders correctly in the real browser;
-home + contact in **Farsi RTL** (earlier headless shots) — nav mirrors, text right-
-aligned, no overflow. (Note: headless Brave was flaky here — silent first-run hangs —
-so the real-browser + screencapture route above is the reliable one now.)
+The real-browser visual QA that was paused for the Screen Recording permission is now
+complete (permission applied, `screencapture` works). Findings are folded into concern #1
+above: **no layout bugs found across EN, Farsi RTL, and mobile.** The only remaining
+launch blockers are the content/wiring items in the checklist (prices, location, real
+testimonials, photography, retreat booking URL, contact form `action`, absolute og:image,
+human translation review).
 
 ### Useful context for picking this up in a fresh chat
 
