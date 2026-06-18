@@ -485,6 +485,46 @@
       "a": "The first step is a free discovery call — a gentle conversation to explore your intentions, your questions, and whether we are aligned to work together. There is no obligation and no pressure. Simply reach out and we will find a time to connect."
     }
   },
+  "contact": {
+    "hero": {
+      "kicker": "Begin here",
+      "title": "Book a Free Discovery Call",
+      "sub": "A free connection call to explore your intentions, needs, questions, and whether we are aligned to work together."
+    },
+    "call": {
+      "title": "Free discovery call",
+      "body": "Reach out by WhatsApp or email and we'll find a time. No pressure, no commitment — just a space to feel into what you need."
+    },
+    "wa": {
+      "title": "WhatsApp",
+      "body": "+1 (416) 837-1650"
+    },
+    "ig": {
+      "title": "Instagram",
+      "body": "@Heldbyparas"
+    },
+    "email": {
+      "title": "Email",
+      "body": "Parastoovii@gmail.com"
+    },
+    "form": {
+      "title": "Send a message",
+      "name": {
+        "word": "Name",
+        "ph": "Your name"
+      },
+      "email": {
+        "word": "Email",
+        "ph": "your@email.com"
+      },
+      "message": {
+        "word": "Message",
+        "ph": "Share a little about what you're looking for…"
+      },
+      "submit": "Send message",
+      "note": "I'll reply within a few days. For anything time-sensitive, WhatsApp is fastest."
+    }
+  },
   "body": {
     "1": {
       "name": "Ayurveda Massage",
