@@ -1,19 +1,10 @@
 {
   "contact": {
-    "whatsapp": "XXXXXXXXX"
+    "whatsapp": "14168371650",
+    "email": "Parastoovii@gmail.com",
+    "instagram": "heldbyparas"
   },
-  "prices": {
-    "t1": "XXX",
-    "t2": "XXX",
-    "t3": "XXX",
-    "t4": "XXX",
-    "t5": "XXX"
-  },
-  "featured": [
-    1,
-    3,
-    5
-  ],
+  "retreat": { "bookingUrl": "#" },
   "hero": {
     "slide1": "assets/img/hero-wellness.webp",
     "slide2": "assets/img/hero-coaching.webp",
@@ -21,7 +12,5 @@
     "slide4": "assets/img/hero-retreats.webp",
     "slide5": "assets/img/hero-living.webp"
   },
-  "escape": {
-    "image": "assets/img/mission-portrait.webp"
-  }
+  "escape": { "image": "assets/img/mission-portrait.webp" }
 }
