@@ -1,210 +1,561 @@
 {
   "nav": {
     "home": "Inicio",
-    "about": "Nosotros",
-    "treatments": "Tratamientos",
+    "about": "Sobre mí",
+    "offerings": "Servicios",
+    "retreats": "Retiros",
+    "faq": "Preguntas frecuentes",
     "contact": "Contacto"
   },
   "cta": {
-    "book": "Reservar",
-    "whatsapp": "Reservar por WhatsApp"
+    "book": "Reserva una llamada gratuita",
+    "call": "Reserva una llamada de descubrimiento",
+    "whatsapp": "Escríbeme por WhatsApp",
+    "explore": "Explorar el trabajo"
   },
   "brand": {
-    "tagline": "Bienestar Holístico · Valle Sagrado"
+    "tagline": "Encarnación · Medicina Vegetal · Vida Consciente"
   },
   "footer": {
-    "blurb": "Un pequeño santuario para el descanso profundo en Písac, Valle Sagrado.",
+    "blurb": "Guiando a las personas de regreso a su ser más auténtico, encarnado y despierto.",
     "explore": "Explorar",
-    "visit": "Visítanos",
-    "location": "Písac, Valle Sagrado, Cusco — Perú",
+    "connect": "Conectar",
+    "location": "Presencial y en línea · en todo el mundo",
     "rights": "Todos los derechos reservados."
   },
   "pillar": {
     "1": {
-      "word": "Bienestar Holístico",
-      "desc": "Masaje, respiración y trabajo corporal que te tratan como un todo — nunca como partes."
+      "word": "Mentoría",
+      "desc": "Viajes individuales de regreso a ti misma — encarnación, regulación del sistema nervioso e indagación profunda, en línea o en persona."
     },
     "2": {
-      "word": "Coaching de Vida",
-      "desc": "Acompañamiento individual para ordenar la mente y andar tu camino con intención."
+      "word": "Medicina Vegetal Encarnada",
+      "desc": "El método 1:1 distintivo de Parastoo, que entrelaza medicina vegetal, trabajo corporal, respiración y presencia atenta para que el cuerpo pueda integrar lo que sostiene."
     },
     "3": {
-      "word": "Yoga",
-      "desc": "Práctica lenta y enraizada en la altura — fuerza para el camino, quietud para el descanso."
+      "word": "Trabajo Corporal",
+      "desc": "Sesiones de noventa minutos de Ayurveda, Tantra y tejido profundo para calmar el sistema nervioso y liberar lo que el cuerpo carga."
     },
     "4": {
-      "word": "Retiros",
-      "desc": "Días de ceremonia, silencio y caminatas por el valle — grupos pequeños, descanso profundo."
+      "word": "Ceremonia",
+      "desc": "Ceremonias privadas y de grupo pequeño con psilocibina — contenedores informados por el trauma, cuidadosamente sostenidos para el recuerdo y la sanación."
     },
     "5": {
-      "word": "Vida Consciente",
-      "desc": "Herramientas y rituales para llevar la calma del valle a la vida diaria."
-    }
-  },
-  "home": {
-    "pillars": {
-      "kicker": "Lo que ofrecemos",
-      "title": "Cinco caminos, una práctica"
-    },
-    "hero": {
-      "kicker": "Písac · Valle Sagrado · Perú",
-      "lead": "Un santuario para",
-      "sub": "Masaje, movimiento y acompañamiento en el corazón del Valle Sagrado — cinco caminos, una práctica: volver a ti, tres mil metros más cerca del cielo.",
-      "cta2": "Ver tratamientos"
-    },
-    "mission": {
-      "kicker": "Nuestra intención",
-      "title": "Munay significa amor en quechua.",
-      "body": "Es la energía del corazón en el centro de la cosmovisión andina — y el centro de esta práctica. Cada sesión es un ritual pausado: aceites tibios de plantas del valle, humo de palo santo y manos que escuchan antes de trabajar. Nada se apresura. Nada es rutina.",
-      "link": "Nuestra filosofía"
-    },
-    "featured": {
-      "kicker": "El menú",
-      "title": "Tres maneras de llegar",
-      "all": "Ver todos los tratamientos"
-    },
-    "t1": {
-      "blurb": "Piedras volcánicas templadas en agua de manantial deshacen la tensión capa a capa, como el sol sobre el hielo de la montaña."
-    },
-    "t2": {
-      "blurb": "Muña, eucalipto y lavanda mezclados según tu ánimo — para respirar y trabajar tibios y profundos en la piel."
-    },
-    "t3": {
-      "blurb": "Trabajo energético suave e intuitivo para serenar la mente y dejar fluir de nuevo la corriente del cuerpo."
-    },
-    "escape": {
-      "kicker": "Tu refugio",
-      "title": "Deja que el valle te sostenga.",
-      "sub": "Una hora sin prisa puede cambiar la forma de todo un viaje."
-    },
-    "testimonial": {
-      "quote": "«Llegué con una mochila llena de tensión y salí sintiendo que las montañas se la habían llevado. El masaje más presente e intuitivo que he encontrado en el mundo.»",
-      "name": "Maya · Berlín"
-    },
-    "cta": {
-      "title": "Tu cuerpo conoce el camino.",
-      "sub": "Reserva tu sesión — las mañanas y los atardeceres se llenan rápido."
+      "word": "Retiros",
+      "desc": "Inmersiones como El Camino a Casa — días de ceremonia, movimiento y naturaleza para recordar quién eres."
     }
   },
   "about": {
     "hero": {
-      "kicker": "Sobre Munay",
-      "title": "Una práctica de presencia",
-      "sub": "Un pequeño santuario sobre el mercado de Písac, construido sobre una sola creencia: la sanación comienza en el momento en que te sientes a salvo para soltar."
-    },
-    "phil": {
-      "kicker": "Filosofía",
-      "title": "Todo tu ser es bienvenido aquí.",
-      "b1": "No tratamos espaldas, cuellos ni hombros — recibimos personas completas. El cansancio, la altura, la pena, la alegría, el largo camino que te trajo hasta aquí: todo sube a la camilla contigo, y todo es escuchado.",
-      "b2": "Las sesiones combinan movimientos suecos lentos, trabajo energético andino y respiración — guiadas menos por la rutina que por lo que tu cuerpo pide ese día."
+      "kicker": "Conoce a Parastoo",
+      "title": "Soy una estudiante de la vida.",
+      "sub": "Una exploradora devota de lo que significa ser plenamente humana."
     },
     "story": {
-      "kicker": "Tu terapeuta",
-      "title": "Manos formadas por dos mundos",
-      "body": "Formada en masaje clásico y aprendiz de curanderos del valle, tu terapeuta ha pasado la última década aprendiendo una misma lección una y otra vez: el cuerpo sana a la velocidad de la confianza. (Historia provisional — reemplazar por la real.)"
+      "p1": "La pregunta se ha vuelto más misteriosa cuanto más profundo camino este sendero.",
+      "p2": "¿Soy la niña que nació en Irán y más tarde construyó una vida en Canadá? ¿La ingeniera en que me convertí? ¿La viajera que dejó atrás todo lo familiar para seguir un llamado que aún no podía explicar?",
+      "p3": "Quizás.",
+      "p4": "Pero cuanto más camino, menos me identifico con las historias de quien he sido, y más me encuentro regresando a algo más sencillo:",
+      "p5": "Soy una estudiante de la vida.",
+      "p6": "Una exploradora devota de lo que significa ser plenamente humana.",
+      "p7": "Durante gran parte de mi vida, busqué respuestas fuera de mí misma. A través de los logros, las relaciones, los viajes, la espiritualidad y el crecimiento personal, buscaba algo que no podía nombrar del todo.",
+      "p8": "Lo que finalmente descubrí fue que la sabiduría que buscaba nunca me había abandonado.",
+      "p9": "Vivía silenciosamente dentro de mi propio cuerpo.",
+      "p10": "Mi camino de sanación se convirtió en un proceso de recuerdo.",
+      "p11": "Recordar cómo escuchar.",
+      "p12": "Recordar cómo sentir.",
+      "p13": "Recordar cómo confiar en la inteligencia que vive debajo del ruido del condicionamiento, las expectativas y el miedo.",
+      "p14": "Este recuerdo me llevó por el mundo y hacia incontables enseñanzas. El yoga, la meditación, el trabajo de respiración, el Reiki, la sanación somática, el Tantra, el Ayurveda, el trabajo con el sistema nervioso, el trabajo corporal y la medicina vegetal se convirtieron en maestros profundos a lo largo del camino.",
+      "p15": "Sin embargo, más allá de cada modalidad, cada ceremonia y cada formación, una verdad siguió revelándose:",
+      "p16": "El cuerpo guarda la clave.",
+      "p17": "El cuerpo recuerda lo que la mente ha olvidado.",
+      "p18": "El cuerpo carga nuestras historias, nuestro duelo, nuestra alegría, nuestra protección, nuestra resiliencia y nuestra capacidad de sanar.",
+      "p19": "Cuando aprendemos a escucharlo, la transformación se vuelve posible.",
+      "p20": "Hoy, mi trabajo está dedicado a crear espacios donde las personas puedan reconectarse con la sabiduría de sus propios cuerpos.",
+      "p21": "A través de prácticas de encarnación, medicina vegetal, trabajo corporal, sanación energética, trabajo de respiración, movimiento y presencia compasiva, guío a otros de regreso a una relación más profunda consigo mismos.",
+      "p22": "No porque tenga las respuestas.",
+      "p23": "Sino porque he aprendido a escuchar.",
+      "p24": "No creo que la sanación sea algo que se le pueda dar a otra persona.",
+      "p25": "Creo que la sanación emerge cuando creamos las condiciones para que el cuerpo, el corazón y el sistema nervioso se sientan suficientemente seguros para revelar lo que está listo para ser visto, sentido, liberado e integrado.",
+      "p26": "Esta comprensión se convirtió en el fundamento de El Método de Medicina Vegetal Encarnada™, un enfoque único que entrelaza medicina vegetal, trabajo corporal somático, sanación energética, trabajo de respiración y presencia consciente para apoyar la sanación profunda a través de la encarnación.",
+      "p27": "En el corazón de todo lo que ofrezco hay una intención sencilla:",
+      "p28": "Ayudar a las personas a volver a casa, a sí mismas.",
+      "p29": "Recordar que debajo de las historias, las heridas, los roles y las identidades vive una inteligencia mucho mayor que cualquier cosa en la que necesitemos convertirnos.",
+      "p30": "Una sabiduría que siempre ha estado ahí.",
+      "p31": "Esperando pacientemente dentro del cuerpo.",
+      "p32": "Esperando ser recordada."
     },
-    "oils": {
-      "kicker": "El ritual",
-      "title": "Aceites, humo y manos cálidas",
-      "b1": "Cada sesión se abre con palo santo y se cierra con mate de coca. Entre ambos: aceites templados a la vela y mezclados para ti esa misma mañana."
+    "values": {
+      "kicker": "Lo que guía este trabajo",
+      "title": "No estás rota.",
+      "intro": "El cuerpo no es algo que necesite ser arreglado. Dentro de cada uno de nosotros vive una inteligencia innata que sabe cómo moverse hacia el equilibrio, la sanación y la plenitud cuando se le dan las condiciones adecuadas. Mi papel no es sanarte. Mi papel es crear un espacio seguro, compasivo y sintonizado donde tu propia inteligencia sanadora pueda emerger. Los siguientes valores guían cada sesión, ceremonia, retiro y experiencia que ofrezco."
     },
-    "oil1": {
-      "name": "Muña",
-      "desc": "Menta silvestre andina; abre la respiración en la altura."
+    "v1": {
+      "name": "Encarnación",
+      "desc": "En un mundo que constantemente nos atrae hacia la mente, la encarnación es la práctica de volver a casa al cuerpo. Creo que la verdadera transformación no se mide por cuánto sabemos, sino por cuán profundamente podemos sentir, integrar y vivir nuestra verdad. El cuerpo lleva una sabiduría más allá de las palabras. Cuando aprendemos a escuchar, se convierte en uno de nuestros mayores maestros."
     },
-    "oil2": {
-      "name": "Eucalipto",
-      "desc": "Despeja la mente y refresca los músculos cansados."
+    "v2": {
+      "name": "Presencia",
+      "desc": "La sanación ocurre en el momento presente. No en las historias del pasado ni en las preocupaciones del futuro. La presencia es el fundamento de mi trabajo. Me esfuerzo por encontrar a cada persona exactamente donde está, sin juicio, expectativas ni agenda. A menudo, la medicina más poderosa es simplemente ser plenamente encontrada en nuestra experiencia."
     },
-    "oil3": {
-      "name": "Lavanda",
-      "desc": "Calma el sistema nervioso hacia el descanso."
+    "v3": {
+      "name": "Seguridad y Consentimiento",
+      "desc": "La seguridad no se da por sentada — se cultiva. Estoy comprometida a crear espacios donde el consentimiento, la elección, la comunicación y la autonomía personal sean honrados en cada paso del camino. Siempre eres bienvenida a avanzar a tu propio ritmo, expresar tus necesidades y cambiar de opinión. Tu cuerpo sabe lo que se siente seguro. Confío en esa sabiduría."
     },
-    "oil4": {
-      "name": "Palo Santo",
-      "desc": "Humo de madera sagrada para marcar comienzos y finales."
+    "v4": {
+      "name": "Atención Informada por el Trauma",
+      "desc": "Cada persona lleva una historia y un sistema nervioso únicos. Abordo este trabajo con sensibilidad, humildad y respeto por las respuestas protectoras del cuerpo. En lugar de forzar avances o empujar más allá de los límites, priorizo crear condiciones donde la sanación pueda desplegarse de manera orgánica y sostenible. La suavidad a menudo es más poderosa que la fuerza."
     },
-    "valley": {
-      "kicker": "El entorno",
-      "title": "Písac, a 2.970 m del ruido",
-      "body": "Písac está donde el aire de eucalipto, el sonido del río y los Apus — los espíritus de la montaña — hacen la mitad del trabajo antes de empezar. Sal de tu sesión hacia las terrazas y el ritmo lento del valle."
+    "v5": {
+      "name": "Compasión",
+      "desc": "La sanación comienza donde termina el juicio. La compasión nos permite encontrarnos con cada parte de nosotras mismas — incluidas las partes que hemos ocultado, rechazado o temido — con curiosidad y amabilidad. Creo que cuando traemos compasión a nuestras heridas, estas comienzan a transformarse."
+    },
+    "v6": {
+      "name": "Autenticidad",
+      "desc": "Uno de los mayores regalos que podemos ofrecernos a nosotras mismas es la libertad de ser plenamente quienes somos. Debajo del condicionamiento, las expectativas y las estrategias de supervivencia vive nuestra naturaleza auténtica. Mi trabajo apoya a las personas en reconectarse con su verdad, encontrar su voz y vivir en mayor alineación con quienes realmente son."
+    },
+    "v7": {
+      "name": "Vida Consciente",
+      "desc": "La sanación no está separada de la vida cotidiana. Cada elección, relación, conversación y hábito se convierte en una oportunidad para vivir con mayor conciencia. Creo que la encarnación no es algo que practicamos durante una hora y luego dejamos atrás. Es una manera de relacionarnos con nosotras mismas, con los demás y con el mundo."
+    },
+    "v8": {
+      "name": "Integración",
+      "desc": "La transformación no se crea únicamente por experiencias cumbre. El verdadero trabajo comienza cuando llevamos la comprensión a la vida cotidiana. Ya sea a través de la medicina vegetal, el trabajo corporal, el yoga o la ceremonia, doy gran importancia a la integración — el proceso de convertir la conciencia en cambio encarnado. Porque la comprensión puede inspirarnos. Pero la encarnación nos transforma."
+    },
+    "v9": {
+      "name": "Comunidad",
+      "desc": "Si bien la sanación es profundamente personal, no está destinada a ocurrir en aislamiento. Los seres humanos estamos diseñados para la conexión, la pertenencia y la experiencia compartida. Creo en crear espacios donde las personas se sientan vistas, apoyadas y bienvenidas exactamente como son. Cuando nos reunimos en autenticidad, la sanación se extiende más allá del individuo y se convierte en algo colectivo."
+    },
+    "v10": {
+      "name": "Recuerdo",
+      "desc": "Sobre todo, mi trabajo está dedicado al recuerdo. Recordar quiénes somos debajo de nuestras historias. Recordar la sabiduría del cuerpo. Recordar nuestra conexión con nosotras mismas, con los demás, con la naturaleza y con la vida misma. Recordar que la plenitud no es algo que debamos ganarnos. Es algo a lo que regresamos."
     },
     "cta": {
-      "title": "Ven tal como eres.",
-      "sub": "Sesiones con cita previa, todos los días excepto los lunes."
+      "title": "Vuelve a casa, a ti misma.",
+      "sub": "Comienza con una llamada de descubrimiento gratuita — un espacio para explorar tus intenciones, tus preguntas y si estamos alineadas para trabajar juntas."
     }
   },
-  "treat": {
+  "home": {
     "hero": {
-      "kicker": "Tratamientos",
-      "title": "Elige tu medicina",
-      "sub": "Cinco rituales, una intención: devolverte a ti. Cada sesión incluye palo santo, aceites cálidos y mate de coca."
+      "kicker": "Encarnación · Medicina Vegetal · Vida Consciente",
+      "lead": "Un santuario para",
+      "sub": "Guiando a las personas de regreso a su ser más auténtico, encarnado y despierto. Un santuario para el despertar, la sanación del sistema nervioso y la vida consciente.",
+      "cta2": "Explorar el trabajo"
     },
-    "t1": {
-      "name": "Piedras Calientes Andinas",
-      "desc": "Piedras volcánicas templadas en agua de manantial recorren los meridianos del cuerpo, deshaciendo la tensión profunda capa a capa. El calor logra lo que la presión sola no puede.",
-      "duration": "90 min"
+    "pillars": {
+      "kicker": "Cómo trabajamos juntas",
+      "title": "Cinco reinos, una intención"
     },
-    "t2": {
-      "name": "Relajación Holística de Cuerpo Entero",
-      "desc": "Movimientos largos y lentos por todo el cuerpo que bajan el pulso y aquietan la mente — el descanso profundo clásico, hecho con una paciencia poco común.",
-      "duration": "60 / 90 min"
+    "mission": {
+      "kicker": "Conoce a Parastoo",
+      "title": "El cuerpo guarda la clave.",
+      "body": "Nacida en Irán, formada en Canadá y llamada a recorrer el mundo, Parastoo es una estudiante de la vida dedicada a la encarnación, la medicina vegetal y la sabiduría del cuerpo. Su trabajo no entrega la sanación — crea las condiciones para que el cuerpo recuerde la suya propia.",
+      "link": "Su historia"
     },
-    "t3": {
-      "name": "Masaje con Aceites y Aromaterapia",
-      "desc": "Una mezcla de muña, eucalipto y lavanda elegida contigo antes de empezar — para respirarla y trabajarla tibia y profunda en la piel.",
-      "duration": "60 min"
+    "featured": {
+      "kicker": "Por dónde empezar",
+      "title": "Formas de trabajar juntas",
+      "all": "Ver todos los servicios"
     },
-    "t4": {
-      "name": "Tejido Profundo / Terapéutico",
-      "desc": "Trabajo enfocado y deliberado sobre lo que duele — nudos antiguos, piernas de trekking, hombros de escritorio. Firme, nunca apresurado, siempre en diálogo contigo.",
-      "duration": "60 / 75 min"
+    "f1": {
+      "name": "Mentoría 1:1",
+      "blurb": "Un viaje personalizado a través del despertar, las transiciones de vida y la sanación emocional — de regreso a la confianza en ti misma.",
+      "meta": "En línea y en persona"
     },
-    "t5": {
-      "name": "Equilibrio de Chakras y Energía",
-      "desc": "Trabajo energético suave e intuitivo sobre los centros del cuerpo, entretejido con respiración y quietud, para que tu propia corriente vuelva a fluir.",
-      "duration": "75 min"
+    "f2": {
+      "name": "El Método de Medicina Vegetal Encarnada™",
+      "blurb": "La modalidad 1:1 distintiva de Parastoo — medicina vegetal unida al trabajo corporal, la respiración y la presencia compasiva.",
+      "meta": "En persona · por solicitud"
+    },
+    "f3": {
+      "name": "Ceremonias",
+      "blurb": "Ceremonias privadas y de grupo pequeño con psilocibina, sostenidas en un contenedor seguro e informado por el trauma.",
+      "meta": "Privado y grupo pequeño"
+    },
+    "escape": {
+      "kicker": "Retiros e inmersiones",
+      "title": "El Camino a Casa",
+      "sub": "Un retiro transformacional de 7 días en el Lago de Atitlán, Guatemala · 17–23 de diciembre de 2026."
+    },
+    "values": {
+      "kicker": "Lo que guía este trabajo",
+      "title": "No estás rota.",
+      "sub": "La encarnación, la presencia, la seguridad, el consentimiento y la compasión guían cada sesión, ceremonia y retiro. Mi papel no es sanarte — es sostener el espacio donde tu propia sanación puede emerger."
+    },
+    "testimonial": {
+      "quote": "La sanación no es algo que te ocurre. Es algo que se despliega cuando el cuerpo finalmente se siente suficientemente seguro para soltar.",
+      "name": "— Parastoo · palabras de clientas próximamente"
     },
     "cta": {
-      "title": "¿No sabes cuál elegir?",
-      "sub": "Cuéntanos cómo te sientes — te escucharemos y daremos forma a la sesión a tu medida."
+      "title": "Vuelve a casa, a ti misma.",
+      "sub": "Comienza con una llamada de descubrimiento gratuita — un espacio para explorar tus intenciones, tus preguntas y si estamos alineadas para trabajar juntas."
+    }
+  },
+  "offer": {
+    "hero": {
+      "kicker": "Trabaja conmigo",
+      "title": "Formas de trabajar juntas",
+      "sub": "Cada servicio es una puerta de regreso a ti misma — elige el camino que te llama."
+    },
+    "nav": {
+      "mentorship": "Mentoría",
+      "method": "El Método",
+      "bodywork": "Trabajo Corporal",
+      "ceremony": "Ceremonias",
+      "chef": "Chef Privada"
+    },
+    "mentorship": {
+      "kicker": "Programas de mentoría 1:1",
+      "title": "En línea y en persona"
+    },
+    "method": {
+      "kicker": "Mi metodología distintiva",
+      "title": "El Método de Medicina Vegetal Encarnada™",
+      "subtitle": "Un Viaje Privado de Presencia Atenta, Encarnación y Transformación",
+      "intro1": "El Método de Medicina Vegetal Encarnada™ es una modalidad de sanación única creada por Paras, nacida de años de exploración en medicina vegetal, trabajo corporal somático, sanación energética, trabajo de respiración, regulación del sistema nervioso y coaching transformacional.",
+      "intro2": "Esto no es una ceremonia tradicional de medicina vegetal.",
+      "intro3": "Es un viaje de sanación 1:1 íntimo diseñado para apoyar la encarnación de la medicina a través de la sabiduría del cuerpo.",
+      "intro4": "Si bien la medicina vegetal puede abrir la puerta a una comprensión y conciencia profundas, muchas experiencias permanecen incompletas cuando no son plenamente sentidas, expresadas, presenciadas e integradas a través del cuerpo.",
+      "intro5": "El Método de Medicina Vegetal Encarnada™ cierra esa brecha.",
+      "intro6": "Al entrelazar medicina vegetal, trabajo corporal intuitivo, sanación energética, trabajo de respiración, indagación somática y presencia compasiva, este método crea un contenedor seguro para que el cuerpo revele lo que ha estado sosteniendo debajo de la superficie.",
+      "intro7": "Las emociones almacenadas, los patrones protectores, la tensión, el duelo y las experiencias no resueltas a menudo se llevan dentro del sistema nervioso y los tejidos del cuerpo mucho después de que la experiencia original ha pasado.",
+      "intro8": "A través de la presencia, la sintonía y la guía experta, estas capas son invitadas a emerger orgánicamente — sin fuerza, sin intentos de arreglar, sin retraumatización.",
+      "intro9": "En el corazón de este trabajo yace una verdad sencilla:",
+      "intro10": "Muchas heridas no sanan porque nunca han sido plenamente presenciadas.",
+      "intro11": "Cuando el dolor, el duelo, el miedo o el agotamiento finalmente son encontrados con presencia genuina y compasión, el cuerpo a menudo ya no necesita cargarlos solo.",
+      "intro12": "Aquí es donde puede ocurrir una transformación profunda.",
+      "unique": "El Método de Medicina Vegetal Encarnada™ no es un protocolo ni un marco prestado.\n\nEs una metodología viva que emergió orgánicamente a través de mi propio viaje de sanación, práctica ceremonial, años de trabajo con el cuerpo y experiencia directa apoyando a otros en procesos transformacionales.\n\nEn lugar de centrarse únicamente en la experiencia con la medicina, este enfoque coloca al cuerpo en el centro del viaje de sanación.\n\nCada sesión está diseñada de manera única para el individuo.\n\nNo hay dos experiencias que sean jamás iguales.\n\nLa medicina no es la sanadora.\n\nEl cuerpo lo es.\n\nLa medicina simplemente nos ayuda a escuchar más profundamente.",
+      "supportTitle": "Este Viaje Puede Apoyarte en:",
+      "s1": "Profundizar la conexión con el cuerpo",
+      "s2": "Regulación y resiliencia del sistema nervioso",
+      "s3": "Liberación e integración emocional",
+      "s4": "Soltar el estrés y la tensión acumulados",
+      "s5": "Procesar el duelo y las transiciones de vida",
+      "s6": "Cultivar seguridad y confianza en ti misma",
+      "s7": "Fortalecer la intuición y la guía interior",
+      "s8": "Encarnar las comprensiones adquiridas a través de la medicina vegetal",
+      "s9": "Sentirte profundamente vista, sostenida y presenciada",
+      "medicines": "Medicina vegetal a elegir según tu intención: Psilocibina, Wachuma, Ruda Siria",
+      "invite": "Este trabajo es una invitación a volver a casa, a ti misma.\n\nA escuchar la inteligencia de tu cuerpo.\n\nA suavizar las capas de protección que ya no son necesarias.\n\nA recordar que la sanación no es algo que te ocurre.\n\nEs algo que se despliega cuando el cuerpo finalmente se siente suficientemente seguro para soltar.\n\nEl cuerpo recuerda.\n\nEl cuerpo sabe.\n\nEl cuerpo es la medicina."
+    },
+    "bodywork": {
+      "kicker": "Otras Ofertas de Trabajo Corporal",
+      "title": "Sesiones regulares de Trabajo Corporal de 90 minutos"
+    },
+    "ceremony": {
+      "kicker": "Ceremonias Privadas y de Grupo Pequeño",
+      "title": "Ceremonias Privadas y de Grupo Pequeño con Psilocibina",
+      "subtitle": "Espacios Sagrados para la Transformación, el Recuerdo y la Exploración Interior",
+      "intro1": "Estas experiencias ceremoniales íntimas están cuidadosamente diseñadas para apoyar la indagación profunda de uno mismo, la sanación emocional, la expansión de la conciencia y la transformación significativa dentro de un contenedor seguro, informado por el trauma y cuidadosamente sostenido.",
+      "intro2": "La psilocibina tiene el potencial de abrir profundas vías de comprensión, conexión y autodescubrimiento. Cuando se aborda con intención, preparación y el apoyo adecuado, puede ofrecer la oportunidad de explorar aspectos de nosotras mismas que a menudo permanecen ocultos debajo de la superficie de la vida cotidiana.",
+      "intro3": "Cada ceremonia se guía con presencia, compasión y respeto por el viaje único de cada participante. A través de una combinación de ritual ceremonial, música en vivo, trabajo corporal energético, apoyo al sistema nervioso y facilitación consciente, se invita a los participantes a un espacio donde pueden explorar con seguridad su paisaje interior y conectarse más profundamente consigo mismos.",
+      "intro4": "Si bien cada experiencia es única, estas ceremonias a menudo apoyan una mayor autoconciencia, el procesamiento emocional, la conexión espiritual y una comprensión más profunda de los patrones, creencias e historias que dan forma a nuestras vidas.",
+      "intro5": "En el corazón de este trabajo está la creencia de que la sanación no es algo que nos ocurre.",
+      "intro6": "Es algo que emerge cuando creamos las condiciones para escucharnos más profundamente.",
+      "supportTitle": "Lo que Estas Ceremonias Pueden Apoyar",
+      "s1": "Indagación profunda de uno mismo y crecimiento personal",
+      "s2": "Procesamiento y sanación emocional",
+      "s3": "Expansión de la conciencia y la perspectiva",
+      "s4": "Regulación y restauración del sistema nervioso",
+      "s5": "Reconexión con el propósito y la guía interior",
+      "s6": "Mayor autocompasión y autocomprensión",
+      "s7": "Exploración y conexión espiritual",
+      "s8": "Liberación de patrones y creencias limitantes",
+      "s9": "Cultivar una relación más profunda contigo misma",
+      "s10": "Integrar transiciones de vida y experiencias significativas",
+      "includedTitle": "Qué Incluye",
+      "inc1": "Orientación integral de preparación",
+      "inc2": "Apoyo para el establecimiento de intenciones",
+      "inc3": "Facilitación informada por el trauma",
+      "inc4": "Contenedor de grupo pequeño o privado",
+      "inc5": "Música en vivo y sanación sonora",
+      "inc6": "Elementos rituales y ceremoniales",
+      "inc7": "Trabajo corporal energético (cuando es apropiado)",
+      "inc8": "Comidas nutritivas, té y cacao",
+      "inc9": "Apoyo de integración post-ceremonia",
+      "inc10": "Prácticas de reflexión y encarnación"
+    },
+    "chef": {
+      "kicker": "Experiencias de Chef Privada",
+      "title": "Experiencias de Chef Privada",
+      "subtitle": "El Nutrimento como Ceremonia",
+      "intro1": "En un mundo que a menudo nos anima a comer rápidamente, hacer múltiples tareas y desconectarnos de nuestros cuerpos, estas experiencias culinarias son una invitación a desacelerar y recordar que el nutrimento es sagrado.",
+      "intro2": "Como chef privada y practicante de bienestar, creo que la comida es mucho más que combustible.",
+      "intro3": "La comida es medicina.",
+      "intro4": "La comida es conexión.",
+      "intro5": "La comida es celebración.",
+      "intro6": "La comida es una de las formas más íntimas en que nos cuidamos a nosotras mismas y a quienes amamos.",
+      "intro7": "Ya sea para preparar una cena íntima, una experiencia de retiro, una reunión de bienestar o una celebración especial, cada menú se elabora cuidadosamente con ingredientes frescos y nutritivos, y se prepara con presencia, intención y creatividad.",
+      "intro8": "Mi enfoque combina el arte culinario con el bienestar holístico, creando comidas que no solo satisfacen el paladar sino que también apoyan la vitalidad, la conexión y el bienestar general.",
+      "intro9": "Cada comida se convierte en una experiencia — una oportunidad para reunirse, conectar, desacelerar y saborear la belleza de estar plenamente presentes.",
+      "availableTitle": "Disponible Para",
+      "a1": "Cenas privadas y celebraciones",
+      "a2": "Retiros y eventos de bienestar",
+      "a3": "Catering para retiros de varios días",
+      "a4": "Reuniones conscientes y ceremonias",
+      "a5": "Comidas comunales de estilo familiar",
+      "a6": "Ocasiones especiales y experiencias íntimas",
+      "invite": "El nutrimento es más que lo que comemos.\n\nEs sobre cómo nos relacionamos con nosotras mismas.\n\nCómo nos reunimos.\n\nCómo recibimos.\n\nCómo celebramos la vida.\n\nEstas experiencias están diseñadas para nutrir tanto el cuerpo como el alma, transformando una comida sencilla en un ritual significativo de conexión, presencia y alegría."
+    },
+    "cta": {
+      "title": "Vuelve a casa, a ti misma.",
+      "sub": "Comienza con una llamada de descubrimiento gratuita — un espacio para explorar tus intenciones, tus preguntas y si estamos alineadas para trabajar juntas."
+    }
+  },
+  "mentor": {
+    "1": {
+      "name": "Mentoría 1:1 de Encarnación, Empoderamiento y Despertar",
+      "subtitle": "Un Viaje Personalizado de Regreso a Ti Misma",
+      "meta": "En línea y en persona",
+      "intro": "Estas sesiones están diseñadas para personas que navegan períodos de transformación, despertar espiritual, transiciones de vida, sanación emocional o un profundo anhelo de reconectarse con su ser auténtico.",
+      "intro2": "Ya sea que estés experimentando un despertar espiritual, cuestionando la vida que has construido, sintiéndote desconectada de tu propósito, o sintiendo que eres llamada a un nuevo capítulo, esta mentoría proporciona un espacio fundamentado y de apoyo para explorar lo que está emergiendo.",
+      "intro3": "Juntas, descubrimos las creencias limitantes, los patrones inconscientes, los miedos y las heridas emocionales que pueden estar manteniéndote atrapada en ciclos de autoduda, escasez o desconexión. A través de prácticas de encarnación, regulación del sistema nervioso, cambios de mentalidad, guía intuitiva e indagación profunda de ti misma, aprenderás a confiar en ti misma más profundamente y a crear una vida que se sienta alineada con tu verdad.",
+      "intro4": "Este trabajo no se trata de convertirte en alguien nuevo.",
+      "intro5": "Se trata de recordar quién eres debajo del condicionamiento, las expectativas y las historias que ya no te sirven.",
+      "intro6": "Mi intención es ayudarte a moverte del miedo a la confianza, de la escasez a la posibilidad, y de vivir según las expectativas de otros a vivir en alineación con tu corazón.",
+      "supportTitle": "Este Viaje Puede Apoyarte en:",
+      "s1": "Navegar el despertar espiritual y las grandes transiciones de vida",
+      "s2": "Descubrir tu propósito y camino dhármico",
+      "s3": "Cultivar el valor propio y la confianza en ti misma",
+      "s4": "Soltar el miedo, la duda y las creencias limitantes",
+      "s5": "Sanación emocional y regulación del sistema nervioso",
+      "s6": "Encarnación femenina y expresión auténtica",
+      "s7": "Construir confianza y empoderamiento personal",
+      "s8": "Transformar los patrones en las relaciones",
+      "s9": "Aprender a seguir tu intuición",
+      "s10": "Crear una vida alineada con tus valores y deseos más profundos",
+      "invite": "Ya tienes las respuestas dentro de ti.\n\nA veces simplemente necesitamos un espacio seguro, guía compasiva y las preguntas correctas para ayudar a descubrirlas.\n\nEsta mentoría es una invitación a volver a casa, a ti misma, confiar en tu sabiduría interior y encarnar la vida que está esperando ser vivida a través de ti."
+    },
+    "2": {
+      "name": "Sesión 1:1 de Sanación del ADN",
+      "meta": "En línea y en persona",
+      "intro": "Esta sesión específica está diseñada en torno a viajar a través de las capas más profundas del subconsciente y encontrar las creencias limitantes que te están impidiendo vivir una vida libre.",
+      "intro2": "Una sesión de sanación profundamente intuitiva enfocada en liberar patrones emocionales heredados, condicionamiento subconsciente, bloqueos energéticos y creencias limitantes almacenadas dentro del cuerpo y el sistema nervioso.",
+      "intro3": "A través de prácticas guiadas, meditación, conciencia somática, trabajo energético y establecimiento de intenciones, estas sesiones apoyan una mayor claridad, liberación emocional y alineación interior."
+    },
+    "3": {
+      "name": "Viaje 1:1 a Través de los Chakras",
+      "subtitle": "Un Viaje de Alineación, Conciencia y Equilibrio Interior",
+      "meta": "En línea y en persona",
+      "intro": "El sistema de chakras ofrece un poderoso mapa para comprender la conexión entre nuestro bienestar físico, emocional, mental y espiritual.",
+      "intro2": "Cada chakra representa un aspecto diferente de nuestra experiencia humana — desde nuestra sensación de seguridad y pertenencia hasta nuestra capacidad de amar, expresarnos, confiar en nuestra intuición y vivir en alineación con nuestro propósito más elevado.",
+      "intro3": "En esta sesión profundamente personalizada, exploramos los centros energéticos del cuerpo para identificar áreas de desequilibrio, estancamiento o desconexión que puedan estar influyendo en tus pensamientos, emociones, relaciones, salud y experiencias de vida.",
+      "intro4": "A través de guía intuitiva, prácticas de encarnación, conciencia somática, sanación energética, meditación y recomendaciones prácticas de estilo de vida, trabajamos juntas para restaurar mayor armonía y flujo dentro de tu sistema.",
+      "intro5": "En lugar de simplemente aprender sobre los chakras, este viaje te invita a experimentarlos a través de la sabiduría de tu propio cuerpo.",
+      "intro6": "A medida que la conciencia se profundiza, muchas personas comienzan a descubrir patrones inconscientes, heridas emocionales, creencias limitantes y bloqueos energéticos que han estado moldeando su realidad debajo de la superficie.",
+      "intro7": "El objetivo no es la perfección ni \"arreglarte\" a ti misma.",
+      "intro8": "Es cultivar mayor conciencia, equilibrio, autocomprensión y alineación con quien realmente eres.",
+      "supportTitle": "Este Viaje Puede Apoyarte en:",
+      "s1": "Sentirte más fundamentada, segura y conectada contigo misma",
+      "s2": "Liberar bloqueos emocionales y energéticos",
+      "s3": "Fortalecer el valor propio y el poder personal",
+      "s4": "Abrir el corazón a una conexión más profunda y al amor propio",
+      "s5": "Expresar tu verdad con mayor confianza y autenticidad",
+      "s6": "Desarrollar confianza en tu intuición y guía interior",
+      "s7": "Crear mayor alineación entre tu mundo interior y tu realidad exterior",
+      "s8": "Comprender los patrones recurrentes y los desafíos de la vida a través de una lente energética",
+      "s9": "Cultivar equilibrio, vitalidad y bienestar general",
+      "invite": "Tus chakras no están separados de tu vida.\n\nSe reflejan en la forma en que amas, comunicas, creas, confías, recibes y te mueves por el mundo.\n\nEsta sesión es una invitación a escuchar más profundamente la sabiduría de tu cuerpo, reconectarte con tu flujo natural de energía y crear mayor alineación desde adentro hacia afuera.\n\nPorque cuando la energía fluye libremente, la vida también comienza a fluir de manera diferente."
+    },
+    "4": {
+      "name": "Mentoría 1:1 de Preparación e Integración de Medicina Vegetal",
+      "subtitle": "Preparando el Terreno. Encarnando la Sabiduría.",
+      "meta": "En línea y en persona",
+      "intro": "Los viajes con medicina vegetal pueden ser algunas de las experiencias más profundas y transformadoras en la vida de una persona. Ya sea que estés considerando trabajar con psilocibina, Ayahuasca, Huachuma (San Pedro) u otras medicinas sagradas, la preparación y la integración son a menudo la diferencia entre una experiencia significativa y una transformación duradera.",
+      "intro2": "Esta oferta está diseñada para personas que sienten curiosidad por la medicina vegetal, se están preparando para una próxima ceremonia, o buscan apoyo después de un viaje para comprender y encarnar mejor lo que fue revelado.",
+      "intro3": "Basándome en años de experiencia personal con medicina vegetal, trabajo ceremonial, prácticas de integración y apoyo a otros en procesos transformacionales, proporciono un espacio fundamentado, compasivo y sin juicios para explorar tus preguntas, intenciones, miedos y expectativas antes de entrar al espacio de la medicina.",
+      "intro4": "Juntas, preparamos no solo la mente, sino también el cuerpo, el corazón y el sistema nervioso para el viaje que viene.",
+      "intro5": "Después de tu ceremonia, nos enfocamos en la integración — el proceso sagrado de dar sentido a tu experiencia y traducir las comprensiones en cambios significativos y encarnados. Porque si bien la ceremonia puede durar unas pocas horas o unos pocos días, la verdadera transformación ocurre en cómo elegimos vivir esas enseñanzas después.",
+      "intro6": "Estas sesiones están diseñadas para ayudar a cerrar la brecha entre la experiencia con la medicina y la vida cotidiana, apoyándote en encarnar tus comprensiones con mayor claridad, conciencia e intención.",
+      "supportTitle": "Este Viaje Puede Apoyarte en:",
+      "s1": "Comprender las diferentes medicinas vegetales y sus cualidades únicas",
+      "s2": "Clarificar tus intenciones para el viaje",
+      "s3": "Abordar miedos, preocupaciones y expectativas en torno al trabajo ceremonial",
+      "s4": "Preparación emocional y del sistema nervioso",
+      "s5": "Aprender herramientas prácticas para navegar experiencias desafiantes",
+      "s6": "Comprender la etiqueta ceremonial y las prácticas de preparación",
+      "s7": "Journaling de integración y ejercicios de reflexión",
+      "s8": "Procesar emociones, comprensiones y revelaciones después del viaje",
+      "s9": "Ajustes de estilo de vida y hábitos que apoyen una transformación duradera",
+      "s10": "Encarnar la sabiduría de la medicina en la vida cotidiana",
+      "s11": "Apoyo post-retiro y post-ceremonia",
+      "invite": "La medicina vegetal no nos transforma simplemente porque la consumimos.\n\nLa transformación ocurre cuando creamos la capacidad de recibir sus enseñanzas, integrar su sabiduría y encarnar sus lecciones en nuestra vida diaria.\n\nEstas sesiones son una invitación a acercarse a la medicina vegetal con mayor conciencia, preparación, reverencia y responsabilidad — para que el viaje no sea solo una experiencia, sino un catalizador para un cambio significativo y duradero.\n\nPorque la ceremonia es solo el comienzo.\n\nLa verdadera medicina vive en cómo caminamos el sendero después."
+    }
+  },
+  "retreat": {
+    "hero": {
+      "kicker": "Retiros e inmersiones",
+      "title": "El Camino a Casa",
+      "subtitle": "Un Retiro Transformacional de 7 Días en el Lago de Atitlán, Guatemala",
+      "dates": "17–23 de diciembre de 2026"
+    },
+    "quote": "El cuerpo guarda la clave. Cuando aprendemos a escuchar, la transformación se vuelve posible.",
+    "intro": {
+      "intro1": "El Camino a Casa es una invitación sagrada a alejarse del ruido de la vida cotidiana y reconectarse con la verdad más profunda de quién eres.",
+      "intro2": "Enclavado en los impresionantes paisajes del Lago de Atitlán, Guatemala, este viaje inmersivo de siete días está diseñado para quienes se sienten llamadas a vivir con mayor autenticidad, propósito, libertad y alineación.",
+      "intro3": "A través de una combinación cuidadosamente seleccionada de prácticas de encarnación, yoga, movimiento, sanación del sistema nervioso, ceremonia, inmersión en la naturaleza, comunidad consciente e indagación personal, los participantes son guiados en un proceso de recuerdo — regresando a la sabiduría que ya vive dentro de ellos.",
+      "intro4": "Este retiro está enraizado en la creencia de que muchas de nosotras no carecemos de propósito; más bien, nos hemos desconectado de él bajo capas de condicionamiento, miedo, expectativas sociales y patrones de supervivencia.",
+      "intro5": "Juntas, creamos el espacio para desacelerar, escuchar profundamente, soltar lo que ya no sirve y reconectarnos con los dones únicos, la creatividad y el saber interior que anhelan ser expresados."
+    },
+    "support": {
+      "title": "Este Viaje Puede Apoyarte en:",
+      "s1": "Reconectarte con tu ser auténtico y el propósito de tu vida",
+      "s2": "Soltar creencias y patrones limitantes que te mantienen estancada",
+      "s3": "Clarificar tu visión para el próximo capítulo de tu vida",
+      "s4": "Cultivar resiliencia del sistema nervioso y paz interior",
+      "s5": "Desbloquear la creatividad, la intuición y la autoexpresión",
+      "s6": "Construir conexiones significativas y comunidad consciente",
+      "s7": "Explorar formas de vida más intencionales y alineadas",
+      "s8": "Regresar a casa, a ti misma"
+    },
+    "cta": {
+      "title": "El viaje a casa te está llamando.",
+      "sub": "Los espacios para esta inmersión son limitados. Contáctame para saber más, hacer preguntas o reservar tu lugar.",
+      "button": "Detalles del retiro y reservas"
+    }
+  },
+  "faq": {
+    "hero": {
+      "kicker": "Preguntas Frecuentes",
+      "title": "Preguntas y Respuestas",
+      "sub": "Un espacio para comprender el trabajo antes de que nos encontremos."
+    },
+    "cta": {
+      "title": "Vuelve a casa, a ti misma.",
+      "sub": "Comienza con una llamada de descubrimiento gratuita — un espacio para explorar tus intenciones, tus preguntas y si estamos alineadas para trabajar juntas."
+    },
+    "q1": {
+      "q": "¿En qué se diferencia El Método de Medicina Vegetal Encarnada de una ceremonia tradicional de medicina vegetal?",
+      "a": "Las ceremonias tradicionales a menudo se centran principalmente en la experiencia con la medicina en sí. El Método de Medicina Vegetal Encarnada pone igual énfasis en lo que está ocurriendo dentro del cuerpo. A través de una combinación de medicina vegetal, trabajo corporal somático, trabajo de respiración, sanación energética y presencia compasiva, este enfoque apoya la encarnación y la integración de la experiencia con la medicina. En lugar de buscar trascender el cuerpo, aprendemos a escucharlo. El cuerpo se convierte en un participante activo en el proceso de sanación."
+    },
+    "q2": {
+      "q": "¿Qué quieres decir con «encarnación»?",
+      "a": "La encarnación es la práctica de estar plenamente presente con tu experiencia vivida a través del cuerpo. Muchas de nosotras pasamos nuestras vidas viviendo desde la mente — pensando, analizando e intentando comprender nuestras experiencias intelectualmente. La encarnación nos invita a sentir. A escuchar las sensaciones. A notar las emociones. A reconectarnos con la sabiduría, la intuición y la inteligencia que ya viven dentro del cuerpo. En mi trabajo, la sanación no ocurre solo a través de la comprensión, sino al permitir que esas comprensiones sean sentidas, expresadas e integradas."
+    },
+    "q3": {
+      "q": "¿Es esto terapia?",
+      "a": "No. Si bien este trabajo puede ser profundamente terapéutico, no es psicoterapia, asesoramiento ni un sustituto del tratamiento de salud mental. No diagnostico, trato ni curo condiciones médicas o psicológicas. Mi papel es crear un entorno seguro y de apoyo que fomente la autoexploración, la encarnación, la expresión emocional y el crecimiento personal."
+    },
+    "q4": {
+      "q": "¿Es seguro este trabajo?",
+      "a": "Crear seguridad es el fundamento de todo lo que ofrezco. Cada sesión comienza con una conversación sobre intenciones, límites, niveles de comodidad e historia personal. El consentimiento es un proceso continuo a lo largo de la sesión, y siempre se te anima a comunicar tus necesidades, preferencias y límites. Eres bienvenida a pausar, modificar o detener cualquier aspecto de la sesión en cualquier momento."
+    },
+    "q5": {
+      "q": "¿Qué pasa si surgen emociones fuertes durante la sesión?",
+      "a": "Las emociones son bienvenidas aquí. Muchas personas cargan dentro del cuerpo duelo, tristeza, ira, miedo o estrés sin procesar. A veces estas emociones emergen naturalmente cuando el cuerpo se siente suficientemente seguro para liberarlas. Si surgen emociones, son recibidas con presencia, compasión y sin juicio. Nada necesita ser arreglado ni forzado. Recibes apoyo para avanzar a un ritmo que se sienta adecuado para tu sistema nervioso."
+    },
+    "q6": {
+      "q": "¿Me tocarán durante la sesión?",
+      "a": "Dependiendo del servicio, el trabajo corporal y el toque terapéutico pueden ser parte de la experiencia. Cualquier toque se discute de antemano y solo se ofrece con tu consentimiento informado. La comunicación clara y el respeto por los límites son esenciales. Siempre tienes el derecho de rechazar, modificar o retirar el consentimiento en cualquier momento durante la sesión."
+    },
+    "q7": {
+      "q": "¿Es esto Tantra?",
+      "a": "Mi trabajo está inspirado en algunos principios tántricos como la presencia, la encarnación, la respiración, la conciencia y la conexión. Sin embargo, esto no es un servicio sexual. El enfoque está en la sanación, la encarnación, la regulación del sistema nervioso, el procesamiento emocional y la reconexión con una misma. Todas las sesiones se llevan a cabo dentro de límites profesionales claros y un enfoque informado por el trauma."
+    },
+    "q8": {
+      "q": "¿Hay desnudez involucrada?",
+      "a": "Esto depende de la naturaleza de la sesión y siempre se discutirá de antemano. Se anima a las clientas a usar lo que les permita sentirse cómodas, seguras y apoyadas. El consentimiento, la dignidad y los límites personales se respetan en todo momento."
+    },
+    "q9": {
+      "q": "¿Con qué medicinas vegetales trabajas?",
+      "a": "Dependiendo del servicio y el contexto legal, puedo trabajar con medicinas vegetales sagradas como la psilocibina o el San Pedro (Huachuma). Cualquier trabajo con medicina vegetal incluye preparación exhaustiva, evaluación, establecimiento de intenciones y apoyo de integración. La medicina vegetal nunca se aborda como una solución rápida, sino como una herramienta que puede apoyar una mayor conciencia y sanación cuando se usa con responsabilidad y respeto."
+    },
+    "q10": {
+      "q": "¿Cómo sé si el trabajo con medicina vegetal es adecuado para mí?",
+      "a": "La medicina vegetal no es para todas las personas. Antes de cualquier viaje con medicina vegetal, exploramos tus intenciones, historia personal, consideraciones de salud, medicamentos y disposición. En algunos casos, puedo recomendar otro enfoque si se siente más adecuado para tu situación actual. El objetivo nunca es empujar a alguien a una experiencia, sino honrar lo que genuinamente está alineado."
+    },
+    "q11": {
+      "q": "¿Cómo debo prepararme para una sesión?",
+      "a": "La preparación es una parte importante del proceso. Recibirás orientación antes de tu sesión, que puede incluir recomendaciones sobre nutrición, hidratación, establecimiento de intenciones, journaling, descanso y crear espacio para la reflexión. Venir con curiosidad en lugar de expectativas a menudo crea las experiencias más significativas."
+    },
+    "q12": {
+      "q": "¿Qué ocurre después de la sesión?",
+      "a": "La integración es donde se despliega gran parte de la transformación. Después de la sesión, puedes recibir recomendaciones para journaling, reflexión, prácticas de encarnación, apoyo al sistema nervioso e integración continua. La sanación no se trata solo de lo que ocurre durante la sesión — también se trata de cómo llevamos esas comprensiones a nuestra vida diaria."
+    },
+    "q13": {
+      "q": "¿Necesito experiencia previa con medicina vegetal, trabajo corporal o trabajo de sanación?",
+      "a": "No. Ya sea que seas completamente nueva en este trabajo o tengas años de experiencia, las sesiones están adaptadas para encontrarte donde estás. El ingrediente más importante es la voluntad de estar presente contigo misma."
+    },
+    "q14": {
+      "q": "¿Cuál es tu papel en el proceso de sanación?",
+      "a": "No me veo a mí misma como alguien que sana a otros. Mi papel es crear un espacio seguro, compasivo y sintonizado donde tu propia inteligencia sanadora pueda emerger. Ofrezco guía, presencia, presencia atenta y apoyo. En última instancia, creo que la sanación más profunda viene desde adentro."
+    },
+    "q15": {
+      "q": "¿Cómo comienzo?",
+      "a": "El primer paso es una llamada de descubrimiento gratuita — una conversación gentil para explorar tus intenciones, tus preguntas y si estamos alineadas para trabajar juntas. No hay ninguna obligación ni presión. Simplemente comunícate y encontraremos un momento para conectar."
     }
   },
   "contact": {
     "hero": {
-      "kicker": "Contacto",
-      "title": "Encuentra el camino hacia nosotros",
-      "sub": "Dos calles arriba del mercado de Písac, tras la puerta azul. Llega temprano, vete despacio."
+      "kicker": "Empieza aquí",
+      "title": "Reserva una Llamada de Descubrimiento Gratuita",
+      "sub": "Una llamada de conexión gratuita para explorar tus intenciones, necesidades, preguntas y si estamos alineadas para trabajar juntas."
     },
-    "visit": {
-      "title": "Visítanos",
-      "body": "Calle [XXX] s/n, Písac, Valle Sagrado, Cusco — Perú"
-    },
-    "hours": {
-      "title": "Horario",
-      "line1": "Martes — Domingo · 9:00 – 19:00",
-      "line2": "Lunes cerrado · sesiones con cita previa"
+    "call": {
+      "title": "Llamada de descubrimiento gratuita",
+      "body": "Comunícate por WhatsApp o correo electrónico y encontraremos un momento. Sin presión, sin compromiso — solo un espacio para sentir lo que necesitas."
     },
     "wa": {
-      "title": "La vía más rápida",
-      "body": "Escríbenos por WhatsApp para reservar una sesión o preguntar lo que quieras."
+      "title": "WhatsApp",
+      "body": "+1 (416) 837-1650"
+    },
+    "ig": {
+      "title": "Instagram",
+      "body": "@Heldbyparas"
+    },
+    "email": {
+      "title": "Correo electrónico",
+      "body": "Parastoovii@gmail.com"
     },
     "form": {
-      "title": "O escríbenos unas líneas",
+      "title": "Envía un mensaje",
       "name": {
         "word": "Nombre",
         "ph": "Tu nombre"
       },
       "email": {
-        "word": "Correo",
-        "ph": "tu@ejemplo.com"
+        "word": "Correo electrónico",
+        "ph": "tu@correo.com"
       },
       "message": {
         "word": "Mensaje",
-        "ph": "¿Cómo podemos ayudarte?"
+        "ph": "Cuéntame un poco sobre lo que estás buscando…"
       },
       "submit": "Enviar mensaje",
-      "note": "Respondemos en un día."
+      "note": "Responderé en pocos días. Para cualquier cosa urgente, WhatsApp es lo más rápido."
+    }
+  },
+  "body": {
+    "1": {
+      "name": "Masaje Ayurvédico",
+      "subtitle": "para la regulación del sistema nervioso",
+      "meta": "90 min · En persona",
+      "desc": "Un tratamiento de cuerpo completo y fundamentado inspirado en los principios ayurvédicos, diseñado para calmar el sistema nervioso, mejorar la circulación, liberar la tensión y restaurar el equilibrio energético a través del toque intencional y los aceites herbales."
+    },
+    "2": {
+      "name": "Masaje Tántrico",
+      "subtitle": "para despertar la energía vital y cultivar mayor prana y vitalidad",
+      "meta": "90 min · En persona",
+      "desc": "Una experiencia de trabajo corporal consciente y centrada en el corazón, enfocada en la presencia, la respiración, el flujo de energía, la relajación del sistema nervioso y una conexión más profunda con el cuerpo.\n\nEsta práctica apoya la liberación emocional, la encarnación, la relajación, la intimidad con una misma y la expansión de la conciencia a través del toque consciente y la presencia energética."
+    },
+    "3": {
+      "name": "Masaje de Tejido Profundo",
+      "subtitle": "Liberando la Tensión, Restaurando la Movilidad y Creando Espacio Dentro del Cuerpo",
+      "meta": "90 min · En persona",
+      "desc": "El Masaje de Tejido Profundo es un tratamiento de trabajo corporal terapéutico diseñado para liberar la tensión crónica, mejorar la movilidad y restaurar mayor facilidad en todo el cuerpo.",
+      "desc2": "Con el tiempo, el estrés, los patrones de movimiento repetitivo, las experiencias emocionales, las lesiones y la vida cotidiana pueden crear capas de retención dentro de los músculos, la fascia y los tejidos conectivos. Estos patrones a menudo se manifiestan como rigidez, malestar, movimiento restringido y una sensación de desconexión del cuerpo.",
+      "desc3": "Usando una presión lenta e intencional y técnicas específicas, este tratamiento trabaja con las capas más profundas del músculo y la fascia para liberar la tensión acumulada, mejorar la circulación y crear más espacio dentro de las estructuras del cuerpo.",
+      "desc4": "Más allá del alivio físico, muchas personas experimentan una profunda sensación de relajación, enraizamiento y reconexión consigo mismas a medida que el cuerpo comienza a suavizarse y desenredarse.",
+      "desc5": "Cada sesión está adaptada a tus necesidades individuales y se centra en apoyar la capacidad natural del cuerpo para la restauración y el equilibrio.",
+      "supportTitle": "Esta Sesión Puede Apoyarte en:",
+      "s1": "Liberar tensión muscular crónica y rigidez",
+      "s2": "Mejorar la movilidad y la flexibilidad",
+      "s3": "Aliviar el malestar causado por el estrés o los patrones repetitivos",
+      "s4": "Apoyar la alineación postural y la conciencia corporal",
+      "s5": "Aumentar la circulación y el flujo de energía",
+      "s6": "Reducir el estrés físico y del sistema nervioso",
+      "s7": "Crear mayor facilidad y libertad de movimiento",
+      "s8": "Reconectarte con el cuerpo a través del toque consciente"
     }
   }
 }
