@@ -6,11 +6,11 @@
   },
   "retreat": { "bookingUrl": "#" },
   "hero": {
-    "slide1": "assets/img/hero-wellness.webp",
-    "slide2": "assets/img/hero-coaching.webp",
+    "slide1": "assets/img/hero-coaching.webp",
+    "slide2": "assets/img/hero-wellness.webp",
     "slide3": "assets/img/hero-yoga.webp",
-    "slide4": "assets/img/hero-retreats.webp",
-    "slide5": "assets/img/hero-living.webp"
+    "slide4": "assets/img/philosophy.webp",
+    "slide5": "assets/img/hero-retreats.webp"
   },
   "escape": { "image": "assets/img/mission-portrait.webp" }
 }
