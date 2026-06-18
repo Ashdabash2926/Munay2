@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ · Parastoo — Embodiment, Plant Medicine & Conscious Living</title>
+  <meta name="description" content="Answers to common questions about The Embodied Plant Medicine Method, bodywork, plant medicines, safety, consent, and how to begin working with Parastoo." />
+  <meta property="og:title" content="FAQ · Parastoo" />
+  <meta property="og:description" content="Answers to common questions about embodiment, plant medicine, safety, consent, and how to begin." />
+  <meta property="og:image" content="https://munay-site.pages.dev/assets/og.jpg" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..600,0..100;1,9..144,300..600,0..100&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <style>
+    /* ── FAQ accordion ────────────────────────────── */
+    .faq-item {
+      border-top: 1px solid var(--border);
+    }
+    .faq-item:last-of-type {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-item summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      padding: 1.35rem 0;
+      cursor: pointer;
+      font-family: var(--serif);
+      font-size: clamp(1rem, 2vw, 1.18rem);
+      font-weight: 480;
+      color: var(--text);
+      line-height: 1.3;
+      list-style: none;
+      user-select: none;
+      transition: color .25s;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::marker { display: none; }
+
+    .faq-item summary:hover,
+    .faq-item[open] summary {
+      color: var(--clay);
+    }
+
+    /* chevron */
+    .faq-item summary::after {
+      content: '';
+      flex: none;
+      width: 1.1rem;
+      height: 1.1rem;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23bf5f3a' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-size: contain;
+      transition: transform .35s cubic-bezier(.22, 1, .36, 1);
+    }
+    .faq-item[open] summary::after {
+      transform: rotate(180deg);
+    }
+
+    /* answer body */
+    .faq-item .faq-answer {
+      padding: 0 0 1.6rem 0;
+      color: var(--muted);
+      line-height: 1.85;
+      font-size: 1rem;
+      max-width: 68ch;
+      animation: faq-open .35s cubic-bezier(.22, 1, .36, 1) both;
+    }
+    @keyframes faq-open {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .faq-item summary::after { transition: none; }
+      .faq-item .faq-answer { animation: none; }
+    }
+  </style>
+</head>
+<body data-page="faq">
+  <div id="site-nav"></div>
+
+  <main id="page-faq">
+
+    <!-- ============ PAGE HERO ============ -->
+    <section class="hero !min-h-[64svh]">
+      <img class="hero__bg" src="assets/img/header-contact.webp"
+           alt="Soft light through leaves — a space of stillness and presence" fetchpriority="high" />
+      <div class="hero__scrim"></div>
+      <div class="relative z-10 max-w-6xl mx-auto px-5 pt-28 pb-16 w-full">
+        <p class="kicker kicker--gold fade-up" style="--d:.15s" data-i18n="faq.hero.kicker"></p>
+        <h1 class="mt-6 text-[var(--text-inv)] font-display text-[clamp(2.6rem,6.4vw,4.8rem)] max-w-3xl">
+          <span class="mask-line"><span style="--d:.3s" data-i18n="faq.hero.title"></span></span>
+        </h1>
+        <p class="fade-up mt-6 max-w-xl text-[1.05rem] font-light leading-relaxed text-[rgba(247,241,232,.85)]"
+           style="--d:.55s" data-i18n="faq.hero.sub"></p>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ACCORDION ============ -->
+    <section class="bg-[var(--cream)] border-b border-[var(--border)]">
+      <div class="max-w-3xl mx-auto px-5 py-20 md:py-28">
+
+        <details class="faq-item reveal">
+          <summary data-i18n="faq.q1.q"></summary>
+          <p class="faq-answer" data-i18n="faq.q1.a"></p>
+        </details>
+
+        <details class="faq-item reveal" style="--d:.04s">
+          <summary data-i18n="faq.q2.q"></summary>
+          <p class="faq-answer" data-i18n="faq.q2.a"></p>
+        </details>
+
+        <details class="faq-item reveal" style="--d:.08s">
+          <summary data-i18n="faq.q3.q"></summary>
+          <p class="faq-answer" data-i18n="faq.q3.a"></p>
+        </details>
+
+        <details class="faq-item reveal" style="--d:.12s">
+          <summary data-i18n="faq.q4.q"></summary>
+          <p class="faq-answer" data-i18n="faq.q4.a"></p>
+        </details>
+
+        <details class="faq-item reveal" style="--d:.16s">
+          <summary data-i18n="faq.q5.q"></summary>
+          <p class="faq-answer" data-i18n="faq.q5.a"></p>
+        </details>
+
+        <details class="faq-item reveal" style="--d:.20s">
+          <summary data-i18n="faq.q6.q"></summary>
+          <p class="faq-answer" data-i18n="faq.q6.a"></p>
+        </details>
+
+        <details class="faq-item reveal" style="--d:.24s">
+          <summary data-i18n="faq.q7.q"></summary>
+          <p class="faq-answer" data-i18n="faq.q7.a"></p>
+        </details>
+
+        <details class="faq-item reveal" style="--d:.28s">
+          <summary data-i18n="faq.q8.q"></summary>
+          <p class="faq-answer" data-i18n="faq.q8.a"></p>
+        </details>
+
+        <details class="faq-item reveal" style="--d:.32s">
+          <summary data-i18n="faq.q9.q"></summary>
+          <p class="faq-answer" data-i18n="faq.q9.a"></p>
+        </details>
+
+        <details class="faq-item reveal" style="--d:.36s">
+          <summary data-i18n="faq.q10.q"></summary>
+          <p class="faq-answer" data-i18n="faq.q10.a"></p>
+        </details>
+
+        <details class="faq-item reveal" style="--d:.40s">
+          <summary data-i18n="faq.q11.q"></summary>
+          <p class="faq-answer" data-i18n="faq.q11.a"></p>
+        </details>
+
+        <details class="faq-item reveal" style="--d:.44s">
+          <summary data-i18n="faq.q12.q"></summary>
+          <p class="faq-answer" data-i18n="faq.q12.a"></p>
+        </details>
+
+        <details class="faq-item reveal" style="--d:.48s">
+          <summary data-i18n="faq.q13.q"></summary>
+          <p class="faq-answer" data-i18n="faq.q13.a"></p>
+        </details>
+
+        <details class="faq-item reveal" style="--d:.52s">
+          <summary data-i18n="faq.q14.q"></summary>
+          <p class="faq-answer" data-i18n="faq.q14.a"></p>
+        </details>
+
+        <details class="faq-item reveal" style="--d:.56s">
+          <summary data-i18n="faq.q15.q"></summary>
+          <p class="faq-answer" data-i18n="faq.q15.a"></p>
+        </details>
+
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="max-w-4xl mx-auto px-5 py-24 md:py-32 text-center">
+      <div class="chakana reveal text-[var(--clay)]" aria-hidden="true">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+          <path d="M12 2.8 14.4 7l4.6.4-3 3.6 3 3.6-4.6.4L12 19.2 9.6 15l-4.6-.4 3-3.6-3-3.6L9.6 7 12 2.8Z"/></svg>
+      </div>
+      <h2 class="reveal mt-8 font-display text-[clamp(2.2rem,5.4vw,4rem)]" style="--d:.12s" data-i18n="faq.cta.title"></h2>
+      <p class="reveal lead mt-5" style="--d:.24s" data-i18n="faq.cta.sub"></p>
+      <a href="contact.html" class="btn btn-primary mt-10 reveal" style="--d:.36s" data-i18n="cta.book"></a>
+    </section>
+
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="js/i18n.js"></script>
+  <script src="js/site.js"></script>
+</body>
+</html>

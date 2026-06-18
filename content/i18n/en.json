@@ -414,6 +414,77 @@
       "button": "Retreat details & booking"
     }
   },
+  "faq": {
+    "hero": {
+      "kicker": "Frequently Asked Questions",
+      "title": "Questions & Answers",
+      "sub": "A space to understand the work before we meet."
+    },
+    "cta": {
+      "title": "Come home to yourself.",
+      "sub": "Begin with a free discovery call — a space to explore your intentions, your questions, and whether we are aligned to work together."
+    },
+    "q1": {
+      "q": "What makes The Embodied Plant Medicine Method different from a traditional plant medicine ceremony?",
+      "a": "Traditional ceremonies often focus primarily on the medicine experience itself. The Embodied Plant Medicine Method places equal emphasis on what is happening within the body. Through a combination of plant medicine, somatic bodywork, breathwork, energetic healing, and compassionate witnessing, this approach supports the embodiment and integration of the medicine experience. Rather than seeking to transcend the body, we learn to listen to it. The body becomes an active participant in the healing process."
+    },
+    "q2": {
+      "q": "What do you mean by \"embodiment\"?",
+      "a": "Embodiment is the practice of being fully present with your lived experience through the body. Many of us spend our lives living from the mind—thinking, analyzing, and trying to understand our experiences intellectually. Embodiment invites us to feel. To listen to sensations. To notice emotions. To reconnect with the wisdom, intuition, and intelligence that already live within the body. In my work, healing happens not only through insight, but through allowing those insights to be felt, expressed, and integrated."
+    },
+    "q3": {
+      "q": "Is this therapy?",
+      "a": "No. While this work can be deeply therapeutic, it is not psychotherapy, counseling, or a substitute for mental health treatment. I do not diagnose, treat, or cure medical or psychological conditions. My role is to create a safe and supportive environment that encourages self-exploration, embodiment, emotional expression, and personal growth."
+    },
+    "q4": {
+      "q": "Is this work safe?",
+      "a": "Creating safety is at the foundation of everything I offer. Every session begins with a conversation about intentions, boundaries, comfort levels, and personal history. Consent is an ongoing process throughout the session, and you are always encouraged to communicate your needs, preferences, and limits. You are welcome to pause, modify, or stop any aspect of the session at any time."
+    },
+    "q5": {
+      "q": "What if strong emotions arise during the session?",
+      "a": "Emotions are welcome here. Many people carry unprocessed grief, sadness, anger, fear, or stress within the body. Sometimes these emotions emerge naturally when the body feels safe enough to release them. If emotions arise, they are met with presence, compassion, and non-judgment. Nothing needs to be fixed or forced. You are supported in moving at a pace that feels right for your nervous system."
+    },
+    "q6": {
+      "q": "Will I be touched during the session?",
+      "a": "Depending on the offering, bodywork and therapeutic touch may be part of the experience. Any touch is discussed beforehand and only offered with your informed consent. Clear communication and respect for boundaries are essential. You always have the right to decline, modify, or withdraw consent at any point during the session."
+    },
+    "q7": {
+      "q": "Is this Tantra?",
+      "a": "My work is inspired by some tantric principles such as presence, embodiment, breath, awareness, and connection. However, this is not a sexual service. The focus is on healing, embodiment, nervous system regulation, emotional processing, and reconnection with self. All sessions are held within clear professional boundaries and a trauma-informed approach."
+    },
+    "q8": {
+      "q": "Is there any nudity involved?",
+      "a": "This depends on the nature of the session and will always be discussed beforehand. Clients are encouraged to wear whatever allows them to feel comfortable, safe, and supported. Consent, dignity, and personal boundaries are respected at all times."
+    },
+    "q9": {
+      "q": "What plant medicines do you work with?",
+      "a": "Depending on the offering and legal context, I may work with sacred plant medicines such as psilocybin or San Pedro (Huachuma). Any plant medicine work includes thorough preparation, screening, intention setting, and integration support. Plant medicine is never approached as a quick fix, but as a tool that can support deeper awareness and healing when used responsibly and respectfully."
+    },
+    "q10": {
+      "q": "How do I know if plant medicine work is right for me?",
+      "a": "Plant medicine is not for everyone. Before any plant medicine journey, we explore your intentions, personal history, health considerations, medications, and readiness. In some cases, I may recommend another approach if it feels more supportive for your current situation. The goal is never to push someone into an experience, but to honor what is genuinely aligned."
+    },
+    "q11": {
+      "q": "How should I prepare for a session?",
+      "a": "Preparation is an important part of the process. You will receive guidance before your session, which may include recommendations around nutrition, hydration, intention setting, journaling, rest, and creating space for reflection. Coming with curiosity rather than expectations often creates the most meaningful experiences."
+    },
+    "q12": {
+      "q": "What happens after the session?",
+      "a": "Integration is where much of the transformation unfolds. Following the session, you may receive recommendations for journaling, reflection, embodiment practices, nervous system support, and ongoing integration. Healing is not only about what happens during the session—it is also about how we bring those insights into our daily lives."
+    },
+    "q13": {
+      "q": "Do I need previous experience with plant medicine, bodywork, or healing work?",
+      "a": "No. Whether you are completely new to this work or have years of experience, sessions are tailored to meet you where you are. The most important ingredient is a willingness to be present with yourself."
+    },
+    "q14": {
+      "q": "What is your role in the healing process?",
+      "a": "I do not see myself as someone who heals others. My role is to create a safe, compassionate, and attuned space where your own healing intelligence can emerge. I offer guidance, presence, witnessing, and support. Ultimately, I believe that the deepest healing comes from within."
+    },
+    "q15": {
+      "q": "How do I begin?",
+      "a": "The first step is a free discovery call — a gentle conversation to explore your intentions, your questions, and whether we are aligned to work together. There is no obligation and no pressure. Simply reach out and we will find a time to connect."
+    }
+  },
   "body": {
     "1": {
       "name": "Ayurveda Massage",
