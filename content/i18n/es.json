@@ -26,23 +26,23 @@
   "pillar": {
     "1": {
       "word": "Mentoría",
-      "desc": "Viajes individuales de regreso a ti misma — encarnación, regulación del sistema nervioso e indagación profunda, en línea o en persona."
+      "desc": "Un viaje personalizado de regreso a ti — para quienes atraviesan una transformación, un despertar espiritual, transiciones de vida o un profundo anhelo de reconectar con su ser auténtico."
     },
     "2": {
       "word": "Medicina Vegetal Encarnada",
-      "desc": "El método 1:1 distintivo de Parastoo, que entrelaza medicina vegetal, trabajo corporal, respiración y presencia atenta para que el cuerpo pueda integrar lo que sostiene."
+      "desc": "Un viaje de sanación íntimo 1:1 que entreteje medicina vegetal, trabajo corporal intuitivo, sanación energética, respiración y testimonio compasivo — encarnando la medicina a través de la sabiduría del cuerpo."
     },
     "3": {
       "word": "Trabajo Corporal",
-      "desc": "Sesiones de noventa minutos de Ayurveda, Tantra y tejido profundo para calmar el sistema nervioso y liberar lo que el cuerpo carga."
+      "desc": "Sesiones de 90 minutos — masaje ayurvédico para regular el sistema nervioso, Tantra para despertar la energía vital, y tejido profundo para liberar tensión y restaurar la movilidad."
     },
     "4": {
       "word": "Ceremonia",
-      "desc": "Ceremonias privadas y de grupo pequeño con psilocibina — contenedores informados por el trauma, cuidadosamente sostenidos para el recuerdo y la sanación."
+      "desc": "Ceremonias de psilocibina privadas y en grupos pequeños — espacios sagrados para la transformación, el recuerdo y la exploración interior, dentro de un contenedor seguro, sensible al trauma y cuidadosamente sostenido."
     },
     "5": {
       "word": "Retiros",
-      "desc": "Inmersiones como El Camino a Casa — días de ceremonia, movimiento y naturaleza para recordar quién eres."
+      "desc": "The Way Home — una invitación sagrada a alejarte del ruido de la vida cotidiana y reconectar con la verdad más profunda de quien eres."
     }
   },
   "about": {
@@ -149,7 +149,7 @@
     "mission": {
       "kicker": "Conoce a Parastoo",
       "title": "El cuerpo guarda la clave.",
-      "body": "Nacida en Irán, formada en Canadá y llamada a recorrer el mundo, Parastoo es una estudiante de la vida dedicada a la encarnación, la medicina vegetal y la sabiduría del cuerpo. Su trabajo no entrega la sanación — crea las condiciones para que el cuerpo recuerde la suya propia.",
+      "body": "Soy una estudiante de la vida — una exploradora devota de lo que significa ser plenamente humana. El cuerpo recuerda lo que la mente ha olvidado; guarda nuestras historias, nuestro duelo, nuestra alegría, nuestra resiliencia y nuestra capacidad de sanar. Cuando aprendemos a escucharlo, la transformación se vuelve posible.",
       "link": "Su historia"
     },
     "featured": {
@@ -159,17 +159,17 @@
     },
     "f1": {
       "name": "Mentoría 1:1",
-      "blurb": "Un viaje personalizado a través del despertar, las transiciones de vida y la sanación emocional — de regreso a la confianza en ti misma.",
+      "blurb": "Un viaje personalizado de regreso a ti — liberando las creencias limitantes, los miedos y los patrones que te mantienen estancado, y aprendiendo a confiar más profundamente en ti.",
       "meta": "En línea y en persona"
     },
     "f2": {
       "name": "El Método de Medicina Vegetal Encarnada™",
-      "blurb": "La modalidad 1:1 distintiva de Parastoo — medicina vegetal unida al trabajo corporal, la respiración y la presencia compasiva.",
+      "blurb": "La modalidad 1:1 característica de Parastoo — medicina vegetal acompañada de trabajo corporal intuitivo, respiración y testimonio compasivo, para que el cuerpo pueda revelar lo que guarda.",
       "meta": "En persona · por solicitud"
     },
     "f3": {
       "name": "Ceremonias",
-      "blurb": "Ceremonias privadas y de grupo pequeño con psilocibina, sostenidas en un contenedor seguro e informado por el trauma.",
+      "blurb": "Espacios sagrados y sensibles al trauma para la transformación, el recuerdo y la exploración interior — sostenidos con presencia, música en vivo y trabajo corporal energético.",
       "meta": "Privado y grupo pequeño"
     },
     "escape": {
@@ -180,7 +180,7 @@
     "values": {
       "kicker": "Lo que guía este trabajo",
       "title": "No estás rota.",
-      "sub": "La encarnación, la presencia, la seguridad, el consentimiento y la compasión guían cada sesión, ceremonia y retiro. Mi papel no es sanarte — es sostener el espacio donde tu propia sanación puede emerger."
+      "sub": "Dentro de cada uno de nosotros vive una inteligencia innata que sabe cómo moverse hacia el equilibrio, la sanación y la plenitud. Mi papel no es sanarte — es crear un espacio seguro, compasivo y atento donde tu propia inteligencia sanadora pueda emerger."
     },
     "testimonial": {
       "quote": "La sanación no es algo que te ocurre. Es algo que se despliega cuando el cuerpo finalmente se siente suficientemente seguro para soltar.",
@@ -188,7 +188,7 @@
     },
     "cta": {
       "title": "Vuelve a casa, a ti misma.",
-      "sub": "Comienza con una llamada de descubrimiento gratuita — un espacio para explorar tus intenciones, tus preguntas y si estamos alineadas para trabajar juntas."
+      "sub": "Una llamada de conexión gratuita para explorar tus intenciones, necesidades y preguntas — y si estamos alineados para trabajar juntos."
     }
   },
   "offer": {

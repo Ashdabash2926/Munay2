@@ -26,23 +26,23 @@
   "pillar": {
     "1": {
       "word": "Mentorship",
-      "desc": "One-to-one journeys back to yourself — embodiment, nervous-system regulation and deep self-inquiry, online or in person."
+      "desc": "A personalized journey back to yourself — for those navigating transformation, spiritual awakening, life transitions, or a deep longing to reconnect with their authentic self."
     },
     "2": {
       "word": "Embodied Plant Medicine",
-      "desc": "Parastoo's signature 1:1 method, weaving plant medicine, bodywork, breath and witnessing so the body can integrate what it holds."
+      "desc": "An intimate 1:1 healing journey weaving plant medicine, intuitive bodywork, energetic healing, breathwork and compassionate witnessing — embodying the medicine through the wisdom of the body."
     },
     "3": {
       "word": "Bodywork",
-      "desc": "Ninety-minute Ayurvedic, Tantric and deep-tissue sessions to settle the nervous system and free what the body carries."
+      "desc": "90-minute sessions — Ayurvedic massage for nervous-system regulation, Tantra to awaken life-force energy, and deep tissue to release tension and restore mobility."
     },
     "4": {
       "word": "Ceremony",
-      "desc": "Private and small-group psilocybin ceremonies — trauma-informed, carefully held containers for remembrance and healing."
+      "desc": "Private and small-group psilocybin ceremonies — sacred spaces for transformation, remembrance and inner exploration, within a safe, trauma-informed, carefully held container."
     },
     "5": {
       "word": "Retreats",
-      "desc": "Immersions like The Way Home — days of ceremony, movement and nature to remember who you are."
+      "desc": "The Way Home — a sacred invitation to step away from the noise of everyday life and reconnect with the deepest truth of who you are."
     }
   },
   "about": {
@@ -149,7 +149,7 @@
     "mission": {
       "kicker": "Meet Parastoo",
       "title": "The body holds the key.",
-      "body": "Born in Iran, shaped in Canada, and called across the world, Parastoo is a student of life devoted to embodiment, plant medicine and the wisdom of the body. Her work does not give healing — it creates the conditions for the body to remember its own.",
+      "body": "I am a student of life — a devoted explorer of what it means to be fully human. The body remembers what the mind has forgotten; it carries our stories, our grief, our joy, our resilience and our capacity to heal. When we learn to listen to it, transformation becomes possible.",
       "link": "Her story"
     },
     "featured": {
@@ -159,17 +159,17 @@
     },
     "f1": {
       "name": "1:1 Mentorship",
-      "blurb": "A personalised journey through awakening, life transitions and emotional healing — back into trust with yourself.",
+      "blurb": "A personalized journey back to yourself — releasing the limiting beliefs, fears and patterns that keep you stuck, and learning to trust yourself more deeply.",
       "meta": "Online & in person"
     },
     "f2": {
       "name": "The Embodied Plant Medicine Method™",
-      "blurb": "Parastoo's signature 1:1 modality — plant medicine met with bodywork, breath and compassionate witnessing.",
+      "blurb": "Parastoo's signature 1:1 modality — plant medicine met with intuitive bodywork, breath and compassionate witnessing, so the body can reveal what it holds.",
       "meta": "In person · by application"
     },
     "f3": {
       "name": "Ceremonies",
-      "blurb": "Private and small-group psilocybin ceremonies, held in a safe, trauma-informed container.",
+      "blurb": "Sacred, trauma-informed spaces for transformation, remembrance and inner exploration — held with presence, live music and energetic bodywork.",
       "meta": "Private & small group"
     },
     "escape": {
@@ -180,7 +180,7 @@
     "values": {
       "kicker": "What guides this work",
       "title": "You are not broken.",
-      "sub": "Embodiment, presence, safety, consent and compassion guide every session, ceremony and retreat. My role is not to heal you — it is to hold the space where your own healing can emerge."
+      "sub": "Within each of us lives an innate intelligence that knows how to move toward balance, healing and wholeness. My role is not to heal you — it is to create a safe, compassionate, attuned space where your own healing intelligence can emerge."
     },
     "testimonial": {
       "quote": "Healing is not something that happens to you. It is something that unfolds when the body finally feels safe enough to let go.",
@@ -188,7 +188,7 @@
     },
     "cta": {
       "title": "Come home to yourself.",
-      "sub": "Begin with a free discovery call — a space to explore your intentions, your questions, and whether we are aligned to work together."
+      "sub": "A free connection call to explore your intentions, needs and questions — and whether we are aligned to work together."
     }
   },
   "offer": {

@@ -73,12 +73,17 @@ addressed before treating the site as final. Listed most → least important.
    returning ES/FA visitor now sees a brief flash of English before the JS swaps — acceptable,
    and strictly better than the previous blank-until-JS behaviour.
 
-3. **The home page (`index.html`) uses summary copy written by Claude, not Parastoo's verbatim
-   words.** Her brief has no home-page source text, so the five realm descriptions
-   (`pillar.N.desc`), the three featured-card blurbs (`home.f1/f2/f3.blurb`), and the
-   mission/values teasers (`home.mission.*`, `home.values.*`) are paraphrased summaries.
-   **Every other page (About, Offerings, Retreats, FAQ) is her wording verbatim.** If she wants
-   strict verbatim everywhere, swap these home strings for her own sentences or cut them.
+3. **~~The home page uses summary copy written by Claude.~~ RESOLVED (2026-06-18).** Parastoo
+   supplied her full brief, so the previously-paraphrased home strings — the five realm
+   descriptions (`pillar.N.desc`), the three featured-card blurbs (`home.f*.blurb`), the mission
+   teaser (`home.mission.body`), the values teaser (`home.values.sub`) and the discovery-call
+   line (`home.cta.sub`) — were rewritten using phrases drawn **verbatim from her brief**
+   (selected/trimmed to card length, not invented). Two editorial choices worth a glance: the
+   mission teaser is now in her **first-person voice** ("I am a student of life…"), matching the
+   About page; and the section headers that have no source in her brief (e.g. "Five realms, one
+   intention", "Ways to work together") were kept as structural copy. ES/FA were re-translated to
+   match (still AI-only — see #4). The testimonial is still a holding quote in her words until
+   real client testimonials arrive (see checklist).
 
 4. **ES / FA translations are AI-reviewed only** (also in the checklist above). They passed an
    automated accuracy + full key-parity review, but no fluent human has checked them — the
