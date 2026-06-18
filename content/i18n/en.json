@@ -45,6 +45,96 @@
       "desc": "Immersions like The Way Home — days of ceremony, movement and nature to remember who you are."
     }
   },
+  "about": {
+    "hero": {
+      "kicker": "Meet Parastoo",
+      "title": "I am a student of life.",
+      "sub": "A devoted explorer of what it means to be fully human."
+    },
+    "story": {
+      "p1": "The question has become more mysterious the deeper I walk this path.",
+      "p2": "Am I the girl who was born in Iran and later built a life in Canada? The engineer I once became? The traveler who left behind everything familiar to follow a calling she could not yet explain?",
+      "p3": "Perhaps.",
+      "p4": "But the longer I journey, the less I identify with the stories of who I have been, and the more I find myself returning to something simpler:",
+      "p5": "I am a student of life.",
+      "p6": "A devoted explorer of what it means to be fully human.",
+      "p7": "For much of my life, I searched outside of myself for answers. Through achievement, relationships, travel, spirituality, and personal growth, I was seeking something I couldn't quite name.",
+      "p8": "What I eventually discovered was that the wisdom I was searching for had never left me.",
+      "p9": "It was living quietly within my own body.",
+      "p10": "My healing journey became a process of remembering.",
+      "p11": "Remembering how to listen.",
+      "p12": "Remembering how to feel.",
+      "p13": "Remembering how to trust the intelligence that lives beneath the noise of conditioning, expectations, and fear.",
+      "p14": "This remembrance led me around the world and into countless teachings. Yoga, meditation, breathwork, Reiki, somatic healing, Tantra, Ayurveda, nervous system work, bodywork, and plant medicine all became profound teachers along the way.",
+      "p15": "Yet beyond every modality, every ceremony, and every training, one truth continued to reveal itself:",
+      "p16": "The body holds the key.",
+      "p17": "The body remembers what the mind has forgotten.",
+      "p18": "The body carries our stories, our grief, our joy, our protection, our resilience, and our capacity to heal.",
+      "p19": "When we learn to listen to it, transformation becomes possible.",
+      "p20": "Today, my work is devoted to creating spaces where people can reconnect with the wisdom of their own bodies.",
+      "p21": "Through embodiment practices, plant medicine, bodywork, energetic healing, breathwork, movement, and compassionate witnessing, I guide others back into deeper relationship with themselves.",
+      "p22": "Not because I have the answers.",
+      "p23": "But because I have learned how to listen.",
+      "p24": "I do not believe healing is something that can be given to another person.",
+      "p25": "I believe healing emerges when we create the conditions for the body, heart, and nervous system to feel safe enough to reveal what is ready to be seen, felt, released, and integrated.",
+      "p26": "This understanding became the foundation for The Embodied Plant Medicine Method™, a unique approach that weaves together plant medicine, somatic bodywork, energetic healing, breathwork, and conscious presence to support deep healing through embodiment.",
+      "p27": "At the heart of everything I offer is a simple intention:",
+      "p28": "To help people come home to themselves.",
+      "p29": "To remember that beneath the stories, wounds, roles, and identities lies an intelligence far greater than anything we need to become.",
+      "p30": "A wisdom that has been there all along.",
+      "p31": "Waiting patiently within the body.",
+      "p32": "Waiting to be remembered."
+    },
+    "values": {
+      "kicker": "What guides this work",
+      "title": "You are not broken.",
+      "intro": "The body is not something that needs to be fixed. Within each of us lives an innate intelligence that knows how to move toward balance, healing, and wholeness when given the right conditions. My role is not to heal you. My role is to create a safe, compassionate, and attuned space where your own healing intelligence can emerge."
+    },
+    "v1": {
+      "name": "Embodiment",
+      "desc": "In a world that constantly pulls us into our minds, embodiment is the practice of returning home to the body. I believe that true transformation is not measured by how much we know, but by how deeply we can feel, integrate, and live our truth. The body carries wisdom beyond words. When we learn to listen, it becomes one of our greatest teachers."
+    },
+    "v2": {
+      "name": "Presence",
+      "desc": "Healing happens in the present moment. Not in the stories of the past or the worries of the future. Presence is the foundation of my work. I strive to meet each person exactly where they are, without judgment, expectation, or agenda. Often, the most powerful medicine is simply being fully met in our experience."
+    },
+    "v3": {
+      "name": "Safety & Consent",
+      "desc": "Safety is not assumed—it is cultivated. I am committed to creating spaces where consent, choice, communication, and personal agency are honored at every step of the journey. You are always welcome to move at your own pace, express your needs, and change your mind. Your body knows what feels safe. I trust that wisdom."
+    },
+    "v4": {
+      "name": "Trauma-Informed Care",
+      "desc": "Every person carries a unique history and nervous system. I approach this work with sensitivity, humility, and respect for the body's protective responses. Rather than forcing breakthroughs or pushing beyond limits, I prioritize creating conditions where healing can unfold organically and sustainably. Gentleness is often more powerful than force."
+    },
+    "v5": {
+      "name": "Compassion",
+      "desc": "Healing begins where judgment ends. Compassion allows us to meet every part of ourselves—including the parts we have hidden, rejected, or feared—with curiosity and kindness. I believe that when we bring compassion to our wounds, they begin to transform."
+    },
+    "v6": {
+      "name": "Authenticity",
+      "desc": "One of the greatest gifts we can offer ourselves is the freedom to be fully who we are. Beneath conditioning, expectations, and survival strategies lives our authentic nature. My work supports people in reconnecting with their truth, finding their voice, and living in greater alignment with who they truly are."
+    },
+    "v7": {
+      "name": "Conscious Living",
+      "desc": "Healing is not separate from daily life. Every choice, relationship, conversation, and habit becomes an opportunity to live with greater awareness. I believe embodiment is not something we practice for an hour and then leave behind. It is a way of relating to ourselves, others, and the world."
+    },
+    "v8": {
+      "name": "Integration",
+      "desc": "Transformation is not created by peak experiences alone. The true work begins when we bring insight into everyday life. Whether through plant medicine, bodywork, yoga, or ceremony, I place great importance on integration—the process of turning awareness into embodied change. Because insight may inspire us. But embodiment transforms us."
+    },
+    "v9": {
+      "name": "Community",
+      "desc": "While healing is deeply personal, it is not meant to happen in isolation. Human beings are wired for connection, belonging, and shared experience. I believe in creating spaces where people feel seen, supported, and welcomed exactly as they are. When we gather in authenticity, healing extends beyond the individual and becomes something collective."
+    },
+    "v10": {
+      "name": "Remembrance",
+      "desc": "Above all, my work is devoted to remembrance. Remembering who we are beneath our stories. Remembering the wisdom of the body. Remembering our connection to ourselves, each other, nature, and life itself. Remembering that wholeness is not something we must earn. It is something we return to."
+    },
+    "cta": {
+      "title": "Come home to yourself.",
+      "sub": "Begin with a free discovery call — a space to explore your intentions, your questions, and whether we are aligned to work together."
+    }
+  },
   "home": {
     "hero": {
       "kicker": "Embodiment · Plant Medicine · Conscious Living",
