@@ -382,6 +382,37 @@
       "invite": "Plant medicine does not transform us simply because we consume it.\n\nTransformation happens when we create the capacity to receive its teachings, integrate its wisdom, and embody its lessons in our daily lives.\n\nThese sessions are an invitation to approach plant medicine with greater awareness, preparation, reverence, and responsibility—so that the journey becomes not just an experience, but a catalyst for meaningful and lasting change.\n\nBecause the ceremony is only the beginning.\n\nThe true medicine lives in how we walk the path afterward."
     }
   },
+  "retreat": {
+    "hero": {
+      "kicker": "Retreats & immersions",
+      "title": "The Way Home",
+      "subtitle": "A 7-Day Transformational Retreat in Lake Atitlán, Guatemala",
+      "dates": "December 17–23, 2026"
+    },
+    "intro": {
+      "intro1": "The Way Home is a sacred invitation to step away from the noise of everyday life and reconnect with the deepest truth of who you are.",
+      "intro2": "Nestled in the breathtaking landscapes of Lake Atitlán, Guatemala, this immersive seven-day journey is designed for those who feel called to live with greater authenticity, purpose, freedom, and alignment.",
+      "intro3": "Through a carefully curated blend of embodiment practices, yoga, movement, nervous system healing, ceremony, nature immersion, conscious community, and self-inquiry, participants are guided into a process of remembrance—returning to the wisdom that already lives within them.",
+      "intro4": "This retreat is rooted in the belief that many of us are not lacking purpose; rather, we have become disconnected from it beneath layers of conditioning, fear, societal expectations, and survival patterns.",
+      "intro5": "Together, we create the space to slow down, listen deeply, release what no longer serves, and reconnect with the unique gifts, creativity, and inner knowing that are longing to be expressed."
+    },
+    "support": {
+      "title": "This Journey May Support You In:",
+      "s1": "Reconnecting with your authentic self and life's purpose",
+      "s2": "Releasing limiting beliefs and patterns that keep you stuck",
+      "s3": "Clarifying your vision for the next chapter of your life",
+      "s4": "Cultivating nervous system resilience and inner peace",
+      "s5": "Unlocking creativity, intuition, and self-expression",
+      "s6": "Building meaningful connections and conscious community",
+      "s7": "Exploring more intentional and aligned ways of living",
+      "s8": "Returning home to yourself"
+    },
+    "cta": {
+      "title": "The journey home is calling.",
+      "sub": "There are limited spaces for this immersion. Reach out to learn more, ask questions, or reserve your place.",
+      "button": "Retreat details & booking"
+    }
+  },
   "body": {
     "1": {
       "name": "Ayurveda Massage",
