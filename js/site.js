@@ -115,7 +115,6 @@
     const words = [...rotator.querySelectorAll(".hr-word")];
     const slides = [...document.querySelectorAll(".hero__slide")];
     const chips = [...document.querySelectorAll("#pillarChips .chip")];
-    const counter = document.getElementById("pillarCounter");
     const HOLD = 4200;
     let current = 0, timer = null;
 
@@ -130,7 +129,6 @@
       slides[n].classList.add("is-active");
       chips[current].classList.remove("is-active");
       chips[n].classList.add("is-active");
-      counter.textContent = String(n + 1).padStart(2, "0");
       current = n;
     };
     const cycle = () => show((current + 1) % words.length);

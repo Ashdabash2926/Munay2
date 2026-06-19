@@ -53,9 +53,6 @@
         <path d="M52 215 C 38 180, 70 160, 55 128 C 42 100, 66 84, 56 56 C 48 32, 60 18, 53 2"
               stroke="rgba(247,241,232,.55)" stroke-width="2" stroke-linecap="round"/>
       </svg>
-
-      <div class="hero__counter" id="pillarCounter" aria-hidden="true">01</div>
-
       <div class="relative z-10 max-w-6xl mx-auto px-5 pt-28 pb-24 w-full hero__content">
         <p class="kicker kicker--gold fade-up" style="--d:.15s" data-i18n="home.hero.kicker"></p>
         <h1 class="mt-6 text-[var(--text-inv)] font-display text-[clamp(2.7rem,7vw,5.6rem)] max-w-5xl">
@@ -69,11 +66,11 @@
           </span>
         </h1>
         <div class="chips fade-up mt-8" id="pillarChips" style="--d:.75s">
-          <button class="chip is-active" data-pillar="0"><i>01</i><span data-i18n="pillar.1"></span></button>
-          <button class="chip" data-pillar="1"><i>02</i><span data-i18n="pillar.2"></span></button>
-          <button class="chip" data-pillar="2"><i>03</i><span data-i18n="pillar.3"></span></button>
-          <button class="chip" data-pillar="3"><i>04</i><span data-i18n="pillar.4"></span></button>
-          <button class="chip" data-pillar="4"><i>05</i><span data-i18n="pillar.5"></span></button>
+          <button class="chip is-active" data-pillar="0"><span data-i18n="pillar.1"></span></button>
+          <button class="chip" data-pillar="1"><span data-i18n="pillar.2"></span></button>
+          <button class="chip" data-pillar="2"><span data-i18n="pillar.3"></span></button>
+          <button class="chip" data-pillar="3"><span data-i18n="pillar.4"></span></button>
+          <button class="chip" data-pillar="4"><span data-i18n="pillar.5"></span></button>
         </div>
         <p class="fade-up mt-8 max-w-xl text-[1.08rem] font-light leading-relaxed text-[rgba(247,241,232,.85)]"
            style="--d:.95s" data-i18n="home.hero.sub"></p>
@@ -129,29 +126,24 @@
         <p class="kicker reveal" data-i18n="home.pillars.kicker"></p>
         <h2 class="reveal mt-5 text-[clamp(2rem,4.4vw,3.2rem)]" style="--d:.1s" data-i18n="home.pillars.title"></h2>
       </div>
-      <div class="mt-12">
+      <div class="mt-8">
         <div class="pillar-row reveal">
-          <span class="pr-num">— 01</span>
           <h3 data-i18n="pillar.1"></h3>
           <p data-i18n="pillar.1.desc"></p>
         </div>
         <div class="pillar-row reveal" style="--d:.08s">
-          <span class="pr-num">— 02</span>
           <h3 data-i18n="pillar.2"></h3>
           <p data-i18n="pillar.2.desc"></p>
         </div>
         <div class="pillar-row reveal" style="--d:.16s">
-          <span class="pr-num">— 03</span>
           <h3 data-i18n="pillar.3"></h3>
           <p data-i18n="pillar.3.desc"></p>
         </div>
         <div class="pillar-row reveal" style="--d:.24s">
-          <span class="pr-num">— 04</span>
           <h3 data-i18n="pillar.4"></h3>
           <p data-i18n="pillar.4.desc"></p>
         </div>
         <div class="pillar-row reveal" style="--d:.32s">
-          <span class="pr-num">— 05</span>
           <h3 data-i18n="pillar.5"></h3>
           <p data-i18n="pillar.5.desc"></p>
         </div>
@@ -174,7 +166,7 @@
               <img class="w-full h-full object-cover" loading="lazy"
                    src="assets/img/treatment-hot-stone.webp"
                    alt="One-to-one mentorship session" />
-              <span class="num-ghost absolute -bottom-7 right-4">01</span>
+              
             </div>
             <div class="p-7 pt-9">
               <h3 class="text-2xl" data-i18n="home.f1.name"></h3>
@@ -190,7 +182,7 @@
               <img class="w-full h-full object-cover" loading="lazy"
                    src="assets/img/treatment-aromatherapy.webp"
                    alt="The Embodied Plant Medicine Method session" />
-              <span class="num-ghost absolute -bottom-7 right-4">02</span>
+              
             </div>
             <div class="p-7 pt-9">
               <h3 class="text-2xl" data-i18n="home.f2.name"></h3>
@@ -206,7 +198,7 @@
               <img class="w-full h-full object-cover" loading="lazy"
                    src="assets/img/treatment-energy.webp"
                    alt="Psilocybin ceremony in a safe, held container" />
-              <span class="num-ghost absolute -bottom-7 right-4">03</span>
+              
             </div>
             <div class="p-7 pt-9">
               <h3 class="text-2xl" data-i18n="home.f3.name"></h3>

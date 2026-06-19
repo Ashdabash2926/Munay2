@@ -240,18 +240,18 @@ body::after {
 html[lang="fa"] .hero__counter { -webkit-text-stroke: 0; color: rgba(226,188,125,.4); }
 
 /* --- five paths (pillars) section --- */
-.pillar-row { display: grid; grid-template-columns: auto 1fr; gap: 1.2rem 2rem;
-  align-items: baseline; padding: 2rem 1rem;
+.pillar-row { display: grid; grid-template-columns: 1fr; gap: .3rem;
+  align-items: baseline; padding: 1.1rem 0;
   border-top: 1px solid var(--border); position: relative;
   transition: background-color .4s, padding-inline-start .4s var(--ease-out); }
 .pillar-row:last-child { border-bottom: 1px solid var(--border); }
-.pillar-row:hover { background: var(--sage-tint); padding-inline-start: 1.7rem; }
-.pillar-row .pr-num { font-family: var(--serif); font-variation-settings: 'opsz' 144;
-  font-size: 1.05rem; color: var(--sage); letter-spacing: .1em; }
-.pillar-row h3 { font-size: clamp(1.45rem, 3vw, 2.1rem); }
-.pillar-row p { color: var(--muted); max-width: 46ch; }
+.pillar-row:hover { background: var(--sage-tint); padding-inline-start: 1rem; }
+.pillar-row h3 { font-size: clamp(1.2rem, 2.2vw, 1.45rem); line-height: 1.15;
+  transition: color .3s; }
+.pillar-row:hover h3 { color: var(--clay); }
+.pillar-row p { color: var(--muted); font-size: .9rem; line-height: 1.55; max-width: 56ch; }
 @media (min-width: 768px) {
-  .pillar-row { grid-template-columns: 5rem minmax(16rem, 22rem) 1fr; }
+  .pillar-row { grid-template-columns: minmax(12rem, 16rem) 1fr; gap: 0 3rem; padding: 1.15rem .25rem; }
 }
 .hero__scrim {
   position: absolute; inset: 0;
