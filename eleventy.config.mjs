@@ -18,8 +18,9 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("js/site.js");
   eleventyConfig.addWatchTarget("content/");
 
-  // repo image paths need a leading slash; absolute URLs pass through
-  eleventyConfig.addFilter("imgsrc", (v) => (/^https?:/.test(v) ? v : "/" + v));
+  // keep repo image paths relative (no leading slash) so the site works at a
+  // GitHub Pages sub-path (/Munay2/) as well as a root domain; absolute URLs pass through
+  eleventyConfig.addFilter("imgsrc", (v) => (/^https?:/.test(v) ? v : v.replace(/^\/+/, "")));
 
   eleventyConfig.ignores.add("README.md");
   eleventyConfig.ignores.add("docs/**");
