@@ -27,19 +27,19 @@
     <section class="hero" id="pillarHero">
       <div class="hero__drift">
         <div class="hero__depth">
-          <img class="hero__slide is-active" data-pillar-slide="0"
+          <img class="object-cover hero__slide is-active md:object-[50%_16%] object-[48%_50%]" data-pillar-slide="0"
                src="{{ site.hero.slide1 | imgsrc }}"
                alt="Parastoo in embodied presence during a one-to-one session" fetchpriority="high" />
-          <img class="hero__slide" data-pillar-slide="1" loading="lazy"
+          <img class="object-cover hero__slide object-[54%_50%]" data-pillar-slide="1" loading="lazy"
                src="{{ site.hero.slide2 | imgsrc }}"
                alt="Two women in warm, supportive connection during a one-to-one session" />
-          <img class="hero__slide" data-pillar-slide="2" loading="lazy"
+          <img class="object-cover hero__slide object-[28%_50%]" data-pillar-slide="2" loading="lazy"
                src="{{ site.hero.slide3 | imgsrc }}"
                alt="Group embodiment practice and meditation in a light-filled space" />
-          <img class="hero__slide" data-pillar-slide="3" loading="lazy"
+          <img class="object-cover hero__slide md:object-[50%_50%] object-[52%_50%]" data-pillar-slide="3" loading="lazy"
                src="{{ site.hero.slide4 | imgsrc }}"
                alt="A circle gathered in ceremony — held, present, and open" />
-          <img class="hero__slide" data-pillar-slide="4" loading="lazy"
+          <img class="object-cover hero__slide md:object-[50%_35%] object-[50%_50%]" data-pillar-slide="4" loading="lazy"
                src="{{ site.hero.slide5 | imgsrc }}"
                alt="A sharing circle gathered on the grass with instruments and mountain views" />
         </div>
@@ -179,7 +179,7 @@
           <article class="card reveal" style="--d:.15s">
             <a href="offerings.html">
             <div class="card__media aspect-[4/3] relative">
-              <img class="object-cover w-full h-full object-[55%_50%] md:scale-[1.100] md:origin-[50%_0%] [clip-path:inset(0)]" loading="lazy"
+              <img class="object-cover w-full h-full object-[55%_50%] [clip-path:inset(0)] md:scale-[1.100] md:origin-[50%_0%]" loading="lazy"
                    src="assets/img/RI-122.webp"
                    alt="The Embodied Plant Medicine Method session" />
               
@@ -269,6 +269,5 @@
   <div id="site-footer"></div>
   <script src="js/i18n.js"></script>
   <script src="js/site.js"></script>
-  <script src="js/palette-preview.js"></script><!-- TEMP: palette sampler -->
 </body>
 </html>
