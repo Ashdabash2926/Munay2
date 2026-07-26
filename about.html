@@ -40,10 +40,11 @@
     <!-- ============ MEET PARASTOO — STORY ============ -->
     <section class="on-dark border-y border-[var(--border-dark)]">
       <div class="max-w-6xl mx-auto px-5 py-24 md:py-32 grid md:grid-cols-2 gap-12 items-start">
-        <div class="reveal-left parallax aspect-[4/5] max-w-md order-last md:order-first">
-          <img class="parallax__img" loading="lazy"
-               src="assets/img/practitioner.webp"
-               alt="Portrait of Parastoo" />
+        <!-- no parallax here: its 14% vertical bleed would crop her face -->
+        <div class="reveal-left aspect-[4/5] max-w-md order-last md:order-first overflow-hidden">
+          <img class="object-cover w-full h-full" loading="lazy"
+               src="assets/img/paras5.webp"
+               alt="Portrait of Paras in the mountains" />
         </div>
         <div class="space-y-5">
           <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.05s" data-i18n="about.story.p1"></p>
