@@ -321,14 +321,18 @@ html[lang="fa"] .hero__counter { -webkit-text-stroke: 0; color: rgba(226,188,125
                                rgba(0,0,0,.35) var(--hero-fade-mid), #000 var(--hero-fade-b));
 }
 
-/* ---------- about story: portrait as the section's background ----------------
+/* ---------- about story: portrait behind the copy, drifting on scroll --------
    The photo backs the whole section and the copy runs over it in two columns.
-   From lg the section is wider than the photo's 4:5, so `contain` sizes it to
-   the section's full height with its full width intact — nothing cropped, the
-   section colour showing either side. Below lg the section is far taller than
-   the photo could ever fill, so it reverts to `cover`. A scrim over the photo
-   keeps the copy readable, heaviest top and bottom where the section meets its
-   neighbours. */
+   It is scaled to fit entirely inside the section — max-width/max-height with
+   auto width and height, so whichever dimension binds, the whole frame shows
+   and it can never overflow and clip. max-height stops short of the full
+   section so the parallax drift has somewhere to travel without being cut off
+   at the top and bottom. Its side edges fade into the section colour, and a
+   scrim over the whole section keeps the copy readable. */
+/* No overflow:hidden — the photo is sized to fit inside the section so nothing
+   escapes, and clipping here would make the section a scroll container, which
+   would leave the drift's view() timeline measuring against the section instead
+   of the page and never advancing. */
 .story-section { position: relative; isolation: isolate; }
 /* Scrim over the photo but under the copy. On the section rather than on
    .story-bg, so it still covers the parts of the section the photo's own fade
@@ -339,23 +343,27 @@ html[lang="fa"] .hero__counter { -webkit-text-stroke: 0; color: rgba(226,188,125
                               rgba(36, 24, 17, .78) 72%, rgba(36, 24, 17, .93) 100%);
 }
 .story-bg {
-  position: absolute; inset: 0; z-index: 0;
-  width: 100%; height: 100%; object-fit: cover; object-position: 50% 25%;
+  position: absolute; inset: 0; margin: auto; z-index: 0;
+  width: auto; height: auto; max-width: 100%; max-height: 92%;
+  object-fit: contain; will-change: transform;
+  --story-edge: linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%);
+  -webkit-mask-image: var(--story-edge);
+  mask-image: var(--story-edge);
 }
-@media (min-width: 1024px) {
-  /* Sized to the photo itself, not the section: full section height at 4:5, so
-     `cover` crops nothing. Being exactly the photo's rectangle is what lets the
-     mask below fade the photo's own left and right edges into the section
-     colour, whatever width the section happens to be. */
+/* Parallax, same idiom as .parallax__img: the drift is driven by the element's
+   own progress through the viewport, with js/site.js covering browsers that
+   have no scroll timelines. The travel (±4%) stays inside the 8% of headroom
+   max-height leaves above and below, so no edge is ever exposed or clipped. */
+@supports (animation-timeline: scroll()) {
   .story-bg {
-    inset: 0 auto; inset-inline-start: 50%; transform: translateX(-50%);
-    height: 100%; width: auto; aspect-ratio: 4 / 5; max-width: none;
-    object-position: 50% 50%;
-    --story-edge: linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%);
-    -webkit-mask-image: var(--story-edge);
-    mask-image: var(--story-edge);
+    animation: story-drift linear both;
+    animation-timeline: view();
+    animation-range: cover 0% cover 100%;
   }
-  [dir="rtl"] .story-bg { transform: translateX(50%); }
+  @keyframes story-drift {
+    from { transform: translateY(-4%); }
+    to   { transform: translateY(4%); }
+  }
 }
 .story-flow > p { margin: 0 0 1.25rem; break-inside: avoid; }
 .story-flow > p:last-child { margin-bottom: 0; }
@@ -447,7 +455,7 @@ html[lang="fa"] .num-ghost { -webkit-text-stroke: 0; color: var(--clay-light); o
   .reveal, .reveal-left, .reveal-right, .reveal-scale { opacity: 1 !important; transform: none !important; transition: none !important; }
   .mask-line > span { transform: none; animation: none; }
   .fade-up { opacity: 1; transform: none; animation: none; }
-  .parallax__img, .hero__bg, .hero__drift, .hero__slide.is-active { animation: none !important; transform: none !important; }
+  .parallax__img, .hero__bg, .hero__drift, .story-bg, .hero__slide.is-active { animation: none !important; transform: none !important; }
   .ribbon__track, .breathe, .shimmer, .scroll-cue span, .hero__aurora, .mote { animation: none !important; }
   .mote { display: none; }
   .hero__depth { transform: none !important; transition: none; }

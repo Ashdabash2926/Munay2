@@ -174,6 +174,9 @@
   if (!reduceMotion && !CSS.supports("animation-timeline: scroll()")) {
     const bands = [...document.querySelectorAll(".parallax__img")];
     const hero = document.querySelector(".hero__bg") || document.querySelector(".hero__drift");
+    // Smaller travel than a band: .story-bg only has 4% of headroom each side
+    // before it would reach the section's edges.
+    const story = document.querySelector(".story-bg");
     let raf = null;
     const tick = () => {
       raf = null;
@@ -183,6 +186,13 @@
         const p = (r.top + r.height / 2 - innerHeight / 2) / innerHeight;
         img.style.transform = `translateY(${(-p * 13).toFixed(2)}%)`;
       });
+      if (story) {
+        const r = story.parentElement.getBoundingClientRect();
+        if (r.bottom > 0 && r.top < innerHeight) {
+          const p = (r.top + r.height / 2 - innerHeight / 2) / ((r.height + innerHeight) / 2);
+          story.style.transform = `translateY(${(-p * 4).toFixed(2)}%)`;
+        }
+      }
       if (hero) {
         const y = Math.min(scrollY / innerHeight, 1);
         hero.style.transform = `translateY(${(y * 9).toFixed(2)}%) scale(${(1.06 + y * .06).toFixed(3)})`;
