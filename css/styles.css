@@ -108,22 +108,260 @@ body::after {
 [dir="rtl"] .link-line::after { --tl-origin: right; }
 .link-line:hover::after, .link-line:focus-visible::after { transform: scaleX(1); }
 
-/* ---------- buttons ---------- */
-.btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: .6rem;
-  font-size: .8rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
-  padding: 1.05rem 2.4rem; border-radius: 999px;
-  transition: transform .25s var(--ease-out), box-shadow .25s var(--ease-out),
-              background-color .25s, color .25s, border-color .25s;
-  min-height: 48px;
+/* ============================================================
+   Chamfer button — cut corner
+   Held by Paras
+
+   Architecture note: clip-path slices through borders and inset
+   shadows, so the "outline" variant is built as two stacked
+   clipped layers (outer = line colour, ::before = fill colour)
+   rather than with border. Do not swap it back to border.
+
+   The --hbp-* names are kept from the original stylesheet but
+   each points at an existing site token, so buttons follow the
+   one palette defined at the top of this file.
+   ============================================================ */
+
+:root {
+  --hbp-bg:          var(--cocoa);
+  --hbp-clay:        var(--clay);
+  --hbp-clay-hover:  var(--clay-dark);
+  --hbp-cream:       var(--cream);
+  --hbp-sand:        var(--gold-bright);
+  --hbp-moss:        var(--sage);
+  --hbp-moss-hover:  var(--sage-light);
+  --hbp-line:        var(--border-dark);
+  --hbp-surface:     var(--cream);   /* light-ground inner layer */
+
+  --hbp-cut:         13px;   /* keep >= 10px or it reads as a bug */
+  --hbp-ease:        cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  /* Same cut shape as the button, for non-button controls (the
+     language toggle, the offerings sub-nav). Substitution happens
+     at use time, so each element's own --hbp-cut applies. */
+  --hbp-clip: polygon(
+    0 0,
+    calc(100% - var(--hbp-cut)) 0,
+    100% var(--hbp-cut),
+    100% 100%,
+    var(--hbp-cut) 100%,
+    0 calc(100% - var(--hbp-cut))
+  );
+  --hbp-clip-rtl: polygon(
+    var(--hbp-cut) 0,
+    100% 0,
+    100% calc(100% - var(--hbp-cut)),
+    calc(100% - var(--hbp-cut)) 100%,
+    0 100%,
+    0 var(--hbp-cut)
+  );
 }
-.btn:active { transform: scale(.97); }
-.btn-primary { background: var(--clay); color: #fff; box-shadow: 0 8px 24px rgba(191, 95, 58, .35); }
-.btn-primary:hover { background: var(--clay-dark); transform: translateY(-2px); box-shadow: 0 14px 32px rgba(191, 95, 58, .4); }
-.btn-ghost { border: 1px solid var(--border); color: var(--text); }
-.btn-ghost:hover { border-color: var(--clay); color: var(--clay); transform: translateY(-2px); }
-.on-dark .btn-ghost, .btn-ghost--inv { border-color: var(--border-dark); color: var(--text-inv); }
-.on-dark .btn-ghost:hover, .btn-ghost--inv:hover { border-color: var(--gold); color: var(--gold-bright); }
+
+/* ---- Base ------------------------------------------------- */
+
+.btn-chamfer {
+  --fill:  var(--hbp-clay);   /* outer layer / line colour */
+  --inner: var(--hbp-clay);   /* inner layer / fill colour */
+  --label: var(--hbp-bg);
+
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+  box-sizing: border-box;
+
+  padding: 15px 30px;
+  min-height: 48px;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+
+  background-color: var(--fill);
+  color: var(--label);
+
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--hbp-cut)) 0,
+    100% var(--hbp-cut),
+    100% 100%,
+    var(--hbp-cut) 100%,
+    0 calc(100% - var(--hbp-cut))
+  );
+
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+
+  transition: background-color 0.25s var(--hbp-ease),
+              color 0.25s var(--hbp-ease);
+}
+
+/* Inner layer. At inset 1px it reads as a hairline outline;
+   for solid buttons it simply matches the outer colour. */
+.btn-chamfer::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: -1;
+  background-color: var(--inner);
+  clip-path: polygon(
+    0 0,
+    calc(100% - (var(--hbp-cut) - 1px)) 0,
+    100% calc(var(--hbp-cut) - 1px),
+    100% 100%,
+    calc(var(--hbp-cut) - 1px) 100%,
+    0 calc(100% - (var(--hbp-cut) - 1px))
+  );
+  transition: inset 0.15s var(--hbp-ease),
+              background-color 0.25s var(--hbp-ease);
+}
+
+/* Mirrored so the cut leads with the reading direction. */
+[dir="rtl"] .btn-chamfer {
+  letter-spacing: .02em;
+  clip-path: polygon(
+    var(--hbp-cut) 0,
+    100% 0,
+    100% calc(100% - var(--hbp-cut)),
+    calc(100% - var(--hbp-cut)) 100%,
+    0 100%,
+    0 var(--hbp-cut)
+  );
+}
+[dir="rtl"] .btn-chamfer::before {
+  clip-path: polygon(
+    calc(var(--hbp-cut) - 1px) 0,
+    100% 0,
+    100% calc(100% - (var(--hbp-cut) - 1px)),
+    calc(100% - (var(--hbp-cut) - 1px)) 100%,
+    0 100%,
+    0 calc(var(--hbp-cut) - 1px)
+  );
+}
+
+/* ---- Primary (solid clay) --------------------------------- */
+
+.btn-chamfer--primary:hover {
+  --fill:  var(--hbp-clay-hover);
+  --inner: var(--hbp-clay-hover);
+}
+
+/* ---- Secondary (hairline outline, dark grounds) ----------- */
+
+.btn-chamfer--secondary {
+  --fill:  var(--hbp-line);
+  --inner: var(--hbp-bg);
+  --label: var(--hbp-sand);
+}
+
+.btn-chamfer--secondary:hover {
+  --fill:  var(--hbp-clay);
+  --label: var(--hbp-cream);
+}
+
+/* ---- Outline (hairline, cream grounds) --------------------
+   The inner layer paints the section colour behind it, so the
+   1px edge reads as a line rather than a block. Sections using
+   --cream-2 need the --on-alt modifier or the inner layer will
+   sit a shade lighter than its ground. */
+
+.btn-chamfer--outline {
+  --fill:  var(--border);
+  --inner: var(--hbp-surface);
+  --label: var(--text);
+}
+
+.btn-chamfer--outline:hover {
+  --fill:  var(--clay);
+  --label: var(--clay);
+}
+
+.btn-chamfer--on-alt { --hbp-surface: var(--cream-2); }
+
+/* ---- Moss variant (defined, not currently used) ----------- */
+
+.btn-chamfer--moss {
+  --fill:  var(--hbp-moss);
+  --inner: var(--hbp-moss);
+  --label: var(--cream);
+}
+
+.btn-chamfer--moss:hover {
+  --fill:  var(--hbp-moss-hover);
+  --inner: var(--hbp-moss-hover);
+}
+
+/* ---- Small (nav, footer) ----------------------------------
+   The cut shrinks with the button. A 13px cut on a 36px tall
+   button is proportionally far larger than on a 48px one. */
+
+.btn-chamfer--sm {
+  --hbp-cut: 9px;
+  padding: 10px 20px;
+  min-height: 0;
+  font-size: .7rem;
+}
+
+/* ---- Interaction states ----------------------------------- */
+
+.btn-chamfer:active {
+  transform: translateY(1px);
+}
+
+/* clip-path clips `outline`, so the focus indicator is drawn as
+   an inner ring by expanding the gap between the two layers. */
+.btn-chamfer:focus-visible {
+  outline: none;
+  --fill: var(--hbp-cream);
+}
+
+.btn-chamfer:focus-visible::before {
+  inset: 3px;
+}
+
+.btn-chamfer[disabled],
+.btn-chamfer[aria-disabled="true"] {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+/* ---- Small screens ---------------------------------------- */
+
+@media (max-width: 600px) {
+  :root { --hbp-cut: 10px; }
+
+  .btn-chamfer {
+    padding: 14px 22px;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    white-space: normal;
+  }
+
+  .btn-chamfer--block {
+    display: flex;
+    width: 100%;
+  }
+}
+
+/* ---- Motion preference ------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-chamfer,
+  .btn-chamfer::before {
+    transition: none;
+  }
+
+  .btn-chamfer:active {
+    transform: none;
+  }
+}
 
 /* ---------- scroll-reveal system ---------- */
 .reveal, .reveal-left, .reveal-right, .reveal-scale {
@@ -422,7 +660,7 @@ html[lang="fa"] .num-ghost { -webkit-text-stroke: 0; color: var(--clay-light); o
   box-shadow: 0 1px 0 var(--border), 0 8px 24px rgba(44, 30, 21, .06);
 }
 #navbar.nav-scrolled .nav-ink { color: var(--text); }
-#navbar.nav-scrolled .lang-pill { border-color: var(--border); }
+#navbar.nav-scrolled .lang-pill { background: rgba(44, 30, 21, .07); }
 .nav-link { position: relative; }
 .nav-link::after {
   content: ''; position: absolute; inset-inline: 12px; bottom: 4px; height: 1px;
@@ -430,8 +668,23 @@ html[lang="fa"] .num-ghost { -webkit-text-stroke: 0; color: var(--clay-light); o
 }
 .nav-link:hover::after, .nav-link[aria-current="page"]::after { transform: scaleX(1); }
 .nav-link[aria-current="page"] { color: var(--clay); }
-.lang-btn { min-width: 34px; min-height: 34px; border-radius: 999px; transition: background-color .25s, color .25s; }
+/* The toggle carries a chamfered tint rather than a ring: clip-path
+   slices borders, and the nav sits transparent over the hero, so a
+   two-layer outline would have nothing solid to paint against. */
+.lang-pill {
+  --hbp-cut: 8px;
+  clip-path: var(--hbp-clip);
+  background: rgba(247, 241, 232, .12);
+  transition: background-color .35s;
+}
+.lang-btn {
+  --hbp-cut: 7px;
+  min-width: 34px; min-height: 34px;
+  clip-path: var(--hbp-clip);
+  transition: background-color .25s, color .25s;
+}
 .lang-btn[aria-pressed="true"] { background: var(--clay); color: #fff; }
+[dir="rtl"] .lang-pill, [dir="rtl"] .lang-btn { clip-path: var(--hbp-clip-rtl); }
 #mobileMenu a { padding: .85rem 0; border-bottom: 1px solid var(--border); }
 
 /* ---------- forms ---------- */
@@ -447,7 +700,7 @@ html[lang="fa"] .num-ghost { -webkit-text-stroke: 0; color: var(--clay-light); o
 /* ---------- RTL fine-tuning ---------- */
 [dir="rtl"] .flip-x { transform: scaleX(-1); }
 [dir="rtl"] .kicker { letter-spacing: .06em; }
-[dir="rtl"] .btn, [dir="rtl"] .nav-link, [dir="rtl"] .field label { letter-spacing: .02em; }
+[dir="rtl"] .nav-link, [dir="rtl"] .field label { letter-spacing: .02em; }
 
 /* ---------- reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
@@ -460,5 +713,5 @@ html[lang="fa"] .num-ghost { -webkit-text-stroke: 0; color: var(--clay-light); o
   .mote { display: none; }
   .hero__depth { transform: none !important; transition: none; }
   .rotator .hr-word { transition: none; filter: none; }
-  .card, .card__media img, .btn, .pillar-row, .chip { transition: none; }
+  .card, .card__media img, .pillar-row, .chip { transition: none; }
 }

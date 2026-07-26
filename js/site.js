@@ -34,9 +34,9 @@
           ${navLinks("nav-ink px-3 py-2 text-[.78rem] tracking-[.18em] uppercase text-[var(--text-inv)] transition-colors")}
         </div>
         <div class="flex items-center gap-3">
-          <div class="lang-pill nav-ink flex gap-0.5 items-center border border-[rgba(247,241,232,.35)] rounded-full p-0.5 text-[var(--text-inv)] transition-colors">${langBtns}</div>
+          <div class="lang-pill nav-ink flex gap-0.5 items-center p-0.5 text-[var(--text-inv)] transition-colors">${langBtns}</div>
           <a href="contact.html" data-i18n="cta.book"
-             class="hidden sm:inline-flex btn btn-primary !px-5 !py-2.5 !min-h-0 text-[.7rem]"></a>
+             class="hidden sm:inline-flex btn-chamfer btn-chamfer--primary btn-chamfer--sm"></a>
           <button id="navToggle" class="nav-ink md:hidden text-[var(--text-inv)] p-2 transition-colors" aria-label="Menu" aria-expanded="false">
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
               <path d="M2 6h18M2 11h18M2 16h18"/></svg>
@@ -45,7 +45,7 @@
       </div>
       <div id="mobileMenu" class="md:hidden hidden bg-[var(--cream)] border-t border-[var(--border)] px-6 pb-5 pt-1 flex-col">
         ${navLinks("text-sm tracking-[.16em] uppercase")}
-        <a href="contact.html" data-i18n="cta.book" class="btn btn-primary mt-4 self-start !py-3"></a>
+        <a href="contact.html" data-i18n="cta.book" class="btn-chamfer btn-chamfer--primary mt-4 self-start"></a>
       </div>
     </nav>`;
 
@@ -67,7 +67,7 @@
         <div>
           <h3 class="kicker kicker--gold !text-[.66rem]" data-i18n="footer.connect"></h3>
           <p class="mt-4 text-sm text-[var(--muted-inv)]" data-i18n="footer.location"></p>
-          <a href="contact.html" data-i18n="cta.book" class="btn btn-ghost btn-ghost--inv mt-5 !px-6 !py-2.5 !min-h-0 text-[.68rem]"></a>
+          <a href="contact.html" data-i18n="cta.book" class="btn-chamfer btn-chamfer--secondary btn-chamfer--sm mt-5"></a>
         </div>
       </div>
       <div class="chakana pb-2 opacity-60">${mark("w-4 h-4")}</div>

@@ -35,21 +35,24 @@
       gap: .3rem .5rem;
       align-items: center;
     }
+    /* Chamfered to match the buttons. Hover is background only:
+       clip-path slices borders, so the old border-colour hover
+       would need the buttons' two-layer treatment for five links. */
     .subnav-link {
+      --hbp-cut: 8px;
       font-size: .7rem;
       font-weight: 600;
       letter-spacing: .2em;
       text-transform: uppercase;
       color: var(--muted);
       padding: .45rem .9rem;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      transition: color .25s, border-color .25s, background-color .25s;
+      clip-path: var(--hbp-clip);
+      transition: color .25s, background-color .25s;
     }
+    [dir="rtl"] .subnav-link { clip-path: var(--hbp-clip-rtl); }
     .subnav-link:hover {
       color: var(--clay);
-      border-color: var(--border);
-      background: var(--cream);
+      background: var(--cream-3);
     }
     /* ── pull-quote ── */
     .pull-quote {
@@ -262,7 +265,7 @@
             <div class="invite-block mt-6">
               <p data-i18n="mentor.1.invite"></p>
             </div>
-            <a href="contact.html" class="btn btn-ghost mt-8" data-i18n="cta.call"></a>
+            <a href="contact.html" class="btn-chamfer btn-chamfer--outline mt-8" data-i18n="cta.call"></a>
           </div>
           <div class="mentor-detail hidden" id="mentor-detail-2" data-mentor-detail="2">
             <h3 class="text-[clamp(1.5rem,3vw,2.1rem)]" data-i18n="mentor.2.name"></h3>
@@ -272,7 +275,7 @@
               <p data-i18n="mentor.2.intro2"></p>
               <p class="mt-3" data-i18n="mentor.2.intro3"></p>
             </div>
-            <a href="contact.html" class="btn btn-ghost mt-8" data-i18n="cta.call"></a>
+            <a href="contact.html" class="btn-chamfer btn-chamfer--outline mt-8" data-i18n="cta.call"></a>
           </div>
           <div class="mentor-detail hidden" id="mentor-detail-3" data-mentor-detail="3">
             <h3 class="text-[clamp(1.5rem,3vw,2.1rem)]" data-i18n="mentor.3.name"></h3>
@@ -303,7 +306,7 @@
             <div class="invite-block mt-6">
               <p data-i18n="mentor.3.invite"></p>
             </div>
-            <a href="contact.html" class="btn btn-ghost mt-8" data-i18n="cta.call"></a>
+            <a href="contact.html" class="btn-chamfer btn-chamfer--outline mt-8" data-i18n="cta.call"></a>
           </div>
           <div class="mentor-detail hidden" id="mentor-detail-4" data-mentor-detail="4">
             <h3 class="text-[clamp(1.5rem,3vw,2.1rem)]" data-i18n="mentor.4.name"></h3>
@@ -334,7 +337,7 @@
             <div class="invite-block mt-6">
               <p data-i18n="mentor.4.invite"></p>
             </div>
-            <a href="contact.html" class="btn btn-ghost mt-8" data-i18n="cta.call"></a>
+            <a href="contact.html" class="btn-chamfer btn-chamfer--outline mt-8" data-i18n="cta.call"></a>
           </div>
           </div>
         </div>
@@ -437,7 +440,7 @@
 
         <!-- CTA -->
         <div class="text-center mt-14 reveal" style="--d:.4s">
-          <a href="contact.html" class="btn btn-primary" data-i18n="cta.call"></a>
+          <a href="contact.html" class="btn-chamfer btn-chamfer--primary" data-i18n="cta.call"></a>
         </div>
 
       </div>
@@ -470,7 +473,7 @@
             <div class="reveal pull-quote--cream pull-quote mt-4" style="--d:.18s">
               <p data-i18n="body.1.desc"></p>
             </div>
-            <a href="contact.html" class="reveal btn btn-ghost mt-6" style="--d:.28s" data-i18n="cta.book"></a>
+            <a href="contact.html" class="reveal btn-chamfer btn-chamfer--outline btn-chamfer--on-alt mt-6" style="--d:.28s" data-i18n="cta.book"></a>
           </div>
         </article>
 
@@ -491,7 +494,7 @@
             <div class="reveal pull-quote--cream pull-quote mt-4" style="--d:.18s">
               <p data-i18n="body.2.desc"></p>
             </div>
-            <a href="contact.html" class="reveal btn btn-ghost mt-6" style="--d:.28s" data-i18n="cta.book"></a>
+            <a href="contact.html" class="reveal btn-chamfer btn-chamfer--outline btn-chamfer--on-alt mt-6" style="--d:.28s" data-i18n="cta.book"></a>
           </div>
         </article>
 
@@ -527,7 +530,7 @@
                 <li><span data-i18n="body.3.s8"></span></li>
               </ul>
             </div>
-            <a href="contact.html" class="reveal btn btn-ghost mt-4" style="--d:.36s" data-i18n="cta.book"></a>
+            <a href="contact.html" class="reveal btn-chamfer btn-chamfer--outline btn-chamfer--on-alt mt-4" style="--d:.36s" data-i18n="cta.book"></a>
           </div>
         </article>
 
@@ -595,7 +598,7 @@
         </div>
 
         <div class="text-center mt-14 reveal" style="--d:.3s">
-          <a href="contact.html" class="btn btn-ghost" data-i18n="cta.call"></a>
+          <a href="contact.html" class="btn-chamfer btn-chamfer--outline" data-i18n="cta.call"></a>
         </div>
 
       </div>
@@ -643,7 +646,7 @@
             <div class="invite-block reveal" style="--d:.18s">
               <p data-i18n="offer.chef.invite"></p>
             </div>
-            <a href="contact.html" class="reveal btn btn-ghost" style="--d:.28s" data-i18n="cta.call"></a>
+            <a href="contact.html" class="reveal btn-chamfer btn-chamfer--outline btn-chamfer--on-alt" style="--d:.28s" data-i18n="cta.call"></a>
           </div>
 
         </div>
@@ -663,8 +666,8 @@
         <h2 class="reveal mt-8 font-display text-[clamp(2.2rem,5.4vw,4rem)]" style="--d:.12s" data-i18n="offer.cta.title"></h2>
         <p class="reveal lead lead--inv mt-6" style="--d:.24s" data-i18n="offer.cta.sub"></p>
         <div class="reveal mt-10 flex flex-wrap justify-center gap-4" style="--d:.36s">
-          <a href="contact.html" class="btn btn-primary" data-i18n="cta.book"></a>
-          <a href="https://wa.me/{{ site.contact.whatsapp }}" class="btn btn-ghost btn-ghost--inv" data-i18n="cta.whatsapp"></a>
+          <a href="contact.html" class="btn-chamfer btn-chamfer--primary" data-i18n="cta.book"></a>
+          <a href="https://wa.me/{{ site.contact.whatsapp }}" class="btn-chamfer btn-chamfer--secondary" data-i18n="cta.whatsapp"></a>
         </div>
       </div>
     </section>
