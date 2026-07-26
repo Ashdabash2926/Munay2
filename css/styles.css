@@ -323,33 +323,24 @@ html[lang="fa"] .hero__counter { -webkit-text-stroke: 0; color: rgba(226,188,125
 
 /* ---------- about story: two flowing columns, portrait in the gutter ----------
    The copy runs as one continuous flow split into two columns; the column gap
-   is sized to hold the portrait, which runs the full height of the flow behind
-   the text. The portrait is a little wider than the gap so the inner edge of
-   each column laps over it, and its left/right edges are masked to transparent
-   so that overlap reads as the photo dissolving into the page rather than as
-   text sitting on top of a picture. Below lg the flow collapses to a single
+   is sized to hold the portrait, which runs the full height of the flow between
+   them. No mask on it: hard edges, so the gap has to be wide enough to clear the
+   photo rather than lapping over it. Below lg the flow collapses to a single
    column and the portrait shows above it instead. */
 .story-flow > p { margin: 0 0 1.25rem; break-inside: avoid; }
 .story-flow > p:last-child { margin-bottom: 0; }
 @media (min-width: 1024px) {
-  .story-flow { columns: 2; column-gap: 18rem; position: relative; z-index: 1; }
+  .story-flow { columns: 2; column-gap: 26rem; position: relative; z-index: 1; }
   .story-portrait {
     position: absolute; top: 0; bottom: 0; inset-inline-start: 50%;
-    transform: translateX(-50%); width: 24rem; z-index: 0;
-    --story-fade: linear-gradient(to right, transparent 0%, rgba(0,0,0,.25) 12%,
-                                  #000 30%, #000 70%, rgba(0,0,0,.25) 88%, transparent 100%);
-    --story-fade-y: linear-gradient(to bottom, transparent 0%, #000 7%, #000 93%, transparent 100%);
-    -webkit-mask-image: var(--story-fade), var(--story-fade-y);
-    mask-image: var(--story-fade), var(--story-fade-y);
-    -webkit-mask-composite: source-in;
-    mask-composite: intersect;
+    transform: translateX(-50%); width: 22rem; z-index: 0;
   }
   [dir="rtl"] .story-portrait { transform: translateX(50%); }
   .story-portrait img { height: 100%; aspect-ratio: auto; object-position: 50% 22%; }
 }
 @media (min-width: 1280px) {
-  .story-flow { column-gap: 22rem; }
-  .story-portrait { width: 28rem; }
+  .story-flow { column-gap: 30rem; }
+  .story-portrait { width: 26rem; }
 }
 
 /* ---------- word ribbon (marquee) ---------- */
