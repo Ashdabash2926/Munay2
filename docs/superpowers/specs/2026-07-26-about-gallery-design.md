@@ -61,14 +61,15 @@ existing house pattern:
 
 - `<section>` with `bg-[var(--cream-2)]` and `border-y border-[var(--border)]`
 - inner `<div class="max-w-6xl mx-auto px-5 py-16 md:py-24">`
-- centred header: `.kicker`, `h2` at `text-[clamp(2rem,4.2vw,3.1rem)]`, `.lead` intro
-- header elements carry `.reveal` with incremental `--d` delays, matching every other
-  section on the page
+- no header. No kicker, no heading, no intro paragraph. The photographs carry the
+  section on their own and the CTA heading follows immediately below.
 - grid: `grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6` on a
   `.gallery-grid` class
 - each photo is a `<figure class="reveal">` containing an `<img>` with
   `class="w-full aspect-[4/5] object-cover"`, `loading="lazy"`, and explicit
   `width="1000" height="1250"` to prevent layout shift
+- after the grid, still inside the inner div:
+  `<div class="scroll-cue scroll-cue--inline" aria-hidden="true"><span></span></div>`
 
 ## The stagger
 
@@ -91,26 +92,32 @@ column grid with no offset.
 The middle column sits 3rem lower in each row, including the last, so the section ends
 with the middle column hanging below its neighbours. That asymmetry is intentional.
 
+## Scroll cue
+
+An animated hairline sits below the grid, leading the eye down to the CTA. It reuses the
+home hero's `.scroll-cue` idiom rather than introducing a new one.
+
+The existing rule is built for the dark hero: absolutely positioned at `bottom: 2.2rem`,
+with a gradient in cream (`rgba(247, 241, 232, .8)`) that would be invisible against the
+gallery's cream background. Two things change, via a modifier class so the hero is
+untouched:
+
+```css
+.scroll-cue--inline { position: static; transform: none; margin: 3.5rem auto 0; width: 1px; }
+.scroll-cue--inline span { background: linear-gradient(to bottom, transparent, rgba(44, 30, 21, .45)); }
+```
+
+`position: static` puts it in normal flow below the grid instead of pinning it to a
+positioned ancestor. The ink gradient makes it visible on cream.
+
+Decorative only: `aria-hidden="true"`, no click behaviour, no JavaScript. The existing
+reduced-motion block already disables `.scroll-cue span` animation, and the modifier
+inherits that.
+
 ## Copy
 
-Three new i18n keys under `about.gallery`, added to `en.json`, `es.json` and `fa.json`.
-`scripts/check-i18n-parity.mjs` fails on any key missing from ES or FA, so all three
-languages get real translations.
-
-English:
-
-- `about.gallery.kicker`: "In the mountains"
-- `about.gallery.title`: "This is what being held looks like."
-- `about.gallery.intro`: "Women gathering, moving, and resting together in the mountains.
-  This is the part that words struggle with: being witnessed, being held, and remembering
-  that you belong to something larger than yourself."
-
-No location is named anywhere in the site's existing copy, so the gallery copy stays
-non-specific rather than introducing a place name the client has not used.
-
-Spanish and Farsi translations are written to match the register already established in
-`es.json` and `fa.json` for the neighbouring `about.*` keys, not machine-passed. Farsi
-values must read correctly right to left; the page already handles `dir` switching.
+None. The section has no heading text, so no new i18n keys are added and no Spanish or
+Farsi translation work is required.
 
 Alt text is written per photo in English, derived from the Subject column of the photo
 selection table, matching how the rest of the site writes alt attributes. Alt text is not
@@ -119,8 +126,11 @@ translated, consistent with existing pages.
 ## Out of scope
 
 No lightbox. The site has no lightbox anywhere, and adding one means new JavaScript,
-focus trapping and keyboard handling for what is a six photo strip. Hover treatment stays
-consistent with the existing cards. Straightforward to add later if the client asks.
+focus trapping and keyboard handling for what is a six photo strip. Straightforward to
+add later if the client asks.
+
+No hover effect on the photographs. They are not links and nothing happens on click, so a
+hover state would imply an interaction that does not exist.
 
 The four unused photographs are not processed or committed.
 
@@ -129,10 +139,12 @@ Other pages are not touched.
 ## Verification
 
 1. `npm run build` completes without error
-2. `node scripts/check-i18n-parity.mjs` passes
+2. `node scripts/check-i18n-parity.mjs` still passes (no keys were added, so this is a
+   regression check rather than a new requirement)
 3. Browser pass on the built `_site/about.html` at desktop width: the gallery renders
-   between the values grid and the CTA, the middle column is offset, the CTA and its
-   "Book a free call" button are still present
+   between the values grid and the CTA, the middle column is offset, the scroll cue is
+   visible against the cream background, and the CTA with its "Book a free call" button
+   is still present
 4. Browser pass at mobile width: grid collapses to a single column with no offset
 5. Deploy to both `origin` and `public-old`, then confirm the live GitHub Pages page
    serves the new section
