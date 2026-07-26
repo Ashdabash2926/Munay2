@@ -330,17 +330,32 @@ html[lang="fa"] .hero__counter { -webkit-text-stroke: 0; color: rgba(226,188,125
    keeps the copy readable, heaviest top and bottom where the section meets its
    neighbours. */
 .story-section { position: relative; isolation: isolate; }
+/* Scrim over the photo but under the copy. On the section rather than on
+   .story-bg, so it still covers the parts of the section the photo's own fade
+   has left bare. */
+.story-section::before {
+  content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(rgba(36, 24, 17, .93) 0%, rgba(36, 24, 17, .78) 28%,
+                              rgba(36, 24, 17, .78) 72%, rgba(36, 24, 17, .93) 100%);
+}
 .story-bg {
   position: absolute; inset: 0; z-index: 0;
   background: url('../assets/img/paras5.webp') 50% 25% / cover no-repeat;
 }
 @media (min-width: 1024px) {
-  .story-bg { background-position: 50% 50%; background-size: contain; }
-}
-.story-bg::after {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(rgba(36, 24, 17, .93) 0%, rgba(36, 24, 17, .78) 28%,
-                              rgba(36, 24, 17, .78) 72%, rgba(36, 24, 17, .93) 100%);
+  /* Sized to the photo itself, not the section: full section height, 4:5, so
+     `cover` crops nothing. Being exactly the photo's rectangle is what lets the
+     mask below fade the photo's own left and right edges into the section
+     colour, whatever width the section happens to be. */
+  .story-bg {
+    inset: 0 auto; inset-inline-start: 50%; transform: translateX(-50%);
+    height: 100%; width: auto; aspect-ratio: 4 / 5;
+    background-position: 50% 50%; background-size: cover;
+    --story-edge: linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%);
+    -webkit-mask-image: var(--story-edge);
+    mask-image: var(--story-edge);
+  }
+  [dir="rtl"] .story-bg { transform: translateX(50%); }
 }
 .story-flow > p { margin: 0 0 1.25rem; break-inside: avoid; }
 .story-flow > p:last-child { margin-bottom: 0; }
