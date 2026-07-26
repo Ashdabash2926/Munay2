@@ -321,25 +321,34 @@ html[lang="fa"] .hero__counter { -webkit-text-stroke: 0; color: rgba(226,188,125
                                rgba(0,0,0,.35) var(--hero-fade-mid), #000 var(--hero-fade-b));
 }
 
-/* ---------- about story: two flowing columns, portrait in the gutter ----------
-   The copy runs as one continuous flow split into two columns; the column gap
-   is sized to hold the portrait, centred vertically between them. The portrait
-   keeps the photo's own 4:5 shape so the whole frame shows uncropped, and the
-   gap is wider than it so the columns clear it rather than lapping over. Below
-   lg the flow collapses to one column and the portrait shows above it instead. */
+/* ---------- about story: portrait as the section's background ----------------
+   The photo backs the whole section and the copy runs over it in two columns.
+   From lg the section is wider than the photo's 4:5, so `contain` sizes it to
+   the section's full height with its full width intact — nothing cropped, the
+   section colour showing either side. Below lg the section is far taller than
+   the photo could ever fill, so it reverts to `cover`. A scrim over the photo
+   keeps the copy readable, heaviest top and bottom where the section meets its
+   neighbours. */
+.story-section { position: relative; isolation: isolate; }
+.story-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background: url('../assets/img/paras5.webp') 50% 25% / cover no-repeat;
+}
+@media (min-width: 1024px) {
+  .story-bg { background-position: 50% 50%; background-size: contain; }
+}
+.story-bg::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(rgba(36, 24, 17, .93) 0%, rgba(36, 24, 17, .78) 28%,
+                              rgba(36, 24, 17, .78) 72%, rgba(36, 24, 17, .93) 100%);
+}
 .story-flow > p { margin: 0 0 1.25rem; break-inside: avoid; }
 .story-flow > p:last-child { margin-bottom: 0; }
 @media (min-width: 1024px) {
-  .story-flow { columns: 2; column-gap: 24rem; position: relative; z-index: 1; }
-  .story-portrait {
-    position: absolute; top: 50%; inset-inline-start: 50%;
-    transform: translate(-50%, -50%); width: 21rem; z-index: 0;
-  }
-  [dir="rtl"] .story-portrait { transform: translate(50%, -50%); }
+  .story-flow { columns: 2; column-gap: 4rem; }
 }
 @media (min-width: 1280px) {
-  .story-flow { column-gap: 28rem; }
-  .story-portrait { width: 25rem; }
+  .story-flow { column-gap: 5rem; }
 }
 
 /* ---------- word ribbon (marquee) ---------- */
