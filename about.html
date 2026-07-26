@@ -38,10 +38,13 @@
     </section>
 
     <!-- ============ MEET PARASTOO — STORY ============ -->
-    <!-- The portrait is the section's background; the copy sits over it in two
-         columns, held apart from the photo only by a scrim (see .story-bg). -->
+    <!-- The portrait backs the section and the copy sits over it in two columns,
+         separated only by a scrim (see .story-bg / .story-section in styles.css).
+         A real image element rather than a CSS background, so the image picker
+         can see and swap it like any other photo on the site. -->
     <section class="on-dark story-section border-y border-[var(--border-dark)]">
-      <div class="story-bg" role="img" aria-label="Portrait of Paras in the mountains"></div>
+      <img class="story-bg" src="assets/img/paras5.webp" loading="lazy"
+           alt="Portrait of Paras in the mountains" />
       <div class="relative z-10 max-w-6xl mx-auto px-5 py-24 md:py-32">
         <div>
           <div class="story-flow">
