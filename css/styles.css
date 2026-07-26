@@ -323,24 +323,23 @@ html[lang="fa"] .hero__counter { -webkit-text-stroke: 0; color: rgba(226,188,125
 
 /* ---------- about story: two flowing columns, portrait in the gutter ----------
    The copy runs as one continuous flow split into two columns; the column gap
-   is sized to hold the portrait, which runs the full height of the flow between
-   them. No mask on it: hard edges, so the gap has to be wide enough to clear the
-   photo rather than lapping over it. Below lg the flow collapses to a single
-   column and the portrait shows above it instead. */
+   is sized to hold the portrait, centred vertically between them. The portrait
+   keeps the photo's own 4:5 shape so the whole frame shows uncropped, and the
+   gap is wider than it so the columns clear it rather than lapping over. Below
+   lg the flow collapses to one column and the portrait shows above it instead. */
 .story-flow > p { margin: 0 0 1.25rem; break-inside: avoid; }
 .story-flow > p:last-child { margin-bottom: 0; }
 @media (min-width: 1024px) {
-  .story-flow { columns: 2; column-gap: 26rem; position: relative; z-index: 1; }
+  .story-flow { columns: 2; column-gap: 24rem; position: relative; z-index: 1; }
   .story-portrait {
-    position: absolute; top: 0; bottom: 0; inset-inline-start: 50%;
-    transform: translateX(-50%); width: 22rem; z-index: 0;
+    position: absolute; top: 50%; inset-inline-start: 50%;
+    transform: translate(-50%, -50%); width: 21rem; z-index: 0;
   }
-  [dir="rtl"] .story-portrait { transform: translateX(50%); }
-  .story-portrait img { height: 100%; aspect-ratio: auto; object-position: 50% 22%; }
+  [dir="rtl"] .story-portrait { transform: translate(50%, -50%); }
 }
 @media (min-width: 1280px) {
-  .story-flow { column-gap: 30rem; }
-  .story-portrait { width: 26rem; }
+  .story-flow { column-gap: 28rem; }
+  .story-portrait { width: 25rem; }
 }
 
 /* ---------- word ribbon (marquee) ---------- */
