@@ -39,14 +39,18 @@
 
     <!-- ============ MEET PARASTOO — STORY ============ -->
     <section class="on-dark border-y border-[var(--border-dark)]">
-      <div class="max-w-6xl mx-auto px-5 py-24 md:py-32 grid md:grid-cols-2 gap-12 items-start">
-        <!-- no parallax here: its 14% vertical bleed would crop her face -->
-        <div class="reveal-left aspect-[4/5] max-w-md order-last md:order-first overflow-hidden">
+      <div class="max-w-6xl mx-auto px-5 py-24 md:py-32">
+        <!-- Narrow screens: the portrait sits above one column of text. -->
+        <div class="reveal-left aspect-[4/5] w-full max-w-sm mx-auto mb-14 overflow-hidden lg:hidden">
           <img class="object-cover w-full h-full" loading="lazy"
                src="assets/img/paras5.webp"
                alt="Portrait of Paras in the mountains" />
         </div>
-        <div class="space-y-5">
+        <!-- Wide screens: the copy flows through two columns and the portrait
+             is held in the gutter between them (see .story-flow in styles.css).
+             No parallax on it: that effect's vertical bleed would crop her face. -->
+        <div class="relative">
+          <div class="story-flow">
           <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.05s" data-i18n="about.story.p1"></p>
           <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.07s" data-i18n="about.story.p2"></p>
           <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.09s" data-i18n="about.story.p3"></p>
@@ -79,6 +83,12 @@
           <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.63s" data-i18n="about.story.p30"></p>
           <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.65s" data-i18n="about.story.p31"></p>
           <p class="reveal text-[clamp(1.15rem,2.2vw,1.4rem)] font-display italic text-[var(--text-inv)] leading-snug" style="--d:.67s" data-i18n="about.story.p32"></p>
+          </div>
+          <div class="story-portrait reveal-scale hidden lg:block overflow-hidden">
+            <img class="object-cover w-full aspect-[4/5]" loading="lazy"
+                 src="assets/img/paras5.webp"
+                 alt="Portrait of Paras in the mountains" />
+          </div>
         </div>
       </div>
     </section>

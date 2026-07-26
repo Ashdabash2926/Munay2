@@ -321,6 +321,26 @@ html[lang="fa"] .hero__counter { -webkit-text-stroke: 0; color: rgba(226,188,125
                                rgba(0,0,0,.35) var(--hero-fade-mid), #000 var(--hero-fade-b));
 }
 
+/* ---------- about story: two flowing columns, portrait in the gutter ----------
+   The copy runs as one continuous flow split into two columns; the column gap
+   is sized to hold the portrait, which is absolutely centred over it so text
+   never has to wrap around the image itself. Below lg the flow collapses to a
+   single column and the portrait shows above it instead. */
+.story-flow > p { margin: 0 0 1.25rem; break-inside: avoid; }
+.story-flow > p:last-child { margin-bottom: 0; }
+@media (min-width: 1024px) {
+  .story-flow { columns: 2; column-gap: 20rem; }
+  .story-portrait {
+    position: absolute; top: 50%; inset-inline-start: 50%;
+    transform: translate(-50%, -50%); width: 17rem;
+  }
+  [dir="rtl"] .story-portrait { transform: translate(50%, -50%); }
+}
+@media (min-width: 1280px) {
+  .story-flow { column-gap: 24rem; }
+  .story-portrait { width: 21rem; }
+}
+
 /* ---------- word ribbon (marquee) ---------- */
 .ribbon { overflow: hidden; white-space: nowrap; user-select: none; }
 .ribbon__track { display: inline-flex; gap: 0; animation: ribbon-scroll 36s linear infinite; }
