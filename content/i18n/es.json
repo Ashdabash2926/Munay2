@@ -29,7 +29,7 @@
       "desc": "Un viaje personalizado de regreso a ti — para quienes atraviesan una transformación, un despertar espiritual, transiciones de vida o un profundo anhelo de reconectar con su ser auténtico."
     },
     "2": {
-      "word": "Medicina Vegetal Encarnada",
+      "word": "Medicina Vegetal",
       "desc": "Un viaje de sanación íntimo 1:1 que entreteje medicina vegetal, trabajo corporal intuitivo, sanación energética, respiración y testimonio compasivo — encarnando la medicina a través de la sabiduría del cuerpo."
     },
     "3": {
@@ -140,7 +140,8 @@
       "kicker": "Encarnación · Medicina Vegetal · Vida Consciente",
       "lead": "Un santuario para",
       "sub": "Guiando a las personas de regreso a su ser más auténtico, encarnado y despierto. Un santuario para el despertar, la sanación del sistema nervioso y la vida consciente.",
-      "cta2": "Explorar el trabajo"
+      "cta2": "Explorar el trabajo",
+      "sub2": "A través de la mentoría 1:1, la medicina vegetal y el trabajo corporal, guío a las personas de regreso a su ser más auténtico, encarnado y despierto."
     },
     "pillars": {
       "kicker": "Cómo trabajamos juntas",
@@ -160,10 +161,11 @@
     "f1": {
       "name": "Mentoría 1:1",
       "blurb": "Un viaje personalizado de regreso a ti — liberando las creencias limitantes, los miedos y los patrones que te mantienen estancado, y aprendiendo a confiar más profundamente en ti.",
-      "meta": "En línea y en persona"
+      "meta": "En línea y en persona",
+      "badge": "Empieza aquí"
     },
     "f2": {
-      "name": "El Método de Medicina Vegetal Encarnada™",
+      "name": "Medicina Vegetal",
       "blurb": "La modalidad 1:1 característica de Parastoo — medicina vegetal acompañada de trabajo corporal intuitivo, respiración y testimonio compasivo, para que el cuerpo pueda revelar lo que guarda.",
       "meta": "En persona · por solicitud"
     },
@@ -184,11 +186,18 @@
     },
     "testimonial": {
       "quote": "La sanación no es algo que te ocurre. Es algo que se despliega cuando el cuerpo finalmente se siente suficientemente seguro para soltar.",
-      "name": "— Parastoo · palabras de clientas próximamente"
+      "name": "— Parastoo · palabras de clientas próximamente",
+      "google": "Lee las reseñas en Google"
     },
     "cta": {
       "title": "Vuelve a casa, a ti misma.",
       "sub": "Una llamada de conexión gratuita para explorar tus intenciones, necesidades y preguntas — y si estamos alineados para trabajar juntos."
+    },
+    "mentorfocus": {
+      "kicker": "El corazón del trabajo"
+    },
+    "herob": {
+      "title": "Soy Paras."
     }
   },
   "offer": {
@@ -206,7 +215,9 @@
     },
     "mentorship": {
       "kicker": "Programas de mentoría 1:1",
-      "title": "En línea y en persona"
+      "title": "En línea y en persona",
+      "more": "Leer más",
+      "close": "Cerrar"
     },
     "method": {
       "kicker": "Mi metodología distintiva",

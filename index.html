@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Parastoo · Embodiment, Plant Medicine &amp; Conscious Living</title>
+  <title>Held by Paras · Embodiment, Plant Medicine &amp; Conscious Living</title>
   <meta name="description" content="Guiding people back to their most authentic, embodied and awakened selves. Embodiment, plant medicine and conscious living — in person and online, worldwide." />
-  <meta property="og:title" content="Parastoo · Embodiment, Plant Medicine &amp; Conscious Living" />
+  <meta property="og:title" content="Held by Paras · Embodiment, Plant Medicine &amp; Conscious Living" />
   <meta property="og:description" content="Embodiment · Plant Medicine · Conscious Living — guiding people back to their most authentic, embodied and awakened selves." />
   <meta property="og:image" content="assets/og.jpg" />
   <!-- TODO before launch: set an absolute og:image URL on the final domain + re-shoot a Parastoo OG card (see docs/superpowers/specs/image-gaps.md) -->
@@ -23,60 +23,36 @@
 
   <main id="page-home">
 
-    <!-- ============ HERO — five-pillar rotator ============ -->
-    <section class="hero" id="pillarHero">
-      <div class="hero__drift">
-        <div class="hero__depth">
-          <img class="object-cover hero__slide is-active md:object-[50%_16%] object-[48%_50%]" data-pillar-slide="0"
-               src="{{ site.hero.slide1 | imgsrc }}"
-               alt="Parastoo in embodied presence during a one-to-one session" fetchpriority="high" />
-          <img class="object-cover hero__slide object-[54%_50%]" data-pillar-slide="1" loading="lazy"
-               src="{{ site.hero.slide2 | imgsrc }}"
-               alt="Two women in warm, supportive connection during a one-to-one session" />
-          <img class="object-cover hero__slide object-[28%_50%]" data-pillar-slide="2" loading="lazy"
-               src="{{ site.hero.slide3 | imgsrc }}"
-               alt="Group embodiment practice and meditation in a light-filled space" />
-          <img class="object-cover hero__slide md:object-[50%_50%] object-[52%_50%]" data-pillar-slide="3" loading="lazy"
-               src="{{ site.hero.slide4 | imgsrc }}"
-               alt="A circle gathered in ceremony — held, present, and open" />
-          <img class="object-cover hero__slide md:object-[50%_35%] object-[50%_50%]" data-pillar-slide="4" loading="lazy"
-               src="{{ site.hero.slide5 | imgsrc }}"
-               alt="A sharing circle gathered on the grass with instruments and mountain views" />
+    <!-- ============ HERO — Paras, full-height portrait ============ -->
+    <section class="hero-section on-dark relative overflow-hidden flex items-center">
+      <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full opacity-[.06]"
+           style="background: radial-gradient(circle, var(--gold) 0%, transparent 70%)" aria-hidden="true"></div>
+
+      <div class="hero-figure absolute inset-y-0 end-0 fade-up" style="--d:.35s">
+        <img class="hero-portrait w-full h-full object-cover"
+             src="assets/img/practitioner.webp" fetchpriority="high"
+             alt="Paras laughing in the sunlight beneath a tree" />
+        <div class="hero-thumb absolute bottom-24 -start-12 hidden sm:block shadow-[var(--shadow-lift)] border-4 border-[var(--cocoa)]">
+          <img class="object-cover aspect-square w-full" loading="lazy"
+               src="assets/img/mission-portrait.webp"
+               alt="Paras giving a massage beneath the mountains" />
         </div>
       </div>
-      <div class="hero__scrim"></div>
-      <div class="hero__aurora" aria-hidden="true"></div>
-      <div id="moteField" class="absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+      <div class="absolute inset-0 sm:hidden" aria-hidden="true"
+           style="background: linear-gradient(to right, rgba(36,24,17,.94) 0%, rgba(36,24,17,.7) 55%, rgba(36,24,17,.3) 100%)"></div>
 
-      <!-- palo santo smoke wisp -->
-      <svg class="wisp w-40 h-72 bottom-[18%] right-[12%] hidden md:block" viewBox="0 0 100 220" fill="none" aria-hidden="true">
-        <path d="M52 215 C 38 180, 70 160, 55 128 C 42 100, 66 84, 56 56 C 48 32, 60 18, 53 2"
-              stroke="rgba(247,241,232,.55)" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-      <div class="relative z-10 max-w-6xl mx-auto px-5 pt-28 pb-24 w-full hero__content">
-        <p class="kicker kicker--gold fade-up" style="--d:.15s" data-i18n="home.hero.kicker"></p>
-        <h1 class="mt-6 text-[var(--text-inv)] font-display text-[clamp(2.7rem,7vw,5.6rem)] max-w-5xl">
-          <span class="mask-line"><span class="font-light italic text-[.62em] text-[rgba(247,241,232,.9)]" style="--d:.3s" data-i18n="home.hero.lead">A sanctuary for</span></span>
-          <span class="rotator fade-up" id="pillarRotator" style="--d:.5s">
-            <span class="hr-word is-in shimmer" data-i18n="pillar.1"></span>
-            <span class="hr-word shimmer" data-i18n="pillar.2"></span>
-            <span class="hr-word shimmer" data-i18n="pillar.3"></span>
-            <span class="hr-word shimmer" data-i18n="pillar.4"></span>
-            <span class="hr-word shimmer" data-i18n="pillar.5"></span>
-          </span>
-        </h1>
-        <div class="chips fade-up mt-8" id="pillarChips" style="--d:.75s">
-          <button class="chip is-active" data-pillar="0"><span data-i18n="pillar.1"></span></button>
-          <button class="chip" data-pillar="1"><span data-i18n="pillar.2"></span></button>
-          <button class="chip" data-pillar="2"><span data-i18n="pillar.3"></span></button>
-          <button class="chip" data-pillar="3"><span data-i18n="pillar.4"></span></button>
-          <button class="chip" data-pillar="4"><span data-i18n="pillar.5"></span></button>
-        </div>
-        <p class="fade-up mt-8 max-w-xl text-[1.08rem] font-light leading-relaxed text-[rgba(247,241,232,.85)]"
-           style="--d:.95s" data-i18n="home.hero.sub"></p>
-        <div class="fade-up mt-10 flex flex-wrap items-center gap-4" style="--d:1.15s">
-          <a href="contact.html" class="btn btn-primary" data-i18n="cta.book"></a>
-          <a href="offerings.html" class="btn btn-ghost btn-ghost--inv" data-i18n="home.hero.cta2"></a>
+      <div class="relative z-10 max-w-6xl mx-auto px-5 w-full">
+        <div class="max-w-[32rem]">
+          <p class="kicker kicker--gold fade-up" style="--d:.15s" data-i18n="home.hero.kicker"></p>
+          <h1 class="mt-6 text-[var(--text-inv)] font-display text-[clamp(3rem,7vw,5.4rem)]">
+            <span class="mask-line"><span style="--d:.3s" data-i18n="home.herob.title"></span></span>
+          </h1>
+          <p class="fade-up mt-7 text-[1.12rem] font-light leading-relaxed text-[rgba(247,241,232,.88)]"
+             style="--d:.55s" data-i18n="home.hero.sub2"></p>
+          <div class="fade-up mt-10 flex flex-wrap items-center gap-4" style="--d:.75s">
+            <a href="contact.html" class="btn btn-primary" data-i18n="cta.book"></a>
+            <a href="offerings.html" class="btn btn-ghost btn-ghost--inv" data-i18n="home.hero.cta2"></a>
+          </div>
         </div>
       </div>
 
@@ -84,7 +60,7 @@
     </section>
 
     <!-- ============ WORD RIBBON — the five pillars ============ -->
-    <section class="on-dark py-7 border-y border-[var(--border-dark)]" aria-hidden="true">
+    <section class="on-dark py-4 border-y border-[var(--border-dark)]" aria-hidden="true">
       <div class="ribbon">
         <div class="ribbon__track">
           <span><i class="not-italic" data-i18n="pillar.1"></i><i class="dot"></i></span>
@@ -101,8 +77,8 @@
       <div class="relative">
         <div class="reveal-left parallax aspect-[4/5] max-w-md">
           <img class="parallax__img" loading="lazy"
-               src="{{ site.escape.image | imgsrc }}"
-               alt="Parastoo in a light-filled space — presence and ease" />
+               src="assets/img/RI-122.webp"
+               alt="Paras in quiet ceremony with a cup of plant medicine" />
         </div>
         <div class="reveal-scale absolute -bottom-10 -right-2 sm:right-6 md:-right-8 w-44 sm:w-52 shadow-[var(--shadow-lift)] border-4 border-[var(--cream)]"
              style="--d:.25s">
@@ -115,6 +91,8 @@
         <p class="kicker reveal" data-i18n="home.mission.kicker"></p>
         <h2 class="reveal mt-5 text-[clamp(2rem,4.4vw,3.2rem)]" style="--d:.1s" data-i18n="home.mission.title"></h2>
         <p class="reveal lead mt-6" style="--d:.2s" data-i18n="home.mission.body"></p>
+        <p class="reveal mt-5 text-[var(--muted)] leading-relaxed" style="--d:.25s" data-i18n="about.story.p20"></p>
+        <p class="reveal mt-4 text-[var(--muted)] leading-relaxed" style="--d:.3s" data-i18n="about.story.p21"></p>
         <a href="about.html" class="reveal link-line inline-block mt-8 text-[.82rem] font-semibold tracking-[.2em] uppercase text-[var(--clay)]"
            style="--d:.3s" data-i18n="home.mission.link"></a>
       </div>
@@ -163,6 +141,7 @@
           <article class="card reveal">
             <a href="offerings.html">
             <div class="card__media aspect-[4/3] relative">
+              <span class="absolute top-4 start-4 z-10 rounded-full bg-[var(--clay)] text-white text-[.68rem] font-semibold tracking-[.18em] uppercase px-4 py-2" data-i18n="home.f1.badge"></span>
               <img class="object-cover w-full h-full md:object-[45%_30%] object-[50%_25%]" loading="lazy"
                    src="assets/img/RI-169.webp"
                    alt="One-to-one mentorship session" />
@@ -179,9 +158,9 @@
           <article class="card reveal" style="--d:.15s">
             <a href="offerings.html">
             <div class="card__media aspect-[4/3] relative">
-              <img class="object-cover w-full h-full object-[55%_50%] [clip-path:inset(0)] md:scale-[1.100] md:origin-[50%_0%]" loading="lazy"
-                   src="assets/img/RI-122.webp"
-                   alt="The Embodied Plant Medicine Method session" />
+              <img class="object-cover w-full h-full object-[50%_30%]" loading="lazy"
+                   src="assets/img/treatment-deep-tissue.webp"
+                   alt="Paras giving an intuitive massage during a plant medicine session" />
               
             </div>
             <div class="p-7 pt-9">
@@ -229,15 +208,6 @@
       </div>
     </section>
 
-    <!-- ============ VALUES TEASER ============ -->
-    <section class="max-w-4xl mx-auto px-5 py-24 md:py-32 text-center">
-      <p class="kicker kicker--center reveal justify-center" data-i18n="home.values.kicker"></p>
-      <h2 class="reveal mt-5 text-[clamp(2rem,4.4vw,3.2rem)]" style="--d:.1s" data-i18n="home.values.title"></h2>
-      <p class="reveal lead mt-6 max-w-2xl mx-auto" style="--d:.2s" data-i18n="home.values.sub"></p>
-      <a href="about.html#values" class="reveal link-line inline-block mt-8 text-[.82rem] font-semibold tracking-[.2em] uppercase text-[var(--clay)]"
-         style="--d:.3s" data-i18n="home.mission.link"></a>
-    </section>
-
     <!-- ============ TESTIMONIAL ============ -->
     <section class="max-w-3xl mx-auto px-5 py-24 md:py-32 text-center">
       <div class="chakana reveal" aria-hidden="true">
@@ -248,6 +218,9 @@
                   style="--d:.12s" data-i18n="home.testimonial.quote"></blockquote>
       <p class="reveal mt-7 text-[.8rem] font-semibold tracking-[.22em] uppercase text-[var(--muted)]"
          style="--d:.24s" data-i18n="home.testimonial.name"></p>
+      <!-- TODO: replace # with the Google Business reviews URL when available -->
+      <a href="#" class="reveal link-line inline-block mt-6 text-[.82rem] font-semibold tracking-[.2em] uppercase text-[var(--clay)]"
+         style="--d:.32s" data-i18n="home.testimonial.google"></a>
     </section>
 
     <!-- ============ CLOSING CTA ============ -->

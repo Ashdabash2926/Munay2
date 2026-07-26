@@ -29,7 +29,7 @@
       "desc": "A personalized journey back to yourself — for those navigating transformation, spiritual awakening, life transitions, or a deep longing to reconnect with their authentic self."
     },
     "2": {
-      "word": "Embodied Plant Medicine",
+      "word": "Plant Medicine",
       "desc": "An intimate 1:1 healing journey weaving plant medicine, intuitive bodywork, energetic healing, breathwork and compassionate witnessing — embodying the medicine through the wisdom of the body."
     },
     "3": {
@@ -140,7 +140,8 @@
       "kicker": "Embodiment · Plant Medicine · Conscious Living",
       "lead": "A sanctuary for",
       "sub": "Guiding people back to their most authentic, embodied, and awakened selves. A sanctuary for awakening, nervous system healing, and conscious living.",
-      "cta2": "Explore the work"
+      "cta2": "Explore the work",
+      "sub2": "Through 1:1 mentorship, plant medicine and bodywork, I guide people back to their most authentic, embodied and awakened selves."
     },
     "pillars": {
       "kicker": "How we work together",
@@ -160,10 +161,11 @@
     "f1": {
       "name": "1:1 Mentorship",
       "blurb": "A personalized journey back to yourself — releasing the limiting beliefs, fears and patterns that keep you stuck, and learning to trust yourself more deeply.",
-      "meta": "Online & in person"
+      "meta": "Online & in person",
+      "badge": "Start here"
     },
     "f2": {
-      "name": "The Embodied Plant Medicine Method™",
+      "name": "Plant Medicine",
       "blurb": "Parastoo's signature 1:1 modality — plant medicine met with intuitive bodywork, breath and compassionate witnessing, so the body can reveal what it holds.",
       "meta": "In person · by application"
     },
@@ -184,11 +186,18 @@
     },
     "testimonial": {
       "quote": "Healing is not something that happens to you. It is something that unfolds when the body finally feels safe enough to let go.",
-      "name": "— Parastoo · client words coming soon"
+      "name": "— Parastoo · client words coming soon",
+      "google": "Read reviews on Google"
     },
     "cta": {
       "title": "Come home to yourself.",
       "sub": "A free connection call to explore your intentions, needs and questions — and whether we are aligned to work together."
+    },
+    "mentorfocus": {
+      "kicker": "The heart of the work"
+    },
+    "herob": {
+      "title": "I'm Paras."
     }
   },
   "offer": {
@@ -206,7 +215,9 @@
     },
     "mentorship": {
       "kicker": "1:1 Mentorship programs",
-      "title": "Online and in person"
+      "title": "Online and in person",
+      "more": "Read more",
+      "close": "Close"
     },
     "method": {
       "kicker": "My signature methodology",

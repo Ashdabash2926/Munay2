@@ -26,9 +26,9 @@
   document.getElementById("site-nav").innerHTML = `
     <nav id="navbar" class="fixed top-0 inset-x-0 z-50">
       <div class="max-w-6xl mx-auto flex items-center justify-between px-5 py-4">
-        <a href="index.html" class="nav-ink flex items-center gap-2.5 text-[var(--text-inv)] transition-colors" aria-label="Parastoo — home">
+        <a href="index.html" class="nav-ink flex items-center gap-2.5 text-[var(--text-inv)] transition-colors" aria-label="Held by Paras — home">
           <span class="text-[var(--gold)]">${mark("w-6 h-6 breathe")}</span>
-          <span class="font-display text-[1.55rem] tracking-wide">Parastoo</span>
+          <span class="font-display text-[1.55rem] tracking-wide">Held by Paras</span>
         </a>
         <div class="hidden md:flex items-center gap-1">
           ${navLinks("nav-ink px-3 py-2 text-[.78rem] tracking-[.18em] uppercase text-[var(--text-inv)] transition-colors")}
@@ -55,7 +55,7 @@
       <div class="max-w-6xl mx-auto px-5 pt-16 pb-10 grid sm:grid-cols-3 gap-10 relative">
         <div>
           <div class="flex items-center gap-2.5 text-[var(--gold)]">${mark("w-7 h-7")}
-            <span class="font-display text-3xl text-[var(--text-inv)]">Parastoo</span></div>
+            <span class="font-display text-3xl text-[var(--text-inv)]">Held by Paras</span></div>
           <p class="text-sm mt-3 max-w-xs text-[var(--muted-inv)]" data-i18n="footer.blurb"></p>
         </div>
         <nav aria-label="Footer">
@@ -72,7 +72,7 @@
       </div>
       <div class="chakana pb-2 opacity-60">${mark("w-4 h-4")}</div>
       <div class="text-center text-xs pb-7 text-[var(--muted-inv)] opacity-70">
-        <span data-i18n="footer.rights"></span> · Parastoo © <span id="year"></span>
+        <span data-i18n="footer.rights"></span> · Held by Paras © <span id="year"></span>
       </div>
     </footer>`;
   document.getElementById("year").textContent = new Date().getFullYear();

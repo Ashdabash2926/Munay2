@@ -289,14 +289,36 @@ html[lang="fa"] .hero__counter { -webkit-text-stroke: 0; color: rgba(226,188,125
 }
 @keyframes cue-drop { 0% { transform: scaleY(0); transform-origin: top; } 45% { transform: scaleY(1); transform-origin: top; }
   55% { transform: scaleY(1); transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
-/* drifting smoke wisp (palo santo) */
-.wisp {
-  position: absolute; pointer-events: none; opacity: .5; filter: blur(1px);
-  animation: wisp-drift 14s ease-in-out infinite;
+/* ---------- home hero portrait (full height, fades into the page) ----------
+   Every dimension is a custom property so the hero can be retuned in one place. */
+:root {
+  --hero-h: 100svh;        /* section height                     */
+  --hero-fig-w: 58%;       /* image box width, desktop           */
+  --hero-fig-w-sm: 68%;    /* image box width, tablet            */
+  --hero-fade-a: 0%;       /* image is fully transparent until   */
+  --hero-fade-b: 40%;      /* image is fully opaque from         */
+  --hero-obj-x: 52%;       /* focal point within the photo       */
+  --hero-obj-y: 28%;
+  --hero-thumb-w: 11rem;   /* the small overlapping photo        */
 }
-@keyframes wisp-drift {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); opacity: .35; }
-  50% { transform: translate(14px, -30px) rotate(6deg); opacity: .6; }
+.hero-section { min-height: var(--hero-h); }
+.hero-figure { width: 100%; }
+@media (min-width: 640px) { .hero-figure { width: var(--hero-fig-w-sm); } }
+@media (min-width: 768px) { .hero-figure { width: var(--hero-fig-w); } }
+.hero-thumb { width: var(--hero-thumb-w); }
+.hero-portrait {
+  object-position: var(--hero-obj-x) var(--hero-obj-y);
+  --hero-fade-mid: calc(var(--hero-fade-a) + (var(--hero-fade-b) - var(--hero-fade-a)) * .35);
+  --hero-fade: linear-gradient(to right, transparent var(--hero-fade-a),
+                               rgba(0,0,0,.35) var(--hero-fade-mid), #000 var(--hero-fade-b));
+  -webkit-mask-image: var(--hero-fade), linear-gradient(to bottom, #000 82%, transparent 100%);
+  mask-image: var(--hero-fade), linear-gradient(to bottom, #000 82%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+[dir="rtl"] .hero-portrait {
+  --hero-fade: linear-gradient(to left, transparent var(--hero-fade-a),
+                               rgba(0,0,0,.35) var(--hero-fade-mid), #000 var(--hero-fade-b));
 }
 
 /* ---------- word ribbon (marquee) ---------- */
@@ -304,9 +326,9 @@ html[lang="fa"] .hero__counter { -webkit-text-stroke: 0; color: rgba(226,188,125
 .ribbon__track { display: inline-flex; gap: 0; animation: ribbon-scroll 36s linear infinite; }
 [dir="rtl"] .ribbon__track { animation-name: ribbon-scroll-rtl; }
 .ribbon__track > span {
-  display: inline-flex; align-items: center; gap: 2.6rem; padding-inline-end: 2.6rem;
+  display: inline-flex; align-items: center; gap: 2rem; padding-inline-end: 2rem;
   font-family: var(--serif); font-variation-settings: 'opsz' 130;
-  font-size: clamp(1.6rem, 3.4vw, 2.6rem); font-weight: 400; font-style: italic;
+  font-size: clamp(1.1rem, 2.2vw, 1.7rem); font-weight: 400; font-style: italic;
   color: var(--cream-3);
 }
 .ribbon__track .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); opacity: .7; flex: none; }
@@ -381,7 +403,7 @@ html[lang="fa"] .num-ghost { -webkit-text-stroke: 0; color: var(--clay-light); o
   .mask-line > span { transform: none; animation: none; }
   .fade-up { opacity: 1; transform: none; animation: none; }
   .parallax__img, .hero__bg, .hero__drift, .hero__slide.is-active { animation: none !important; transform: none !important; }
-  .ribbon__track, .breathe, .wisp, .shimmer, .scroll-cue span, .hero__aurora, .mote { animation: none !important; }
+  .ribbon__track, .breathe, .shimmer, .scroll-cue span, .hero__aurora, .mote { animation: none !important; }
   .mote { display: none; }
   .hero__depth { transform: none !important; transition: none; }
   .rotator .hr-word { transition: none; filter: none; }

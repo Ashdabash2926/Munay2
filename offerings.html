@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Offerings · Parastoo — Embodiment, Plant Medicine & Conscious Living</title>
-  <meta name="description" content="Work with Parastoo — 1:1 mentorship, The Embodied Plant Medicine Method™, bodywork, psilocybin ceremonies, and private chef experiences." />
-  <meta property="og:title" content="Offerings · Parastoo" />
+  <title>Offerings · Held by Paras — Embodiment, Plant Medicine & Conscious Living</title>
+  <meta name="description" content="Work with Held by Paras — 1:1 mentorship, The Embodied Plant Medicine Method™, bodywork, psilocybin ceremonies, and private chef experiences." />
+  <meta property="og:title" content="Offerings · Held by Paras" />
   <meta property="og:description" content="Every offering is a doorway back to yourself." />
   <meta property="og:image" content="assets/og.jpg" />
   <meta property="og:type" content="website" />
@@ -105,6 +105,9 @@
     }
     .on-dark .support-list li { color: var(--muted-inv); }
     .on-dark .support-list li::before { background: var(--gold); }
+    /* mentorship cards */
+    .mentor-card-active { outline: 2px solid var(--clay); outline-offset: 3px; }
+
     /* ── section divider ── */
     .section-divider {
       border: none;
@@ -154,27 +157,94 @@
           <h2 class="reveal mt-5 text-[clamp(2rem,4.2vw,3.1rem)]" style="--d:.1s" data-i18n="offer.mentorship.title"></h2>
         </div>
 
-        <!-- Mentor 1 -->
-        <article class="grid md:grid-cols-2 gap-10 md:gap-16 items-start mb-20 md:mb-28 pb-20 md:pb-28 border-b border-[var(--border)]">
-          <div class="relative">
-            <div class="reveal-left parallax aspect-[5/4]">
-              <img class="object-cover parallax__img md:object-[50%_50%] md:scale-[1.600]" loading="lazy"
+        <!-- Four programs side by side; full copy expands below the grid -->
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-7" id="mentorGrid">
+          <article class="card reveal flex flex-col" style="--d:0.00s">
+            <div class="card__media aspect-[4/5] relative">
+              <img class="object-cover w-full h-full" loading="lazy"
                    src="assets/img/Paras77.webp"
                    alt="1:1 Embodiment Mentorship" />
             </div>
-            
-          </div>
-          <div class="space-y-4">
-            <h3 class="reveal text-[clamp(1.5rem,3vw,2.1rem)]" data-i18n="mentor.1.name"></h3>
-            <p class="reveal text-[.8rem] font-semibold tracking-[.18em] uppercase text-[var(--clay)]" style="--d:.08s" data-i18n="mentor.1.meta"></p>
-            <p class="reveal lead mt-2" style="--d:.12s" data-i18n="mentor.1.subtitle"></p>
-            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.16s" data-i18n="mentor.1.intro"></p>
-            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.18s" data-i18n="mentor.1.intro2"></p>
-            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.20s" data-i18n="mentor.1.intro3"></p>
-            <p class="reveal text-[var(--muted)] leading-relaxed italic" style="--d:.22s" data-i18n="mentor.1.intro4"></p>
-            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.24s" data-i18n="mentor.1.intro5"></p>
-            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.26s" data-i18n="mentor.1.intro6"></p>
-            <div class="reveal pt-2" style="--d:.30s">
+            <div class="p-6 pt-7 flex flex-col grow">
+              <h3 class="text-[1.25rem] leading-snug" data-i18n="mentor.1.name"></h3>
+              <p class="mt-2 text-[.72rem] font-semibold tracking-[.16em] uppercase text-[var(--clay)]" data-i18n="mentor.1.meta"></p>
+            <p class="mt-3 text-[.95rem] italic text-[var(--text)]" data-i18n="mentor.1.subtitle"></p>
+              <p class="mt-3 text-[.92rem] text-[var(--muted)] leading-relaxed line-clamp-4" data-i18n="mentor.1.intro"></p>
+              <button type="button" class="mentor-more link-line mt-auto pt-6 self-start text-[.78rem] font-semibold tracking-[.18em] uppercase text-[var(--clay)]"
+                      data-mentor-toggle="1" aria-expanded="false" aria-controls="mentor-detail-1">
+                <span data-i18n="offer.mentorship.more"></span>
+              </button>
+            </div>
+          </article>
+          <article class="card reveal flex flex-col" style="--d:0.12s">
+            <div class="card__media aspect-[4/5] relative">
+              <img class="object-cover w-full h-full" loading="lazy"
+                   src="assets/img/RI-77.webp"
+                   alt="1:1 DNA Healing Session" />
+            </div>
+            <div class="p-6 pt-7 flex flex-col grow">
+              <h3 class="text-[1.25rem] leading-snug" data-i18n="mentor.2.name"></h3>
+              <p class="mt-2 text-[.72rem] font-semibold tracking-[.16em] uppercase text-[var(--clay)]" data-i18n="mentor.2.meta"></p>
+              <p class="mt-3 text-[.92rem] text-[var(--muted)] leading-relaxed line-clamp-4" data-i18n="mentor.2.intro"></p>
+              <button type="button" class="mentor-more link-line mt-auto pt-6 self-start text-[.78rem] font-semibold tracking-[.18em] uppercase text-[var(--clay)]"
+                      data-mentor-toggle="2" aria-expanded="false" aria-controls="mentor-detail-2">
+                <span data-i18n="offer.mentorship.more"></span>
+              </button>
+            </div>
+          </article>
+          <article class="card reveal flex flex-col" style="--d:0.24s">
+            <div class="card__media aspect-[4/5] relative">
+              <img class="object-cover w-full h-full" loading="lazy"
+                   src="assets/img/RI-4.webp"
+                   alt="1:1 Journey Through the Chakras" />
+            </div>
+            <div class="p-6 pt-7 flex flex-col grow">
+              <h3 class="text-[1.25rem] leading-snug" data-i18n="mentor.3.name"></h3>
+              <p class="mt-2 text-[.72rem] font-semibold tracking-[.16em] uppercase text-[var(--clay)]" data-i18n="mentor.3.meta"></p>
+            <p class="mt-3 text-[.95rem] italic text-[var(--text)]" data-i18n="mentor.3.subtitle"></p>
+              <p class="mt-3 text-[.92rem] text-[var(--muted)] leading-relaxed line-clamp-4" data-i18n="mentor.3.intro"></p>
+              <button type="button" class="mentor-more link-line mt-auto pt-6 self-start text-[.78rem] font-semibold tracking-[.18em] uppercase text-[var(--clay)]"
+                      data-mentor-toggle="3" aria-expanded="false" aria-controls="mentor-detail-3">
+                <span data-i18n="offer.mentorship.more"></span>
+              </button>
+            </div>
+          </article>
+          <article class="card reveal flex flex-col" style="--d:0.36s">
+            <div class="card__media aspect-[4/5] relative">
+              <img class="object-cover w-full h-full" loading="lazy"
+                   src="assets/img/RI-187.webp"
+                   alt="1:1 Plant Medicine Preparation & Integration Mentorship" />
+            </div>
+            <div class="p-6 pt-7 flex flex-col grow">
+              <h3 class="text-[1.25rem] leading-snug" data-i18n="mentor.4.name"></h3>
+              <p class="mt-2 text-[.72rem] font-semibold tracking-[.16em] uppercase text-[var(--clay)]" data-i18n="mentor.4.meta"></p>
+            <p class="mt-3 text-[.95rem] italic text-[var(--text)]" data-i18n="mentor.4.subtitle"></p>
+              <p class="mt-3 text-[.92rem] text-[var(--muted)] leading-relaxed line-clamp-4" data-i18n="mentor.4.intro"></p>
+              <button type="button" class="mentor-more link-line mt-auto pt-6 self-start text-[.78rem] font-semibold tracking-[.18em] uppercase text-[var(--clay)]"
+                      data-mentor-toggle="4" aria-expanded="false" aria-controls="mentor-detail-4">
+                <span data-i18n="offer.mentorship.more"></span>
+              </button>
+            </div>
+          </article>
+        </div>
+
+        <div id="mentorPanel" class="hidden mt-12 md:mt-16 border-t border-[var(--border)] relative">
+          <button type="button" id="mentorClose"
+                  class="absolute top-6 end-0 link-line text-[.78rem] font-semibold tracking-[.18em] uppercase text-[var(--muted)]">
+            <span data-i18n="offer.mentorship.close"></span>
+          </button>
+          <div class="max-w-3xl pt-10">
+          <div class="mentor-detail hidden" id="mentor-detail-1" data-mentor-detail="1">
+            <h3 class="text-[clamp(1.5rem,3vw,2.1rem)]" data-i18n="mentor.1.name"></h3>
+            <p class="mt-3 text-[.8rem] font-semibold tracking-[.18em] uppercase text-[var(--clay)]" data-i18n="mentor.1.meta"></p>
+            <p class="lead mt-4" data-i18n="mentor.1.subtitle"></p>
+            <p class="mt-4 text-[var(--muted)] leading-relaxed" data-i18n="mentor.1.intro"></p>
+            <p class="mt-4 text-[var(--muted)] leading-relaxed" data-i18n="mentor.1.intro2"></p>
+            <p class="mt-4 text-[var(--muted)] leading-relaxed" data-i18n="mentor.1.intro3"></p>
+            <p class="mt-4 text-[var(--muted)] leading-relaxed italic" data-i18n="mentor.1.intro4"></p>
+            <p class="mt-4 text-[var(--muted)] leading-relaxed" data-i18n="mentor.1.intro5"></p>
+            <p class="mt-4 text-[var(--muted)] leading-relaxed" data-i18n="mentor.1.intro6"></p>
+            <div class="pt-6">
               <p class="text-[.8rem] font-semibold tracking-[.18em] uppercase text-[var(--text)] mb-3" data-i18n="mentor.1.supportTitle"></p>
               <ul class="support-list">
                 <li><span data-i18n="mentor.1.s1"></span></li>
@@ -189,58 +259,34 @@
                 <li><span data-i18n="mentor.1.s10"></span></li>
               </ul>
             </div>
-            <div class="invite-block reveal" style="--d:.36s">
+            <div class="invite-block mt-6">
               <p data-i18n="mentor.1.invite"></p>
             </div>
-            <a href="contact.html" class="reveal btn btn-ghost mt-4" style="--d:.42s" data-i18n="cta.call"></a>
+            <a href="contact.html" class="btn btn-ghost mt-8" data-i18n="cta.call"></a>
           </div>
-        </article>
-
-        <!-- Mentor 2 -->
-        <article class="grid md:grid-cols-2 gap-10 md:gap-16 items-start mb-20 md:mb-28 pb-20 md:pb-28 border-b border-[var(--border)]">
-          <div class="relative md:order-last">
-            <div class="reveal-right parallax aspect-[5/4]">
-              <img class="object-cover parallax__img md:object-[50%_50%]" loading="lazy"
-                   src="assets/img/RI-77.webp"
-                   alt="1:1 DNA Healing Session" />
-            </div>
-            
-          </div>
-          <div class="space-y-4">
-            <h3 class="reveal text-[clamp(1.5rem,3vw,2.1rem)]" data-i18n="mentor.2.name"></h3>
-            <p class="reveal text-[.8rem] font-semibold tracking-[.18em] uppercase text-[var(--clay)]" style="--d:.08s" data-i18n="mentor.2.meta"></p>
-            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.14s" data-i18n="mentor.2.intro"></p>
-            <div class="reveal pull-quote--cream pull-quote" style="--d:.20s">
+          <div class="mentor-detail hidden" id="mentor-detail-2" data-mentor-detail="2">
+            <h3 class="text-[clamp(1.5rem,3vw,2.1rem)]" data-i18n="mentor.2.name"></h3>
+            <p class="mt-3 text-[.8rem] font-semibold tracking-[.18em] uppercase text-[var(--clay)]" data-i18n="mentor.2.meta"></p>
+            <p class="mt-4 text-[var(--muted)] leading-relaxed" data-i18n="mentor.2.intro"></p>
+            <div class="pull-quote--cream pull-quote mt-5">
               <p data-i18n="mentor.2.intro2"></p>
               <p class="mt-3" data-i18n="mentor.2.intro3"></p>
             </div>
-            <a href="contact.html" class="reveal btn btn-ghost mt-4" style="--d:.30s" data-i18n="cta.call"></a>
+            <a href="contact.html" class="btn btn-ghost mt-8" data-i18n="cta.call"></a>
           </div>
-        </article>
-
-        <!-- Mentor 3 -->
-        <article class="grid md:grid-cols-2 gap-10 md:gap-16 items-start mb-20 md:mb-28 pb-20 md:pb-28 border-b border-[var(--border)]">
-          <div class="relative">
-            <div class="reveal-left parallax aspect-[5/4]">
-              <img class="object-cover parallax__img md:object-[50%_50%]" loading="lazy"
-                   src="assets/img/RI-4.webp"
-                   alt="1:1 Journey Through the Chakras" />
-            </div>
-            
-          </div>
-          <div class="space-y-4">
-            <h3 class="reveal text-[clamp(1.5rem,3vw,2.1rem)]" data-i18n="mentor.3.name"></h3>
-            <p class="reveal text-[.8rem] font-semibold tracking-[.18em] uppercase text-[var(--clay)]" style="--d:.08s" data-i18n="mentor.3.meta"></p>
-            <p class="reveal lead mt-2" style="--d:.12s" data-i18n="mentor.3.subtitle"></p>
-            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.16s" data-i18n="mentor.3.intro"></p>
-            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.18s" data-i18n="mentor.3.intro2"></p>
-            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.20s" data-i18n="mentor.3.intro3"></p>
-            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.22s" data-i18n="mentor.3.intro4"></p>
-            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.24s" data-i18n="mentor.3.intro5"></p>
-            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.26s" data-i18n="mentor.3.intro6"></p>
-            <p class="reveal text-[var(--muted)] leading-relaxed italic" style="--d:.28s" data-i18n="mentor.3.intro7"></p>
-            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.30s" data-i18n="mentor.3.intro8"></p>
-            <div class="reveal pt-2" style="--d:.34s">
+          <div class="mentor-detail hidden" id="mentor-detail-3" data-mentor-detail="3">
+            <h3 class="text-[clamp(1.5rem,3vw,2.1rem)]" data-i18n="mentor.3.name"></h3>
+            <p class="mt-3 text-[.8rem] font-semibold tracking-[.18em] uppercase text-[var(--clay)]" data-i18n="mentor.3.meta"></p>
+            <p class="lead mt-4" data-i18n="mentor.3.subtitle"></p>
+            <p class="mt-4 text-[var(--muted)] leading-relaxed" data-i18n="mentor.3.intro"></p>
+            <p class="mt-4 text-[var(--muted)] leading-relaxed" data-i18n="mentor.3.intro2"></p>
+            <p class="mt-4 text-[var(--muted)] leading-relaxed" data-i18n="mentor.3.intro3"></p>
+            <p class="mt-4 text-[var(--muted)] leading-relaxed" data-i18n="mentor.3.intro4"></p>
+            <p class="mt-4 text-[var(--muted)] leading-relaxed" data-i18n="mentor.3.intro5"></p>
+            <p class="mt-4 text-[var(--muted)] leading-relaxed" data-i18n="mentor.3.intro6"></p>
+            <p class="mt-4 text-[var(--muted)] leading-relaxed italic" data-i18n="mentor.3.intro7"></p>
+            <p class="mt-4 text-[var(--muted)] leading-relaxed" data-i18n="mentor.3.intro8"></p>
+            <div class="pt-6">
               <p class="text-[.8rem] font-semibold tracking-[.18em] uppercase text-[var(--text)] mb-3" data-i18n="mentor.3.supportTitle"></p>
               <ul class="support-list">
                 <li><span data-i18n="mentor.3.s1"></span></li>
@@ -254,34 +300,22 @@
                 <li><span data-i18n="mentor.3.s9"></span></li>
               </ul>
             </div>
-            <div class="invite-block reveal" style="--d:.40s">
+            <div class="invite-block mt-6">
               <p data-i18n="mentor.3.invite"></p>
             </div>
-            <a href="contact.html" class="reveal btn btn-ghost mt-4" style="--d:.46s" data-i18n="cta.call"></a>
+            <a href="contact.html" class="btn btn-ghost mt-8" data-i18n="cta.call"></a>
           </div>
-        </article>
-
-        <!-- Mentor 4 -->
-        <article class="grid md:grid-cols-2 gap-10 md:gap-16 items-start">
-          <div class="relative md:order-last">
-            <div class="reveal-right parallax aspect-[5/4]">
-              <img class="parallax__img" loading="lazy"
-                   src="assets/img/RI-187.webp"
-                   alt="1:1 Plant Medicine Preparation & Integration Mentorship" />
-            </div>
-            
-          </div>
-          <div class="space-y-4">
-            <h3 class="reveal text-[clamp(1.5rem,3vw,2.1rem)]" data-i18n="mentor.4.name"></h3>
-            <p class="reveal text-[.8rem] font-semibold tracking-[.18em] uppercase text-[var(--clay)]" style="--d:.08s" data-i18n="mentor.4.meta"></p>
-            <p class="reveal lead mt-2" style="--d:.12s" data-i18n="mentor.4.subtitle"></p>
-            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.16s" data-i18n="mentor.4.intro"></p>
-            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.18s" data-i18n="mentor.4.intro2"></p>
-            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.20s" data-i18n="mentor.4.intro3"></p>
-            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.22s" data-i18n="mentor.4.intro4"></p>
-            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.24s" data-i18n="mentor.4.intro5"></p>
-            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.26s" data-i18n="mentor.4.intro6"></p>
-            <div class="reveal pt-2" style="--d:.30s">
+          <div class="mentor-detail hidden" id="mentor-detail-4" data-mentor-detail="4">
+            <h3 class="text-[clamp(1.5rem,3vw,2.1rem)]" data-i18n="mentor.4.name"></h3>
+            <p class="mt-3 text-[.8rem] font-semibold tracking-[.18em] uppercase text-[var(--clay)]" data-i18n="mentor.4.meta"></p>
+            <p class="lead mt-4" data-i18n="mentor.4.subtitle"></p>
+            <p class="mt-4 text-[var(--muted)] leading-relaxed" data-i18n="mentor.4.intro"></p>
+            <p class="mt-4 text-[var(--muted)] leading-relaxed" data-i18n="mentor.4.intro2"></p>
+            <p class="mt-4 text-[var(--muted)] leading-relaxed" data-i18n="mentor.4.intro3"></p>
+            <p class="mt-4 text-[var(--muted)] leading-relaxed" data-i18n="mentor.4.intro4"></p>
+            <p class="mt-4 text-[var(--muted)] leading-relaxed" data-i18n="mentor.4.intro5"></p>
+            <p class="mt-4 text-[var(--muted)] leading-relaxed" data-i18n="mentor.4.intro6"></p>
+            <div class="pt-6">
               <p class="text-[.8rem] font-semibold tracking-[.18em] uppercase text-[var(--text)] mb-3" data-i18n="mentor.4.supportTitle"></p>
               <ul class="support-list">
                 <li><span data-i18n="mentor.4.s1"></span></li>
@@ -297,12 +331,44 @@
                 <li><span data-i18n="mentor.4.s11"></span></li>
               </ul>
             </div>
-            <div class="invite-block reveal" style="--d:.38s">
+            <div class="invite-block mt-6">
               <p data-i18n="mentor.4.invite"></p>
             </div>
-            <a href="contact.html" class="reveal btn btn-ghost mt-4" style="--d:.44s" data-i18n="cta.call"></a>
+            <a href="contact.html" class="btn btn-ghost mt-8" data-i18n="cta.call"></a>
           </div>
-        </article>
+          </div>
+        </div>
+
+        <script>
+        (function () {
+          var panel = document.getElementById('mentorPanel');
+          var buttons = document.querySelectorAll('[data-mentor-toggle]');
+          var details = document.querySelectorAll('[data-mentor-detail]');
+          var open = null;
+          function setOpen(n) {
+            open = n;
+            panel.classList.toggle('hidden', n === null);
+            details.forEach(function (d) {
+              d.classList.toggle('hidden', d.dataset.mentorDetail !== String(n));
+            });
+            buttons.forEach(function (b) {
+              var on = b.dataset.mentorToggle === String(n);
+              b.setAttribute('aria-expanded', on ? 'true' : 'false');
+              b.closest('article').classList.toggle('mentor-card-active', on);
+            });
+            if (n !== null) {
+              panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+          }
+          buttons.forEach(function (b) {
+            b.addEventListener('click', function () {
+              var n = b.dataset.mentorToggle;
+              setOpen(open === n ? null : n);
+            });
+          });
+          document.getElementById('mentorClose').addEventListener('click', function () { setOpen(null); });
+        })();
+        </script>
 
       </div>
     </section>
