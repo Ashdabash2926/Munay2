@@ -289,6 +289,19 @@ html[lang="fa"] .hero__counter { -webkit-text-stroke: 0; color: rgba(226,188,125
 }
 @keyframes cue-drop { 0% { transform: scaleY(0); transform-origin: top; } 45% { transform: scaleY(1); transform-origin: top; }
   55% { transform: scaleY(1); transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
+/* Inline variant for use inside a cream section rather than pinned to the dark
+   hero: normal flow, and an ink gradient so it reads against cream. */
+.scroll-cue--inline { position: static; transform: none; margin: 3.5rem auto 0; width: 1px; }
+.scroll-cue--inline span { background: linear-gradient(to bottom, transparent, rgba(44, 30, 21, .45)); }
+
+/* ---------- about page photo gallery ----------
+   The middle column drops 3rem so the grid staggers. margin-top, not transform:
+   .reveal animates transform and .is-visible resets it to none, which would
+   wipe any transform-based offset the moment the figure scrolls into view.
+   Only applied at 3 columns — nth-child(3n+2) is the middle column there. */
+@media (min-width: 1024px) {
+  .gallery-grid > figure:nth-child(3n+2) { margin-top: 3rem; }
+}
 /* ---------- home hero portrait (full height, fades into the page) ----------
    Every dimension is a custom property so the hero can be retuned in one place. */
 :root {
