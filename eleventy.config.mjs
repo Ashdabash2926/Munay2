@@ -16,6 +16,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("css");
   eleventyConfig.addPassthroughCopy("assets");
   eleventyConfig.addPassthroughCopy("js/site.js");
+  eleventyConfig.addPassthroughCopy("js/moments-wall.js");
   eleventyConfig.addWatchTarget("content/");
 
   // keep repo image paths relative (no leading slash) so the site works at a

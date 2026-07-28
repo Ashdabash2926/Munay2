@@ -162,84 +162,27 @@
       </div>
     </section>
 
-    <!-- ============ PHOTO GALLERY ============
-         No header by design: the photographs carry the section and the CTA
-         heading follows immediately below. See
-         docs/superpowers/specs/2026-07-26-about-gallery-design.md -->
-    <!-- border-b only, not border-y: the values section above already ends in a
-         border-b and two adjacent 1px rules render as one 2px line. -->
-    <section class="bg-[var(--cream-2)] border-b border-[var(--border)]">
-      <div class="max-w-6xl mx-auto px-5 py-16 md:py-24">
-
-        <div class="gallery-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
-
-          <figure class="reveal">
-            <img src="assets/img/about-gallery-01.webp" width="1000" height="1250" loading="lazy"
-                 class="w-full aspect-[4/5] object-cover"
-                 alt="A wide mountain valley with three figures gathered in the dry gold grass" />
-          </figure>
-
-          <figure class="reveal" style="--d:.07s">
-            <img src="assets/img/about-gallery-02.webp" width="1000" height="1250" loading="lazy"
-                 class="w-full aspect-[4/5] object-cover"
-                 alt="Arms raised in movement against the mountain backdrop" />
-          </figure>
-
-          <figure class="reveal" style="--d:.14s">
-            <img src="assets/img/about-gallery-03.webp" width="1000" height="1250" loading="lazy"
-                 class="w-full aspect-[4/5] object-cover"
-                 alt="Three people standing together in the valley" />
-          </figure>
-
-          <figure class="reveal" style="--d:.21s">
-            <img src="assets/img/about-gallery-04.webp" width="1000" height="1250" loading="lazy"
-                 class="w-full aspect-[4/5] object-cover"
-                 alt="A seated group huddled close, wrapped in cream and fur" />
-          </figure>
-
-          <figure class="reveal" style="--d:.28s">
-            <img src="assets/img/about-gallery-05.webp" width="1000" height="1250" loading="lazy"
-                 class="w-full aspect-[4/5] object-cover"
-                 alt="The same huddle, eyes open, leaning into one another" />
-          </figure>
-
-          <figure class="reveal" style="--d:.35s">
-            <img src="assets/img/about-gallery-06.webp" width="1000" height="1250" loading="lazy"
-                 class="w-full aspect-[4/5] object-cover"
-                 alt="The group drawn in close, looking straight to camera" />
-          </figure>
-
-          <figure class="reveal" style="--d:.42s">
-            <img src="assets/img/about-gallery-07.webp" width="1000" height="1250" loading="lazy"
-                 class="w-full aspect-[4/5] object-cover"
-                 alt="Paras walking through the dry gold grass, head lowered" />
-          </figure>
-
-          <figure class="reveal" style="--d:.49s">
-            <img src="assets/img/about-gallery-08.webp" width="1000" height="1250" loading="lazy"
-                 class="w-full aspect-[4/5] object-cover"
-                 alt="Paras with her arms open wide and her face lifted to the sky" />
-          </figure>
-
-          <figure class="reveal" style="--d:.56s">
-            <img src="assets/img/about-gallery-09.webp" width="1000" height="1250" loading="lazy"
-                 class="w-full aspect-[4/5] object-cover"
-                 alt="Paras in a quieter moment, mid-shot, in the mountains" />
-          </figure>
-
-          <!-- Reuses the story-section background rather than shipping a second
-               copy: the browser has already fetched it eagerly further up the page. -->
-          <figure class="reveal" style="--d:.63s">
-            <img src="assets/img/paras5.webp" width="1800" height="2250" loading="lazy"
-                 class="w-full aspect-[4/5] object-cover"
-                 alt="Paras close to camera, still and direct" />
-          </figure>
-
-        </div>
-
-        <div class="scroll-cue scroll-cue--inline" aria-hidden="true"><span></span></div>
-
+    <!-- ============ MOMENTS WALL ============
+         Full-viewport photo wall: rows drift horizontally, tiles part around the
+         pointer, and the nearest tile is pulled to the cursor and lifted. Built
+         from js/moments-wall.js; the markup here is just the stage. No copy, so
+         no new i18n keys. Replaces the static gallery grid (see
+         docs/superpowers/specs/2026-07-26-about-gallery-design.md). -->
+    <section id="momentsWall" class="moments-wall" aria-label="Photographs from the mountain shoot">
+      <div class="moments-wall__stage">
+        <div class="moments-wall__plane"></div>
       </div>
+      <div class="moments-wall__cursor" aria-hidden="true">
+        <svg viewBox="0 0 42 42"><circle class="mw-ring" cx="21" cy="21" r="19"/><circle class="mw-dot" cx="21" cy="21" r="1.6"/></svg>
+      </div>
+      <!-- Static, crawlable, no-JS fallback. Removed by the script once the wall builds. -->
+      <noscript>
+        <div class="moments-wall__fallback">
+          <img src="assets/img/wall-01.webp" width="600" height="750" alt="A wide mountain valley with three figures gathered in the dry gold grass" />
+          <img src="assets/img/wall-06.webp" width="600" height="750" alt="The group drawn in close, looking straight to camera" />
+          <img src="assets/img/wall-08.webp" width="600" height="750" alt="Paras with her arms open wide and her face lifted to the sky" />
+        </div>
+      </noscript>
     </section>
 
     <!-- ============ CTA ============ -->
@@ -258,5 +201,6 @@
   <div id="site-footer"></div>
   <script src="js/i18n.js"></script>
   <script src="js/site.js"></script>
+  <script src="js/moments-wall.js" defer></script>
 </body>
 </html>

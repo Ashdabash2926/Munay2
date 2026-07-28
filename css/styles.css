@@ -289,23 +289,80 @@ html[lang="fa"] .hero__counter { -webkit-text-stroke: 0; color: rgba(226,188,125
 }
 @keyframes cue-drop { 0% { transform: scaleY(0); transform-origin: top; } 45% { transform: scaleY(1); transform-origin: top; }
   55% { transform: scaleY(1); transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
-/* Inline variant for use inside a cream section rather than pinned to the dark
-   hero: normal flow, and an ink gradient so it reads against cream. */
-.scroll-cue--inline { position: static; transform: none; margin: 3.5rem auto 0; width: 1px; }
-.scroll-cue--inline span { background: linear-gradient(to bottom, transparent, rgba(44, 30, 21, .45)); }
+/* ---------- about page: moments wall ----------
+   Full-viewport photo wall. Rows drift horizontally and wrap; tiles part around
+   the pointer while the nearest one is pulled to it and lifted. Positions are
+   written straight to transform by js/moments-wall.js on rAF, so there are no
+   transitions on .mw-tile — a transition would fight the loop every frame. */
+.moments-wall {
+  position: relative;
+  height: 100svh;
+  min-height: 30rem;
+  background: var(--cocoa);
+  overflow: hidden;
+  isolation: isolate;
+}
+.moments-wall__stage {
+  position: absolute; inset: 0;
+  perspective: 1400px;
+  perspective-origin: 50% 45%;
+  overflow: hidden;
+}
+.moments-wall__plane {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.mw-tile {
+  position: absolute;
+  top: 0; left: 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--cocoa-2);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .45);
+  will-change: transform;
+  /* The plane is a single compositing context; tiles must not create their own
+     stacking surprises when lifted, so z-index is left to translate3d's z. */
+}
+.mw-tile img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  user-select: none; -webkit-user-drag: none;
+  pointer-events: none;
+}
+/* Vignette so the wall sinks into the section edges rather than being cut off,
+   and so the CTA below reads as the next thing rather than a hard stop. */
+.moments-wall__stage::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 2;
+  background:
+    radial-gradient(ellipse 120% 85% at 50% 45%, transparent 42%, rgba(36, 24, 17, .78) 100%),
+    linear-gradient(to bottom, var(--cocoa) 0%, transparent 12%, transparent 88%, var(--cocoa) 100%);
+}
 
-/* ---------- about page photo gallery ----------
-   The middle column drops 3rem so the grid staggers. margin-top, not transform:
-   .reveal animates transform and .is-visible resets it to none, which would
-   wipe any transform-based offset the moment the figure scrolls into view.
-   Only applied at 3 columns — nth-child(3n+2) is the middle column there. */
-@media (min-width: 1024px) {
-  .gallery-grid > figure:nth-child(3n+2) { margin-top: 3rem; }
-  /* A final row holding a single photo would otherwise leave it stranded in the
-     left column. Move it to the middle and give it the middle column's offset,
-     so the grid still ends on the stagger. Only fires when the last figure
-     actually starts a row (10 items, 13, ...), so it is inert at 9 or 12. */
-  .gallery-grid > figure:last-child:nth-child(3n+1) { grid-column: 2; margin-top: 3rem; }
+/* Custom cursor, scoped to the section: the native cursor is only hidden while
+   the pointer is actually over the wall (.is-live), never page-wide. */
+.moments-wall.is-live { cursor: none; }
+.moments-wall__cursor {
+  position: absolute; top: 0; left: 0; z-index: 5;
+  width: 40px; height: 40px; margin: -20px 0 0 -20px;
+  pointer-events: none; opacity: 0;
+  transition: opacity .25s ease;
+  mix-blend-mode: difference;
+}
+.moments-wall.is-live .moments-wall__cursor { opacity: 1; }
+.moments-wall__cursor svg { width: 100%; height: 100%; }
+.mw-ring { fill: none; stroke: rgba(247, 241, 232, .5); stroke-width: 1; }
+.mw-dot { fill: var(--cream); }
+
+.moments-wall__fallback { display: flex; gap: 1rem; padding: 2rem; }
+.moments-wall__fallback img { width: 33%; height: auto; border-radius: var(--radius); }
+
+/* Touch and reduced motion both get the drift only — no pointer parting, no
+   custom cursor. Coarse pointers never set .is-live, so this is belt and braces. */
+@media (prefers-reduced-motion: reduce) {
+  .moments-wall__cursor { display: none; }
 }
 /* ---------- home hero portrait (full height, fades into the page) ----------
    Every dimension is a custom property so the hero can be retuned in one place. */
