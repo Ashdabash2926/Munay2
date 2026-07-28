@@ -301,6 +301,11 @@ html[lang="fa"] .hero__counter { -webkit-text-stroke: 0; color: rgba(226,188,125
    Only applied at 3 columns — nth-child(3n+2) is the middle column there. */
 @media (min-width: 1024px) {
   .gallery-grid > figure:nth-child(3n+2) { margin-top: 3rem; }
+  /* A final row holding a single photo would otherwise leave it stranded in the
+     left column. Move it to the middle and give it the middle column's offset,
+     so the grid still ends on the stagger. Only fires when the last figure
+     actually starts a row (10 items, 13, ...), so it is inert at 9 or 12. */
+  .gallery-grid > figure:last-child:nth-child(3n+1) { grid-column: 2; margin-top: 3rem; }
 }
 /* ---------- home hero portrait (full height, fades into the page) ----------
    Every dimension is a custom property so the hero can be retuned in one place. */

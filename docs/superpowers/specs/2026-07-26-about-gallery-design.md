@@ -1,7 +1,9 @@
 # About page photo gallery
 
 Date: 2026-07-26
-Status: approved, ready for implementation plan
+Status: implemented 2026-07-28, then amended to use all ten photos — see
+"Amendment" at the foot of this document, which supersedes the six photo
+selection below.
 
 ## Problem
 
@@ -148,3 +150,61 @@ Other pages are not touched.
 4. Browser pass at mobile width: grid collapses to a single column with no offset
 5. Deploy to both `origin` and `public-old`, then confirm the live GitHub Pages page
    serves the new section
+
+## Amendment — 2026-07-28: all ten photos
+
+Ash asked for the four excluded photographs to be added. On looking at them again,
+two of the three exclusions made on "near-duplicate" grounds do not hold:
+
+- `5-image00019.jpeg` is a tighter frame of the huddle shot direct to camera, not a
+  duplicate. It is arguably the strongest of the three huddle frames.
+- `Paras1.jpeg` has Paras with her arms open wide and her face lifted, against
+  `Paras.jpeg` where she is walking with her head lowered. A different gesture.
+- `6-image00010.jpeg` genuinely is a near-duplicate of `4-image00009.jpeg`, the same
+  pose with eyes open rather than closed. Included at Ash's request. The two sit
+  adjacently so they read as a sequence rather than a repeat.
+- `Paras5.jpeg` was excluded because it already appears on this page as the
+  story-section background. It still does. It is included at Ash's request as the
+  closing photograph.
+
+Ten photographs, resequenced so the grid still reads as one progression:
+wide -> group -> huddle (three frames) -> solo (four frames), closing on the tightest
+portrait.
+
+| Slot | Source file | Note |
+|---|---|---|
+| 1 | `1-image00004.jpeg` | |
+| 2 | `2-image00002.jpeg` | |
+| 3 | `3-image00006.jpeg` | |
+| 4 | `4-image00009.jpeg` | |
+| 5 | `6-image00010.jpeg` | added |
+| 6 | `5-image00019.jpeg` | added |
+| 7 | `Paras.jpeg` | |
+| 8 | `Paras1.jpeg` | added |
+| 9 | `Paras4.jpeg` | |
+| 10 | `Paras5.jpeg` | added; reuses `assets/img/paras5.webp` |
+
+Slot 10 points at the existing `assets/img/paras5.webp` rather than a new
+`about-gallery-10.webp`. That file is already fetched eagerly higher up the page as
+the story background, so showing it again costs nothing. It is 1800x2250, the same
+4:5 ratio, so `width`/`height` are set to match and the aspect box is unchanged.
+
+### Orphan row
+
+Ten items in a three column grid strand the tenth in the left column of a fourth row.
+One rule handles it:
+
+```css
+.gallery-grid > figure:last-child:nth-child(3n+1) { grid-column: 2; margin-top: 3rem; }
+```
+
+The `:last-child:nth-child(3n+1)` pair only matches when the final figure starts a row,
+so the rule is inert at nine or twelve photographs and needs no maintenance if the count
+changes again. The `margin-top` keeps it on the middle column's offset.
+
+At two columns ten items fill five rows exactly, so no orphan handling is needed there.
+
+### Also changed from the spec above
+
+`border-b` rather than `border-y` on the section. The values section directly above
+already ends in a `border-b`, and two adjacent 1px rules render as a single 2px line.
