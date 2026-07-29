@@ -7,6 +7,7 @@ import sharp from "sharp";
 import {
   parseCsv, COLUMNS, formatDateRange, buildRetreats, MAX_CARDS,
   normalizeImageUrl, slugify, resolveImage, FALLBACK_IMAGE,
+  loadRetreats, resetRetreatsCache,
 } from "../lib/retreats.mjs";
 
 test("COLUMNS lists the eight sheet columns in order", () => {
@@ -266,4 +267,48 @@ test("resolveImage refuses an oversized file", async () => {
     { outDir: "/nonexistent", fetchImpl, warnings });
   assert.equal(path, FALLBACK_IMAGE);
   assert.match(warnings[0], /8MB/);
+});
+
+test("loadRetreats reads a local fixture and resolves images", async () => {
+  resetRetreatsCache();
+  const dir = await mkdtemp(join(tmpdir(), "retreats-build-"));
+  const retreats = await loadRetreats({
+    url: "docs/fixtures/retreats-sample.csv", outDir: dir, today: "2026-07-28",
+  });
+  assert.deepEqual(retreats.map((r) => r.name), ["The Way Home", "Sacred Valley"]);
+  assert.deepEqual(retreats.map((r) => r.index), [1, 2]);
+  assert.equal(retreats[0].image, FALLBACK_IMAGE);
+  assert.equal(retreats[0].dates.en, "December 17 – 23, 2026");
+  await rm(dir, { recursive: true, force: true });
+});
+
+test("loadRetreats returns nothing when the sheet has only a header", async () => {
+  resetRetreatsCache();
+  assert.deepEqual(await loadRetreats({ url: "docs/fixtures/retreats-empty.csv", today: "2026-07-28" }), []);
+});
+
+test("loadRetreats returns nothing when no sheet is configured", async () => {
+  resetRetreatsCache();
+  const previous = process.env.RETREATS_SHEET_URL;
+  delete process.env.RETREATS_SHEET_URL;
+  assert.deepEqual(await loadRetreats(), []);
+  if (previous !== undefined) process.env.RETREATS_SHEET_URL = previous;
+});
+
+test("loadRetreats memoises so one build makes one request", async () => {
+  resetRetreatsCache();
+  const first = await loadRetreats({ url: "docs/fixtures/retreats-sample.csv", today: "2026-07-28" });
+  const second = await loadRetreats({ url: "docs/fixtures/retreats-empty.csv", today: "2026-07-28" });
+  assert.equal(second, first);
+  resetRetreatsCache();
+});
+
+test("loadRetreats honours RETREATS_TODAY as a clock pin when today is not passed", async () => {
+  resetRetreatsCache();
+  const previous = process.env.RETREATS_TODAY;
+  process.env.RETREATS_TODAY = "2027-01-01"; // after "Finished Retreat" and "The Way Home" both end
+  const retreats = await loadRetreats({ url: "docs/fixtures/retreats-sample.csv" });
+  assert.deepEqual(retreats.map((r) => r.name), ["Sacred Valley"]);
+  if (previous === undefined) delete process.env.RETREATS_TODAY;
+  else process.env.RETREATS_TODAY = previous;
 });
