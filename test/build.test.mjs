@@ -24,6 +24,12 @@ test("a sheet with retreats renders cards and hides the empty block", () => {
   // the status badge resolved to translated copy, not the sheet's wording
   assert.match(html, /A few spaces left|Waitlist/);
   assert.match(html, /id="retreatEmpty"[^>]*hidden/);
+  // the hero alt text stays evergreen even once cards exist
+  assert.doesNotMatch(html, /The Way Home retreat/);
+  // each card's link carries the retreat's name in a visually hidden span,
+  // so identically-worded CTAs still get distinct accessible names
+  assert.match(html, /<span class="sr-only">The Way Home<\/span>/);
+  assert.match(html, /<span class="sr-only">Sacred Valley<\/span>/);
 });
 
 test("an empty sheet shows the evergreen block and no cards", () => {

@@ -25,7 +25,7 @@
     <!-- ============ PAGE HERO ============ -->
     <section class="hero !min-h-[72svh]">
       <img class="object-cover hero__bg md:object-[51%_30%]" src="assets/img/hero-retreats.webp"
-           alt="Lake Atitlán, Guatemala — the setting for The Way Home retreat" fetchpriority="high" />
+           alt="Lake Atitlán, Guatemala, seen from the shore at first light" fetchpriority="high" />
       <div class="hero__scrim"></div>
       <div class="relative z-10 max-w-6xl mx-auto px-5 pt-28 pb-16 w-full">
         <p class="kicker kicker--gold fade-up" style="--d:.15s" data-i18n="retreat.hero.kicker"></p>
@@ -80,8 +80,10 @@
                 {% endif %}
               </dl>
               <a href="{{ r.url }}" target="_blank" rel="noopener noreferrer"
-                 class="btn btn-primary mt-auto pt-3 self-start !px-6 !py-3 text-[.7rem]"
-                 data-i18n="retreat.label.cta"></a>
+                 class="btn btn-primary mt-auto pt-3 self-start !px-6 !py-3 text-[.7rem]">
+                <span data-i18n="retreat.label.cta"></span>
+                <span class="sr-only">{{ r.name }}</span>
+              </a>
             </div>
           </article>
           {% endfor %}
