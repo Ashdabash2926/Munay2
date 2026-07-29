@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
-import { readFileSync } from "node:fs";
+import { readFileSync, existsSync } from "node:fs";
 import { formatDateRange } from "../lib/retreats.mjs";
 
 const build = (fixture) => {
@@ -57,4 +57,17 @@ test("the page no longer names one retreat", () => {
   // name Lake Atitlán directly, which a head-only check never caught.
   const html = build("docs/fixtures/retreats-empty.csv");
   assert.doesNotMatch(html, /Atitl|December 17|The Way Home/);
+});
+
+test("every script the pages load is actually copied into the build", () => {
+  // Passthrough copy is per-file here, so adding a <script> without adding a
+  // matching addPassthroughCopy ships a page that 404s its own behaviour.
+  build("docs/fixtures/retreats-empty.csv");
+  const pages = ["about.html", "index.html", "contact.html", "offerings.html", "faq.html", "retreats.html"];
+  for (const page of pages) {
+    const html = readFileSync(page, "utf8");
+    for (const [, src] of html.matchAll(/<script src="((?!https?:)[^"]+)"/g)) {
+      assert.ok(existsSync(`_site/${src}`), `${page} loads ${src}, which is not in _site`);
+    }
+  }
 });

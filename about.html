@@ -87,77 +87,86 @@
       </div>
     </section>
 
-    <!-- ============ VALUES ============ -->
+    <!-- ============ VALUES CONSTELLATION ============
+         The ten values as a diagram rather than a card grid: the section's
+         statement at the centre, the names branching off it, each opening its
+         description into the centre.
+
+         Semantically this is ten native <details> disclosures, which is what
+         keyboards, screen readers and a JS-less browser get. The constellation
+         is one visual presentation of that list and the phone spine is the
+         other; js/values-constellation.js adds .is-enhanced and everything that
+         depends on it. See
+         docs/superpowers/specs/2026-07-29-values-constellation-design.md -->
     <section id="values" class="bg-[var(--cream-2)] border-b border-[var(--border)]">
       <div class="max-w-6xl mx-auto px-5 py-24 md:py-36">
-        <div class="text-center mb-16">
+        <div class="text-center mb-14 md:mb-20">
           <p class="kicker reveal" data-i18n="about.values.kicker"></p>
-          <h2 class="reveal mt-5 text-[clamp(2rem,4.2vw,3.1rem)]" style="--d:.1s" data-i18n="about.values.title"></h2>
-          <p class="reveal lead mt-6 max-w-2xl mx-auto" style="--d:.2s" data-i18n="about.values.intro"></p>
+          <p class="reveal lead mt-6 max-w-2xl mx-auto" style="--d:.1s" data-i18n="about.values.intro"></p>
         </div>
 
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="constellation reveal" id="valuesConstellation" style="--d:.2s">
+          <svg class="constellation__lines" aria-hidden="true" focusable="false"></svg>
 
-          <div class="card !shadow-none reveal p-7">
-            <span class="text-xs tracking-[.18em] text-[var(--clay)] font-medium" aria-hidden="true">—</span>
-            <h3 class="mt-4 text-xl" data-i18n="about.v1.name"></h3>
-            <p class="mt-3 text-sm text-[var(--muted)] leading-relaxed" data-i18n="about.v1.desc"></p>
+          <div class="constellation__core">
+            <h2 class="constellation__statement" data-i18n="about.values.title"></h2>
+            <!-- decorative mirror of whichever branch is open; the branch itself
+                 is the accessible copy, so this is hidden from assistive tech -->
+            <div class="constellation__detail" aria-hidden="true">
+              <p class="constellation__detail-name"></p>
+              <p class="constellation__detail-desc"></p>
+            </div>
           </div>
 
-          <div class="card !shadow-none reveal p-7" style="--d:.07s">
-            <span class="text-xs tracking-[.18em] text-[var(--clay)] font-medium" aria-hidden="true">—</span>
-            <h3 class="mt-4 text-xl" data-i18n="about.v2.name"></h3>
-            <p class="mt-3 text-sm text-[var(--muted)] leading-relaxed" data-i18n="about.v2.desc"></p>
-          </div>
+          <details class="constellation__item">
+            <summary class="constellation__node"><span class="constellation__name" data-i18n="about.v1.name"></span></summary>
+            <div class="constellation__panel"><p data-i18n="about.v1.desc"></p></div>
+          </details>
 
-          <div class="card !shadow-none reveal p-7" style="--d:.14s">
-            <span class="text-xs tracking-[.18em] text-[var(--clay)] font-medium" aria-hidden="true">—</span>
-            <h3 class="mt-4 text-xl" data-i18n="about.v3.name"></h3>
-            <p class="mt-3 text-sm text-[var(--muted)] leading-relaxed" data-i18n="about.v3.desc"></p>
-          </div>
+          <details class="constellation__item">
+            <summary class="constellation__node"><span class="constellation__name" data-i18n="about.v2.name"></span></summary>
+            <div class="constellation__panel"><p data-i18n="about.v2.desc"></p></div>
+          </details>
 
-          <div class="card !shadow-none reveal p-7" style="--d:.21s">
-            <span class="text-xs tracking-[.18em] text-[var(--clay)] font-medium" aria-hidden="true">—</span>
-            <h3 class="mt-4 text-xl" data-i18n="about.v4.name"></h3>
-            <p class="mt-3 text-sm text-[var(--muted)] leading-relaxed" data-i18n="about.v4.desc"></p>
-          </div>
+          <details class="constellation__item">
+            <summary class="constellation__node"><span class="constellation__name" data-i18n="about.v3.name"></span></summary>
+            <div class="constellation__panel"><p data-i18n="about.v3.desc"></p></div>
+          </details>
 
-          <div class="card !shadow-none reveal p-7" style="--d:.28s">
-            <span class="text-xs tracking-[.18em] text-[var(--clay)] font-medium" aria-hidden="true">—</span>
-            <h3 class="mt-4 text-xl" data-i18n="about.v5.name"></h3>
-            <p class="mt-3 text-sm text-[var(--muted)] leading-relaxed" data-i18n="about.v5.desc"></p>
-          </div>
+          <details class="constellation__item">
+            <summary class="constellation__node"><span class="constellation__name" data-i18n="about.v4.name"></span></summary>
+            <div class="constellation__panel"><p data-i18n="about.v4.desc"></p></div>
+          </details>
 
-          <div class="card !shadow-none reveal p-7" style="--d:.35s">
-            <span class="text-xs tracking-[.18em] text-[var(--clay)] font-medium" aria-hidden="true">—</span>
-            <h3 class="mt-4 text-xl" data-i18n="about.v6.name"></h3>
-            <p class="mt-3 text-sm text-[var(--muted)] leading-relaxed" data-i18n="about.v6.desc"></p>
-          </div>
+          <details class="constellation__item">
+            <summary class="constellation__node"><span class="constellation__name" data-i18n="about.v5.name"></span></summary>
+            <div class="constellation__panel"><p data-i18n="about.v5.desc"></p></div>
+          </details>
 
-          <div class="card !shadow-none reveal p-7" style="--d:.42s">
-            <span class="text-xs tracking-[.18em] text-[var(--clay)] font-medium" aria-hidden="true">—</span>
-            <h3 class="mt-4 text-xl" data-i18n="about.v7.name"></h3>
-            <p class="mt-3 text-sm text-[var(--muted)] leading-relaxed" data-i18n="about.v7.desc"></p>
-          </div>
+          <details class="constellation__item">
+            <summary class="constellation__node"><span class="constellation__name" data-i18n="about.v6.name"></span></summary>
+            <div class="constellation__panel"><p data-i18n="about.v6.desc"></p></div>
+          </details>
 
-          <div class="card !shadow-none reveal p-7" style="--d:.49s">
-            <span class="text-xs tracking-[.18em] text-[var(--clay)] font-medium" aria-hidden="true">—</span>
-            <h3 class="mt-4 text-xl" data-i18n="about.v8.name"></h3>
-            <p class="mt-3 text-sm text-[var(--muted)] leading-relaxed" data-i18n="about.v8.desc"></p>
-          </div>
+          <details class="constellation__item">
+            <summary class="constellation__node"><span class="constellation__name" data-i18n="about.v7.name"></span></summary>
+            <div class="constellation__panel"><p data-i18n="about.v7.desc"></p></div>
+          </details>
 
-          <div class="card !shadow-none reveal p-7" style="--d:.56s">
-            <span class="text-xs tracking-[.18em] text-[var(--clay)] font-medium" aria-hidden="true">—</span>
-            <h3 class="mt-4 text-xl" data-i18n="about.v9.name"></h3>
-            <p class="mt-3 text-sm text-[var(--muted)] leading-relaxed" data-i18n="about.v9.desc"></p>
-          </div>
+          <details class="constellation__item">
+            <summary class="constellation__node"><span class="constellation__name" data-i18n="about.v8.name"></span></summary>
+            <div class="constellation__panel"><p data-i18n="about.v8.desc"></p></div>
+          </details>
 
-          <div class="card !shadow-none reveal p-7 sm:col-span-2 lg:col-span-1" style="--d:.63s">
-            <span class="text-xs tracking-[.18em] text-[var(--clay)] font-medium" aria-hidden="true">— 10</span>
-            <h3 class="mt-4 text-xl" data-i18n="about.v10.name"></h3>
-            <p class="mt-3 text-sm text-[var(--muted)] leading-relaxed" data-i18n="about.v10.desc"></p>
-          </div>
+          <details class="constellation__item">
+            <summary class="constellation__node"><span class="constellation__name" data-i18n="about.v9.name"></span></summary>
+            <div class="constellation__panel"><p data-i18n="about.v9.desc"></p></div>
+          </details>
 
+          <details class="constellation__item">
+            <summary class="constellation__node"><span class="constellation__name" data-i18n="about.v10.name"></span></summary>
+            <div class="constellation__panel"><p data-i18n="about.v10.desc"></p></div>
+          </details>
         </div>
       </div>
     </section>
@@ -202,5 +211,6 @@
   <script src="js/i18n.js"></script>
   <script src="js/site.js"></script>
   <script src="js/moments-wall.js" defer></script>
+  <script src="js/values-constellation.js" defer></script>
 </body>
 </html>
