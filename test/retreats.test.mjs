@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { mkdtemp, readFile, rm } from "node:fs/promises";
+import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import sharp from "sharp";
@@ -144,28 +144,78 @@ test("buildRetreats skips a blank row silently", () => {
   assert.equal(warnings.length, 0);
 });
 
+// Each of these pairs the bad row (still at sheet row 2, so the "Row 2" /
+// message assertions still hold) with a valid companion row, so the sheet as
+// a whole still has a surviving retreat. That keeps these tests about
+// per-row skip behaviour rather than tripping the "every row was rejected"
+// guard added below, which is a separate, sheet-wide failure mode.
+const sacredValley = () => row({ name: "Sacred Valley", start: "2027-03-28", end: "2027-04-03" });
+
 test("buildRetreats skips and reports a row with a bad date", () => {
-  const { retreats, warnings } = build([row({ start: "17/12/2026" })]);
-  assert.equal(retreats.length, 0);
+  const { retreats, warnings } = build([row({ start: "17/12/2026" }), sacredValley()]);
+  assert.equal(retreats.length, 1);
   assert.match(warnings[0], /Row 2/);
   assert.match(warnings[0], /17\/12\/2026/);
 });
 
 test("buildRetreats skips a row whose link is not https", () => {
-  const { retreats, warnings } = build([row({ link: "www.example.com" })]);
-  assert.equal(retreats.length, 0);
+  const { retreats, warnings } = build([row({ link: "www.example.com" }), sacredValley()]);
+  assert.equal(retreats.length, 1);
   assert.match(warnings[0], /https/);
 });
 
 test("buildRetreats skips a row with an end before its start", () => {
-  const { retreats, warnings } = build([row({ start: "2026-12-23", end: "2026-12-17" })]);
-  assert.equal(retreats.length, 0);
+  const { retreats, warnings } = build([row({ start: "2026-12-23", end: "2026-12-17" }), sacredValley()]);
+  assert.equal(retreats.length, 1);
   assert.match(warnings[0], /end is before start/);
 });
 
 test("buildRetreats skips a row with no name or no location", () => {
-  assert.equal(build([row({ name: "" })]).retreats.length, 0);
-  assert.equal(build([row({ location: "" })]).retreats.length, 0);
+  assert.equal(build([row({ name: "" }), sacredValley()]).retreats.length, 1);
+  assert.equal(build([row({ location: "" }), sacredValley()]).retreats.length, 1);
+});
+
+test("buildRetreats throws when every row is rejected, not just a single typo", () => {
+  // Both dates lose yyyy-mm-dd format (e.g. the sheet's column formatting was
+  // changed) so every row fails validation: zero retreats survive, which
+  // would otherwise render as "no upcoming retreats" even though she has two.
+  assert.throws(
+    () => build([
+      row({ start: "12/17/2026", end: "12/23/2026" }),
+      row({ name: "Sacred Valley", start: "3/28/2027", end: "4/3/2027" }),
+    ]),
+    /Every row in the retreats sheet was rejected/,
+  );
+});
+
+test("buildRetreats does not throw when there are simply no data rows", () => {
+  const { retreats, warnings } = build([]);
+  assert.deepEqual(retreats, []);
+  assert.deepEqual(warnings, []);
+});
+
+test("buildRetreats does not throw when every data row is blank", () => {
+  const { retreats, warnings } = build([COLUMNS.map(() => ""), COLUMNS.map(() => "")]);
+  assert.deepEqual(retreats, []);
+  assert.deepEqual(warnings, []);
+});
+
+test("buildRetreats does not throw when every retreat has already finished", () => {
+  const { retreats, warnings } = build([row({ start: "2026-01-01", end: "2026-01-07" })]);
+  assert.deepEqual(retreats, []);
+  assert.deepEqual(warnings, []);
+});
+
+test("an unrecognised status can never coincide with zero retreats, because expiry is checked first", () => {
+  // If a bad status word were checked before expiry, an expired row with an
+  // unrecognised status could push a warning with no surviving retreat, and
+  // spuriously trip the "every row rejected" guard on an otherwise legitimate,
+  // simply-empty sheet. Expiry runs first in buildRetreats, so this can't happen.
+  const { retreats, warnings } = build([
+    row({ start: "2026-01-01", end: "2026-01-07", status: "Nearly gone!" }),
+  ]);
+  assert.deepEqual(retreats, []);
+  assert.deepEqual(warnings, []);
 });
 
 test("buildRetreats maps every status word to a key", () => {
@@ -278,8 +328,34 @@ test("loadRetreats reads a local fixture and resolves images", async () => {
   });
   assert.deepEqual(retreats.map((r) => r.name), ["The Way Home", "Sacred Valley"]);
   assert.deepEqual(retreats.map((r) => r.index), [1, 2]);
+  assert.deepEqual(retreats.map((r) => r.slug), ["the-way-home-1", "sacred-valley-2"]);
   assert.equal(retreats[0].image, FALLBACK_IMAGE);
+  assert.equal(retreats[0].usesFallbackImage, true);
   assert.equal(retreats[0].dates.en, "December 17 – 23, 2026");
+  await rm(dir, { recursive: true, force: true });
+});
+
+test("loadRetreats marks a retreat that used the fallback photo, and one with a real photo is not", async () => {
+  resetRetreatsCache();
+  const dir = await mkdtemp(join(tmpdir(), "retreats-fallback-"));
+  const png = await sharp({ create: { width: 40, height: 40, channels: 3, background: "#bf5f3a" } })
+    .png().toBuffer();
+  const fetchImpl = async () => ({ ok: true, status: 200, arrayBuffer: async () => png });
+  const csv = [
+    HEADER.join(","),
+    row({ name: "Blank Photo", location: "Nowhere", cost: "", image: "" }).join(","),
+    row({ name: "Real Photo", location: "Elsewhere", cost: "", start: "2027-03-28", end: "2027-04-03",
+          image: "https://example.com/real.jpg" }).join(","),
+  ].join("\n");
+  const csvPath = join(dir, "sheet.csv");
+  await writeFile(csvPath, csv);
+
+  const retreats = await loadRetreats({ url: csvPath, outDir: dir, today: "2026-07-28", fetchImpl });
+
+  assert.equal(retreats[0].usesFallbackImage, true);
+  assert.equal(retreats[0].image, FALLBACK_IMAGE);
+  assert.equal(retreats[1].usesFallbackImage, false);
+  assert.notEqual(retreats[1].image, FALLBACK_IMAGE);
   await rm(dir, { recursive: true, force: true });
 });
 
@@ -314,7 +390,30 @@ test("loadRetreats honours RETREATS_TODAY as a clock pin when today is not passe
   else process.env.RETREATS_TODAY = previous;
 });
 
-test("buildDict injects one date key per card in every language", async () => {
+test("loadRetreats names a sharing-permission problem instead of a confusing column error when the sheet URL returns HTML", async () => {
+  // A sharing change (no longer "Anyone with the link") makes Google reply
+  // 200 with a sign-in HTML page rather than CSV. Without a sniff, that HTML
+  // gets parsed as CSV and fails with "missing the name column", which sends
+  // her looking at the wrong thing.
+  resetRetreatsCache();
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async () => ({
+    ok: true,
+    status: 200,
+    text: async () => "<!DOCTYPE html><html><body>Sign in to continue</body></html>",
+  });
+  try {
+    await assert.rejects(
+      () => loadRetreats({ url: "https://example.com/retreats.csv", today: "2026-07-28" }),
+      /HTML page, not CSV/,
+    );
+  } finally {
+    globalThis.fetch = originalFetch;
+    resetRetreatsCache();
+  }
+});
+
+test("buildDict injects one date key per card in every language, keyed by content not position", async () => {
   resetRetreatsCache();
   const previousUrl = process.env.RETREATS_SHEET_URL;
   const previousToday = process.env.RETREATS_TODAY;
@@ -323,11 +422,15 @@ test("buildDict injects one date key per card in every language", async () => {
 
   const dict = await buildDict();
   const expected = formatDateRange("2026-12-17", "2026-12-23");
-  assert.equal(dict.en["retreat.dates.1"], expected.en);
-  assert.equal(dict.es["retreat.dates.1"], expected.es);
-  assert.equal(dict.fa["retreat.dates.1"], expected.fa);
-  assert.ok(dict.en["retreat.dates.2"]);
-  assert.equal(dict.en["retreat.dates.3"], undefined);
+  // Keyed by slug (name + index), not the bare positional index: a stale
+  // cached dictionary from a previous build then misses the key entirely
+  // instead of landing a wrong-but-present date range on the new first card.
+  assert.equal(dict.en["retreat.dates.the-way-home-1"], expected.en);
+  assert.equal(dict.es["retreat.dates.the-way-home-1"], expected.es);
+  assert.equal(dict.fa["retreat.dates.the-way-home-1"], expected.fa);
+  assert.ok(dict.en["retreat.dates.sacred-valley-2"]);
+  assert.equal(dict.en["retreat.dates.1"], undefined);
+  assert.equal(dict.en["retreat.dates.2"], undefined);
   // the hand-written keys still load
   assert.ok(dict.en["nav.retreats"]);
 

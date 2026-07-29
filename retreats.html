@@ -25,7 +25,7 @@
     <!-- ============ PAGE HERO ============ -->
     <section class="hero !min-h-[72svh]">
       <img class="object-cover hero__bg md:object-[51%_30%]" src="assets/img/hero-retreats.webp"
-           alt="Lake Atitlán, Guatemala, seen from the shore at first light" fetchpriority="high" />
+           alt="A mountain lake seen from the shore at first light" fetchpriority="high" />
       <div class="hero__scrim"></div>
       <div class="relative z-10 max-w-6xl mx-auto px-5 pt-28 pb-16 w-full">
         <p class="kicker kicker--gold fade-up" style="--d:.15s" data-i18n="retreat.hero.kicker"></p>
@@ -46,13 +46,19 @@
         <h2 class="reveal font-display text-center text-[clamp(1.9rem,4vw,3rem)]"
             data-i18n="retreat.upcoming.title"></h2>
 
-        <div id="retreatGrid" class="mt-12 grid gap-6 md:gap-7 sm:grid-cols-2 lg:grid-cols-3">
+        {% if retreats.length %}
+        <div id="retreatGrid" class="mt-12 grid gap-6 md:gap-7 mx-auto{% if retreats.length == 1 %} max-w-md{% elif retreats.length == 2 %} sm:grid-cols-2 max-w-3xl{% else %} sm:grid-cols-2 lg:grid-cols-3{% endif %}">
           {% for r in retreats %}
           <article class="card reveal flex flex-col" data-retreat-end="{{ r.end }}"
                    style="--d:{{ loop.index0 * 0.08 }}s">
             <div class="card__media aspect-[3/2]">
+              {% if r.usesFallbackImage %}
+              <img class="object-cover w-full h-full" loading="lazy"
+                   src="{{ r.image | imgsrc }}" alt="" role="presentation" />
+              {% else %}
               <img class="object-cover w-full h-full" loading="lazy"
                    src="{{ r.image | imgsrc }}" alt="{{ r.name }}, {{ r.location }}" />
+              {% endif %}
             </div>
             <div class="p-6 pt-7 flex flex-col grow">
               {% if r.statusKey %}
@@ -64,7 +70,7 @@
                 <div>
                   <dt class="text-[.66rem] font-semibold tracking-[.16em] uppercase opacity-70"
                       data-i18n="retreat.label.dates"></dt>
-                  <dd class="mt-0.5 text-[var(--text)]" data-i18n="retreat.dates.{{ r.index }}"></dd>
+                  <dd class="mt-0.5 text-[var(--text)]" data-i18n="retreat.dates.{{ r.slug }}"></dd>
                 </div>
                 <div>
                   <dt class="text-[.66rem] font-semibold tracking-[.16em] uppercase opacity-70"
@@ -80,7 +86,7 @@
                 {% endif %}
               </dl>
               <a href="{{ r.url }}" target="_blank" rel="noopener noreferrer"
-                 class="btn btn-primary mt-auto pt-3 self-start !px-6 !py-3 text-[.7rem]">
+                 class="btn btn-primary mt-auto self-start !px-6 !py-3 text-[.7rem]">
                 <span data-i18n="retreat.label.cta"></span>
                 <span class="sr-only">{{ r.name }}</span>
               </a>
@@ -88,6 +94,7 @@
           </article>
           {% endfor %}
         </div>
+        {% endif %}
 
         <div id="retreatEmpty" class="max-w-xl mx-auto text-center"{% if retreats.length %} hidden{% endif %}>
           <h3 class="font-display text-[clamp(1.4rem,3vw,2rem)]" data-i18n="retreat.upcoming.empty.title"></h3>
@@ -155,7 +162,7 @@
     <section class="parallax min-h-[60svh] flex items-center">
       <img class="object-cover parallax__img md:object-[48%_36%]" loading="lazy"
            src="assets/img/RI-1.webp"
-           alt="The landscapes of Lake Atitlán, Guatemala" />
+           alt="Layered mountain landscapes rising above still water" />
       <div class="absolute inset-0 bg-[rgba(20,12,7,.5)]"></div>
       <div class="relative z-10 max-w-3xl mx-auto px-5 py-28 text-center text-[var(--text-inv)]">
         <p class="font-display text-[clamp(1.6rem,4vw,2.8rem)] leading-snug font-light italic opacity-90" data-i18n="retreat.quote"></p>

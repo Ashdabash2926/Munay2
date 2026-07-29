@@ -40,7 +40,9 @@ test("an empty sheet shows the evergreen block and no cards", () => {
 });
 
 test("the page no longer names one retreat", () => {
+  // Checks the whole document, not just <head>: two <img alt> attributes
+  // further down the page (the hero photo and the parallax band) used to
+  // name Lake Atitlán directly, which a head-only check never caught.
   const html = build("docs/fixtures/retreats-empty.csv");
-  const head = html.slice(0, html.indexOf("</head>"));
-  assert.doesNotMatch(head, /Atitl|December 17|The Way Home/);
+  assert.doesNotMatch(html, /Atitl|December 17|The Way Home/);
 });

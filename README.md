@@ -11,7 +11,7 @@ Trilingual: English / Español / فارسی (with true RTL layout for Farsi). El
 | `index.html` | Home — hero, philosophy, testimonial |
 | `about.html` | About Parastoo — story, approach, method |
 | `offerings.html` | Services: 1:1 mentorship, The Embodied Plant Medicine Method™, bodywork, psilocybin ceremony, private chef |
-| `retreats.html` | The Way Home — 7-Day Retreat, Lake Atitlán, Guatemala, Dec 17–23 2026 |
+| `retreats.html` | Upcoming retreats — evergreen page, cards generated at build time from a Google Sheet she edits herself (see `lib/retreats.mjs`) |
 | `faq.html` | Frequently asked questions |
 | `contact.html` | Discovery call booking + contact form |
 
