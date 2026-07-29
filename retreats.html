@@ -47,11 +47,14 @@
             data-i18n="retreat.upcoming.title"></h2>
 
         {% if retreats.length %}
-        <div id="retreatGrid" class="mt-12 grid gap-6 md:gap-7 mx-auto{% if retreats.length == 1 %} max-w-md{% elif retreats.length == 2 %} sm:grid-cols-2 max-w-3xl{% else %} sm:grid-cols-2 lg:grid-cols-3{% endif %}">
+        {# One retreat fills the section as a wide feature card, image beside the copy.
+           Two or more share the section width evenly. #}
+        {% set solo = retreats.length == 1 %}
+        <div id="retreatGrid" class="mt-12 grid gap-6 md:gap-7{% if retreats.length == 2 %} sm:grid-cols-2{% elif retreats.length > 2 %} sm:grid-cols-2 lg:grid-cols-3{% endif %}">
           {% for r in retreats %}
-          <article class="card reveal flex flex-col" data-retreat-end="{{ r.end }}"
-                   style="--d:{{ loop.index0 * 0.08 }}s">
-            <div class="card__media aspect-[3/2]">
+          <article class="card reveal flex flex-col{% if solo %} md:flex-row md:min-h-[380px]{% endif %}"
+                   data-retreat-end="{{ r.end }}" style="--d:{{ loop.index0 * 0.08 }}s">
+            <div class="card__media aspect-[3/2]{% if solo %} md:w-1/2 md:shrink-0{% endif %}">
               {% if r.usesFallbackImage %}
               <img class="object-cover w-full h-full" loading="lazy"
                    src="{{ r.image | imgsrc }}" alt="" role="presentation" />
@@ -60,12 +63,12 @@
                    src="{{ r.image | imgsrc }}" alt="{{ r.name }}, {{ r.location }}" />
               {% endif %}
             </div>
-            <div class="p-6 pt-7 flex flex-col grow">
+            <div class="p-6 pt-7 flex flex-col grow{% if solo %} md:justify-center md:p-10 lg:p-12{% endif %}">
               {% if r.statusKey %}
               <p class="text-[.68rem] font-semibold tracking-[.18em] uppercase text-[var(--clay)]"
                  data-i18n="retreat.status.{{ r.statusKey }}"></p>
               {% endif %}
-              <h3 class="font-display text-[1.35rem] leading-snug mt-2">{{ r.name }}</h3>
+              <h3 class="font-display leading-snug mt-2 {% if solo %}text-[clamp(1.5rem,3vw,2.1rem)]{% else %}text-[1.35rem]{% endif %}">{{ r.name }}</h3>
               <dl class="mt-4 space-y-2.5 text-[.92rem] text-[var(--muted)]">
                 <div>
                   <dt class="text-[.66rem] font-semibold tracking-[.16em] uppercase opacity-70"
@@ -86,7 +89,7 @@
                 {% endif %}
               </dl>
               <a href="{{ r.url }}" target="_blank" rel="noopener noreferrer"
-                 class="btn btn-primary mt-auto self-start !px-6 !py-3 text-[.7rem]">
+                 class="btn btn-primary self-start !px-6 !py-3 text-[.7rem] {% if solo %}mt-8{% else %}mt-auto{% endif %}">
                 <span data-i18n="retreat.label.cta"></span>
                 <span class="sr-only">{{ r.name }}</span>
               </a>
