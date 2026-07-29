@@ -122,3 +122,13 @@ human translation review).
 Cloudflare Pages (canonical, live at `munay-site.pages.dev`) builds from GitHub repo
 `Ashdabash2926/munay-site` (`origin`, branch `main`): runs `npm run build` and serves `_site/`.
 Pushing to `origin/main` triggers a fresh deploy.
+
+GitHub Pages at `ashdabash2926.github.io/Munay2` is a **mirror**, built by
+`.github/workflows/deploy.yml` in the public repo `Ashdabash2926/Munay2` (remote
+`public-old`). Push both remotes when deploying by hand.
+
+Cloudflare is canonical for a specific reason: the client publishes her retreats from a
+Google Sheet, and the Publish button in that sheet fires a Cloudflare Pages deploy hook.
+A deploy hook can only start a Cloudflare build, so **only the Cloudflare copy updates
+when she publishes**. The mirror lags until someone pushes. If she ever reports that she
+published and nothing changed, check which URL she is looking at before anything else.
