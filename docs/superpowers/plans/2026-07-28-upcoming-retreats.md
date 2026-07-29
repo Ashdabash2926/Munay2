@@ -629,7 +629,7 @@ export function normalizeImageUrl(url) {
 /** A stable, unique filename per card. The index guarantees no collisions. */
 export function slugify(name, index) {
   const base = String(name).toLowerCase().normalize("NFD")
-    .replace(/[̀-ͯ]/g, "")
+    .replace(/[\u0300-\u036f]/g, "")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
   return `${base || "retreat"}-${index}`;
