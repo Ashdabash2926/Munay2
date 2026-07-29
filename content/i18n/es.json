@@ -42,7 +42,7 @@
     },
     "5": {
       "word": "Retiros",
-      "desc": "The Way Home — una invitación sagrada a alejarte del ruido de la vida cotidiana y reconectar con la verdad más profunda de quien eres."
+      "desc": "Una invitación sagrada a alejarte del ruido de la vida cotidiana y reconectar con la verdad más profunda de quien eres."
     }
   },
   "about": {
@@ -176,8 +176,8 @@
     },
     "escape": {
       "kicker": "Retiros e inmersiones",
-      "title": "El Camino a Casa",
-      "sub": "Un retiro transformacional de 7 días en el Lago de Atitlán, Guatemala · 17–23 de diciembre de 2026."
+      "title": "Viajes de regreso a ti",
+      "sub": "Retiros inmersivos de varios días, en grupos pequeños, en lugares elegidos por su quietud."
     },
     "values": {
       "kicker": "Lo que guía este trabajo",
@@ -396,16 +396,16 @@
   "retreat": {
     "hero": {
       "kicker": "Retiros e inmersiones",
-      "title": "El Camino a Casa",
-      "subtitle": "Un Retiro Transformacional de 7 Días en el Lago de Atitlán, Guatemala",
-      "dates": "17–23 de diciembre de 2026"
+      "title": "Viajes de regreso a ti",
+      "subtitle": "Retiros inmersivos de varios días, en grupos pequeños, en lugares elegidos por su quietud",
+      "cue": "Próximas fechas abajo"
     },
     "quote": "El cuerpo guarda la clave. Cuando aprendemos a escuchar, la transformación se vuelve posible.",
     "intro": {
-      "intro1": "El Camino a Casa es una invitación sagrada a alejarse del ruido de la vida cotidiana y reconectarse con la verdad más profunda de quién eres.",
-      "intro2": "Enclavado en los impresionantes paisajes del Lago de Atitlán, Guatemala, este viaje inmersivo de siete días está diseñado para quienes se sienten llamadas a vivir con mayor autenticidad, propósito, libertad y alineación.",
+      "intro1": "Cada retiro es una invitación sagrada a alejarte del ruido de la vida cotidiana y reconectarte con la verdad más profunda de quién eres.",
+      "intro2": "Celebrados en lugares elegidos por su belleza y quietud, estos viajes inmersivos están diseñados para quienes se sienten llamadas a vivir con mayor autenticidad, propósito, libertad y alineación.",
       "intro3": "A través de una combinación cuidadosamente seleccionada de prácticas de encarnación, yoga, movimiento, sanación del sistema nervioso, ceremonia, inmersión en la naturaleza, comunidad consciente e indagación personal, los participantes son guiados en un proceso de recuerdo — regresando a la sabiduría que ya vive dentro de ellos.",
-      "intro4": "Este retiro está enraizado en la creencia de que muchas de nosotras no carecemos de propósito; más bien, nos hemos desconectado de él bajo capas de condicionamiento, miedo, expectativas sociales y patrones de supervivencia.",
+      "intro4": "Estos retiros están enraizados en la creencia de que muchas de nosotras no carecemos de propósito; más bien, nos hemos desconectado de él bajo capas de condicionamiento, miedo, expectativas sociales y patrones de supervivencia.",
       "intro5": "Juntas, creamos el espacio para desacelerar, escuchar profundamente, soltar lo que ya no sirve y reconectarnos con los dones únicos, la creatividad y el saber interior que anhelan ser expresados."
     },
     "support": {
@@ -421,8 +421,26 @@
     },
     "cta": {
       "title": "El viaje a casa te está llamando.",
-      "sub": "Los espacios para esta inmersión son limitados. Contáctame para saber más, hacer preguntas o reservar tu lugar.",
-      "button": "Detalles del retiro y reservas"
+      "sub": "Los espacios se mantienen pequeños e intencionales. Contáctame para saber más, hacer preguntas o reservar tu lugar."
+    },
+    "upcoming": {
+      "title": "Próximos retiros",
+      "empty": {
+        "title": "Se están preparando nuevas fechas",
+        "body": "El próximo viaje se está gestando. Escríbeme para conocer las fechas antes de que se anuncien."
+      }
+    },
+    "label": {
+      "dates": "Fechas",
+      "location": "Dónde",
+      "cost": "Inversión",
+      "cta": "Detalles y reservas"
+    },
+    "status": {
+      "open": "Abierto",
+      "few": "Quedan pocos lugares",
+      "waitlist": "Lista de espera",
+      "full": "Completo"
     }
   },
   "faq": {

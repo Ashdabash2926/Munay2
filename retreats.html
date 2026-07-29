@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Way Home · Retreats · Held by Paras</title>
-  <meta name="description" content="A 7-Day Transformational Retreat in Lake Atitlán, Guatemala · December 17–23, 2026. A sacred invitation to step away and reconnect with who you are." />
-  <meta property="og:title" content="The Way Home · A Transformational Retreat · Held by Paras" />
-  <meta property="og:description" content="A 7-Day Transformational Retreat in Lake Atitlán, Guatemala · December 17–23, 2026." />
+  <title>Retreats · Held by Paras</title>
+  <meta name="description" content="Immersive multi-day retreats in small groups: embodiment, ceremony, nature and conscious community. See the upcoming dates." />
+  <meta property="og:title" content="Retreats · Held by Paras" />
+  <meta property="og:description" content="Immersive multi-day retreats in small groups: embodiment, ceremony, nature and conscious community." />
   <meta property="og:image" content="assets/og.jpg" />
   <meta property="og:type" content="website" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
@@ -25,7 +25,7 @@
     <!-- ============ PAGE HERO ============ -->
     <section class="hero !min-h-[72svh]">
       <img class="object-cover hero__bg md:object-[51%_30%]" src="assets/img/hero-retreats.webp"
-           alt="Lake Atitlán, Guatemala — the setting for The Way Home retreat" fetchpriority="high" />
+           alt="A mountain lake seen from the shore at first light" fetchpriority="high" />
       <div class="hero__scrim"></div>
       <div class="relative z-10 max-w-6xl mx-auto px-5 pt-28 pb-16 w-full">
         <p class="kicker kicker--gold fade-up" style="--d:.15s" data-i18n="retreat.hero.kicker"></p>
@@ -34,8 +34,73 @@
         </h1>
         <p class="fade-up mt-5 max-w-xl text-[1.15rem] font-light leading-relaxed text-[rgba(247,241,232,.9)]"
            style="--d:.45s" data-i18n="retreat.hero.subtitle"></p>
-        <p class="fade-up mt-4 text-[.95rem] tracking-[.12em] font-medium uppercase text-[var(--gold)]"
-           style="--d:.55s" data-i18n="retreat.hero.dates"></p>
+        <a href="#upcoming"
+           class="fade-up link-line mt-4 inline-block text-[.95rem] tracking-[.12em] font-medium uppercase text-[var(--gold)]"
+           style="--d:.55s" data-i18n="retreat.hero.cue"></a>
+      </div>
+    </section>
+
+    <!-- ============ UPCOMING RETREATS (from the client's sheet) ============ -->
+    <section id="upcoming" class="bg-[var(--cream)] border-b border-[var(--border)]">
+      <div class="max-w-6xl mx-auto px-5 py-20 md:py-28">
+        <h2 class="reveal font-display text-center text-[clamp(1.9rem,4vw,3rem)]"
+            data-i18n="retreat.upcoming.title"></h2>
+
+        {% if retreats.length %}
+        <div id="retreatGrid" class="mt-12 grid gap-6 md:gap-7 mx-auto{% if retreats.length == 1 %} max-w-md{% elif retreats.length == 2 %} sm:grid-cols-2 max-w-3xl{% else %} sm:grid-cols-2 lg:grid-cols-3{% endif %}">
+          {% for r in retreats %}
+          <article class="card reveal flex flex-col" data-retreat-end="{{ r.end }}"
+                   style="--d:{{ loop.index0 * 0.08 }}s">
+            <div class="card__media aspect-[3/2]">
+              {% if r.usesFallbackImage %}
+              <img class="object-cover w-full h-full" loading="lazy"
+                   src="{{ r.image | imgsrc }}" alt="" role="presentation" />
+              {% else %}
+              <img class="object-cover w-full h-full" loading="lazy"
+                   src="{{ r.image | imgsrc }}" alt="{{ r.name }}, {{ r.location }}" />
+              {% endif %}
+            </div>
+            <div class="p-6 pt-7 flex flex-col grow">
+              {% if r.statusKey %}
+              <p class="text-[.68rem] font-semibold tracking-[.18em] uppercase text-[var(--clay)]"
+                 data-i18n="retreat.status.{{ r.statusKey }}"></p>
+              {% endif %}
+              <h3 class="font-display text-[1.35rem] leading-snug mt-2">{{ r.name }}</h3>
+              <dl class="mt-4 space-y-2.5 text-[.92rem] text-[var(--muted)]">
+                <div>
+                  <dt class="text-[.66rem] font-semibold tracking-[.16em] uppercase opacity-70"
+                      data-i18n="retreat.label.dates"></dt>
+                  <dd class="mt-0.5 text-[var(--text)]" data-i18n="retreat.dates.{{ r.slug }}"></dd>
+                </div>
+                <div>
+                  <dt class="text-[.66rem] font-semibold tracking-[.16em] uppercase opacity-70"
+                      data-i18n="retreat.label.location"></dt>
+                  <dd class="mt-0.5 text-[var(--text)]">{{ r.location }}</dd>
+                </div>
+                {% if r.cost %}
+                <div>
+                  <dt class="text-[.66rem] font-semibold tracking-[.16em] uppercase opacity-70"
+                      data-i18n="retreat.label.cost"></dt>
+                  <dd class="mt-0.5 text-[var(--text)]">{{ r.cost }}</dd>
+                </div>
+                {% endif %}
+              </dl>
+              <a href="{{ r.url }}" target="_blank" rel="noopener noreferrer"
+                 class="btn btn-primary mt-auto self-start !px-6 !py-3 text-[.7rem]">
+                <span data-i18n="retreat.label.cta"></span>
+                <span class="sr-only">{{ r.name }}</span>
+              </a>
+            </div>
+          </article>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        <div id="retreatEmpty" class="max-w-xl mx-auto text-center"{% if retreats.length %} hidden{% endif %}>
+          <h3 class="font-display text-[clamp(1.4rem,3vw,2rem)]" data-i18n="retreat.upcoming.empty.title"></h3>
+          <p class="lead mt-4" data-i18n="retreat.upcoming.empty.body"></p>
+          <a href="contact.html" class="btn btn-primary mt-8" data-i18n="cta.book"></a>
+        </div>
       </div>
     </section>
 
@@ -97,7 +162,7 @@
     <section class="parallax min-h-[60svh] flex items-center">
       <img class="object-cover parallax__img md:object-[48%_36%]" loading="lazy"
            src="assets/img/RI-1.webp"
-           alt="The landscapes of Lake Atitlán, Guatemala" />
+           alt="Layered mountain landscapes rising above still water" />
       <div class="absolute inset-0 bg-[rgba(20,12,7,.5)]"></div>
       <div class="relative z-10 max-w-3xl mx-auto px-5 py-28 text-center text-[var(--text-inv)]">
         <p class="font-display text-[clamp(1.6rem,4vw,2.8rem)] leading-snug font-light italic opacity-90" data-i18n="retreat.quote"></p>
@@ -117,11 +182,7 @@
         <h2 class="reveal mt-8 font-display text-[clamp(2.2rem,5.4vw,4rem)]" style="--d:.12s" data-i18n="retreat.cta.title"></h2>
         <p class="reveal lead lead--inv mt-5" style="--d:.24s" data-i18n="retreat.cta.sub"></p>
         <div class="reveal mt-10 flex flex-wrap justify-center gap-4" style="--d:.36s">
-          <a href="{{ site.retreat.bookingUrl }}"
-             class="btn btn-primary"
-             aria-label="Retreat details and booking — opens retreat booking page"
-             data-i18n="retreat.cta.button"></a>
-          <a href="contact.html" class="btn btn-ghost btn-ghost--inv" data-i18n="cta.book"></a>
+          <a href="contact.html" class="btn btn-primary" data-i18n="cta.book"></a>
         </div>
       </div>
     </section>

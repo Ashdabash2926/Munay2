@@ -66,7 +66,8 @@ One spreadsheet, one tab named exactly `Retreats`, one header row, eight columns
 **Row handling**
 
 - Rows sort by Start ascending regardless of sheet order.
-- Rows whose End is in the past are dropped at build.
+- Rows whose End is in the past are dropped at build, silently, and before the row is validated. Keeping finished retreats in the sheet is safe even if their other cells have gone stale.
+- If no retreat survives and at least one row was rejected because a date cell was present but not `YYYY-MM-DD`, the build throws. That combination means the date column has lost its format, which would otherwise publish a page claiming she has no retreats while she has several. A blank date is treated as a half-typed draft and never fails the build.
 - Blank rows are skipped. A row missing any required field is skipped and logged.
 - Maximum six cards render; extra rows are ignored (a guard against a pasted block).
 - Deleting a row removes the retreat. There is deliberately no "hide" column.
@@ -129,9 +130,9 @@ Her four typed values (Name, Location, Cost, Link) are proper nouns, numbers and
 
 (Output above verified locally on Node 25. `formatRange` and full ICU have shipped in Node since v14, so the GitHub Actions image, Node 22, and the Cloudflare Pages build image both cover it; the implementation should pin `NODE_VERSION` on Cloudflare Pages to match CI.)
 
-The three strings are injected as generated dictionary keys `retreats.card.<n>.dates` in `lib/i18n-dict.mjs`, so the existing language switcher swaps them with **no new client-side code** and the build-time English prerender works unchanged.
+The three strings are injected as generated dictionary keys `retreat.dates.<slug>` in `lib/i18n-dict.mjs`, so the existing language switcher swaps them with **no new client-side code** and the build-time English prerender works unchanged. They are keyed by the retreat's slug rather than by its position, so a visitor holding a cached `js/i18n.js` from an earlier build simply misses the key and keeps the prerendered English, instead of being shown a different retreat's dates.
 
-**Status.** A closed four-word vocabulary translated once into `content/i18n/{en,es,fa}.json` as `retreats.status.{open,few,waitlist,full}`.
+**Status.** A closed four-word vocabulary translated once into `content/i18n/{en,es,fa}.json` as `retreat.status.{open,few,waitlist,full}`.
 
 ## 9. Failure modes
 
@@ -142,6 +143,7 @@ The three strings are injected as generated dictionary keys `retreats.card.<n>.d
 | Every retreat has finished and she forgot | Evergreen block, cards removed client-side | Nothing |
 | The sheet is unreachable at build | Previous deploy stays live | Nothing |
 | Header row damaged or tab renamed | Previous deploy stays live | Call Ash |
+| The date columns lose their `yyyy-mm-dd` format, so every row exports as `12/17/2026` | Previous deploy stays live | Reset the column format, or call Ash |
 | Her image host dies | Fallback site image | Nothing |
 | Apps Script broken or unauthorized | Publish does nothing | Email Ash to trigger a build |
 

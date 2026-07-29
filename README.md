@@ -11,7 +11,7 @@ Trilingual: English / Español / فارسی (with true RTL layout for Farsi). El
 | `index.html` | Home — hero, philosophy, testimonial |
 | `about.html` | About Parastoo — story, approach, method |
 | `offerings.html` | Services: 1:1 mentorship, The Embodied Plant Medicine Method™, bodywork, psilocybin ceremony, private chef |
-| `retreats.html` | The Way Home — 7-Day Retreat, Lake Atitlán, Guatemala, Dec 17–23 2026 |
+| `retreats.html` | Upcoming retreats — evergreen page, cards generated at build time from a Google Sheet she edits herself (see `lib/retreats.mjs`) |
 | `faq.html` | Frequently asked questions |
 | `contact.html` | Discovery call booking + contact form |
 
@@ -37,7 +37,6 @@ npm run dev     # Eleventy watch + local server
 - [ ] **In-person city / location** — currently "in person & online"; add real city once confirmed
 - [ ] **Real testimonials** — home page uses a holding quote
 - [ ] **Photography** — ceremony, method, retreat, and private chef sections need real Parastoo images; `assets/og.jpg` should be re-shot as a Parastoo-branded OG card
-- [ ] **Retreat booking URL** — `content/site.json` → `retreat.bookingUrl`, currently `#`
 - [ ] **Contact form action** — `contact.html` form `action` is `#`; wire to Formspree, Cloudflare Worker, etc.
 - [ ] **Absolute og:image URL** — set a fully-qualified URL on the final domain (currently relative `assets/og.jpg`)
 - [ ] **Native ES / FA translation review** — have a fluent speaker check the Spanish and Farsi copy

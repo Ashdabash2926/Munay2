@@ -3,10 +3,12 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "test": "node --test test/*.test.mjs",
     "build": "eleventy",
     "dev": "eleventy --serve"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^3.0.0"
+    "@11ty/eleventy": "^3.0.0",
+    "sharp": "^0.35.3"
   }
 }
