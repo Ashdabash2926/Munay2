@@ -204,5 +204,23 @@
     addEventListener("resize", onMove, { passive: true });
   }
 
+  /* ---------- upcoming retreats: drop anything that has finished ---------- */
+  /* The client publishes by hand, so nothing removes a past retreat on its own.
+     The build filters what it can see; this covers a retreat that ends after the
+     last build. Crawlers still index the published list. */
+  const retreatGrid = document.getElementById("retreatGrid");
+  if (retreatGrid) {
+    const today = new Date().toISOString().slice(0, 10);
+    retreatGrid.querySelectorAll("[data-retreat-end]").forEach(card => {
+      if (card.dataset.retreatEnd < today) card.remove();
+    });
+    if (!retreatGrid.children.length) {
+      /* inline style, not the hidden attribute: Tailwind's .grid would win */
+      retreatGrid.style.display = "none";
+      const empty = document.getElementById("retreatEmpty");
+      if (empty) empty.hidden = false;
+    }
+  }
+
   window.ParastooI18N.initLang();
 })();
