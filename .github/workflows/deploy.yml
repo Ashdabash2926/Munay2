@@ -25,6 +25,11 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+        env:
+          # The client's retreats sheet, as a gviz CSV endpoint. Repository
+          # secret, never committed: this repo is public. Unset, the retreats
+          # page renders its evergreen "new dates announced soon" block.
+          RETREATS_SHEET_URL: ${{ secrets.RETREATS_SHEET_URL }}
       - uses: actions/upload-pages-artifact@v5
         with:
           path: _site
