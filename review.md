@@ -53,7 +53,10 @@ before anything else. That already happened once.
    private script. Do this with her in person, it looks alarming the first time.
 2. **Give her edit access to the sheet.** Add her email as an Editor in the Share dialog.
    That is separate from the link sharing, which is read-only and only exists so the build
-   can fetch it.
+   can fetch it. Her address must be a Google account, though it does not have to be a
+   Gmail one: any existing email can be registered as one at `accounts.google.com/signup`
+   via "Use your existing email instead". Signing in is not optional, because an anonymous
+   link-editor cannot grant the authorization the Publish button needs.
 3. **Fill in the Cost cell** for The Way Home, or decide to leave it. Empty means the card
    shows no price line at all.
 4. **Hand her `docs/retreats-sheet-guide.md`.** One page, written for her, not for a

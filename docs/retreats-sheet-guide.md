@@ -3,6 +3,22 @@
 Your retreats page updates itself from one spreadsheet. Add a row, click
 Publish, and the page updates about a minute later.
 
+## Before you start
+
+**You need a Google account, signed in.** It does not have to be a Gmail
+address. If you already use another email you are happy with, you can turn that
+same address into a Google account at `accounts.google.com/signup`, choosing
+"Use your existing email instead". Tell Ash which address you want to use and he
+will share the sheet with it.
+
+Being signed in matters: the Publish button will not work for someone who is
+just viewing the sheet without an account.
+
+**The first publish asks for permission.** Google shows a few warning screens
+the first time, including one that uses the word "unsafe". That is normal for a
+private spreadsheet like this one, and it only happens once. Do this part with
+Ash the first time so you are not guessing at it.
+
 ## The spreadsheet
 
 Each retreat is one row.
