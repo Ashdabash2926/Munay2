@@ -37,7 +37,6 @@ npm run dev     # Eleventy watch + local server
 - [ ] **In-person city / location** — currently "in person & online"; add real city once confirmed
 - [ ] **Real testimonials** — home page uses a holding quote
 - [ ] **Photography** — ceremony, method, retreat, and private chef sections need real Parastoo images; `assets/og.jpg` should be re-shot as a Parastoo-branded OG card
-- [ ] **Retreat booking URL** — `content/site.json` → `retreat.bookingUrl`, currently `#`
 - [ ] **Contact form action** — `contact.html` form `action` is `#`; wire to Formspree, Cloudflare Worker, etc.
 - [ ] **Absolute og:image URL** — set a fully-qualified URL on the final domain (currently relative `assets/og.jpg`)
 - [ ] **Native ES / FA translation review** — have a fluent speaker check the Spanish and Farsi copy
