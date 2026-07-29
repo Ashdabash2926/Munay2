@@ -1,4 +1,4 @@
-# Upcoming Retreats — client-updatable section
+# Upcoming Retreats: client-updatable section
 
 **Date:** 2026-07-28
 **Page:** `retreats.html`
@@ -55,13 +55,13 @@ One spreadsheet, one tab named exactly `Retreats`, one header row, eight columns
 
 **Column rules**
 
-- **Name** — required, ≤ 80 chars. Proper noun, passes through all languages unchanged.
-- **Start / End** — required, true date cells with number format `yyyy-mm-dd`, set up in advance with a date-picker data validation rule. The CSV export follows the display format, so the build receives unambiguous ISO. Parser accepts `YYYY-MM-DD` only; anything else fails validation. End must be ≥ Start.
-- **Location** — required, ≤ 80 chars, free text. Proper noun, untranslated.
-- **Cost** — optional, ≤ 40 chars, free text (`$2,200 USD`, `From $1,800`, `2.200 €`). Rendered verbatim; omitted from the card when blank.
-- **Link** — required, must start with `https://`. Opens in a new tab with `rel="noopener noreferrer"`.
-- **Image** — optional. Either a direct image URL or a Google Drive share link. Blank falls back to a site image.
-- **Status** — optional, dropdown restricted to `Open`, `A few spaces left`, `Waitlist`, `Full`. Rendered as a translated badge. Any value outside the vocabulary renders no badge rather than untranslated text.
+- **Name**: required, ≤ 80 chars. Proper noun, passes through all languages unchanged.
+- **Start / End**: required, true date cells with number format `yyyy-mm-dd`, set up in advance with a date-picker data validation rule. The CSV export follows the display format, so the build receives unambiguous ISO. Parser accepts `YYYY-MM-DD` only; anything else fails validation. End must be ≥ Start.
+- **Location**: required, ≤ 80 chars, free text. Proper noun, untranslated.
+- **Cost**: optional, ≤ 40 chars, free text (`$2,200 USD`, `From $1,800`, `2.200 €`). Rendered verbatim; omitted from the card when blank.
+- **Link**: required, must start with `https://`. Opens in a new tab with `rel="noopener noreferrer"`.
+- **Image**: optional. Either a direct image URL or a Google Drive share link. Blank falls back to a site image.
+- **Status**: optional, dropdown restricted to `Open`, `A few spaces left`, `Waitlist`, `Full`. Rendered as a translated badge. Any value outside the vocabulary renders no badge rather than untranslated text.
 
 **Row handling**
 
@@ -71,7 +71,7 @@ One spreadsheet, one tab named exactly `Retreats`, one header row, eight columns
 - Maximum six cards render; extra rows are ignored (a guard against a pasted block).
 - Deleting a row removes the retreat. There is deliberately no "hide" column.
 
-**Access** — the sheet is shared "Anyone with the link → Viewer" so the build can read it without credentials. It contains only marketing information that is published on the site anyway.
+**Access**: the sheet is shared "Anyone with the link → Viewer" so the build can read it without credentials. It contains only marketing information that is published on the site anyway.
 
 ## 5. Build-time ingestion
 
@@ -91,9 +91,9 @@ Wired into Eleventy as async global data:
 eleventyConfig.addGlobalData("retreats", loadRetreats);
 ```
 
-**Environment variable** — `RETREATS_SHEET_URL` set as a Cloudflare Pages environment variable (production and preview) and as a GitHub Actions secret, so the GitHub Pages mirror at `ashdabash2926.github.io/Munay2` matches until the canonical domain moves. It is never committed: the mirror repo is public.
+**Environment variable**: `RETREATS_SHEET_URL` set as a Cloudflare Pages environment variable (production and preview) and as a GitHub Actions secret, so the GitHub Pages mirror at `ashdabash2926.github.io/Munay2` matches until the canonical domain moves. It is never committed: the mirror repo is public.
 
-**Local development** — `RETREATS_SHEET_URL` may also be a local file path, so `docs/fixtures/retreats-sample.csv` drives `npm run dev` without network access. `node scripts/check-retreats.mjs` prints the parsed and normalized rows for debugging a live sheet from the terminal.
+**Local development**: `RETREATS_SHEET_URL` may also be a local file path, so `docs/fixtures/retreats-sample.csv` drives `npm run dev` without network access. `node scripts/check-retreats.mjs` prints the parsed and normalized rows for debugging a live sheet from the terminal.
 
 ## 6. Images
 
@@ -155,7 +155,7 @@ A small addition to `js/site.js`: on load, remove any card whose `data-retreat-e
 
 Every retreat-specific string is rewritten so nothing on the page can expire. Specifics live only in the cards.
 
-**Meta** — page `<title>`, `<meta name="description">`, `og:title` and `og:description` currently name The Way Home, Lake Atitlán and the December dates. All become general.
+**Meta**: page `<title>`, `<meta name="description">`, `og:title` and `og:description` currently name The Way Home, Lake Atitlán and the December dates. All become general.
 
 **`content/i18n/*.json` keys**
 
@@ -168,13 +168,13 @@ Every retreat-specific string is rewritten so nothing on the page can expire. Sp
 | `retreat.intro.intro2` | "Nestled in the breathtaking landscapes of Lake Atitlán, Guatemala, this immersive seven-day journey…" | "Held in places chosen for their beauty and stillness, these immersive journeys…" |
 | `retreat.intro.intro4` | "This retreat is rooted in the belief…" | "These retreats are rooted in the belief…" |
 | `retreat.cta.sub` | "There are limited spaces for this immersion…" | "Spaces are held small and intentional. Reach out to learn more, ask questions, or reserve your place." |
-| `retreat.cta.button` | Retreat details & booking | *removed* — see below |
+| `retreat.cta.button` | Retreat details & booking | *removed*, see below |
 
 `retreat.hero.kicker`, `retreat.quote`, `retreat.support.*` and `retreat.cta.title` are already general and stay verbatim. Her voice and vocabulary are preserved throughout; only the specifics are lifted out.
 
-**New keys** — `retreats.upcoming.title`, `retreats.empty.title`, `retreats.empty.body`, `retreats.card.{dates,location,cost,cta}`, `retreats.status.{open,few,waitlist,full}`, plus the generated `retreats.card.<n>.dates`.
+**New keys**: `retreat.upcoming.title`, `retreat.upcoming.empty.title`, `retreat.upcoming.empty.body`, `retreat.label.{dates,location,cost,cta}`, `retreat.status.{open,few,waitlist,full}`, plus the generated `retreat.dates.<n>`. They sit inside the existing `retreat` block; the label keys and the generated date keys are kept in separate groups so `retreat.label.dates` and `retreat.dates.1` cannot collide.
 
-**Closing CTA** — the hero and closing CTA no longer point at a single retreat. `site.retreat.bookingUrl` is retired from `content/site.json`, and the closing section keeps only the contact call-to-action. Booking lives on each card, where it belongs.
+**Closing CTA**: the hero and closing CTA no longer point at a single retreat. `site.retreat.bookingUrl` is retired from `content/site.json`, and the closing section keeps only the contact call-to-action. Booking lives on each card, where it belongs.
 
 Spanish and Farsi are updated alongside English, and `node scripts/check-i18n-parity.mjs` must pass.
 
