@@ -42,7 +42,7 @@
     },
     "5": {
       "word": "Retreats",
-      "desc": "The Way Home — a sacred invitation to step away from the noise of everyday life and reconnect with the deepest truth of who you are."
+      "desc": "A sacred invitation to step away from the noise of everyday life and reconnect with the deepest truth of who you are."
     }
   },
   "about": {
@@ -176,8 +176,8 @@
     },
     "escape": {
       "kicker": "Retreats & immersions",
-      "title": "The Way Home",
-      "sub": "A 7-day transformational retreat in Lake Atitlán, Guatemala · December 17–23, 2026."
+      "title": "Journeys home to yourself",
+      "sub": "Immersive multi-day retreats, held in small groups, in places chosen for their stillness."
     },
     "values": {
       "kicker": "What guides this work",
@@ -396,16 +396,16 @@
   "retreat": {
     "hero": {
       "kicker": "Retreats & immersions",
-      "title": "The Way Home",
-      "subtitle": "A 7-Day Transformational Retreat in Lake Atitlán, Guatemala",
-      "dates": "December 17–23, 2026"
+      "title": "Journeys home to yourself",
+      "subtitle": "Immersive multi-day retreats, held in small groups, in places chosen for their stillness",
+      "cue": "Upcoming dates below"
     },
     "quote": "The body holds the key. When we learn to listen, transformation becomes possible.",
     "intro": {
-      "intro1": "The Way Home is a sacred invitation to step away from the noise of everyday life and reconnect with the deepest truth of who you are.",
-      "intro2": "Nestled in the breathtaking landscapes of Lake Atitlán, Guatemala, this immersive seven-day journey is designed for those who feel called to live with greater authenticity, purpose, freedom, and alignment.",
+      "intro1": "Each retreat is a sacred invitation to step away from the noise of everyday life and reconnect with the deepest truth of who you are.",
+      "intro2": "Held in places chosen for their beauty and stillness, these immersive journeys are designed for those who feel called to live with greater authenticity, purpose, freedom, and alignment.",
       "intro3": "Through a carefully curated blend of embodiment practices, yoga, movement, nervous system healing, ceremony, nature immersion, conscious community, and self-inquiry, participants are guided into a process of remembrance—returning to the wisdom that already lives within them.",
-      "intro4": "This retreat is rooted in the belief that many of us are not lacking purpose; rather, we have become disconnected from it beneath layers of conditioning, fear, societal expectations, and survival patterns.",
+      "intro4": "These retreats are rooted in the belief that many of us are not lacking purpose; rather, we have become disconnected from it beneath layers of conditioning, fear, societal expectations, and survival patterns.",
       "intro5": "Together, we create the space to slow down, listen deeply, release what no longer serves, and reconnect with the unique gifts, creativity, and inner knowing that are longing to be expressed."
     },
     "support": {
@@ -421,8 +421,26 @@
     },
     "cta": {
       "title": "The journey home is calling.",
-      "sub": "There are limited spaces for this immersion. Reach out to learn more, ask questions, or reserve your place.",
-      "button": "Retreat details & booking"
+      "sub": "Spaces are held small and intentional. Reach out to learn more, ask questions, or reserve your place."
+    },
+    "upcoming": {
+      "title": "Upcoming retreats",
+      "empty": {
+        "title": "New dates are being held",
+        "body": "The next journey is being prepared. Reach out to hear about dates before they are announced."
+      }
+    },
+    "label": {
+      "dates": "Dates",
+      "location": "Where",
+      "cost": "Investment",
+      "cta": "Details & booking"
+    },
+    "status": {
+      "open": "Open",
+      "few": "A few spaces left",
+      "waitlist": "Waitlist",
+      "full": "Full"
     }
   },
   "faq": {
