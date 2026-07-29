@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 import { buildDict } from "./lib/i18n-dict.mjs";
+import { loadRetreats } from "./lib/retreats.mjs";
 
 const escapeText = (s) =>
   String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -26,14 +27,19 @@ export default function (eleventyConfig) {
   eleventyConfig.ignores.add("README.md");
   eleventyConfig.ignores.add("docs/**");
 
+  // Upcoming retreats, read from the client's Google Sheet at build time.
+  // Unset RETREATS_SHEET_URL renders the evergreen empty state; a damaged
+  // sheet throws, which fails the build and leaves the last deploy live.
+  eleventyConfig.addGlobalData("retreats", () => loadRetreats());
+
   // Prerender the default-language (English) copy into the HTML at build time so
   // crawlers / no-JS visitors see real content. The client-side js/i18n.js still
   // runs on top: it overwrites textContent on load (no-op for English, swaps for
   // ES/FA). data-i18n elements are verified text-only leaves, so a scoped regex
   // is safe; see lib/i18n-dict.mjs for the (shared) dictionary source.
-  eleventyConfig.addTransform("i18n-prerender", function (content) {
+  eleventyConfig.addTransform("i18n-prerender", async function (content) {
     if (!(this.page.outputPath || "").endsWith(".html")) return content;
-    const en = buildDict().en;
+    const en = (await buildDict()).en;
 
     // Fill textContent of <tag ... data-i18n="key">…</tag>
     let out = content.replace(

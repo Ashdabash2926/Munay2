@@ -39,8 +39,8 @@ export default class {
     return { permalink: "js/i18n.js", eleventyExcludeFromCollections: true };
   }
 
-  render() {
-    const dict = buildDict();
+  async render() {
+    const dict = await buildDict();
     return `/* Parastoo — trilingual dictionary (EN / ES / FA) + language switcher.
    GENERATED FILE — edit content/i18n/*.json instead. */
 

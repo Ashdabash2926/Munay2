@@ -9,6 +9,7 @@ import {
   normalizeImageUrl, slugify, resolveImage, FALLBACK_IMAGE,
   loadRetreats, resetRetreatsCache,
 } from "../lib/retreats.mjs";
+import { buildDict } from "../lib/i18n-dict.mjs";
 
 test("COLUMNS lists the eight sheet columns in order", () => {
   assert.deepEqual(COLUMNS, ["name", "start", "end", "location", "cost", "link", "image", "status"]);
@@ -311,4 +312,28 @@ test("loadRetreats honours RETREATS_TODAY as a clock pin when today is not passe
   assert.deepEqual(retreats.map((r) => r.name), ["Sacred Valley"]);
   if (previous === undefined) delete process.env.RETREATS_TODAY;
   else process.env.RETREATS_TODAY = previous;
+});
+
+test("buildDict injects one date key per card in every language", async () => {
+  resetRetreatsCache();
+  const previousUrl = process.env.RETREATS_SHEET_URL;
+  const previousToday = process.env.RETREATS_TODAY;
+  process.env.RETREATS_SHEET_URL = "docs/fixtures/retreats-sample.csv";
+  process.env.RETREATS_TODAY = "2026-07-28";
+
+  const dict = await buildDict();
+  const expected = formatDateRange("2026-12-17", "2026-12-23");
+  assert.equal(dict.en["retreat.dates.1"], expected.en);
+  assert.equal(dict.es["retreat.dates.1"], expected.es);
+  assert.equal(dict.fa["retreat.dates.1"], expected.fa);
+  assert.ok(dict.en["retreat.dates.2"]);
+  assert.equal(dict.en["retreat.dates.3"], undefined);
+  // the hand-written keys still load
+  assert.ok(dict.en["nav.retreats"]);
+
+  if (previousUrl === undefined) delete process.env.RETREATS_SHEET_URL;
+  else process.env.RETREATS_SHEET_URL = previousUrl;
+  if (previousToday === undefined) delete process.env.RETREATS_TODAY;
+  else process.env.RETREATS_TODAY = previousToday;
+  resetRetreatsCache();
 });
