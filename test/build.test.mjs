@@ -39,6 +39,18 @@ test("an empty sheet shows the evergreen block and no cards", () => {
   assert.doesNotMatch(html, /id="retreatEmpty"[^>]*hidden/);
 });
 
+test("a sheet with only an archived, broken-link retreat still builds and shows the empty state", () => {
+  // Keeping a finished retreat around is explicitly supported. Its link being
+  // dead should never surface, and it should never turn "nothing upcoming"
+  // into a build failure: this is the actual state a caller gets for that
+  // sheet, not just an assertion that buildRetreats didn't throw.
+  const html = build("docs/fixtures/retreats-archived-only.csv");
+  assert.doesNotMatch(html, /data-retreat-end/);
+  assert.match(html, /New dates are being held/);
+  assert.doesNotMatch(html, /id="retreatEmpty"[^>]*hidden/);
+  assert.doesNotMatch(html, /Archived Retreat/);
+});
+
 test("the page no longer names one retreat", () => {
   // Checks the whole document, not just <head>: two <img alt> attributes
   // further down the page (the hero photo and the parallax band) used to

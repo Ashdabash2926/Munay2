@@ -171,8 +171,8 @@ test("buildRetreats skips a row with an end before its start", () => {
 });
 
 test("buildRetreats skips a row with no name or no location", () => {
-  assert.equal(build([row({ name: "" }), sacredValley()]).retreats.length, 1);
-  assert.equal(build([row({ location: "" }), sacredValley()]).retreats.length, 1);
+  assert.deepEqual(build([row({ name: "" }), sacredValley()]).retreats.map((r) => r.name), ["Sacred Valley"]);
+  assert.deepEqual(build([row({ location: "" }), sacredValley()]).retreats.map((r) => r.name), ["Sacred Valley"]);
 });
 
 test("buildRetreats throws when every row is rejected, not just a single typo", () => {
@@ -206,11 +206,44 @@ test("buildRetreats does not throw when every retreat has already finished", () 
   assert.deepEqual(warnings, []);
 });
 
-test("an unrecognised status can never coincide with zero retreats, because expiry is checked first", () => {
-  // If a bad status word were checked before expiry, an expired row with an
-  // unrecognised status could push a warning with no surviving retreat, and
-  // spuriously trip the "every row rejected" guard on an otherwise legitimate,
-  // simply-empty sheet. Expiry runs first in buildRetreats, so this can't happen.
+test("buildRetreats drops an archived row silently even if it also has a bad link", () => {
+  // Keeping finished rows is explicitly supported (the spec's failure table:
+  // "her image host dies" etc. all say the archived row just sits there). The
+  // expiry drop runs before any other validation, so a dead link, a blank
+  // cost, a missing image - anything else wrong with an already-finished row
+  // - never surfaces a warning either. Nobody needs to fix an archived row.
+  const { retreats, warnings } = build([
+    row({ start: "2024-05-01", end: "2024-05-07", link: "www.oldsite.com" }),
+  ]);
+  assert.deepEqual(retreats, []);
+  assert.deepEqual(warnings, []);
+});
+
+test("buildRetreats does not throw on a half-typed draft row with a name but no dates yet", () => {
+  // Typing a name into the next row while planning is normal use. Both dates
+  // are blank, not malformed, so this must never look like the sheet's date
+  // columns losing their format.
+  const { retreats, warnings } = build([row({ name: "Next Retreat", start: "", end: "", link: "" })]);
+  assert.deepEqual(retreats, []);
+  assert.match(warnings[0], /Row 2/);
+});
+
+test("buildRetreats throws for a single row with malformed dates and nothing else in the sheet", () => {
+  // The one-retreat client: she has exactly one upcoming retreat and its
+  // Start/End cells lost their yyyy-mm-dd format. This is the case the guard
+  // exists for, not an edge case to special-case away.
+  assert.throws(
+    () => build([row({ start: "12/17/2026", end: "12/23/2026" })]),
+    /Every row in the retreats sheet was rejected/,
+  );
+});
+
+test("an unrecognised status can never coincide with zero retreats, because a status warning always has a companion retreat", () => {
+  // A status warning is only ever pushed for a row that has already survived
+  // the expiry drop and full validation, in the same pass that pushes that
+  // row onto `retreats`. So it can never be the sole warning behind a
+  // zero-retreat result, and can never by itself trip the "every row
+  // rejected" guard on an otherwise legitimate sheet.
   const { retreats, warnings } = build([
     row({ start: "2026-01-01", end: "2026-01-07", status: "Nearly gone!" }),
   ]);
@@ -396,19 +429,17 @@ test("loadRetreats names a sharing-permission problem instead of a confusing col
   // gets parsed as CSV and fails with "missing the name column", which sends
   // her looking at the wrong thing.
   resetRetreatsCache();
-  const originalFetch = globalThis.fetch;
-  globalThis.fetch = async () => ({
+  const fetchImpl = async () => ({
     ok: true,
     status: 200,
     text: async () => "<!DOCTYPE html><html><body>Sign in to continue</body></html>",
   });
   try {
     await assert.rejects(
-      () => loadRetreats({ url: "https://example.com/retreats.csv", today: "2026-07-28" }),
+      () => loadRetreats({ url: "https://example.com/retreats.csv", today: "2026-07-28", fetchImpl }),
       /HTML page, not CSV/,
     );
   } finally {
-    globalThis.fetch = originalFetch;
     resetRetreatsCache();
   }
 });
