@@ -1,6 +1,13 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { parseCsv, COLUMNS, formatDateRange, buildRetreats, MAX_CARDS } from "../lib/retreats.mjs";
+import { mkdtemp, readFile, rm } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import sharp from "sharp";
+import {
+  parseCsv, COLUMNS, formatDateRange, buildRetreats, MAX_CARDS,
+  normalizeImageUrl, slugify, resolveImage, FALLBACK_IMAGE,
+} from "../lib/retreats.mjs";
 
 test("COLUMNS lists the eight sheet columns in order", () => {
   assert.deepEqual(COLUMNS, ["name", "start", "end", "location", "cost", "link", "image", "status"]);
@@ -189,4 +196,66 @@ test("buildRetreats caps the number of cards and says so", () => {
   const { retreats, warnings } = build(many);
   assert.equal(retreats.length, MAX_CARDS);
   assert.match(warnings.at(-1), new RegExp(`only the first ${MAX_CARDS}`));
+});
+
+test("normalizeImageUrl rewrites a Google Drive share link", () => {
+  assert.equal(
+    normalizeImageUrl("https://drive.google.com/file/d/1AbC-dEf_2/view?usp=sharing"),
+    "https://drive.google.com/uc?export=download&id=1AbC-dEf_2");
+  assert.equal(
+    normalizeImageUrl("https://drive.google.com/open?id=1AbC-dEf_2"),
+    "https://drive.google.com/uc?export=download&id=1AbC-dEf_2");
+});
+
+test("normalizeImageUrl passes a direct image URL through", () => {
+  assert.equal(normalizeImageUrl("https://example.com/a.jpg"), "https://example.com/a.jpg");
+});
+
+test("normalizeImageUrl rejects anything that is not a URL", () => {
+  assert.equal(normalizeImageUrl(""), "");
+  assert.equal(normalizeImageUrl("my photo.jpg"), "");
+});
+
+test("slugify makes a filesystem-safe, collision-free name", () => {
+  assert.equal(slugify("The Way Home", 1), "the-way-home-1");
+  assert.equal(slugify("Atitlán / Guatemala!", 2), "atitlan-guatemala-2");
+  assert.equal(slugify("سفر", 3), "retreat-3");
+});
+
+test("resolveImage downloads, converts to webp and returns a site path", async () => {
+  const dir = await mkdtemp(join(tmpdir(), "retreats-"));
+  const png = await sharp({ create: { width: 40, height: 40, channels: 3, background: "#bf5f3a" } })
+    .png().toBuffer();
+  const fetchImpl = async () => ({ ok: true, status: 200, arrayBuffer: async () => png });
+
+  const path = await resolveImage("https://example.com/a.png", "way-home-1", { outDir: dir, fetchImpl });
+
+  assert.equal(path, "assets/img/retreats/way-home-1.webp");
+  const written = await readFile(join(dir, path));
+  assert.equal((await sharp(written).metadata()).format, "webp");
+  await rm(dir, { recursive: true, force: true });
+});
+
+test("resolveImage falls back and warns when the download fails", async () => {
+  const warnings = [];
+  const fetchImpl = async () => { throw new Error("boom"); };
+  const path = await resolveImage("https://example.com/a.png", "way-home-1",
+    { outDir: "/nonexistent", fetchImpl, warnings });
+  assert.equal(path, FALLBACK_IMAGE);
+  assert.match(warnings[0], /way-home-1/);
+});
+
+test("resolveImage falls back quietly when the cell is blank", async () => {
+  const warnings = [];
+  assert.equal(await resolveImage("", "a-1", { outDir: "/nonexistent", warnings }), FALLBACK_IMAGE);
+  assert.equal(warnings.length, 0);
+});
+
+test("resolveImage refuses an oversized file", async () => {
+  const warnings = [];
+  const fetchImpl = async () => ({ ok: true, status: 200, arrayBuffer: async () => new ArrayBuffer(9e6) });
+  const path = await resolveImage("https://example.com/big.jpg", "big-1",
+    { outDir: "/nonexistent", fetchImpl, warnings });
+  assert.equal(path, FALLBACK_IMAGE);
+  assert.match(warnings[0], /8MB/);
 });
