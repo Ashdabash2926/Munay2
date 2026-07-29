@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { parseCsv, COLUMNS, formatDateRange } from "../lib/retreats.mjs";
+import { parseCsv, COLUMNS, formatDateRange, buildRetreats, MAX_CARDS } from "../lib/retreats.mjs";
 
 test("COLUMNS lists the eight sheet columns in order", () => {
   assert.deepEqual(COLUMNS, ["name", "start", "end", "location", "cost", "link", "image", "status"]);
@@ -59,4 +59,134 @@ test("formatDateRange uses the Gregorian calendar for Farsi, not Jalali", () => 
   // The Jalali rendering of this date would be ۲۶ آذر ۱۴۰۵, which would not
   // match the English booking page she links out to.
   assert.match(formatDateRange("2026-12-17", "2026-12-23").fa, /۲۰۲۶/);
+});
+
+const HEADER = ["Name", "Start", "End", "Location", "Cost", "Link", "Image", "Status"];
+const row = (over = {}) => {
+  const base = {
+    name: "The Way Home", start: "2026-12-17", end: "2026-12-23",
+    location: "Lake Atitlan, Guatemala", cost: "$2,200 USD",
+    link: "https://example.com/way-home", image: "", status: "Open",
+  };
+  const merged = { ...base, ...over };
+  return COLUMNS.map((c) => merged[c]);
+};
+const build = (rows, today = "2026-07-28") => buildRetreats([HEADER, ...rows], { today });
+
+test("buildRetreats maps a good row onto a retreat", () => {
+  const { retreats, warnings } = build([row()]);
+  assert.equal(warnings.length, 0);
+  assert.equal(retreats.length, 1);
+  assert.deepEqual(retreats[0], {
+    name: "The Way Home",
+    start: "2026-12-17",
+    end: "2026-12-23",
+    location: "Lake Atitlan, Guatemala",
+    cost: "$2,200 USD",
+    url: "https://example.com/way-home",
+    imageSource: "",
+    statusKey: "open",
+    dates: formatDateRange("2026-12-17", "2026-12-23"),
+  });
+});
+
+test("buildRetreats throws when a column is missing", () => {
+  assert.throws(() => buildRetreats([["Name", "Start", "End"]], { today: "2026-07-28" }),
+    /missing the "location" column/);
+});
+
+test("buildRetreats throws on an empty sheet", () => {
+  assert.throws(() => buildRetreats([], { today: "2026-07-28" }), /empty/);
+});
+
+test("buildRetreats accepts headers in any case or order", () => {
+  const shuffled = ["STATUS", "link", "Image", "cost", "Location", "End", "Start", "NAME"];
+  const cells = shuffled.map((h) => {
+    const v = { name: "A", start: "2026-12-17", end: "2026-12-23", location: "Peru",
+                cost: "", link: "https://example.com/a", image: "", status: "" };
+    return v[h.toLowerCase()];
+  });
+  const { retreats } = buildRetreats([shuffled, cells], { today: "2026-07-28" });
+  assert.equal(retreats[0].name, "A");
+  assert.equal(retreats[0].location, "Peru");
+});
+
+test("buildRetreats sorts by start date, not sheet order", () => {
+  const { retreats } = build([
+    row({ name: "Later", start: "2027-03-28", end: "2027-04-03" }),
+    row({ name: "Sooner" }),
+  ]);
+  assert.deepEqual(retreats.map((r) => r.name), ["Sooner", "Later"]);
+});
+
+test("buildRetreats drops retreats that have already finished", () => {
+  const { retreats } = build([row({ name: "Gone", start: "2026-01-01", end: "2026-01-07" }), row()]);
+  assert.deepEqual(retreats.map((r) => r.name), ["The Way Home"]);
+});
+
+test("buildRetreats keeps a retreat that is running today", () => {
+  const { retreats } = build([row({ start: "2026-07-20", end: "2026-07-28" })], "2026-07-28");
+  assert.equal(retreats.length, 1);
+});
+
+test("buildRetreats skips a blank row silently", () => {
+  const { retreats, warnings } = build([COLUMNS.map(() => ""), row()]);
+  assert.equal(retreats.length, 1);
+  assert.equal(warnings.length, 0);
+});
+
+test("buildRetreats skips and reports a row with a bad date", () => {
+  const { retreats, warnings } = build([row({ start: "17/12/2026" })]);
+  assert.equal(retreats.length, 0);
+  assert.match(warnings[0], /Row 2/);
+  assert.match(warnings[0], /17\/12\/2026/);
+});
+
+test("buildRetreats skips a row whose link is not https", () => {
+  const { retreats, warnings } = build([row({ link: "www.example.com" })]);
+  assert.equal(retreats.length, 0);
+  assert.match(warnings[0], /https/);
+});
+
+test("buildRetreats skips a row with an end before its start", () => {
+  const { retreats, warnings } = build([row({ start: "2026-12-23", end: "2026-12-17" })]);
+  assert.equal(retreats.length, 0);
+  assert.match(warnings[0], /end is before start/);
+});
+
+test("buildRetreats skips a row with no name or no location", () => {
+  assert.equal(build([row({ name: "" })]).retreats.length, 0);
+  assert.equal(build([row({ location: "" })]).retreats.length, 0);
+});
+
+test("buildRetreats maps every status word to a key", () => {
+  const statuses = ["Open", "A few spaces left", "waitlist", "FULL"];
+  const keys = statuses.map((s) => build([row({ status: s })]).retreats[0].statusKey);
+  assert.deepEqual(keys, ["open", "few", "waitlist", "full"]);
+});
+
+test("buildRetreats renders no badge for an unknown status but keeps the row", () => {
+  const { retreats, warnings } = build([row({ status: "Nearly gone!" })]);
+  assert.equal(retreats[0].statusKey, null);
+  assert.match(warnings[0], /Nearly gone!/);
+});
+
+test("buildRetreats treats a blank status as no badge and no warning", () => {
+  const { retreats, warnings } = build([row({ status: "" })]);
+  assert.equal(retreats[0].statusKey, null);
+  assert.equal(warnings.length, 0);
+});
+
+test("buildRetreats trims, collapses whitespace and caps length", () => {
+  const { retreats } = build([row({ name: `  A${" ".repeat(4)}B  `, cost: "x".repeat(60) })]);
+  assert.equal(retreats[0].name, "A B");
+  assert.equal(retreats[0].cost.length, 40);
+});
+
+test("buildRetreats caps the number of cards and says so", () => {
+  const many = Array.from({ length: 9 }, (_, i) =>
+    row({ name: `R${i}`, start: `2026-1${i % 2}-01`, end: `2026-1${i % 2}-05` }));
+  const { retreats, warnings } = build(many);
+  assert.equal(retreats.length, MAX_CARDS);
+  assert.match(warnings.at(-1), new RegExp(`only the first ${MAX_CARDS}`));
 });
