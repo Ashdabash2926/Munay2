@@ -24,11 +24,14 @@
   const finePointer = matchMedia("(pointer: fine)").matches;
   const interactive = finePointer && !reduceMotion;
 
-  /* Display order carried over from the ten-photo gallery. Alt text is only
-     written for the three fallback tiles in the markup; the wall itself is
-     decorative repetition of the same ten photographs, so its tiles are hidden
-     from assistive tech via the section's aria-label and empty alts. */
-  const PHOTOS = Array.from({ length: 10 }, (_, i) =>
+  /* Every photograph in Images/, across four shoots (mountain, garden bodywork,
+     retreat interiors, community), interleaved at build time so consecutive
+     indices come from different shoots — see the generator note in the commit.
+     Alt text is only written for the fallback tiles in the markup; the wall
+     itself is decorative, so its tiles carry empty alts and the section is
+     labelled as a whole for assistive tech. */
+  const PHOTO_COUNT = 37;
+  const PHOTOS = Array.from({ length: PHOTO_COUNT }, (_, i) =>
     `assets/img/wall-${String(i + 1).padStart(2, "0")}.webp`);
 
   let tiles = [];
@@ -84,10 +87,13 @@
         el.style.height = cellH + "px";
 
         const im = document.createElement("img");
-        /* r * 3 staggers the sequence row to row so the same photograph never
-           lands directly above or beside itself. 3 and 10 are coprime, so the
-           whole set is used before any repeat within a row. */
-        im.src = PHOTOS[(r * 3 + c) % PHOTOS.length];
+        /* Linear tile index, not a per-row stride. A stride of r*N only spans
+           rows*N indices, which with a handful of rows would leave most of the
+           37 photographs unused. Walking tiles in order uses every photograph
+           before repeating any; horizontal neighbours are consecutive indices
+           and vertical neighbours are `cols` apart, and since the set is
+           interleaved by shoot, neither lands on the same picture. */
+        im.src = PHOTOS[(r * cols + c) % PHOTO_COUNT];
         im.alt = "";
         im.width = 600; im.height = 750;
         im.decoding = "async";
@@ -234,14 +240,14 @@
         pointer.inside = false;
       }
     }
-  }, { rootMargin: "200px 0px" });
+  }, { rootMargin: "800px 0px" });
   io.observe(section);
 
   /* A frozen wall still needs building, but must never spin the loop. */
   if (reduceMotion) {
     const once = new IntersectionObserver((entries) => {
       if (entries.some((e) => e.isIntersecting)) { if (!built) build(); once.disconnect(); }
-    }, { rootMargin: "200px 0px" });
+    }, { rootMargin: "800px 0px" });
     once.observe(section);
     io.disconnect();
     return;
