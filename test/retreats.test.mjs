@@ -245,6 +245,14 @@ test("resolveImage falls back and warns when the download fails", async () => {
   assert.match(warnings[0], /way-home-1/);
 });
 
+test("resolveImage falls back and warns when the source is non-blank but unusable", async () => {
+  const warnings = [];
+  const path = await resolveImage("my photo.jpg", "a-1", { outDir: "/nonexistent", warnings });
+  assert.equal(path, FALLBACK_IMAGE);
+  assert.equal(warnings.length, 1);
+  assert.match(warnings[0], /a-1/);
+});
+
 test("resolveImage falls back quietly when the cell is blank", async () => {
   const warnings = [];
   assert.equal(await resolveImage("", "a-1", { outDir: "/nonexistent", warnings }), FALLBACK_IMAGE);
