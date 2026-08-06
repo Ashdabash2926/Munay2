@@ -38,7 +38,6 @@ npm run dev     # Eleventy watch + local server
 - [ ] **Real testimonials** — home page uses a holding quote
 - [ ] **Photography** — ceremony, method, retreat, and private chef sections need real Parastoo images; `assets/og.jpg` should be re-shot as a Parastoo-branded OG card
 - [ ] **Contact form action** — `contact.html` form `action` is `#`; wire to Formspree, Cloudflare Worker, etc.
-- [ ] **Absolute og:image URL** — set a fully-qualified URL on the final domain (currently relative `assets/og.jpg`)
 - [ ] **Native ES / FA translation review** — have a fluent speaker check the Spanish and Farsi copy
 
 ## Open concerns / not yet verified
@@ -119,7 +118,8 @@ human translation review).
 
 ## Deploy
 
-Cloudflare Pages (canonical, live at `munay-site.pages.dev`) builds from GitHub repo
+Cloudflare Pages (canonical, live at `https://www.heldbyparas.com`, also reachable at
+`munay-site.pages.dev`) builds from GitHub repo
 `Ashdabash2926/munay-site` (`origin`, branch `main`): runs `npm run build` and serves `_site/`.
 Pushing to `origin/main` triggers a fresh deploy.
 

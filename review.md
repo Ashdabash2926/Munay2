@@ -37,8 +37,10 @@ copy. Two share the width, three or more take a third each.
 Cloudflare build. GitHub Pages has no equivalent that is safe to put in a spreadsheet:
 triggering it needs a token with write access to the repo. So:
 
-- `munay-site.pages.dev` is canonical. This is the URL to give her, and to point any real
-  domain at. The studio-north portfolio card already links here.
+- `https://www.heldbyparas.com` is canonical. This is the URL to give her. It is a Pages
+  custom domain served from `munay-site.pages.dev`, which still works as a fallback.
+  The bare `heldbyparas.com` only 301s to `www`: the domain is registered in the client's
+  own Cloudflare account, and Pages can only serve an apex from the account owning the zone.
 - `ashdabash2926.github.io/Munay2` is a mirror. It has the same code and the same secret,
   so it renders correctly, but it only rebuilds on a push and will drift between pushes.
 
