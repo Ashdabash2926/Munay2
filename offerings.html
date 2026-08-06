@@ -105,6 +105,54 @@
     }
     .on-dark .support-list li { color: var(--muted-inv); }
     .on-dark .support-list li::before { background: var(--gold); }
+    /* ── private chef: photo bed on the left, fading into the cocoa ──
+       Mobile has no left/right to play with, so the photo backs the section
+       header instead and fades downward before the copy starts. ── */
+    .chef-figure {
+      position: absolute;
+      inset-inline-start: 0;
+      top: 0;
+      width: 100%;
+      height: 30rem;
+      overflow: hidden;
+    }
+    .chef-figure img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 52% 48%;
+      filter: brightness(.62) saturate(.9);
+      --chef-fade: linear-gradient(to bottom, #000 0%, #000 34%, transparent 96%);
+      -webkit-mask-image: var(--chef-fade);
+      mask-image: var(--chef-fade);
+    }
+    /* darken veil so the copy stays legible over the food */
+    .chef-figure::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom,
+                  rgba(36,24,17,.62) 0%, rgba(36,24,17,.58) 40%,
+                  rgba(36,24,17,.34) 74%, transparent 100%);
+    }
+    @media (min-width: 768px) {
+      .chef-figure { inset-block: 0; height: auto; width: 62%; }
+      .chef-figure img {
+        filter: brightness(.46) saturate(.85);
+        --chef-fade: linear-gradient(to right, #000 0%, #000 40%, transparent 96%);
+      }
+      .chef-figure::after {
+        background: linear-gradient(to right,
+                    rgba(36,24,17,.72) 0%, rgba(36,24,17,.66) 45%,
+                    rgba(36,24,17,.36) 76%, transparent 100%);
+      }
+      [dir="rtl"] .chef-figure img {
+        --chef-fade: linear-gradient(to left, #000 0%, #000 40%, transparent 96%);
+      }
+      [dir="rtl"] .chef-figure::after { transform: scaleX(-1); }
+    }
+    .on-dark .invite-block { color: var(--muted-inv); border-top-color: var(--border-dark); }
+
     /* mentorship cards */
     .mentor-card-active { outline: 2px solid var(--clay); outline-offset: 3px; }
 
@@ -162,8 +210,8 @@
           <article class="card reveal flex flex-col" style="--d:0.00s">
             <div class="card__media aspect-[4/5] relative">
               <img class="object-cover w-full h-full" loading="lazy"
-                   src="assets/img/Paras77.webp"
-                   alt="1:1 Embodiment Mentorship" />
+                   src="assets/img/RI-169.webp"
+                   alt="Embodiment, Empowerment &amp; Awakening Mentorship" />
             </div>
             <div class="p-6 pt-7 flex flex-col grow">
               <h3 class="text-[1.25rem] leading-snug" data-i18n="mentor.1.name"></h3>
@@ -180,7 +228,7 @@
             <div class="card__media aspect-[4/5] relative">
               <img class="object-cover w-full h-full" loading="lazy"
                    src="assets/img/RI-77.webp"
-                   alt="1:1 DNA Healing Session" />
+                   alt="DNA Healing Session" />
             </div>
             <div class="p-6 pt-7 flex flex-col grow">
               <h3 class="text-[1.25rem] leading-snug" data-i18n="mentor.2.name"></h3>
@@ -196,7 +244,7 @@
             <div class="card__media aspect-[4/5] relative">
               <img class="object-cover w-full h-full" loading="lazy"
                    src="assets/img/RI-4.webp"
-                   alt="1:1 Journey Through the Chakras" />
+                   alt="Journey Through the Chakras" />
             </div>
             <div class="p-6 pt-7 flex flex-col grow">
               <h3 class="text-[1.25rem] leading-snug" data-i18n="mentor.3.name"></h3>
@@ -213,7 +261,7 @@
             <div class="card__media aspect-[4/5] relative">
               <img class="object-cover w-full h-full" loading="lazy"
                    src="assets/img/RI-187.webp"
-                   alt="1:1 Plant Medicine Preparation & Integration Mentorship" />
+                   alt="Plant Medicine Preparation &amp; Integration Mentorship" />
             </div>
             <div class="p-6 pt-7 flex flex-col grow">
               <h3 class="text-[1.25rem] leading-snug" data-i18n="mentor.4.name"></h3>
@@ -602,35 +650,38 @@
     </section>
 
     <!-- ============ PRIVATE CHEF ============ -->
-    <section id="chef" class="bg-[var(--cream-2)] border-b border-[var(--border)]">
-      <div class="max-w-6xl mx-auto px-5 py-20 md:py-28">
+    <section id="chef" class="on-dark relative overflow-hidden border-b border-[var(--border-dark)]">
+      <div class="chef-figure" aria-hidden="true">
+        <img src="assets/img/chef-table.webp" alt="" loading="lazy" />
+      </div>
+      <div class="max-w-6xl mx-auto px-5 py-20 md:py-28 relative z-10">
 
         <!-- Section header -->
         <div class="mb-14 md:mb-18">
-          <p class="kicker reveal" data-i18n="offer.chef.kicker"></p>
-          <h2 class="reveal mt-5 text-[clamp(2rem,4.2vw,3.1rem)]" style="--d:.1s" data-i18n="offer.chef.title"></h2>
-          <p class="reveal lead mt-4" style="--d:.2s" data-i18n="offer.chef.subtitle"></p>
+          <p class="kicker kicker--gold reveal" data-i18n="offer.chef.kicker"></p>
+          <h2 class="reveal mt-5 text-[clamp(2rem,4.2vw,3.1rem)] text-[var(--text-inv)]" style="--d:.1s" data-i18n="offer.chef.title"></h2>
+          <p class="reveal lead lead--inv mt-4" style="--d:.2s" data-i18n="offer.chef.subtitle"></p>
         </div>
 
         <div class="grid md:grid-cols-2 gap-12 md:gap-20 items-start">
 
           <!-- Left: intro prose -->
           <div class="space-y-4">
-            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.05s" data-i18n="offer.chef.intro1"></p>
-            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.07s" data-i18n="offer.chef.intro2"></p>
-            <p class="reveal font-display italic text-[clamp(1.1rem,2.2vw,1.4rem)] text-[var(--text)] leading-snug" style="--d:.09s" data-i18n="offer.chef.intro3"></p>
-            <p class="reveal font-display italic text-[clamp(1.1rem,2.2vw,1.4rem)] text-[var(--text)] leading-snug" style="--d:.11s" data-i18n="offer.chef.intro4"></p>
-            <p class="reveal font-display italic text-[clamp(1.1rem,2.2vw,1.4rem)] text-[var(--text)] leading-snug" style="--d:.13s" data-i18n="offer.chef.intro5"></p>
-            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.15s" data-i18n="offer.chef.intro6"></p>
-            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.17s" data-i18n="offer.chef.intro7"></p>
-            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.19s" data-i18n="offer.chef.intro8"></p>
-            <p class="reveal text-[var(--muted)] leading-relaxed" style="--d:.21s" data-i18n="offer.chef.intro9"></p>
+            <p class="reveal text-[var(--muted-inv)] leading-relaxed" style="--d:.05s" data-i18n="offer.chef.intro1"></p>
+            <p class="reveal text-[var(--muted-inv)] leading-relaxed" style="--d:.07s" data-i18n="offer.chef.intro2"></p>
+            <p class="reveal font-display italic text-[clamp(1.1rem,2.2vw,1.4rem)] text-[var(--text-inv)] leading-snug" style="--d:.09s" data-i18n="offer.chef.intro3"></p>
+            <p class="reveal font-display italic text-[clamp(1.1rem,2.2vw,1.4rem)] text-[var(--text-inv)] leading-snug" style="--d:.11s" data-i18n="offer.chef.intro4"></p>
+            <p class="reveal font-display italic text-[clamp(1.1rem,2.2vw,1.4rem)] text-[var(--text-inv)] leading-snug" style="--d:.13s" data-i18n="offer.chef.intro5"></p>
+            <p class="reveal text-[var(--muted-inv)] leading-relaxed" style="--d:.15s" data-i18n="offer.chef.intro6"></p>
+            <p class="reveal text-[var(--muted-inv)] leading-relaxed" style="--d:.17s" data-i18n="offer.chef.intro7"></p>
+            <p class="reveal text-[var(--muted-inv)] leading-relaxed" style="--d:.19s" data-i18n="offer.chef.intro8"></p>
+            <p class="reveal text-[var(--muted-inv)] leading-relaxed" style="--d:.21s" data-i18n="offer.chef.intro9"></p>
           </div>
 
           <!-- Right: available for + invite -->
           <div class="space-y-8">
             <div>
-              <p class="reveal text-[.8rem] font-semibold tracking-[.18em] uppercase text-[var(--text)] mb-4" data-i18n="offer.chef.availableTitle"></p>
+              <p class="reveal text-[.8rem] font-semibold tracking-[.18em] uppercase text-[var(--text-inv)] mb-4" data-i18n="offer.chef.availableTitle"></p>
               <ul class="support-list reveal" style="--d:.08s">
                 <li><span data-i18n="offer.chef.a1"></span></li>
                 <li><span data-i18n="offer.chef.a2"></span></li>
