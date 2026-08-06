@@ -374,13 +374,11 @@ html[lang="fa"] .hero__counter { -webkit-text-stroke: 0; color: rgba(226,188,125
   --hero-fade-b: 40%;      /* image is fully opaque from         */
   --hero-obj-x: 52%;       /* focal point within the photo       */
   --hero-obj-y: 28%;
-  --hero-thumb-w: 11rem;   /* the small overlapping photo        */
 }
 .hero-section { min-height: var(--hero-h); }
 .hero-figure { width: 100%; }
 @media (min-width: 640px) { .hero-figure { width: var(--hero-fig-w-sm); } }
 @media (min-width: 768px) { .hero-figure { width: var(--hero-fig-w); } }
-.hero-thumb { width: var(--hero-thumb-w); }
 .hero-portrait {
   object-position: var(--hero-obj-x) var(--hero-obj-y);
   --hero-fade-mid: calc(var(--hero-fade-a) + (var(--hero-fade-b) - var(--hero-fade-a)) * .35);
