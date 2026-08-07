@@ -8,7 +8,7 @@ Trilingual: English / Español / فارسی (with true RTL layout for Farsi). El
 
 | File | Purpose |
 |------|---------|
-| `index.html` | Home — hero, philosophy, testimonial |
+| `index.html` | Home — hero, philosophy, client reviews carousel generated at build time from a Google Sheet she edits herself (see `lib/reviews.mjs`) |
 | `about.html` | About Parastoo — story, approach, method |
 | `offerings.html` | Services: 1:1 mentorship, The Embodied Plant Medicine Method™, bodywork, psilocybin ceremony, private chef |
 | `retreats.html` | Upcoming retreats — evergreen page, cards generated at build time from a Google Sheet she edits herself (see `lib/retreats.mjs`) |
@@ -29,13 +29,34 @@ Trilingual: English / Español / فارسی (with true RTL layout for Farsi). El
 npm install
 npm run build   # outputs to _site/
 npm run dev     # Eleventy watch + local server
+npm test        # node --test over test/*.test.mjs
 ```
+
+Two sheet-driven sections read a Google Sheet at build time. Both env vars are optional:
+unset, each section renders its evergreen fallback, so a plain `npm run build` works with
+no network access. Both accept a local file path, which is how the fixtures drive dev:
+
+```bash
+RETREATS_SHEET_URL=docs/fixtures/retreats-sample.csv \
+REVIEWS_SHEET_URL=docs/fixtures/reviews-sample.csv \
+npm run dev
+```
+
+| Env var | Feeds | Sheet tab | Fallback when unset |
+|---|---|---|---|
+| `RETREATS_SHEET_URL` | `retreats.html` cards (`lib/retreats.mjs`) | `Retreats` | "new dates announced soon" block |
+| `REVIEWS_SHEET_URL` | `index.html` reviews carousel (`lib/reviews.mjs`) | `Reviews` | the evergreen holding quote |
+
+Each is set in **two** places, never committed: Cloudflare Pages environment variables,
+and as a GitHub Actions secret on the public mirror repo. They are separate URLs because
+each carries its own tab `gid`. A sheet that is reachable but damaged throws and fails the
+build deliberately, which leaves the previous deploy live.
 
 ## Placeholders to replace before launch
 
 - [ ] **Real session prices & durations** — no prices are shown anywhere yet; only the 90-min bodywork sessions carry a duration. Add prices/durations once confirmed
 - [ ] **In-person city / location** — currently "in person & online"; add real city once confirmed
-- [ ] **Real testimonials** — home page uses a holding quote
+- [ ] **Real testimonials** — the home page carousel is built and waiting; it needs the `Reviews` tab created in her spreadsheet and `REVIEWS_SHEET_URL` set (see `docs/reviews-sheet-guide.md`). Until then the home page shows a holding quote
 - [ ] **Photography** — ceremony, method, retreat, and private chef sections need real Parastoo images; `assets/og.jpg` should be re-shot as a Parastoo-branded OG card
 - [ ] **Contact form action** — `contact.html` form `action` is `#`; wire to Formspree, Cloudflare Worker, etc.
 - [ ] **Native ES / FA translation review** — have a fluent speaker check the Spanish and Farsi copy
@@ -127,8 +148,9 @@ GitHub Pages at `ashdabash2926.github.io/Munay2` is a **mirror**, built by
 `.github/workflows/deploy.yml` in the public repo `Ashdabash2926/Munay2` (remote
 `public-old`). Push both remotes when deploying by hand.
 
-Cloudflare is canonical for a specific reason: the client publishes her retreats from a
-Google Sheet, and the Publish button in that sheet fires a Cloudflare Pages deploy hook.
+Cloudflare is canonical for a specific reason: the client publishes her retreats and her
+reviews from a Google Sheet, and the Publish button in that sheet fires a Cloudflare Pages
+deploy hook.
 A deploy hook can only start a Cloudflare build, so **only the Cloudflare copy updates
 when she publishes**. The mirror lags until someone pushes. If she ever reports that she
 published and nothing changed, check which URL she is looking at before anything else.

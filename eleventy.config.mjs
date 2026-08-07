@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { buildDict } from "./lib/i18n-dict.mjs";
 import { loadRetreats } from "./lib/retreats.mjs";
+import { loadReviews } from "./lib/reviews.mjs";
 
 const escapeText = (s) =>
   String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -19,6 +20,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("js/site.js");
   eleventyConfig.addPassthroughCopy("js/moments-wall.js");
   eleventyConfig.addPassthroughCopy("js/values-constellation.js");
+  eleventyConfig.addPassthroughCopy("js/reviews-carousel.js");
   eleventyConfig.addWatchTarget("content/");
 
   // keep repo image paths relative (no leading slash) so the site works at a
@@ -32,6 +34,13 @@ export default function (eleventyConfig) {
   // Unset RETREATS_SHEET_URL renders the evergreen empty state; a damaged
   // sheet throws, which fails the build and leaves the last deploy live.
   eleventyConfig.addGlobalData("retreats", () => loadRetreats());
+
+  // Client reviews, read from a second tab of the same sheet. Unset
+  // REVIEWS_SHEET_URL renders the evergreen fallback quote on the home page;
+  // a damaged sheet throws, which fails the build and leaves the last deploy
+  // live. Review text is never translated, so nothing here touches the i18n
+  // dictionary the way retreat dates do.
+  eleventyConfig.addGlobalData("reviews", () => loadReviews());
 
   // Prerender the default-language (English) copy into the HTML at build time so
   // crawlers / no-JS visitors see real content. The client-side js/i18n.js still

@@ -25,7 +25,7 @@ copy. Two share the width, three or more take a third each.
   Column I holds her instructions.
 - Bound Apps Script "Munay retreats publish" adds a **Munay** menu with **Publish to
   website**. It validates every row and refuses to publish, naming the bad row, before
-  firing the deploy hook. A copy of the script lives at `docs/retreats-publish.gs`.
+  firing the deploy hook. A copy of the script lives at `docs/publish.gs`.
 - `RETREATS_SHEET_URL` set as a Cloudflare Pages environment variable and as a GitHub
   Actions secret on the public repo. Never committed.
 - Cloudflare deploy hook "Sheet publish" on `main`, stored in the script's Script
@@ -94,5 +94,5 @@ so her other retreats still publish.
 - Design: `docs/superpowers/specs/2026-07-28-upcoming-retreats-design.md`
 - Plan: `docs/superpowers/plans/2026-07-28-upcoming-retreats.md`
 - Her guide: `docs/retreats-sheet-guide.md`
-- Sheet script: `docs/retreats-publish.gs`
+- Sheet script: `docs/publish.gs`
 - Deploy notes: `README.md`

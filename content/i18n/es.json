@@ -186,8 +186,21 @@
     },
     "testimonial": {
       "quote": "La sanación no es algo que te ocurre. Es algo que se despliega cuando el cuerpo finalmente se siente suficientemente seguro para soltar.",
-      "name": "— Parastoo · palabras de clientas próximamente",
-      "google": "Lee las reseñas en Google"
+      "name": "— Parastoo · palabras de clientas próximamente"
+    },
+    "reviews": {
+      "kicker": "En sus palabras",
+      "title": "Lo que dicen",
+      "prev": "Reseñas anteriores",
+      "next": "Más reseñas",
+      "page": "Página de reseñas",
+      "stars": {
+        "1": "1 de 5 estrellas",
+        "2": "2 de 5 estrellas",
+        "3": "3 de 5 estrellas",
+        "4": "4 de 5 estrellas",
+        "5": "5 de 5 estrellas"
+      }
     },
     "cta": {
       "title": "Vuelve a casa, a ti misma.",

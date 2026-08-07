@@ -186,8 +186,21 @@
     },
     "testimonial": {
       "quote": "Healing is not something that happens to you. It is something that unfolds when the body finally feels safe enough to let go.",
-      "name": "— Parastoo · client words coming soon",
-      "google": "Read reviews on Google"
+      "name": "— Parastoo · client words coming soon"
+    },
+    "reviews": {
+      "kicker": "In their words",
+      "title": "What people say",
+      "prev": "Previous reviews",
+      "next": "More reviews",
+      "page": "Reviews page",
+      "stars": {
+        "1": "1 out of 5 stars",
+        "2": "2 out of 5 stars",
+        "3": "3 out of 5 stars",
+        "4": "4 out of 5 stars",
+        "5": "5 out of 5 stars"
+      }
     },
     "cta": {
       "title": "Come home to yourself.",

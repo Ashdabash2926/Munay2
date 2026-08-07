@@ -204,7 +204,51 @@
       </div>
     </section>
 
-    <!-- ============ TESTIMONIAL ============ -->
+    <!-- ============ REVIEWS ============
+         Cards come from the Reviews tab of the client's Google Sheet at build
+         time (lib/reviews.mjs). Review text and names are her clients' own
+         words, so they render as written in every language and carry no
+         data-i18n. With no reviews in the sheet the evergreen quote below
+         renders instead, so the page never has a hole here.
+         Spec: docs/superpowers/specs/2026-08-07-client-reviews-design.md -->
+    {% if reviews.length %}
+    <section class="max-w-6xl mx-auto px-5 py-16 md:py-24">
+      <div class="text-center max-w-2xl mx-auto">
+        <div class="chakana reveal" aria-hidden="true">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+            <circle cx="12" cy="12" r="3.4"/><path d="M12 2v3.4M12 18.6V22M2 12h3.4M18.6 12H22M4.9 4.9l2.4 2.4M16.7 16.7l2.4 2.4M19.1 4.9l-2.4 2.4M7.3 16.7l-2.4 2.4"/></svg>
+        </div>
+        <p class="kicker kicker--center reveal justify-center mt-8" style="--d:.08s" data-i18n="home.reviews.kicker"></p>
+        <h2 class="reveal mt-5 text-[clamp(2rem,4.4vw,3.2rem)]" style="--d:.14s" data-i18n="home.reviews.title"></h2>
+      </div>
+
+      <div class="reviews reveal mt-14" style="--d:.2s" data-reviews>
+        <ul class="reviews__track" role="list" data-reviews-track>
+          {% for r in reviews %}
+          <li class="reviews__item">
+            <article class="card h-full p-7 sm:p-8 flex flex-col">
+              <p class="reviews__stars" aria-hidden="true">
+                {% for i in [1,2,3,4,5] %}
+                <svg viewBox="0 0 24 24" class="{% if i <= r.stars %}is-filled{% endif %}"
+                     fill="currentColor" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round">
+                  <path d="M12 3.2l2.6 5.5 5.9.8-4.3 4.2 1.05 6-5.25-2.85L6.75 19.7l1.05-6L3.5 9.5l5.9-.8z"/>
+                </svg>
+                {% endfor %}
+              </p>
+              <span class="sr-only" data-i18n="home.reviews.stars.{{ r.stars }}"></span>
+              <blockquote class="mt-5 font-display text-[1.12rem] sm:text-[1.2rem] leading-snug font-[420] text-[var(--text)]">
+                {{ r.text }}
+              </blockquote>
+              <p class="mt-auto pt-7 text-[.78rem] font-semibold tracking-[.2em] uppercase text-[var(--muted)]">
+                {{ r.name }}
+              </p>
+            </article>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+    {% else %}
     <section class="max-w-3xl mx-auto px-5 py-16 md:py-24 text-center">
       <div class="chakana reveal" aria-hidden="true">
         <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
@@ -214,10 +258,8 @@
                   style="--d:.12s" data-i18n="home.testimonial.quote"></blockquote>
       <p class="reveal mt-7 text-[.8rem] font-semibold tracking-[.22em] uppercase text-[var(--muted)]"
          style="--d:.24s" data-i18n="home.testimonial.name"></p>
-      <!-- TODO: replace # with the Google Business reviews URL when available -->
-      <a href="#" class="reveal link-line inline-block mt-6 text-[.82rem] font-semibold tracking-[.2em] uppercase text-[var(--clay)]"
-         style="--d:.32s" data-i18n="home.testimonial.google"></a>
     </section>
+    {% endif %}
 
     <!-- ============ CLOSING CTA ============ -->
     <section class="on-dark relative overflow-hidden">
@@ -238,5 +280,6 @@
   <div id="site-footer"></div>
   <script src="js/i18n.js"></script>
   <script src="js/site.js"></script>
+  {% if reviews.length %}<script src="js/reviews-carousel.js" defer></script>{% endif %}
 </body>
 </html>

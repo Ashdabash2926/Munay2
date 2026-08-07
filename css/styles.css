@@ -689,6 +689,67 @@ html[lang="fa"] .num-ghost { -webkit-text-stroke: 0; color: var(--clay-light); o
   }
 }
 
+/* ---------- reviews carousel ----------
+   The track is a real horizontally-scrolling element with scroll-snap, so
+   mobile swipe and keyboard scrolling come from the browser and js only adds
+   the arrows, the dots and the autoplay. Without js the section degrades to a
+   scrollable strip rather than a single stuck card.
+   Logical properties throughout (padding-inline, inset-inline) so Farsi
+   mirrors without an [dir="rtl"] override. */
+.reviews { position: relative; }
+.reviews__track {
+  display: flex; gap: 1.75rem;
+  overflow-x: auto; overscroll-behavior-inline: contain;
+  scroll-snap-type: x mandatory;
+  /* Room for the cards' hover lift and shadow, which would otherwise clip.
+     Block-axis only, deliberately: horizontal padding offsets every snap
+     position by its own width, which puts the scroll targets the script
+     computes permanently out of step with where the browser wants to rest. */
+  padding-block: .5rem 1.5rem; margin-block: -.5rem -1.5rem;
+  scrollbar-width: none;
+  /* Deliberately no scroll-behavior: smooth. It would apply to every
+     scrollLeft write, including the per-frame ones js/reviews-carousel.js
+     makes to ease the track along, turning each into its own queued animation
+     chasing the last. The easing lives in that file instead, which also keeps
+     RTL (where every position is a negative scrollLeft) on exactly the same
+     code path as LTR. */
+}
+.reviews__track::-webkit-scrollbar { display: none; }
+.reviews__item { flex: 0 0 100%; scroll-snap-align: start; display: flex; }
+.reviews__item > .card { width: 100%; }
+@media (min-width: 640px) { .reviews__item { flex-basis: calc((100% - 1.75rem) / 2); } }
+@media (min-width: 1024px) { .reviews__item { flex-basis: calc((100% - 3.5rem) / 3); } }
+
+/* hover-lifting a card mid-swipe fights the scroll, and there is no hover to
+   speak of on the devices that swipe */
+@media (hover: none) { .reviews__item > .card:hover { transform: none; box-shadow: var(--shadow-soft); } }
+
+.reviews__stars { display: flex; gap: .3rem; color: var(--gold); }
+.reviews__stars svg { width: 1.05rem; height: 1.05rem; fill: none; opacity: .35; }
+.reviews__stars svg.is-filled { fill: currentColor; opacity: 1; }
+
+.reviews__nav { display: flex; align-items: center; justify-content: center; gap: 1.25rem; margin-top: 2.5rem; }
+.reviews__arrow {
+  width: 2.75rem; height: 2.75rem; flex: none;
+  display: grid; place-items: center;
+  border: 1px solid var(--border); border-radius: 50%;
+  background: transparent; color: var(--muted); cursor: pointer;
+  transition: color .3s var(--ease-out), border-color .3s var(--ease-out), background-color .3s var(--ease-out);
+}
+.reviews__arrow:hover { color: var(--clay); border-color: var(--clay-light); background: #fffdf9; }
+.reviews__arrow svg { width: 1.1rem; height: 1.1rem; }
+/* the chevrons point along the reading direction, so mirror them for Farsi */
+[dir="rtl"] .reviews__arrow svg { transform: scaleX(-1); }
+
+.reviews__dots { display: flex; align-items: center; gap: .55rem; }
+.reviews__dot {
+  width: .5rem; height: .5rem; padding: 0; flex: none;
+  border: 0; border-radius: 50%; background: var(--border);
+  cursor: pointer; transition: background-color .3s var(--ease-out), transform .3s var(--ease-out);
+}
+.reviews__dot:hover { background: var(--clay-light); }
+.reviews__dot[aria-current="true"] { background: var(--clay); transform: scale(1.35); }
+
 /* ---------- RTL fine-tuning ---------- */
 [dir="rtl"] .flip-x { transform: scaleX(-1); }
 [dir="rtl"] .kicker { letter-spacing: .06em; }
@@ -706,4 +767,6 @@ html[lang="fa"] .num-ghost { -webkit-text-stroke: 0; color: var(--clay-light); o
   .hero__depth { transform: none !important; transition: none; }
   .rotator .hr-word { transition: none; filter: none; }
   .card, .card__media img, .btn, .pillar-row, .chip { transition: none; }
+  /* js also skips autoplay and jumps rather than animates under this query */
+  .reviews__dot, .reviews__arrow { transition: none; }
 }

@@ -59,6 +59,61 @@ test("the page no longer names one retreat", () => {
   assert.doesNotMatch(html, /Atitl|December 17|The Way Home/);
 });
 
+// Reviews are a separate sheet on the home page, so they get their own helper:
+// both env vars are set explicitly, never inherited, or a REVIEWS_SHEET_URL
+// left in the developer's shell would quietly decide which branch is tested.
+const buildHome = (reviewsFixture) => {
+  execFileSync("npx", ["@11ty/eleventy"], {
+    env: {
+      ...process.env,
+      RETREATS_SHEET_URL: "docs/fixtures/retreats-empty.csv",
+      RETREATS_TODAY: "2026-07-28",
+      ...(reviewsFixture
+        ? { REVIEWS_SHEET_URL: reviewsFixture }
+        : { REVIEWS_SHEET_URL: "" }),
+    },
+    stdio: "pipe",
+  });
+  return readFileSync("_site/index.html", "utf8");
+};
+
+test("a sheet with reviews renders the carousel instead of the holding quote", () => {
+  const html = buildHome("docs/fixtures/reviews-sample.csv");
+  assert.match(html, /data-reviews-track/);
+  assert.match(html, /Parastoo held the space so gently/);
+  assert.match(html, /SARAH M\.|Sarah M\./);
+  // the carousel's behaviour is only shipped on the branch that needs it
+  assert.match(html, /js\/reviews-carousel\.js/);
+  // the holding quote and its dead Google link are both gone
+  assert.doesNotMatch(html, /Healing is not something that happens to you/);
+  assert.doesNotMatch(html, /home\.testimonial\.google/);
+  // section chrome is translatable, the reviews themselves are not
+  assert.match(html, /data-i18n="home\.reviews\.title">What people say</);
+  assert.doesNotMatch(html, /data-i18n="[^"]*"[^>]*>Parastoo held the space/);
+});
+
+test("star ratings render as filled icons and a screen-reader label", () => {
+  const html = buildHome("docs/fixtures/reviews-sample.csv");
+  const cards = html.split('<li class="reviews__item">').slice(1);
+  assert.equal(cards.length, 6);
+  const filled = (card) => (card.match(/class="is-filled"/g) || []).length;
+  // the fixture's fifth review is the only four-star one
+  assert.equal(filled(cards[0]), 5);
+  assert.equal(filled(cards[4]), 4);
+  assert.match(cards[4], /data-i18n="home\.reviews\.stars\.4">4 out of 5 stars</);
+  // five icons are always drawn, the empty ones included
+  for (const card of cards) {
+    assert.equal((card.match(/<svg viewBox="0 0 24 24"/g) || []).length, 5);
+  }
+});
+
+test("no reviews falls back to the holding quote and ships no carousel", () => {
+  const html = buildHome(null);
+  assert.doesNotMatch(html, /data-reviews-track/);
+  assert.doesNotMatch(html, /js\/reviews-carousel\.js/);
+  assert.match(html, /Healing is not something that happens to you/);
+});
+
 test("every script the pages load is actually copied into the build", () => {
   // Passthrough copy is per-file here, so adding a <script> without adding a
   // matching addPassthroughCopy ships a page that 404s its own behaviour.

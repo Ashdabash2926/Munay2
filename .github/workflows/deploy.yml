@@ -30,6 +30,10 @@ jobs:
           # secret, never committed: this repo is public. Unset, the retreats
           # page renders its evergreen "new dates announced soon" block.
           RETREATS_SHEET_URL: ${{ secrets.RETREATS_SHEET_URL }}
+          # The Reviews tab of the same spreadsheet, so it carries that tab's
+          # own gid. Unset, the home page renders its evergreen quote instead
+          # of the reviews carousel.
+          REVIEWS_SHEET_URL: ${{ secrets.REVIEWS_SHEET_URL }}
       - uses: actions/upload-pages-artifact@v5
         with:
           path: _site
