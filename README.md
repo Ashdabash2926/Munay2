@@ -48,15 +48,17 @@ npm run dev
 | `REVIEWS_SHEET_URL` | `index.html` reviews carousel (`lib/reviews.mjs`) | `Reviews` | the evergreen holding quote |
 
 Each is set in **two** places, never committed: Cloudflare Pages environment variables,
-and as a GitHub Actions secret on the public mirror repo. They are separate URLs because
-each carries its own tab `gid`. A sheet that is reachable but damaged throws and fails the
-build deliberately, which leaves the previous deploy live.
+and as a GitHub Actions secret on the public mirror repo. Both are `gviz` CSV exports of
+the same spreadsheet, differing only in the `sheet=` tab name. A sheet that is reachable
+but damaged throws and fails the build deliberately, which leaves the previous deploy live.
+
+Both are set as of 2026-08-07, in Cloudflare Pages and on `Ashdabash2926/Munay2`.
 
 ## Placeholders to replace before launch
 
 - [ ] **Real session prices & durations** — no prices are shown anywhere yet; only the 90-min bodywork sessions carry a duration. Add prices/durations once confirmed
 - [ ] **In-person city / location** — currently "in person & online"; add real city once confirmed
-- [ ] **Real testimonials** — the home page carousel is built and waiting; it needs the `Reviews` tab created in her spreadsheet and `REVIEWS_SHEET_URL` set (see `docs/reviews-sheet-guide.md`). Until then the home page shows a holding quote
+- [ ] **Real testimonials** — the carousel is wired end to end: `Reviews` tab created, `REVIEWS_SHEET_URL` set in both places, publish button validating it. All it needs now is actual reviews in the tab; with none, the home page shows the holding quote (see `docs/reviews-sheet-guide.md`)
 - [ ] **Photography** — ceremony, method, retreat, and private chef sections need real Parastoo images; `assets/og.jpg` should be re-shot as a Parastoo-branded OG card
 - [ ] **Contact form action** — `contact.html` form `action` is `#`; wire to Formspree, Cloudflare Worker, etc.
 - [ ] **Native ES / FA translation review** — have a fluent speaker check the Spanish and Farsi copy

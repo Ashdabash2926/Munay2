@@ -30,6 +30,11 @@ copy. Two share the width, three or more take a third each.
   Actions secret on the public repo. Never committed.
 - Cloudflare deploy hook "Sheet publish" on `main`, stored in the script's Script
   properties as `DEPLOY_HOOK_URL`.
+- A second tab **Reviews** (`Name | Review | Stars`, 1-5 dropdown on Stars, instructions
+  in column E) feeds the home page carousel. `REVIEWS_SHEET_URL` set in the same two
+  places as of 2026-08-07, and `docs/publish.gs` re-pasted so the button validates both
+  tabs in one click. Verified by a hook-triggered build logging `[reviews] 0 review(s).`
+  The tab is empty, so the home page still shows the holding quote until she adds one.
 
 ## The one structural thing to understand
 
@@ -93,6 +98,6 @@ so her other retreats still publish.
 
 - Design: `docs/superpowers/specs/2026-07-28-upcoming-retreats-design.md`
 - Plan: `docs/superpowers/plans/2026-07-28-upcoming-retreats.md`
-- Her guide: `docs/retreats-sheet-guide.md`
+- Her guides: `docs/retreats-sheet-guide.md`, `docs/reviews-sheet-guide.md`
 - Sheet script: `docs/publish.gs`
 - Deploy notes: `README.md`
