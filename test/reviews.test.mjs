@@ -5,7 +5,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import {
   COLUMNS, MAX_REVIEWS, MAX_REVIEW_CHARS, MAX_NAME_CHARS,
-  buildReviews, loadReviews, resetReviewsCache,
+  buildReviews, loadReviews, resetReviewsCache, tabCandidates,
 } from "../lib/reviews.mjs";
 import { parseCsv } from "../lib/retreats.mjs";
 
@@ -267,5 +267,34 @@ test("loadReviews names the real cause when sharing is off and Google returns a 
 
 test("buildReviews says the tab is missing when Google sent the Retreats tab instead", () => {
   const retreatsHeader = ["Name", "Start", "End", "Location", "Cost", "Link", "Image", "Status"];
-  assert.throws(() => buildReviews([retreatsHeader]), /"Reviews" tab could not be found/);
+  assert.throws(() => buildReviews([retreatsHeader]), /testimonials tab could not be found/);
+});
+
+test("buildReviews reads a Testimonial column as the review text", () => {
+  const { reviews } = buildReviews([["Name", "Testimonial", "Stars"], ["Lara", "Lovely.", "5"]]);
+  assert.deepEqual(reviews.map((r) => [r.name, r.text]), [["Lara", "Lovely."]]);
+});
+
+test("tabCandidates tries the other tab name on a gviz URL only", () => {
+  const base = "https://docs.google.com/spreadsheets/d/X/gviz/tq?tqx=out:csv&sheet=Reviews";
+  assert.deepEqual(tabCandidates(base), [base, base.replace("sheet=Reviews", "sheet=Testimonials")]);
+  assert.deepEqual(tabCandidates("docs/fixtures/reviews-sample.csv"), ["docs/fixtures/reviews-sample.csv"]);
+});
+
+test("loadReviews falls through to the Testimonials tab when Reviews is missing", async () => {
+  resetReviewsCache();
+  const seen = [];
+  const fetchImpl = async (url) => {
+    seen.push(url);
+    const csv = url.includes("sheet=Testimonials")
+      ? "Name,Review,Stars\nLara,Held with such care.,5\n"
+      : "Name,Start,End,Location,Cost,Link,Image,Status\n";
+    return { ok: true, status: 200, text: async () => csv };
+  };
+  const reviews = await loadReviews({
+    url: "https://docs.google.com/spreadsheets/d/X/gviz/tq?tqx=out:csv&sheet=Reviews", fetchImpl,
+  });
+  assert.deepEqual(reviews.map((r) => r.name), ["Lara"]);
+  assert.equal(seen.length, 2);
+  resetReviewsCache();
 });

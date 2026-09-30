@@ -6,7 +6,7 @@
  * properties, with the key DEPLOY_HOOK_URL. The hook never appears in this
  * file, so the script can be shared or copied safely.
  *
- * Covers two tabs: "Retreats" (required) and "Reviews" (optional, skipped
+ * Covers two tabs: "Retreats" (required) and "Reviews" or "Testimonials" (optional, skipped
  * entirely when the tab does not exist, so this can be pasted before the tab
  * is created).
  *
@@ -23,6 +23,8 @@ var HOOK_PROPERTY = 'DEPLOY_HOOK_URL';
 
 var REVIEWS_SHEET_NAME = 'Reviews';
 var REVIEW_COLUMNS = ['Name', 'Review', 'Stars'];
+// A "Testimonial" heading counts as Review, as in lib/reviews.mjs.
+var REVIEW_ALIASES = { testimonial: 'review' };
 // Mirrors MAX_REVIEW_CHARS / MAX_NAME_CHARS in lib/reviews.mjs.
 var MAX_REVIEW_CHARS = 400;
 var MAX_REVIEW_NAME_CHARS = 60;
@@ -153,23 +155,18 @@ function findProblems_() {
  * installed before the tab exists without breaking the button.
  */
 function findReviewProblems_() {
-  var sheet = SpreadsheetApp.getActive().getSheetByName(REVIEWS_SHEET_NAME);
-  if (!sheet) {
-    // A renamed tab is the dangerous case: the website then reads the Retreats
-    // tab as reviews and refuses to publish. Catch anything that looks like it.
-    var renamed = SpreadsheetApp.getActive().getSheets().filter(function (s) {
-      return /review|testimonial/i.test(s.getName());
-    })[0];
-    return renamed
-      ? ['The reviews tab is called "' + renamed.getName() + '". Please rename it to exactly ' +
-         REVIEWS_SHEET_NAME + ' (double-click the tab name at the bottom), then publish again.']
-      : [];
-  }
+  // Mirrors TAB_NAMES in lib/reviews.mjs: either name works.
+  var sheet = SpreadsheetApp.getActive().getSheetByName(REVIEWS_SHEET_NAME) ||
+    SpreadsheetApp.getActive().getSheetByName('Testimonials');
+  if (!sheet) return [];
 
   var values = sheet.getDataRange().getDisplayValues();
   if (!values.length) return [];
 
-  var header = values[0].map(function (h) { return String(h).trim().toLowerCase(); });
+  var header = values[0].map(function (h) {
+    var name = String(h).trim().toLowerCase();
+    return REVIEW_ALIASES[name] || name;
+  });
   var missing = REVIEW_COLUMNS.filter(function (c) { return header.indexOf(c.toLowerCase()) === -1; });
   if (missing.length) {
     return ['The Reviews tab heading row is missing: ' + missing.join(', ') +
