@@ -264,3 +264,8 @@ test("loadReviews names the real cause when sharing is off and Google returns a 
     resetReviewsCache();
   }
 });
+
+test("buildReviews says the tab is missing when Google sent the Retreats tab instead", () => {
+  const retreatsHeader = ["Name", "Start", "End", "Location", "Cost", "Link", "Image", "Status"];
+  assert.throws(() => buildReviews([retreatsHeader]), /"Reviews" tab could not be found/);
+});

@@ -154,7 +154,17 @@ function findProblems_() {
  */
 function findReviewProblems_() {
   var sheet = SpreadsheetApp.getActive().getSheetByName(REVIEWS_SHEET_NAME);
-  if (!sheet) return [];
+  if (!sheet) {
+    // A renamed tab is the dangerous case: the website then reads the Retreats
+    // tab as reviews and refuses to publish. Catch anything that looks like it.
+    var renamed = SpreadsheetApp.getActive().getSheets().filter(function (s) {
+      return /review|testimonial/i.test(s.getName());
+    })[0];
+    return renamed
+      ? ['The reviews tab is called "' + renamed.getName() + '". Please rename it to exactly ' +
+         REVIEWS_SHEET_NAME + ' (double-click the tab name at the bottom), then publish again.']
+      : [];
+  }
 
   var values = sheet.getDataRange().getDisplayValues();
   if (!values.length) return [];
