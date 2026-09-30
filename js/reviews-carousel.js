@@ -1,40 +1,43 @@
-/* Parastoo — home page reviews carousel.
+/* Parastoo — home page reviews marquee.
 
    Client reviews come from her Google Sheet at build time (lib/reviews.mjs),
-   so every card is already in the HTML inside a scroll-snapping track.
+   so every card is already in the HTML inside a natively scrolling track.
+   This script turns that track into a slow, continuous, endless drift.
 
    Deliberate constraints:
    - vanilla, no libraries (house rule for the client sites)
-   - the track scrolls natively, so swipe, trackpad and keyboard scrolling all
-     work with this file absent, blocked or broken. This script only adds the
-     arrows, the dots and the autoplay; it never creates the reviews.
-   - page geometry is measured off live boxes rather than assumed from the
-     breakpoints in styles.css, so the two can never drift
-   - the Farsi switch flips html.dir with no page reload, so scroll direction
-     is resolved at call time and never cached
-   - autoplay stops for good on the first real interaction. A carousel that
-     keeps yanking itself out from under someone mid-read is worse than one
-     that simply stopped.
+   - with this file absent, blocked or broken, or under prefers-reduced-motion,
+     the track stays a plain swipeable strip; this script never creates reviews
+   - the loop is seamless because the cards are cloned once or more after the
+     originals and the track wraps by exactly one set's width. The clones are
+     aria-hidden and inert, so a screen reader meets each review once
+   - driven by requestAnimationFrame rather than a CSS animation, so a pause
+     stops on the spot and resumes from the same place, and speed stays the
+     same whatever the number of cards
+   - the Farsi switch flips html.dir with no page reload, so the direction and
+     geometry are re-read whenever it changes, never cached across it
+   - motion that runs for more than five seconds needs a way to stop it
+     (WCAG 2.2.2), hence hover/focus/touch pausing and the pause button
 */
 (function () {
   var root = document.querySelector("[data-reviews]");
   if (!root) return;
   var track = root.querySelector("[data-reviews-track]");
   if (!track) return;
-  var items = Array.prototype.slice.call(track.children);
-  if (items.length < 2) return;
+  var originals = Array.prototype.slice.call(track.children);
+  if (!originals.length) return;
 
-  var AUTOPLAY_MS = 7000;
+  var SPEED = 32; // px per second: slow enough to read a card as it passes
+  var GAP_REM = 1.75; // matches the gap on .reviews__track in styles.css
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   /* ---------- labels ----------
-     These are aria-labels, and the shared i18n runtime only substitutes
-     textContent, so they are read from the dictionary by hand. The English
-     defaults are the last resort for a visitor whose js/i18n.js never loaded. */
+     aria-labels, and the shared i18n runtime only substitutes textContent, so
+     they are read from the dictionary by hand. The English defaults are the
+     last resort for a visitor whose js/i18n.js never loaded. */
   var FALLBACK = {
-    "home.reviews.prev": "Previous reviews",
-    "home.reviews.next": "More reviews",
-    "home.reviews.page": "Reviews page",
+    "home.reviews.pause": "Pause reviews",
+    "home.reviews.play": "Play reviews",
   };
 
   function t(key) {
@@ -47,278 +50,170 @@
     return FALLBACK[key] || key;
   }
 
-  /* ---------- geometry ----------
-     step is the distance between two cards' leading edges, which folds in the
-     flex gap without having to parse it back out of the computed style.
-     offsetLeft runs right-to-left in RTL, hence the abs throughout. */
-  var step = 0;
-  var perPage = 1;
-  var pages = 1;
-
-  function measure() {
-    step = Math.abs(items[1].offsetLeft - items[0].offsetLeft) || items[0].offsetWidth;
-    perPage = Math.max(1, Math.round(track.clientWidth / step));
-    pages = Math.max(1, Math.ceil(items.length / perPage));
-  }
-
-  /* Browsers report scrollLeft as negative-going in RTL. Everything below
-     works in "distance travelled from the start", which is positive in both
-     directions, and only converts back at the moment of scrolling. */
   function isRtl() {
     return (document.documentElement.dir || "").toLowerCase() === "rtl";
   }
-  function scrolled() {
-    return Math.abs(track.scrollLeft);
-  }
-  function maxScroll() {
-    return Math.max(0, track.scrollWidth - track.clientWidth);
-  }
 
-  /* Distance from the start to a card, taken from the card itself rather than
-     multiplied out of step, so a target always lands exactly on the snap
-     position the browser would have chosen and never a pixel beside it. */
-  function offsetOf(index) {
-    var i = Math.min(items.length - 1, Math.max(0, index));
-    return Math.min(maxScroll(), Math.abs(items[i].offsetLeft - items[0].offsetLeft));
-  }
+  /* ---------- geometry ----------
+     Cards per view mirror the old carousel's breakpoints; on a phone a sliver
+     of the next card shows, which tells the eye the row keeps going. */
+  var clones = [];
+  var distance = 0; // one full set of originals, gap included
+  var offset = 0;
 
-  function currentPage() {
-    var max = maxScroll();
-    // The final page is short whenever the cards do not divide evenly, so its
-    // scroll target is clamped and would otherwise round to the page before.
-    if (max > 0 && scrolled() >= max - 2) return pages - 1;
-    var pageWidth = step * perPage;
-    if (!pageWidth) return 0;
-    return Math.min(pages - 1, Math.max(0, Math.round(scrolled() / pageWidth)));
+  function perView() {
+    if (window.matchMedia("(min-width: 1024px)").matches) return 3;
+    if (window.matchMedia("(min-width: 640px)").matches) return 2;
+    return 1.15;
   }
 
-  /* ---------- scrolling ----------
-     The easing is done here rather than handed to CSS scroll-behavior, so RTL
-     (where every scroll position is a negative scrollLeft) runs exactly the
-     same code as LTR, and so an animation can be cut short and settled at any
-     moment - on a direction flip, or when the tab is hidden and stops serving
-     frames.
+  function layout() {
+    var gap = GAP_REM * parseFloat(getComputedStyle(document.documentElement).fontSize);
+    var view = perView();
+    var width = (root.clientWidth - gap * (Math.ceil(view) - 1)) / view;
+    root.style.setProperty("--review-w", width + "px");
 
-     Snap is suspended for the duration: mandatory snap treats the intermediate
-     positions as places to rest and drags the track back to the nearest card
-     mid-flight. */
-  var DURATION_MS = 450;
+    // Enough copies that the row never runs dry: one set to scroll through,
+    // plus at least a screenful trailing behind it.
+    var needed = Math.max(1, Math.ceil((view + 1) / originals.length));
+    while (clones.length / originals.length < needed) {
+      originals.forEach(function (item) {
+        var copy = item.cloneNode(true);
+        copy.setAttribute("aria-hidden", "true");
+        copy.setAttribute("inert", "");
+        copy.dataset.clone = "";
+        track.appendChild(copy);
+        clones.push(copy);
+      });
+    }
+
+    distance = originals.length * (width + gap);
+    offset = offset % distance;
+    paint();
+  }
+
+  function paint() {
+    var x = isRtl() ? offset : -offset;
+    track.style.transform = "translate3d(" + x + "px,0,0)";
+  }
+
+  /* ---------- motion ---------- */
   var frameId = 0;
-  var settle = null; // set while an animation is in flight
+  var last = null;
+  var held = 0; // hover, focus and touch each hold a pause while active
+  var userPaused = false;
 
-  /* Jump to the end and put snap back. The inline value only ever holds the
-     "none" this file writes, so clearing it always restores the stylesheet's
-     mandatory snap; saving and restoring the old value would let two
-     overlapping animations save each other's "none" and strand it. */
-  function endAnim(to) {
-    cancelAnimationFrame(frameId);
-    frameId = 0;
-    settle = null;
-    if (to !== null) track.scrollLeft = to;
-    track.style.scrollSnapType = "";
+  function frame(now) {
+    // A backgrounded tab stops serving frames; capping the step keeps the row
+    // from lurching forward a whole screen when the visitor comes back.
+    var dt = last === null ? 0 : Math.min(100, now - last);
+    last = now;
+    offset = (offset + (SPEED * dt) / 1000) % distance;
+    paint();
+    frameId = requestAnimationFrame(frame);
   }
 
-  function animateTo(distance) {
-    var to = (isRtl() ? -1 : 1) * distance;
-    if (settle) settle();
-    if (reduceMotion.matches) { track.scrollLeft = to; return; }
-
-    var from = track.scrollLeft;
-    var delta = to - from;
-    if (Math.abs(delta) < 1) return;
-
-    track.style.scrollSnapType = "none";
-    settle = function () { endAnim(to); };
-    var started = null; // null, not 0: a timestamp of 0 is falsy but valid
-
-    frameId = requestAnimationFrame(function ease(now) {
-      if (started === null) started = now;
-      var p = Math.min(1, (now - started) / DURATION_MS);
-      // easeOutCubic, the same shape as --ease-out elsewhere on the site
-      track.scrollLeft = from + delta * (1 - Math.pow(1 - p, 3));
-      if (p < 1) frameId = requestAnimationFrame(ease);
-      else endAnim(to);
-    });
+  function running() {
+    return !!frameId;
   }
 
-  function goTo(page) {
-    animateTo(offsetOf(page * perPage));
+  function sync() {
+    var should = !held && !userPaused && !reduceMotion.matches;
+    if (should && !running()) {
+      last = null;
+      frameId = requestAnimationFrame(frame);
+    } else if (!should && running()) {
+      cancelAnimationFrame(frameId);
+      frameId = 0;
+    }
+    button.setAttribute("aria-pressed", String(userPaused));
+    button.setAttribute("aria-label", t(userPaused ? "home.reviews.play" : "home.reviews.pause"));
   }
 
-  /* ---------- chrome ---------- */
+  function hold() { held++; sync(); }
+  function release() { held = Math.max(0, held - 1); sync(); }
+
+  /* ---------- pause button ---------- */
+  var button = document.createElement("button");
+  button.type = "button";
+  button.className = "reviews__toggle";
+  button.innerHTML =
+    '<svg class="reviews__icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">' +
+      '<rect x="7" y="5" width="3.2" height="14" rx="1"/><rect x="13.8" y="5" width="3.2" height="14" rx="1"/></svg>' +
+    '<svg class="reviews__icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">' +
+      '<path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.2-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>';
+  button.addEventListener("click", function () {
+    userPaused = !userPaused;
+    sync();
+  });
+
   var nav = document.createElement("div");
   nav.className = "reviews__nav";
+  nav.appendChild(button);
 
-  var CHEVRON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" ' +
-    'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">';
-
-  function arrow(key, d) {
-    var b = document.createElement("button");
-    b.type = "button";
-    b.className = "reviews__arrow";
-    b.dataset.label = key;
-    b.innerHTML = CHEVRON + '<path d="' + d + '"/></svg>';
-    return b;
+  /* ---------- switching modes ----------
+     Reduced motion is honoured live: turning it on mid-visit hands the
+     visitor back the plain swipeable strip, and off again restarts the drift. */
+  function enable() {
+    root.classList.add("reviews--marquee");
+    nav.hidden = false;
+    layout();
+    sync();
   }
 
-  var prev = arrow("home.reviews.prev", "M15 5l-7 7 7 7");
-  var next = arrow("home.reviews.next", "M9 5l7 7-7 7");
-
-  var dotWrap = document.createElement("div");
-  dotWrap.className = "reviews__dots";
-  var dots = [];
-
-  function buildDots() {
-    dotWrap.innerHTML = "";
-    dots = [];
-    for (var i = 0; i < pages; i++) {
-      var d = document.createElement("button");
-      d.type = "button";
-      d.className = "reviews__dot";
-      d.dataset.page = String(i);
-      d.dataset.label = "home.reviews.page";
-      d.dataset.labelIndex = String(i + 1);
-      dotWrap.appendChild(d);
-      dots.push(d);
-    }
-    relabel();
-  }
-
-  /* Re-read every label out of the dictionary. Called on build and again
-     whenever the language switcher rewrites html.lang. */
-  function relabel() {
-    var all = [prev, next].concat(dots);
-    for (var i = 0; i < all.length; i++) {
-      var el = all[i];
-      var text = t(el.dataset.label);
-      if (el.dataset.labelIndex) text += " " + el.dataset.labelIndex;
-      el.setAttribute("aria-label", text);
-    }
-  }
-
-  nav.appendChild(prev);
-  nav.appendChild(dotWrap);
-  nav.appendChild(next);
-
-  function syncNav() {
-    var page = currentPage();
-    for (var i = 0; i < dots.length; i++) {
-      dots[i].setAttribute("aria-current", String(i === page));
-    }
-    // Hidden rather than removed, so the track's width never changes underneath
-    // a measurement that is already in flight.
-    nav.hidden = pages < 2;
-  }
-
-  /* ---------- autoplay ---------- */
-  var timer = null;
-  var stopped = false;
-
-  function tick() {
-    var page = currentPage();
-    goTo(page >= pages - 1 ? 0 : page + 1);
-  }
-
-  function play() {
-    if (stopped || timer || pages < 2 || reduceMotion.matches) return;
-    timer = setInterval(tick, AUTOPLAY_MS);
-  }
-
-  function pause() {
-    if (timer) { clearInterval(timer); timer = null; }
-  }
-
-  /* One deliberate interaction and the carousel is hers, not ours. */
-  function stop() {
-    stopped = true;
-    pause();
+  function disable() {
+    if (running()) { cancelAnimationFrame(frameId); frameId = 0; }
+    root.classList.remove("reviews--marquee");
+    track.style.transform = "";
+    clones.forEach(function (c) { c.remove(); });
+    clones = [];
+    offset = 0;
+    nav.hidden = true;
   }
 
   /* ---------- wiring ---------- */
-  prev.addEventListener("click", function () { stop(); goTo(Math.max(0, currentPage() - 1)); });
-  next.addEventListener("click", function () {
-    stop();
-    var page = currentPage();
-    goTo(page >= pages - 1 ? 0 : page + 1);
+  root.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") hold(); });
+  root.addEventListener("pointerleave", function (e) { if (e.pointerType === "mouse") release(); });
+  // Press and hold to read on a touch screen; letting go carries on.
+  track.addEventListener("pointerdown", function (e) {
+    if (e.pointerType === "mouse") return;
+    hold();
+    var done = function () {
+      window.removeEventListener("pointerup", done);
+      window.removeEventListener("pointercancel", done);
+      release();
+    };
+    window.addEventListener("pointerup", done);
+    window.addEventListener("pointercancel", done);
   });
-  dotWrap.addEventListener("click", function (e) {
-    var dot = e.target.closest(".reviews__dot");
-    if (!dot) return;
-    stop();
-    goTo(Number(dot.dataset.page));
-  });
-
-  ["pointerdown", "touchstart", "wheel", "keydown"].forEach(function (type) {
-    track.addEventListener(type, stop, { passive: true });
-  });
-
-  root.addEventListener("pointerenter", pause);
-  root.addEventListener("pointerleave", play);
-  root.addEventListener("focusin", pause);
-  root.addEventListener("focusout", function (e) {
-    if (!root.contains(e.relatedTarget)) play();
-  });
-  document.addEventListener("visibilitychange", function () {
-    if (document.hidden) {
-      pause();
-      // A hidden tab stops serving animation frames, so an animation caught
-      // mid-flight would otherwise hang there with snap still switched off
-      // until the visitor came back.
-      if (settle) settle();
-    } else {
-      play();
-    }
-  });
-
-  var frame = 0;
-  track.addEventListener("scroll", function () {
-    if (frame) return;
-    frame = requestAnimationFrame(function () { frame = 0; syncNav(); });
-  }, { passive: true });
+  track.addEventListener("focusin", hold);
+  track.addEventListener("focusout", release);
 
   var resizeFrame = 0;
   window.addEventListener("resize", function () {
     if (resizeFrame) cancelAnimationFrame(resizeFrame);
     resizeFrame = requestAnimationFrame(function () {
-      var before = pages;
-      measure();
-      if (pages !== before) buildDots();
-      syncNav();
+      if (root.classList.contains("reviews--marquee")) layout();
     });
   });
 
-  /* A language change rewrites the labels, and switching to or from Farsi
-     flips html.dir, which reverses what scrollLeft means. Re-measuring and
-     returning to the first page is the only position guaranteed to be
-     meaningful in the new direction. */
-  var dir = document.documentElement.dir;
+  // Language change: relabel the button; a Farsi flip also reverses the
+  // direction of travel, which paint() reads fresh on the next frame.
   new MutationObserver(function () {
-    relabel();
-    var flipped = document.documentElement.dir !== dir;
-    dir = document.documentElement.dir;
-    measure();
-    buildDots();
-    if (flipped) {
-      // An animation started under the old direction is now scrolling towards
-      // a position whose sign has just been inverted.
-      endAnim(0);
-    }
-    syncNav();
+    if (root.classList.contains("reviews--marquee")) { layout(); sync(); }
   }).observe(document.documentElement, { attributes: true, attributeFilter: ["lang", "dir"] });
 
   reduceMotion.addEventListener("change", function () {
-    if (reduceMotion.matches) pause(); else play();
+    if (reduceMotion.matches) disable(); else enable();
   });
 
   root.appendChild(nav);
-  measure();
-  buildDots();
-  syncNav();
-  play();
+  if (reduceMotion.matches) disable(); else enable();
 
-  // Web fonts land after first paint and change how much text each card holds,
-  // which moves every card's offsetLeft.
+  // Web fonts land after first paint and can change the root's width.
   if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(function () { measure(); buildDots(); syncNav(); });
+    document.fonts.ready.then(function () {
+      if (root.classList.contains("reviews--marquee")) layout();
+    });
   }
 })();

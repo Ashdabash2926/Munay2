@@ -191,9 +191,8 @@
     "reviews": {
       "kicker": "In their words",
       "title": "What people say",
-      "prev": "Previous reviews",
-      "next": "More reviews",
-      "page": "Reviews page",
+      "pause": "Pause reviews",
+      "play": "Play reviews",
       "stars": {
         "1": "1 out of 5 stars",
         "2": "2 out of 5 stars",

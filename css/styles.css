@@ -694,9 +694,8 @@ html[lang="fa"] .num-ghost { -webkit-text-stroke: 0; color: var(--clay-light); o
 
 /* ---------- reviews carousel ----------
    The track is a real horizontally-scrolling element with scroll-snap, so
-   mobile swipe and keyboard scrolling come from the browser and js only adds
-   the arrows, the dots and the autoplay. Without js the section degrades to a
-   scrollable strip rather than a single stuck card.
+   without js (or under reduced motion) the section is a swipeable strip.
+   js turns it into a continuous drift (.reviews--marquee, below).
    Logical properties throughout (padding-inline, inset-inline) so Farsi
    mirrors without an [dir="rtl"] override. */
 .reviews { position: relative; }
@@ -731,27 +730,36 @@ html[lang="fa"] .num-ghost { -webkit-text-stroke: 0; color: var(--clay-light); o
 .reviews__stars svg { width: 1.05rem; height: 1.05rem; fill: none; opacity: .35; }
 .reviews__stars svg.is-filled { fill: currentColor; opacity: 1; }
 
-.reviews__nav { display: flex; align-items: center; justify-content: center; gap: 1.25rem; margin-top: 2.5rem; }
-.reviews__arrow {
-  width: 2.75rem; height: 2.75rem; flex: none;
+/* Continuous drift, switched on by js/reviews-carousel.js. Without that
+   class (no js, or reduced motion) the track above stays a swipeable strip.
+   The root clips the moving row, so it carries the room the cards' hover
+   lift and shadow need, and fades the row out at both edges. */
+.reviews--marquee {
+  overflow: hidden;
+  padding-block: .75rem 1.75rem; margin-block: -.75rem -1.75rem;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
+          mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
+}
+.reviews--marquee .reviews__track {
+  width: max-content; overflow: visible; scroll-snap-type: none;
+  padding-block: 0; margin-block: 0;
+  will-change: transform;
+}
+.reviews--marquee .reviews__item { flex: 0 0 var(--review-w); }
+
+.reviews__nav { display: flex; justify-content: center; margin-top: 2rem; }
+.reviews__toggle {
+  width: 2.5rem; height: 2.5rem; flex: none;
   display: grid; place-items: center;
   border: 1px solid var(--border); border-radius: 50%;
   background: transparent; color: var(--muted); cursor: pointer;
   transition: color .3s var(--ease-out), border-color .3s var(--ease-out), background-color .3s var(--ease-out);
 }
-.reviews__arrow:hover { color: var(--clay); border-color: var(--clay-light); background: #fffdf9; }
-.reviews__arrow svg { width: 1.1rem; height: 1.1rem; }
-/* the chevrons point along the reading direction, so mirror them for Farsi */
-[dir="rtl"] .reviews__arrow svg { transform: scaleX(-1); }
-
-.reviews__dots { display: flex; align-items: center; gap: .55rem; }
-.reviews__dot {
-  width: .5rem; height: .5rem; padding: 0; flex: none;
-  border: 0; border-radius: 50%; background: var(--border);
-  cursor: pointer; transition: background-color .3s var(--ease-out), transform .3s var(--ease-out);
-}
-.reviews__dot:hover { background: var(--clay-light); }
-.reviews__dot[aria-current="true"] { background: var(--clay); transform: scale(1.35); }
+.reviews__toggle:hover { color: var(--clay); border-color: var(--clay-light); background: #fffdf9; }
+.reviews__toggle svg { width: .95rem; height: .95rem; }
+.reviews__toggle .reviews__icon-play { display: none; }
+.reviews__toggle[aria-pressed="true"] .reviews__icon-play { display: block; }
+.reviews__toggle[aria-pressed="true"] .reviews__icon-pause { display: none; }
 
 /* ---------- RTL fine-tuning ---------- */
 [dir="rtl"] .flip-x { transform: scaleX(-1); }
@@ -770,6 +778,6 @@ html[lang="fa"] .num-ghost { -webkit-text-stroke: 0; color: var(--clay-light); o
   .hero__depth { transform: none !important; transition: none; }
   .rotator .hr-word { transition: none; filter: none; }
   .card, .card__media img, .btn, .pillar-row, .chip { transition: none; }
-  /* js also skips autoplay and jumps rather than animates under this query */
-  .reviews__dot, .reviews__arrow { transition: none; }
+  /* js leaves the reviews as a still, swipeable strip under this query */
+  .reviews__toggle { transition: none; }
 }
