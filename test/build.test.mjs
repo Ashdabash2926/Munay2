@@ -17,7 +17,14 @@ test("a sheet with retreats renders cards and hides the empty block", () => {
   assert.match(html, /id="retreatGrid"/);
   assert.match(html, /The Way Home/);
   assert.match(html, /Sacred Valley/);
-  assert.doesNotMatch(html, /Finished Retreat/);
+  // a finished row moves under Past events, never into the bookable grid
+  const upcoming = html.slice(html.indexOf('id="retreatGrid"'), html.indexOf('id="retreatEmpty"'));
+  assert.doesNotMatch(upcoming, /Finished Retreat/);
+  assert.match(html, /id="retreatPast" [^>]*>/);
+  assert.doesNotMatch(html, /id="retreatPast"[^>]*hidden/);
+  const past = html.slice(html.indexOf('id="retreatPast"'));
+  assert.match(past, /Finished Retreat/);
+  assert.doesNotMatch(past, /example\.com\/old/);
   assert.match(html, /data-retreat-end="2026-12-23"/);
   // the English prerender filled the generated date key
   assert.ok(html.includes(formatDateRange("2026-12-17", "2026-12-23").en));
@@ -48,7 +55,26 @@ test("a sheet with only an archived, broken-link retreat still builds and shows 
   assert.doesNotMatch(html, /data-retreat-end/);
   assert.match(html, /New dates are being held/);
   assert.doesNotMatch(html, /id="retreatEmpty"[^>]*hidden/);
-  assert.doesNotMatch(html, /Archived Retreat/);
+  // it is listed as a past event, without its dead link
+  assert.match(html.slice(html.indexOf('id="retreatPast"')), /Archived Retreat/);
+  assert.doesNotMatch(html, /oldsite\.com/);
+});
+
+test("with nothing finished, the past events block is present but hidden", () => {
+  const html = build("docs/fixtures/retreats-empty.csv");
+  assert.match(html, /id="retreatPast"[^>]*hidden/);
+  assert.match(html, /id="retreatPastGrid"/);
+});
+
+test("past events are newest first and translated like upcoming ones", () => {
+  const html = build("docs/fixtures/retreats-with-past.csv");
+  const past = html.slice(html.indexOf('id="retreatPast"'));
+  assert.ok(past.indexOf("Return to Her") < past.indexOf("Spring Gathering"));
+  assert.doesNotMatch(past, /Row with no name is dropped/);
+  assert.ok(past.includes(formatDateRange("2026-03-02", "2026-03-08").en));
+  const i18n = readFileSync("_site/js/i18n.js", "utf8");
+  assert.match(i18n, /retreat\.dates\.return-to-her-past-1/);
+  assert.match(i18n, /Eventos pasados/);
 });
 
 test("the page no longer names one retreat", () => {

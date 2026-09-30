@@ -204,15 +204,22 @@
     addEventListener("resize", onMove, { passive: true });
   }
 
-  /* ---------- upcoming retreats: drop anything that has finished ---------- */
-  /* The client publishes by hand, so nothing removes a past retreat on its own.
-     The build filters what it can see; this covers a retreat that ends after the
-     last build. Crawlers still index the published list. */
+  /* ---------- upcoming retreats: move anything finished to past events ---------- */
+  /* The client publishes by hand, so nothing moves a past retreat on its own.
+     The build sorts what it can see; this covers a retreat that ends after the
+     last build. Its booking link and status go, the rest stays as a record. */
   const retreatGrid = document.getElementById("retreatGrid");
   if (retreatGrid) {
     const today = new Date().toISOString().slice(0, 10);
+    const past = document.getElementById("retreatPast");
+    const pastGrid = document.getElementById("retreatPastGrid");
     retreatGrid.querySelectorAll("[data-retreat-end]").forEach(card => {
-      if (card.dataset.retreatEnd < today) card.remove();
+      if (card.dataset.retreatEnd >= today) return;
+      if (!past || !pastGrid) { card.remove(); return; }
+      card.querySelectorAll('a.btn, [data-i18n^="retreat.status."]').forEach(el => el.remove());
+      card.classList.add("card--past");
+      pastGrid.prepend(card);
+      past.hidden = false;
     });
     if (!retreatGrid.children.length) {
       /* inline style, not the hidden attribute: Tailwind's .grid would win */

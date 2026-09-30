@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { buildDict } from "./lib/i18n-dict.mjs";
-import { loadRetreats } from "./lib/retreats.mjs";
+import { loadPastRetreats, loadRetreats } from "./lib/retreats.mjs";
 import { loadReviews } from "./lib/reviews.mjs";
 
 const escapeText = (s) =>
@@ -34,6 +34,8 @@ export default function (eleventyConfig) {
   // Unset RETREATS_SHEET_URL renders the evergreen empty state; a damaged
   // sheet throws, which fails the build and leaves the last deploy live.
   eleventyConfig.addGlobalData("retreats", () => loadRetreats());
+  // Finished rows from the same sheet, shown under the upcoming ones.
+  eleventyConfig.addGlobalData("pastRetreats", () => loadPastRetreats());
 
   // Client reviews, read from a second tab of the same sheet. Unset
   // REVIEWS_SHEET_URL renders the evergreen fallback quote on the home page;

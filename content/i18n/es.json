@@ -443,6 +443,9 @@
         "body": "El próximo viaje se está gestando. Escríbeme para conocer las fechas antes de que se anuncien."
       }
     },
+    "past": {
+      "title": "Eventos pasados"
+    },
     "label": {
       "dates": "Fechas",
       "location": "Dónde",

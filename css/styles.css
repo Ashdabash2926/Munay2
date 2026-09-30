@@ -475,6 +475,9 @@ html[lang="fa"] .hero__counter { -webkit-text-stroke: 0; color: rgba(226,188,125
 .card__media { overflow: hidden; }
 .card__media img { transition: transform 1.2s var(--ease-out); }
 .card:hover .card__media img { transform: scale(1.06); }
+/* A finished retreat: kept as a record, quieter than the bookable ones. */
+.card--past .card__media img { filter: saturate(.55); opacity: .85; }
+.card--past:hover .card__media img { transform: none; }
 .num-ghost {
   font-family: var(--serif); font-variation-settings: 'opsz' 144;
   font-size: clamp(4.5rem, 9vw, 7rem); line-height: 1; font-weight: 300;

@@ -31,7 +31,7 @@ Each retreat is one row.
 | Location | Where it is, for example Lake Atitlan, Guatemala |
 | Cost | Anything you like: $2,200 USD, or From $1,800. Leave it blank to show no price |
 | Link | The web address of the retreat's own page. It has to start with https:// |
-| Image | A photo for the card. Paste a Google Drive share link, or leave it blank and one of your existing photos is used |
+| Image | A photo for the card. Paste a Google Drive or Google Photos share link, or the photo's own address (right-click the photo, then Copy image address). Leave it blank and one of your existing photos is used |
 | Status | Pick from the list: Open, A few spaces left, Waitlist, or Full |
 
 You never need to write anything in Spanish or Farsi. The dates translate
@@ -47,11 +47,13 @@ themselves, and everything else on the card reads the same in every language.
 
 ## Things worth knowing
 
-**Retreats disappear on their own.** Once the End date has passed, the retreat
-stops showing on the website. You do not have to do anything.
+**Finished retreats move to Past events on their own.** Once the End date has
+passed, the retreat moves from Upcoming events to a Past events list further
+down the page, without its booking button. You do not have to do anything.
 
-**You can keep your old retreats in the sheet.** Finished rows are ignored, so
-leave them there as a record if you like. Deleting them is fine too.
+**Keep your old retreats in the sheet to keep them on the website.** Past events
+show the name, dates, place and photo, most recent first, up to six. Deleting a
+finished row takes it off the Past events list at your next publish.
 
 **Having none coming up is fine.** The page shows a short message inviting
 people to get in touch, so it never looks empty or abandoned.
@@ -80,4 +82,6 @@ changed, get in touch.
 
 **Your photo did not appear.** The card shows one of your existing photos
 instead, which means the link in the Image column could not be opened. Check
-that the Drive file is shared so that anyone with the link can view it.
+that the Drive file is shared so that anyone with the link can view it. A
+link to a whole album or folder will not work: open the one photo you want
+and copy its link instead.

@@ -106,6 +106,45 @@
           <p class="lead mt-4" data-i18n="retreat.upcoming.empty.body"></p>
           <a href="contact.html" class="btn btn-primary mt-8" data-i18n="cta.book"></a>
         </div>
+
+        {# Finished retreats, most recent first. Always in the page (hidden when
+           empty) so js/site.js can move a retreat here that ends after the build. #}
+        <div id="retreatPast" class="mt-20 md:mt-28 pt-16 md:pt-20 border-t border-[var(--border)]"{% if not pastRetreats.length %} hidden{% endif %}>
+          <h2 class="reveal font-display text-center text-[clamp(1.6rem,3.2vw,2.4rem)]"
+              data-i18n="retreat.past.title"></h2>
+          <div id="retreatPastGrid" class="mt-10 grid gap-6 md:gap-7 sm:grid-cols-2 lg:grid-cols-3">
+            {% for r in pastRetreats %}
+            <article class="card card--past reveal flex flex-col" style="--d:{{ loop.index0 * 0.08 }}s">
+              <div class="card__media aspect-[3/2]">
+                {% if r.usesFallbackImage %}
+                <img class="object-cover w-full h-full" loading="lazy"
+                     src="{{ r.image | imgsrc }}" alt="" role="presentation" />
+                {% else %}
+                <img class="object-cover w-full h-full" loading="lazy"
+                     src="{{ r.image | imgsrc }}" alt="{{ r.name }}{% if r.location %}, {{ r.location }}{% endif %}" />
+                {% endif %}
+              </div>
+              <div class="p-6 pt-7 flex flex-col grow">
+                <h3 class="font-display leading-snug text-[1.35rem]">{{ r.name }}</h3>
+                <dl class="mt-4 space-y-2.5 text-[.92rem] text-[var(--muted)]">
+                  <div>
+                    <dt class="text-[.66rem] font-semibold tracking-[.16em] uppercase opacity-70"
+                        data-i18n="retreat.label.dates"></dt>
+                    <dd class="mt-0.5 text-[var(--text)]" data-i18n="retreat.dates.{{ r.slug }}"></dd>
+                  </div>
+                  {% if r.location %}
+                  <div>
+                    <dt class="text-[.66rem] font-semibold tracking-[.16em] uppercase opacity-70"
+                        data-i18n="retreat.label.location"></dt>
+                    <dd class="mt-0.5 text-[var(--text)]">{{ r.location }}</dd>
+                  </div>
+                  {% endif %}
+                </dl>
+              </div>
+            </article>
+            {% endfor %}
+          </div>
+        </div>
       </div>
     </section>
 

@@ -99,9 +99,9 @@ function findProblems_() {
     var filled = COLUMNS.some(function (c) { return get(c) !== ''; });
     if (!filled) continue;
 
-    // A retreat that has already finished is ignored by the website, so it is
-    // not checked here either. This lets old rows stay in the sheet as a record
-    // without ever blocking a publish.
+    // A retreat that has already finished only shows as a past event, which
+    // needs nothing but its name and dates, so it is not checked here. This
+    // lets old rows stay in the sheet without ever blocking a publish.
     if (isIso(get('End')) && get('End') < today) continue;
 
     var label = 'Row ' + (i + 1) + ' (' + (get('Name') || 'no name yet') + '):\n';

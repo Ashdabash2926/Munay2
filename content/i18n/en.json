@@ -443,6 +443,9 @@
         "body": "The next journey is being prepared. Reach out to hear about dates before they are announced."
       }
     },
+    "past": {
+      "title": "Past events"
+    },
     "label": {
       "dates": "Dates",
       "location": "Where",

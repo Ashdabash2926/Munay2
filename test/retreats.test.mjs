@@ -7,7 +7,7 @@ import sharp from "sharp";
 import {
   parseCsv, COLUMNS, formatDateRange, buildRetreats, MAX_CARDS,
   normalizeImageUrl, slugify, resolveImage, FALLBACK_IMAGE,
-  loadRetreats, resetRetreatsCache,
+  loadRetreats, loadPastRetreats, resetRetreatsCache, pinHeaderRow, MAX_PAST,
 } from "../lib/retreats.mjs";
 import { buildDict } from "../lib/i18n-dict.mjs";
 
@@ -131,6 +131,36 @@ test("buildRetreats sorts by start date, not sheet order", () => {
 test("buildRetreats drops retreats that have already finished", () => {
   const { retreats } = build([row({ name: "Gone", start: "2026-01-01", end: "2026-01-07" }), row()]);
   assert.deepEqual(retreats.map((r) => r.name), ["The Way Home"]);
+});
+
+test("buildRetreats keeps finished retreats as past events, newest first", () => {
+  const { retreats, past } = build([
+    row({ name: "Older", start: "2025-01-01", end: "2025-01-07" }),
+    row({ name: "Recent", start: "2026-01-01", end: "2026-01-07", link: "not a link", location: "" }),
+    row(),
+  ]);
+  assert.deepEqual(retreats.map((r) => r.name), ["The Way Home"]);
+  assert.deepEqual(past.map((r) => r.name), ["Recent", "Older"]);
+  assert.equal(past[0].dates.en, formatDateRange("2026-01-01", "2026-01-07").en);
+});
+
+test("buildRetreats leaves out a finished row with no name and caps past events", () => {
+  const rows = Array.from({ length: MAX_PAST + 2 }, (_, i) =>
+    row({ name: `Old ${i}`, start: `2025-01-${String(i + 1).padStart(2, "0")}`, end: `2025-01-${String(i + 1).padStart(2, "0")}` }));
+  const { past } = build([row({ name: "", start: "2025-06-01", end: "2025-06-02" }), ...rows]);
+  assert.equal(past.length, MAX_PAST);
+  assert.ok(past.every((r) => r.name));
+});
+
+test("pinHeaderRow asks gviz for exactly one header row, once", () => {
+  const gviz = "https://docs.google.com/spreadsheets/d/X/gviz/tq?tqx=out:csv&sheet=Reviews";
+  assert.equal(pinHeaderRow(gviz), `${gviz}&headers=1`);
+  assert.equal(pinHeaderRow(`${gviz}&headers=2`), `${gviz}&headers=2`);
+  assert.equal(pinHeaderRow("https://example.com/a.csv"), "https://example.com/a.csv");
+});
+
+test("a missing column error names the heading row it found", () => {
+  assert.throws(() => buildRetreats([["Name", "Start"]], { today: "2026-07-28" }), /heading row reads: "name", "start"/);
 });
 
 test("buildRetreats keeps a retreat that is running today", () => {
@@ -469,5 +499,57 @@ test("buildDict injects one date key per card in every language, keyed by conten
   else process.env.RETREATS_SHEET_URL = previousUrl;
   if (previousToday === undefined) delete process.env.RETREATS_TODAY;
   else process.env.RETREATS_TODAY = previousToday;
+  resetRetreatsCache();
+});
+
+test("resolveImage follows a share page to the picture it names", async () => {
+  const dir = await mkdtemp(join(tmpdir(), "retreats-"));
+  const png = await sharp({ create: { width: 40, height: 40, channels: 3, background: "#bf5f3a" } })
+    .png().toBuffer();
+  const page = Buffer.from('<!doctype html><html><head><meta property="og:image" content="https://cdn.example.com/p.png?a=1&amp;b=2"></head></html>');
+  const seen = [];
+  const fetchImpl = async (url) => {
+    seen.push(url);
+    const isPage = url.startsWith("https://photos.example.com");
+    return {
+      ok: true, status: 200,
+      headers: { get: () => (isPage ? "text/html; charset=utf-8" : "image/png") },
+      arrayBuffer: async () => (isPage ? page : png),
+    };
+  };
+  const path = await resolveImage("https://photos.example.com/share/abc", "way-home-1", { outDir: dir, fetchImpl });
+  assert.equal(path, "assets/img/retreats/way-home-1.webp");
+  assert.deepEqual(seen, ["https://photos.example.com/share/abc", "https://cdn.example.com/p.png?a=1&b=2"]);
+  await rm(dir, { recursive: true, force: true });
+});
+
+test("resolveImage explains a web page with no picture and a private link", async () => {
+  const html = async () => ({ ok: true, status: 200, headers: { get: () => "text/html" },
+    arrayBuffer: async () => Buffer.from("<html><body>hi</body></html>") });
+  const denied = async () => ({ ok: false, status: 401, headers: { get: () => "" } });
+  const warnings = [];
+  await resolveImage("https://site.example.com/page", "a-1", { outDir: "/nonexistent", fetchImpl: html, warnings });
+  await resolveImage("https://private.example.com/x.jpg", "b-2", { outDir: "/nonexistent", fetchImpl: denied, warnings });
+  assert.match(warnings[0], /site\.example\.com.*web page, not a picture/);
+  assert.match(warnings[1], /private\.example\.com.*private/);
+});
+
+test("normalizeImageUrl asks Dropbox for the file, not its preview page", () => {
+  assert.equal(normalizeImageUrl("https://www.dropbox.com/s/abc/p.jpg?dl=0"), "https://www.dropbox.com/s/abc/p.jpg?raw=1");
+  assert.equal(normalizeImageUrl("https://www.dropbox.com/s/abc/p.jpg"), "https://www.dropbox.com/s/abc/p.jpg?raw=1");
+});
+
+test("loadPastRetreats shares the one sheet read with loadRetreats", async () => {
+  resetRetreatsCache();
+  let calls = 0;
+  const csv = "Name,Start,End,Location,Cost,Link,Image,Status\nOld,2025-01-01,2025-01-02,Here,,,,\nNew,2026-12-01,2026-12-02,There,,https://example.com,,Open\n";
+  const fetchImpl = async () => { calls++; return { ok: true, status: 200, text: async () => csv }; };
+  const opts = { url: "https://example.com/sheet.csv", today: "2026-07-28", fetchImpl, outDir: "/nonexistent" };
+  const upcoming = await loadRetreats(opts);
+  const past = await loadPastRetreats(opts);
+  assert.deepEqual(upcoming.map((r) => r.name), ["New"]);
+  assert.deepEqual(past.map((r) => r.name), ["Old"]);
+  assert.equal(past[0].slug, "old-past-1");
+  assert.equal(calls, 1);
   resetRetreatsCache();
 });
