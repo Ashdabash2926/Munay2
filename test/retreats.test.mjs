@@ -7,7 +7,7 @@ import sharp from "sharp";
 import {
   parseCsv, COLUMNS, formatDateRange, buildRetreats, MAX_CARDS,
   normalizeImageUrl, slugify, resolveImage, FALLBACK_IMAGE,
-  loadRetreats, loadPastRetreats, resetRetreatsCache, pinHeaderRow, MAX_PAST,
+  loadRetreats, loadPastRetreats, resetRetreatsCache, pinHeaderRow, MAX_PAST, fullSizePreview,
 } from "../lib/retreats.mjs";
 import { buildDict } from "../lib/i18n-dict.mjs";
 
@@ -363,6 +363,14 @@ test("resolveImage keeps a whole portrait poster: scaled to fit, never cropped",
   assert.ok(height <= 1400 && width <= 1000, `${width}x${height} fits the portrait box`);
   assert.ok(Math.abs(width / height - 1240 / 1754) < 0.01, "same shape as the poster");
   await rm(dir, { recursive: true, force: true });
+});
+
+test("fullSizePreview asks Google Photos for the whole picture, leaves other hosts alone", () => {
+  assert.equal(fullSizePreview("https://lh3.googleusercontent.com/pw/AP1Gcz=w1200-h630-p-k-no-nu"),
+    "https://lh3.googleusercontent.com/pw/AP1Gcz=w2000-h2000");
+  assert.equal(fullSizePreview("https://lh3.googleusercontent.com/pw/AP1Gcz"),
+    "https://lh3.googleusercontent.com/pw/AP1Gcz=w2000-h2000");
+  assert.equal(fullSizePreview("https://example.com/poster.jpg"), "https://example.com/poster.jpg");
 });
 
 test("resolveImage falls back and warns when the download fails", async () => {
