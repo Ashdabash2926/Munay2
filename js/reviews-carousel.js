@@ -1,4 +1,4 @@
-/* Parastoo — home page reviews marquee.
+/* Parastoo — home page reviews marquee (written reviews and video reviews).
 
    Client reviews come from her Google Sheet at build time (lib/reviews.mjs),
    so every card is already in the HTML inside a natively scrolling track.
@@ -18,18 +18,27 @@
      geometry are re-read whenever it changes, never cached across it
    - motion that runs for more than five seconds needs a way to stop it
      (WCAG 2.2.2), hence hover/focus/touch pausing and the pause button
+   - the same code runs every [data-carousel] on the page: the written reviews
+     ("reviews") and, when there is more than one, the video reviews
+     ("videos"). Video clones stay clickable so whichever copy is on screen
+     plays; starting a video pauses the drift, and resuming the drift stops
+     the video (the player is swapped back for its still frame)
    - the visitor can also flick through by hand: drag or swipe the row,
      scroll it sideways (trackpad, or shift + mouse wheel), or use the arrow
      buttons. A fling carries on with momentum, and the drift picks up again
      a moment after the last touch
 */
 (function () {
-  var root = document.querySelector("[data-reviews]");
-  if (!root) return;
+  function setup(root) {
   var track = root.querySelector("[data-reviews-track]");
   if (!track) return;
   var originals = Array.prototype.slice.call(track.children);
   if (!originals.length) return;
+  var kind = root.dataset.carousel; // "reviews" or "videos": picks the labels
+  var isVideo = kind === "videos";
+  // Pristine copies taken before anything plays, so a clone made later (on a
+  // resize) never copies a running player.
+  var templates = originals.map(function (item) { return item.cloneNode(true); });
 
   var SPEED = 32; // px per second: slow enough to read a card as it passes
   var GAP_REM = 1.75; // matches the gap on .reviews__track in styles.css
@@ -44,6 +53,10 @@
     "home.reviews.play": "Play reviews",
     "home.reviews.prev": "Previous review",
     "home.reviews.next": "Next review",
+    "home.videos.pause": "Pause videos",
+    "home.videos.play": "Play videos",
+    "home.videos.prev": "Previous video",
+    "home.videos.next": "Next video",
   };
 
   function t(key) {
@@ -84,10 +97,15 @@
     // plus at least a screenful trailing behind it.
     var needed = Math.max(1, Math.ceil((view + 1) / originals.length));
     while (clones.length / originals.length < needed) {
-      originals.forEach(function (item) {
+      templates.forEach(function (item) {
         var copy = item.cloneNode(true);
         copy.setAttribute("aria-hidden", "true");
-        copy.setAttribute("inert", "");
+        if (isVideo) {
+          // must stay clickable: the copy on screen is often a clone
+          copy.querySelectorAll("button").forEach(function (b) { b.tabIndex = -1; });
+        } else {
+          copy.setAttribute("inert", "");
+        }
         copy.dataset.clone = "";
         track.appendChild(copy);
         clones.push(copy);
@@ -123,7 +141,8 @@
   var RESUME_MS = 2500; // quiet time after a hand-driven move before drifting
   var frameId = 0;
   var last = null;
-  var held = 0; // hover, focus and touch each hold a pause while active
+  var held = 0; // hover and touch each hold a pause while active
+  var focused = false; // keyboard focus inside the row also holds it
   var userPaused = false;
   var velocity = 0; // offset px per second, left over from a fling
   var glide = null; // { from, to, start } while an arrow press eases along
@@ -131,7 +150,7 @@
   var resumeAt = 0;
 
   function drifting() {
-    return !held && !userPaused && !reduceMotion.matches;
+    return !held && !focused && !userPaused && !reduceMotion.matches;
   }
 
   function busy() {
@@ -174,9 +193,9 @@
       frameId = 0;
     }
     button.setAttribute("aria-pressed", String(userPaused));
-    button.setAttribute("aria-label", t(userPaused ? "home.reviews.play" : "home.reviews.pause"));
-    prevButton.setAttribute("aria-label", t("home.reviews.prev"));
-    nextButton.setAttribute("aria-label", t("home.reviews.next"));
+    button.setAttribute("aria-label", t("home." + kind + (userPaused ? ".play" : ".pause")));
+    prevButton.setAttribute("aria-label", t("home." + kind + ".prev"));
+    nextButton.setAttribute("aria-label", t("home." + kind + ".next"));
   }
 
   function hold() { held++; sync(); }
@@ -187,6 +206,7 @@
   function handled() {
     glide = null;
     resumeAt = performance.now() + RESUME_MS;
+    stopVideos();
   }
 
   // Ease to the next or previous card edge, counted from wherever the row is
@@ -212,8 +232,70 @@
       '<path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.2-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>';
   button.addEventListener("click", function () {
     userPaused = !userPaused;
+    if (!userPaused) { stopVideos(); resumeAt = 0; } // play means now
+    pausedByVideo = false;
     sync();
   });
+
+  // js/site.js swaps a still frame for the YouTube player on play and keeps
+  // the still frame on frame._poster; putting it back stops the video.
+  function stopVideos() {
+    if (!isVideo) return;
+    track.querySelectorAll("[data-yt]").forEach(function (frame) {
+      if (!frame._poster) return;
+      frame.replaceChildren.apply(frame, frame._poster);
+      frame._poster = null;
+    });
+    if (pausedByVideo) { pausedByVideo = false; userPaused = false; }
+    // Removing a focused player fires no focusout, so re-read it here.
+    focused = track.contains(document.activeElement);
+  }
+
+  // Playing a video holds the row still until the visitor resumes it, and
+  // slides a card that was half off the edge fully into view.
+  //
+  // The row loops by snapping offset back into [0, distance), which swaps the
+  // copy of each card on screen for its twin one set along. A video playing
+  // in the copy that just left would carry on unseen, so:
+  // - a slide-in that crosses the loop point ends with the twin on screen,
+  //   so the twin is the copy that plays
+  // - any hand-driven move (drag, wheel, arrows) stops a playing video, and
+  //   if the video was what paused the row, the drift picks up again
+  var pausedByVideo = false;
+  var forwarding = false; // true while handing a click on to a card's twin
+  if (isVideo) {
+    track.addEventListener("click", function (e) {
+      var play = e.target.closest(".video-review__play");
+      if (!play) return;
+      if (!userPaused) pausedByVideo = true;
+      userPaused = true;
+      if (!forwarding && root.classList.contains("reviews--marquee")) {
+        var item = play.closest(".reviews__item");
+        var card = item.getBoundingClientRect();
+        var box = root.getBoundingClientRect();
+        var dx = 0; // screen movement that brings the card inside the row
+        if (card.left < box.left) dx = box.left - card.left;
+        else if (card.right > box.right) dx = box.right - card.right;
+        if (dx) {
+          var to = offset + (isRtl() ? dx : -dx);
+          var items = Array.prototype.slice.call(track.children);
+          var j = items.indexOf(item);
+          velocity = 0;
+          glide = { from: offset, to: to, start: performance.now() };
+          var hop = to < 0 ? 1 : to >= distance ? -1 : 0;
+          var twin = hop && items[j + hop * originals.length];
+          if (twin) {
+            e.stopPropagation(); // js/site.js must not play this copy
+            forwarding = true;
+            twin.querySelector(".video-review__play").click();
+            forwarding = false;
+            return;
+          }
+        }
+      }
+      sync();
+    });
+  }
 
   function arrow(dir) {
     var b = document.createElement("button");
@@ -262,6 +344,13 @@
   // still stops it to read; letting go carries on after a moment. Vertical
   // swipes stay with the page (touch-action: pan-y in styles.css).
   var startX = 0, lastX = 0, lastT = 0, pointerId = null, moved = false;
+  var suppressClick = false;
+  track.addEventListener("click", function (e) {
+    if (!suppressClick) return;
+    suppressClick = false;
+    e.preventDefault();
+    e.stopPropagation();
+  }, true);
 
   track.addEventListener("pointerdown", function (e) {
     if (!root.classList.contains("reviews--marquee")) return;
@@ -303,6 +392,8 @@
     root.classList.remove("is-dragging");
     // A finger that stopped before lifting should not fling.
     if (!moved || e.timeStamp - lastT > 80) velocity = 0;
+    // The click that follows a drag must not press a play button.
+    if (moved) { suppressClick = true; setTimeout(function () { suppressClick = false; }, 0); }
     velocity = Math.max(-4000, Math.min(4000, velocity));
     handled();
     if (e.pointerType !== "mouse") release(); else sync();
@@ -328,8 +419,12 @@
     sync();
   }, { passive: false });
 
-  track.addEventListener("focusin", hold);
-  track.addEventListener("focusout", release);
+  // Read from the DOM rather than counted: a focused video player that gets
+  // removed never reports leaving, which would hold the row still for good.
+  track.addEventListener("focusin", function () { focused = true; sync(); });
+  track.addEventListener("focusout", function () {
+    setTimeout(function () { focused = track.contains(document.activeElement); sync(); }, 0);
+  });
 
   var resizeFrame = 0;
   window.addEventListener("resize", function () {
@@ -358,4 +453,7 @@
       if (root.classList.contains("reviews--marquee")) layout();
     });
   }
+  }
+
+  document.querySelectorAll("[data-carousel]").forEach(setup);
 })();

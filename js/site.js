@@ -235,20 +235,23 @@
      cookies, scripts) loads until a visitor asks for the video, which keeps
      the home page fast and private. youtube-nocookie defers YouTube's own
      cookies until playback too. */
-  document.querySelectorAll("[data-yt]").forEach(frame => {
-    const button = frame.querySelector(".video-review__play");
-    if (!button) return;
-    button.addEventListener("click", () => {
-      const iframe = document.createElement("iframe");
-      iframe.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(frame.dataset.yt) +
-        "?autoplay=1&rel=0&playsinline=1";
-      iframe.title = button.textContent.trim().replace(/\s+/g, " ");
-      iframe.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
-      iframe.allowFullscreen = true;
-      iframe.className = "absolute inset-0 w-full h-full";
-      frame.replaceChildren(iframe);
-      iframe.focus();
-    });
+  /* Delegated, so the copies js/reviews-carousel.js makes of each video play
+     too. The still frame is kept on frame._poster so the carousel can put it
+     back, which stops the video. */
+  document.addEventListener("click", e => {
+    const button = e.target.closest(".video-review__play");
+    const frame = button && button.closest("[data-yt]");
+    if (!frame) return;
+    frame._poster = Array.from(frame.childNodes);
+    const iframe = document.createElement("iframe");
+    iframe.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(frame.dataset.yt) +
+      "?autoplay=1&rel=0&playsinline=1";
+    iframe.title = button.textContent.trim().replace(/\s+/g, " ");
+    iframe.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+    iframe.allowFullscreen = true;
+    iframe.className = "absolute inset-0 w-full h-full";
+    frame.replaceChildren(iframe);
+    iframe.focus();
   });
 
   window.ParastooI18N.initLang();

@@ -172,6 +172,19 @@ test("a video review shows even when there are no written reviews", () => {
   assert.doesNotMatch(html, /js\/reviews-carousel\.js/);
 });
 
+test("two or more videos drift in a carousel, which ships even with no written reviews", () => {
+  const html = buildHome(null, "docs/fixtures/videos-multi.csv");
+  assert.match(html, /data-carousel="videos"/);
+  assert.equal(html.match(/data-yt=/g).length, 3);
+  assert.match(html, /js\/reviews-carousel\.js/);
+  assert.doesNotMatch(html, /<iframe/, "nothing plays until clicked");
+});
+
+test("a single video stays out of the carousel", () => {
+  const html = buildHome(null, "docs/fixtures/videos-sample.csv");
+  assert.doesNotMatch(html, /data-carousel="videos"/);
+});
+
 test("no video tab leaves the reviews section exactly as before", () => {
   const html = buildHome("docs/fixtures/reviews-sample.csv");
   assert.doesNotMatch(html, /data-yt=/);

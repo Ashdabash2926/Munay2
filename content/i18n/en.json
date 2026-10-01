@@ -191,6 +191,12 @@
     "video": {
       "play": "Play video testimonial"
     },
+    "videos": {
+      "pause": "Pause videos",
+      "play": "Play videos",
+      "prev": "Previous video",
+      "next": "Next video"
+    },
     "reviews": {
       "kicker": "In their words",
       "title": "What people say",

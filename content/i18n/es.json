@@ -191,6 +191,12 @@
     "video": {
       "play": "Ver testimonio en video"
     },
+    "videos": {
+      "pause": "Pausar videos",
+      "play": "Reanudar videos",
+      "prev": "Video anterior",
+      "next": "Video siguiente"
+    },
     "reviews": {
       "kicker": "En sus palabras",
       "title": "Lo que dicen",

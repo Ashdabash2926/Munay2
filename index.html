@@ -230,8 +230,34 @@
         <h2 class="reveal mt-5 text-[clamp(2rem,4.4vw,3.2rem)]" style="--d:.14s" data-i18n="home.reviews.title"></h2>
       </div>
 
-      {% if videos.length %}
-      <div class="video-reviews reveal mt-14{% if videos.length > 1 %} video-reviews--multi{% endif %}" style="--d:.18s">
+      {% if videos.length > 1 %}
+      <!-- Two or more videos drift in the same carousel as the written reviews
+           (js/reviews-carousel.js); each still plays only when clicked. -->
+      <div class="reviews video-carousel reveal mt-14" style="--d:.18s" data-carousel="videos">
+        <ul class="reviews__track" role="list" data-reviews-track>
+          {% for v in videos %}
+          <li class="reviews__item">
+            <figure class="video-review{% if v.vertical %} video-review--vertical{% endif %}">
+              {% if v.name %}
+              <figcaption class="video-review__name font-display">{{ v.name }}</figcaption>
+              {% endif %}
+              <div class="video-review__frame card" data-yt="{{ v.id }}">
+                <img src="https://i.ytimg.com/vi/{{ v.id }}/hqdefault.jpg" alt="" loading="lazy"
+                     class="absolute inset-0 w-full h-full object-cover" />
+                <button type="button" class="video-review__play">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.2-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>
+                  <span class="sr-only" data-i18n="home.video.play"></span>
+                  {% if v.name %}<span class="sr-only">{{ v.name }}</span>{% endif %}
+                </button>
+              </div>
+            </figure>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% elif videos.length %}
+      <div class="video-reviews reveal mt-14" style="--d:.18s">
         {% for v in videos %}
         <figure class="video-review{% if v.vertical %} video-review--vertical{% endif %}">
           {% if v.name %}
@@ -253,7 +279,7 @@
       {% endif %}
 
       {% if reviews.length %}
-      <div class="reviews reveal mt-14" style="--d:.2s" data-reviews>
+      <div class="reviews reveal mt-14" style="--d:.2s" data-reviews data-carousel="reviews">
         <ul class="reviews__track" role="list" data-reviews-track>
           {% for r in reviews %}
           <li class="reviews__item">
@@ -312,6 +338,6 @@
   <div id="site-footer"></div>
   <script src="js/i18n.js"></script>
   <script src="js/site.js"></script>
-  {% if reviews.length %}<script src="js/reviews-carousel.js" defer></script>{% endif %}
+  {% if reviews.length or videos.length > 1 %}<script src="js/reviews-carousel.js" defer></script>{% endif %}
 </body>
 </html>

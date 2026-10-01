@@ -777,10 +777,10 @@ html[lang="fa"] .num-ghost { -webkit-text-stroke: 0; color: var(--clay-light); o
 .reviews__toggle[aria-pressed="true"] .reviews__icon-pause { display: none; }
 
 /* ---------- video testimonials ----------
-   One video sits centred above the review cards; two or three share a row.
+   One video sits centred above the review cards; two or more drift in a
+   carousel built on the reviews one (.video-carousel, js/reviews-carousel.js).
    A phone-recorded vertical video gets a tall, narrower frame. */
 .video-reviews { display: grid; gap: 2rem; justify-items: center; }
-.video-reviews--multi { grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); align-items: end; }
 .video-review { width: 100%; max-width: 48rem; margin: 0; }
 .video-review--vertical { max-width: 22rem; }
 .video-review__name {
@@ -802,6 +802,13 @@ html[lang="fa"] .num-ghost { -webkit-text-stroke: 0; color: var(--clay-light); o
 }
 .video-review__play:hover svg, .video-review__play:focus-visible svg { transform: scale(1.08); background: var(--clay-dark, var(--clay)); }
 .video-review__play:focus-visible { outline: 3px solid var(--gold); outline-offset: -3px; }
+
+/* in the carousel every card is one width; a tall phone video keeps its
+   shape by narrowing inside its card, and the cards line up along the
+   bottom so the frames sit level under their names */
+.video-carousel .reviews__track { align-items: flex-end; }
+.video-carousel .video-review { max-width: none; }
+.video-carousel .video-review--vertical .video-review__frame { width: min(100%, 17rem); margin-inline: auto; }
 
 /* ---------- RTL fine-tuning ---------- */
 [dir="rtl"] .flip-x { transform: scaleX(-1); }

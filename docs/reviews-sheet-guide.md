@@ -92,5 +92,5 @@ person's name above it.
 3. Paste the person's name and the video's link (the Share button on YouTube
    copies it), then click **Munay**, then **Publish to website**.
 
-Up to three videos show; one row is the usual. Delete the row to remove the
+Up to twelve videos show. One video sits on its own; two or more scroll past slowly, like the written reviews, and each plays only when clicked. Delete the row to remove the
 video. A wrong link never breaks the website: that video is simply left out.
