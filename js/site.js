@@ -229,5 +229,26 @@
     }
   }
 
+  /* ---------- video testimonials: load YouTube only on play ---------- */
+  /* The page ships a still frame and a button. Nothing from YouTube (player,
+     cookies, scripts) loads until a visitor asks for the video, which keeps
+     the home page fast and private. youtube-nocookie defers YouTube's own
+     cookies until playback too. */
+  document.querySelectorAll("[data-yt]").forEach(frame => {
+    const button = frame.querySelector(".video-review__play");
+    if (!button) return;
+    button.addEventListener("click", () => {
+      const iframe = document.createElement("iframe");
+      iframe.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(frame.dataset.yt) +
+        "?autoplay=1&rel=0&playsinline=1";
+      iframe.title = button.textContent.trim().replace(/\s+/g, " ");
+      iframe.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+      iframe.allowFullscreen = true;
+      iframe.className = "absolute inset-0 w-full h-full";
+      frame.replaceChildren(iframe);
+      iframe.focus();
+    });
+  });
+
   window.ParastooI18N.initLang();
 })();

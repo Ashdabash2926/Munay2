@@ -75,3 +75,22 @@ get in touch.
 Ask people to keep it to a few sentences and to say what changed for them,
 rather than only that it was good. Those read best on the card, and they are the
 ones that help someone decide to book.
+
+## Video testimonials
+
+A video testimonial shows above the written ones on the home page, with the
+person's name above it.
+
+1. Upload the video to YouTube. Set it to **Unlisted** (only people with the
+   link can see it) or Public. A **Private** video cannot be shown.
+2. In the sheet, open the **Video review** tab. It has two columns:
+
+   | Name | YouTube link |
+   |---|---|
+   | Lara S. | https://youtu.be/... |
+
+3. Paste the person's name and the video's link (the Share button on YouTube
+   copies it), then click **Munay**, then **Publish to website**.
+
+Up to three videos show; one row is the usual. Delete the row to remove the
+video. A wrong link never breaks the website: that video is simply left out.

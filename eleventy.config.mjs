@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import { buildDict } from "./lib/i18n-dict.mjs";
 import { loadPastRetreats, loadRetreats } from "./lib/retreats.mjs";
 import { loadReviews } from "./lib/reviews.mjs";
+import { loadVideos } from "./lib/videos.mjs";
 
 const escapeText = (s) =>
   String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -43,6 +44,10 @@ export default function (eleventyConfig) {
   // live. Review text is never translated, so nothing here touches the i18n
   // dictionary the way retreat dates do.
   eleventyConfig.addGlobalData("reviews", () => loadReviews());
+
+  // Video testimonials from the "Video review" tab of the same sheet. Never
+  // fails the build: a missing tab or a bad link just means no video.
+  eleventyConfig.addGlobalData("videos", () => loadVideos());
 
   // Prerender the default-language (English) copy into the HTML at build time so
   // crawlers / no-JS visitors see real content. The client-side js/i18n.js still

@@ -88,12 +88,13 @@ test("the page no longer names one retreat", () => {
 // Reviews are a separate sheet on the home page, so they get their own helper:
 // both env vars are set explicitly, never inherited, or a REVIEWS_SHEET_URL
 // left in the developer's shell would quietly decide which branch is tested.
-const buildHome = (reviewsFixture) => {
+const buildHome = (reviewsFixture, videosFixture = "") => {
   execFileSync("npx", ["@11ty/eleventy"], {
     env: {
       ...process.env,
       RETREATS_SHEET_URL: "docs/fixtures/retreats-empty.csv",
       RETREATS_TODAY: "2026-07-28",
+      VIDEOS_SHEET_URL: videosFixture,
       ...(reviewsFixture
         ? { REVIEWS_SHEET_URL: reviewsFixture }
         : { REVIEWS_SHEET_URL: "" }),
@@ -151,4 +152,28 @@ test("every script the pages load is actually copied into the build", () => {
       assert.ok(existsSync(`_site/${src}`), `${page} loads ${src}, which is not in _site`);
     }
   }
+});
+
+test("a video review renders above the cards with its name, and loads nothing from YouTube but a still", () => {
+  const html = buildHome("docs/fixtures/reviews-sample.csv", "docs/fixtures/videos-sample.csv");
+  const video = html.indexOf('data-yt="dQw4w9WgXcQ"');
+  assert.ok(video > 0);
+  assert.ok(video < html.indexOf("data-reviews-track"), "video sits above the review cards");
+  assert.ok(html.indexOf("Lara S.") < video, "the name sits above the video");
+  assert.match(html, /i\.ytimg\.com\/vi\/dQw4w9WgXcQ\/hqdefault\.jpg/);
+  assert.doesNotMatch(html, /<iframe/);
+  assert.match(html, /data-i18n="home\.video\.play">Play video testimonial</);
+});
+
+test("a video review shows even when there are no written reviews", () => {
+  const html = buildHome(null, "docs/fixtures/videos-sample.csv");
+  assert.match(html, /data-yt="dQw4w9WgXcQ"/);
+  assert.doesNotMatch(html, /data-reviews-track/);
+  assert.doesNotMatch(html, /js\/reviews-carousel\.js/);
+});
+
+test("no video tab leaves the reviews section exactly as before", () => {
+  const html = buildHome("docs/fixtures/reviews-sample.csv");
+  assert.doesNotMatch(html, /data-yt=/);
+  assert.match(html, /data-reviews-track/);
 });
