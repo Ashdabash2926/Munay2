@@ -744,10 +744,19 @@ html[lang="fa"] .num-ghost { -webkit-text-stroke: 0; color: var(--clay-light); o
   width: max-content; overflow: visible; scroll-snap-type: none;
   padding-block: 0; margin-block: 0;
   will-change: transform;
+  /* the row is dragged by hand (js/reviews-carousel.js); vertical swipes
+     still scroll the page */
+  touch-action: pan-y;
+  cursor: grab;
 }
+.reviews--marquee.is-dragging .reviews__track { cursor: grabbing; user-select: none; -webkit-user-select: none; }
+.reviews--marquee.is-dragging .reviews__item > .card { transform: none; }
 .reviews--marquee .reviews__item { flex: 0 0 var(--review-w); }
 
-.reviews__nav { display: flex; justify-content: center; margin-top: 2rem; }
+.reviews__nav { display: flex; justify-content: center; align-items: center; gap: .75rem; margin-top: 2rem; }
+.reviews__arrow svg { width: 1.1rem; height: 1.1rem; }
+/* prev/next follow the reading direction, so the chevrons mirror in Farsi */
+[dir="rtl"] .reviews__arrow svg { transform: scaleX(-1); }
 .reviews__toggle {
   width: 2.5rem; height: 2.5rem; flex: none;
   display: grid; place-items: center;

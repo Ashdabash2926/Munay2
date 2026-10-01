@@ -196,6 +196,8 @@
       "title": "Lo que dicen",
       "pause": "Pausar reseñas",
       "play": "Reanudar reseñas",
+      "prev": "Reseña anterior",
+      "next": "Reseña siguiente",
       "stars": {
         "1": "1 de 5 estrellas",
         "2": "2 de 5 estrellas",

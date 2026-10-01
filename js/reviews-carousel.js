@@ -18,6 +18,10 @@
      geometry are re-read whenever it changes, never cached across it
    - motion that runs for more than five seconds needs a way to stop it
      (WCAG 2.2.2), hence hover/focus/touch pausing and the pause button
+   - the visitor can also flick through by hand: drag or swipe the row,
+     scroll it sideways (trackpad, or shift + mouse wheel), or use the arrow
+     buttons. A fling carries on with momentum, and the drift picks up again
+     a moment after the last touch
 */
 (function () {
   var root = document.querySelector("[data-reviews]");
@@ -38,6 +42,8 @@
   var FALLBACK = {
     "home.reviews.pause": "Pause reviews",
     "home.reviews.play": "Play reviews",
+    "home.reviews.prev": "Previous review",
+    "home.reviews.next": "Next review",
   };
 
   function t(key) {
@@ -59,7 +65,8 @@
      of the next card shows, which tells the eye the row keeps going. */
   var clones = [];
   var distance = 0; // one full set of originals, gap included
-  var offset = 0;
+  var step = 0; // one card plus its gap, the distance an arrow press moves
+  var offset = 0; // how far the row has travelled, always in [0, distance)
 
   function perView() {
     if (window.matchMedia("(min-width: 1024px)").matches) return 3;
@@ -87,30 +94,71 @@
       });
     }
 
-    distance = originals.length * (width + gap);
-    offset = offset % distance;
+    step = width + gap;
+    distance = originals.length * step;
     paint();
   }
 
+  function wrap(n) {
+    return distance ? ((n % distance) + distance) % distance : 0;
+  }
+
+  // Move the row by dx pixels on screen (positive = rightwards). In Farsi the
+  // row travels the other way, so the same screen motion is the opposite
+  // change in offset.
+  function nudge(dx) {
+    offset = wrap(offset + (isRtl() ? dx : -dx));
+  }
+
   function paint() {
-    var x = isRtl() ? offset : -offset;
+    var at = wrap(offset);
+    var x = isRtl() ? at : -at;
     track.style.transform = "translate3d(" + x + "px,0,0)";
   }
 
-  /* ---------- motion ---------- */
+  /* ---------- motion ----------
+     One frame loop drives everything: the drift, the coast after a fling, and
+     the glide an arrow press starts. It only runs while one of them has work
+     to do. */
+  var RESUME_MS = 2500; // quiet time after a hand-driven move before drifting
   var frameId = 0;
   var last = null;
   var held = 0; // hover, focus and touch each hold a pause while active
   var userPaused = false;
+  var velocity = 0; // offset px per second, left over from a fling
+  var glide = null; // { from, to, start } while an arrow press eases along
+  var dragging = false;
+  var resumeAt = 0;
+
+  function drifting() {
+    return !held && !userPaused && !reduceMotion.matches;
+  }
+
+  function busy() {
+    return dragging || glide || velocity || drifting();
+  }
 
   function frame(now) {
     // A backgrounded tab stops serving frames; capping the step keeps the row
     // from lurching forward a whole screen when the visitor comes back.
     var dt = last === null ? 0 : Math.min(100, now - last);
     last = now;
-    offset = (offset + (SPEED * dt) / 1000) % distance;
+    if (glide) {
+      var p = Math.min(1, (now - glide.start) / 450);
+      var eased = 1 - Math.pow(1 - p, 3);
+      offset = glide.from + (glide.to - glide.from) * eased;
+      if (p === 1) { glide = null; offset = wrap(offset); }
+    } else if (velocity && !dragging) {
+      offset += (velocity * dt) / 1000;
+      velocity *= Math.exp(-dt / 325); // the same decay a phone's own scroll uses
+      if (Math.abs(velocity) < 10) velocity = 0;
+    } else if (!dragging && drifting() && now >= resumeAt) {
+      offset += (SPEED * dt) / 1000;
+    }
+    // A glide runs on unwrapped numbers so its start and end stay comparable.
+    if (!glide) offset = wrap(offset);
     paint();
-    frameId = requestAnimationFrame(frame);
+    frameId = busy() ? requestAnimationFrame(frame) : 0;
   }
 
   function running() {
@@ -118,20 +166,40 @@
   }
 
   function sync() {
-    var should = !held && !userPaused && !reduceMotion.matches;
-    if (should && !running()) {
+    if (busy() && !running()) {
       last = null;
       frameId = requestAnimationFrame(frame);
-    } else if (!should && running()) {
+    } else if (!busy() && running()) {
       cancelAnimationFrame(frameId);
       frameId = 0;
     }
     button.setAttribute("aria-pressed", String(userPaused));
     button.setAttribute("aria-label", t(userPaused ? "home.reviews.play" : "home.reviews.pause"));
+    prevButton.setAttribute("aria-label", t("home.reviews.prev"));
+    nextButton.setAttribute("aria-label", t("home.reviews.next"));
   }
 
   function hold() { held++; sync(); }
   function release() { held = Math.max(0, held - 1); sync(); }
+
+  // Any hand-driven move stops whatever was carrying the row and holds the
+  // drift off for a moment, so the card the visitor landed on stays put.
+  function handled() {
+    glide = null;
+    resumeAt = performance.now() + RESUME_MS;
+  }
+
+  // Ease to the next or previous card edge, counted from wherever the row is
+  // heading, so repeated presses step cleanly card by card.
+  function go(dir) {
+    if (!step) return;
+    var from = glide ? glide.to : offset;
+    var to = (Math.round(from / step) + dir) * step;
+    velocity = 0;
+    handled();
+    glide = { from: offset, to: to, start: performance.now() };
+    sync();
+  }
 
   /* ---------- pause button ---------- */
   var button = document.createElement("button");
@@ -147,9 +215,24 @@
     sync();
   });
 
+  function arrow(dir) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "reviews__toggle reviews__arrow";
+    b.innerHTML =
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+        (dir < 0 ? '<path d="M14.5 6l-6 6 6 6"/>' : '<path d="M9.5 6l6 6-6 6"/>') + "</svg>";
+    b.addEventListener("click", function () { go(dir); });
+    return b;
+  }
+  var prevButton = arrow(-1);
+  var nextButton = arrow(1);
+
   var nav = document.createElement("div");
   nav.className = "reviews__nav";
+  nav.appendChild(prevButton);
   nav.appendChild(button);
+  nav.appendChild(nextButton);
 
   /* ---------- switching modes ----------
      Reduced motion is honoured live: turning it on mid-visit hands the
@@ -163,6 +246,7 @@
 
   function disable() {
     if (running()) { cancelAnimationFrame(frameId); frameId = 0; }
+    glide = null; velocity = 0; dragging = false;
     root.classList.remove("reviews--marquee");
     track.style.transform = "";
     clones.forEach(function (c) { c.remove(); });
@@ -174,18 +258,76 @@
   /* ---------- wiring ---------- */
   root.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") hold(); });
   root.addEventListener("pointerleave", function (e) { if (e.pointerType === "mouse") release(); });
-  // Press and hold to read on a touch screen; letting go carries on.
+  // Drag or swipe the row by hand. Pressing and holding on a touch screen
+  // still stops it to read; letting go carries on after a moment. Vertical
+  // swipes stay with the page (touch-action: pan-y in styles.css).
+  var startX = 0, lastX = 0, lastT = 0, pointerId = null, moved = false;
+
   track.addEventListener("pointerdown", function (e) {
-    if (e.pointerType === "mouse") return;
-    hold();
-    var done = function () {
-      window.removeEventListener("pointerup", done);
-      window.removeEventListener("pointercancel", done);
-      release();
-    };
-    window.addEventListener("pointerup", done);
-    window.addEventListener("pointercancel", done);
+    if (!root.classList.contains("reviews--marquee")) return;
+    if (e.pointerType === "mouse" && e.button !== 0) return;
+    pointerId = e.pointerId;
+    startX = lastX = e.clientX;
+    lastT = e.timeStamp;
+    moved = false;
+    dragging = true;
+    velocity = 0;
+    handled();
+    if (e.pointerType !== "mouse") hold();
+    sync();
   });
+
+  track.addEventListener("pointermove", function (e) {
+    if (!dragging || e.pointerId !== pointerId) return;
+    if (!moved) {
+      if (Math.abs(e.clientX - startX) < 6) return;
+      moved = true;
+      root.classList.add("is-dragging");
+      try { track.setPointerCapture(e.pointerId); } catch (err) {}
+    }
+    var dx = e.clientX - lastX;
+    var dt = Math.max(1, e.timeStamp - lastT);
+    nudge(dx);
+    // Smoothed so one jittery last sample does not decide the fling.
+    var v = ((isRtl() ? dx : -dx) / dt) * 1000;
+    velocity = velocity * 0.4 + v * 0.6;
+    lastX = e.clientX;
+    lastT = e.timeStamp;
+    paint();
+  });
+
+  function endDrag(e) {
+    if (!dragging || e.pointerId !== pointerId) return;
+    dragging = false;
+    pointerId = null;
+    root.classList.remove("is-dragging");
+    // A finger that stopped before lifting should not fling.
+    if (!moved || e.timeStamp - lastT > 80) velocity = 0;
+    velocity = Math.max(-4000, Math.min(4000, velocity));
+    handled();
+    if (e.pointerType !== "mouse") release(); else sync();
+  }
+  track.addEventListener("pointerup", endDrag);
+  track.addEventListener("pointercancel", endDrag);
+  // A drag that started on a card must not also select its text.
+  track.addEventListener("dragstart", function (e) { e.preventDefault(); });
+
+  // Sideways scrolling: a trackpad swipe, or shift + mouse wheel. Plain
+  // vertical wheel scrolling is left alone so the page still scrolls past.
+  root.addEventListener("wheel", function (e) {
+    if (!root.classList.contains("reviews--marquee")) return;
+    var dx = e.deltaX;
+    if (!dx && e.shiftKey) dx = e.deltaY;
+    if (!dx || Math.abs(dx) < Math.abs(e.deltaY) && !e.shiftKey) return;
+    e.preventDefault();
+    if (e.deltaMode === 1) dx *= 16; // Firefox reports lines, not pixels
+    velocity = 0;
+    handled();
+    nudge(-dx);
+    paint();
+    sync();
+  }, { passive: false });
+
   track.addEventListener("focusin", hold);
   track.addEventListener("focusout", release);
 

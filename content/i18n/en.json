@@ -196,6 +196,8 @@
       "title": "What people say",
       "pause": "Pause reviews",
       "play": "Play reviews",
+      "prev": "Previous review",
+      "next": "Next review",
       "stars": {
         "1": "1 out of 5 stars",
         "2": "2 out of 5 stars",
