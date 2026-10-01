@@ -3,7 +3,8 @@
   const page = document.body.dataset.page || "home";
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* simple sun/seed glyph — non-region, used in nav + footer + dividers */
+  /* simple sun/seed glyph — non-region, used in the footer divider (the nav and
+     footer carry her logo badge, assets/brand/) */
   const mark = (cls) => `
     <svg class="${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
       <circle cx="12" cy="12" r="3.4"/>
@@ -26,9 +27,9 @@
   document.getElementById("site-nav").innerHTML = `
     <nav id="navbar" class="fixed top-0 inset-x-0 z-50">
       <div class="max-w-6xl mx-auto flex items-center justify-between px-5 py-4">
-        <a href="index.html" class="nav-ink flex items-center gap-2.5 text-[var(--text-inv)] transition-colors" aria-label="Held by Paras — home">
-          <span class="text-[var(--gold)]">${mark("w-6 h-6 breathe")}</span>
-          <span class="font-display text-[1.55rem] tracking-wide">Held by Paras</span>
+        <a href="index.html" class="nav-ink flex items-center gap-2 sm:gap-2.5 text-[var(--text-inv)] transition-colors" aria-label="Held by Paras — home">
+          <img src="assets/brand/logo-160.webp" alt="" width="44" height="44" class="brand-badge w-9 h-9 sm:w-11 sm:h-11" />
+          <span class="font-display text-[1.2rem] sm:text-[1.55rem] tracking-wide whitespace-nowrap">Held by Paras</span>
         </a>
         <div class="hidden md:flex items-center gap-1">
           ${navLinks("nav-ink px-3 py-2 text-[.78rem] tracking-[.18em] uppercase text-[var(--text-inv)] transition-colors")}
@@ -54,8 +55,8 @@
     <footer class="on-dark relative overflow-hidden">
       <div class="max-w-6xl mx-auto px-5 pt-16 pb-10 grid sm:grid-cols-3 gap-10 relative">
         <div>
-          <div class="flex items-center gap-2.5 text-[var(--gold)]">${mark("w-7 h-7")}
-            <span class="font-display text-3xl text-[var(--text-inv)]">Held by Paras</span></div>
+          <img src="assets/brand/logo-480.webp" alt="Held by Paras: remembrance, embodiment, healing"
+               width="160" height="160" loading="lazy" class="brand-badge w-36 h-36 sm:w-40 sm:h-40" />
           <p class="text-sm mt-3 max-w-xs text-[var(--muted-inv)]" data-i18n="footer.blurb"></p>
         </div>
         <nav aria-label="Footer">

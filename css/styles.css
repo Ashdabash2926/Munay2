@@ -499,6 +499,9 @@ html[lang="fa"] .num-ghost { -webkit-text-stroke: 0; color: var(--clay-light); o
 }
 #navbar.nav-scrolled .nav-ink { color: var(--text); }
 #navbar.nav-scrolled .lang-pill { border-color: var(--border); }
+/* her logo badge (assets/brand/), cut to a circle with a transparent corner */
+.brand-badge { border-radius: 50%; flex: none; box-shadow: 0 0 0 1px rgba(247,241,232,.18), 0 6px 18px rgba(20,12,8,.28); }
+#navbar.nav-scrolled .brand-badge { box-shadow: 0 0 0 1px var(--border); }
 .nav-link { position: relative; }
 .nav-link::after {
   content: ''; position: absolute; inset-inline: 12px; bottom: 4px; height: 1px;

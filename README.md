@@ -21,7 +21,7 @@ Trilingual: English / Español / فارسی (with true RTL layout for Farsi). El
 - **Eleventy** — builds i18n.js from `content/i18n/` JSON + injects content
 - **i18n:** EN / ES / FA with RTL flip for Farsi; persisted in `localStorage`
 - **Fonts:** Fraunces (variable) + Barlow + Vazirmatn (for Farsi)
-- **Assets:** `assets/favicon.svg`, `assets/og.jpg`
+- **Assets:** logo badge in `assets/brand/` (nav, footer, favicons; cut from her round logo), `assets/og.jpg`
 
 ## Build & Dev
 
