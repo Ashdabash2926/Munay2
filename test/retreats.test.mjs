@@ -365,6 +365,20 @@ test("resolveImage keeps a whole portrait poster: scaled to fit, never cropped",
   await rm(dir, { recursive: true, force: true });
 });
 
+test("resolveImage trims the plain page margin off a poster exported onto a sheet", async () => {
+  const dir = await mkdtemp(join(tmpdir(), "retreats-"));
+  const poster = await sharp({ create: { width: 600, height: 800, channels: 3, background: "#3c5046" } }).png().toBuffer();
+  const page = await sharp({ create: { width: 800, height: 1131, channels: 3, background: "#ffffff" } })
+    .composite([{ input: poster, left: 100, top: 100 }]).png().toBuffer();
+  const fetchImpl = async () => ({ ok: true, status: 200, arrayBuffer: async () => page });
+
+  const path = await resolveImage("https://example.com/page.png", "page-1", { outDir: dir, fetchImpl });
+
+  const { width, height } = await sharp(await readFile(join(dir, path))).metadata();
+  assert.deepEqual([width, height], [600, 800]);
+  await rm(dir, { recursive: true, force: true });
+});
+
 test("fullSizePreview asks Google Photos for the whole picture, leaves other hosts alone", () => {
   assert.equal(fullSizePreview("https://lh3.googleusercontent.com/pw/AP1Gcz=w1200-h630-p-k-no-nu"),
     "https://lh3.googleusercontent.com/pw/AP1Gcz=w2000-h2000");
