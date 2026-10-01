@@ -267,12 +267,10 @@
       const t = k => (dict[lang] && dict[lang][k]) || dict.en[k];
       const f = waForm.elements;
       const name = f.name.value.trim();
-      const email = f.email.value.trim();
       const text = [
         t("contact.form.wa.hello").replace("{name}", name),
         "",
         f.message.value.trim(),
-        ...(email ? ["", `${t("contact.form.wa.email")}: ${email}`] : []),
       ].join("\n");
       const url = "https://wa.me/" + waForm.dataset.wa + "?text=" + encodeURIComponent(text);
       // A blocked pop-up falls back to opening WhatsApp in this tab.

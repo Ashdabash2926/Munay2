@@ -548,7 +548,7 @@
     },
     "call": {
       "title": "Free discovery call",
-      "body": "Reach out by WhatsApp or email and we'll find a time. No pressure, no commitment — just a space to feel into what you need."
+      "body": "Reach out on WhatsApp and we'll find a time. No pressure, no commitment — just a space to feel into what you need."
     },
     "wa": {
       "title": "WhatsApp",
@@ -558,19 +558,11 @@
       "title": "Instagram",
       "body": "@Heldbyparas"
     },
-    "email": {
-      "title": "Email",
-      "body": "hello@heldbyparas.com"
-    },
     "form": {
       "title": "Send a message",
       "name": {
         "word": "Name",
         "ph": "Your name"
-      },
-      "email": {
-        "word": "Email (optional)",
-        "ph": "your@email.com"
       },
       "message": {
         "word": "Message",
@@ -579,8 +571,7 @@
       "submit": "Send on WhatsApp",
       "note": "Opens WhatsApp with your message ready to send.",
       "wa": {
-        "hello": "Hi Paras, I'm {name}.",
-        "email": "Email"
+        "hello": "Hi Paras, I'm {name}."
       }
     }
   },

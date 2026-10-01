@@ -52,7 +52,7 @@
     </section>
 
     <!-- ============ CHANNELS GRID ============ -->
-    <section class="max-w-6xl mx-auto px-5 pb-20 md:pb-24 grid sm:grid-cols-3 gap-6">
+    <section class="max-w-4xl mx-auto px-5 pb-20 md:pb-24 grid sm:grid-cols-2 gap-6">
 
       <!-- WhatsApp -->
       <a href="https://wa.me/{{ site.contact.whatsapp }}"
@@ -77,17 +77,6 @@
         <p class="mt-2 text-sm text-[var(--muted)]" data-i18n="contact.ig.body"></p>
       </a>
 
-      <!-- Email -->
-      <a href="mailto:{{ site.contact.email }}"
-         class="card !shadow-none reveal p-8 group no-underline" style="--d:.24s">
-        <svg class="w-6 h-6 text-[var(--clay)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-          <rect x="2" y="4" width="20" height="16" rx="2"/>
-          <path d="m2 7 10 7 10-7"/>
-        </svg>
-        <h2 class="mt-4 text-xl" data-i18n="contact.email.title"></h2>
-        <p class="mt-2 text-sm text-[var(--muted)]" data-i18n="contact.email.body"></p>
-      </a>
-
     </section>
 
     <!-- ============ FORM + IMAGE ============ -->
@@ -101,10 +90,6 @@
             <div class="field">
               <label for="f-name" data-i18n="contact.form.name"></label>
               <input id="f-name" name="name" type="text" required autocomplete="name" data-i18n-ph="contact.form.name.ph" />
-            </div>
-            <div class="field">
-              <label for="f-email" data-i18n="contact.form.email"></label>
-              <input id="f-email" name="email" type="email" autocomplete="email" data-i18n-ph="contact.form.email.ph" />
             </div>
             <div class="field">
               <label for="f-message" data-i18n="contact.form.message"></label>

@@ -548,7 +548,7 @@
     },
     "call": {
       "title": "Llamada de descubrimiento gratuita",
-      "body": "Comunícate por WhatsApp o correo electrónico y encontraremos un momento. Sin presión, sin compromiso — solo un espacio para sentir lo que necesitas."
+      "body": "Comunícate por WhatsApp y encontraremos un momento. Sin presión, sin compromiso — solo un espacio para sentir lo que necesitas."
     },
     "wa": {
       "title": "WhatsApp",
@@ -558,19 +558,11 @@
       "title": "Instagram",
       "body": "@Heldbyparas"
     },
-    "email": {
-      "title": "Correo electrónico",
-      "body": "hello@heldbyparas.com"
-    },
     "form": {
       "title": "Envía un mensaje",
       "name": {
         "word": "Nombre",
         "ph": "Tu nombre"
-      },
-      "email": {
-        "word": "Correo electrónico (opcional)",
-        "ph": "tu@correo.com"
       },
       "message": {
         "word": "Mensaje",
@@ -579,8 +571,7 @@
       "submit": "Enviar por WhatsApp",
       "note": "Se abre WhatsApp con tu mensaje listo para enviar.",
       "wa": {
-        "hello": "Hola Paras, soy {name}.",
-        "email": "Correo"
+        "hello": "Hola Paras, soy {name}."
       }
     }
   },
