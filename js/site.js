@@ -254,5 +254,32 @@
     iframe.focus();
   });
 
+  /* ---------- contact form: hand the message to WhatsApp ----------
+     The form has no server behind it. Submitting opens a chat with her
+     WhatsApp number with the visitor's message typed in, in the visitor's
+     language; they press send in WhatsApp. */
+  const waForm = document.getElementById("waForm");
+  if (waForm) {
+    waForm.addEventListener("submit", e => {
+      e.preventDefault();
+      const dict = window.ParastooI18N.I18N;
+      const lang = document.documentElement.lang || "en";
+      const t = k => (dict[lang] && dict[lang][k]) || dict.en[k];
+      const f = waForm.elements;
+      const name = f.name.value.trim();
+      const email = f.email.value.trim();
+      const text = [
+        t("contact.form.wa.hello").replace("{name}", name),
+        "",
+        f.message.value.trim(),
+        ...(email ? ["", `${t("contact.form.wa.email")}: ${email}`] : []),
+      ].join("\n");
+      const url = "https://wa.me/" + waForm.dataset.wa + "?text=" + encodeURIComponent(text);
+      // A blocked pop-up falls back to opening WhatsApp in this tab.
+      const win = window.open(url, "_blank");
+      if (win) win.opener = null; else location.href = url;
+    });
+  }
+
   window.ParastooI18N.initLang();
 })();

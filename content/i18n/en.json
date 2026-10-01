@@ -569,15 +569,19 @@
         "ph": "Your name"
       },
       "email": {
-        "word": "Email",
+        "word": "Email (optional)",
         "ph": "your@email.com"
       },
       "message": {
         "word": "Message",
         "ph": "Share a little about what you're looking for…"
       },
-      "submit": "Send message",
-      "note": "I'll reply within a few days. For anything time-sensitive, WhatsApp is fastest."
+      "submit": "Send on WhatsApp",
+      "note": "Opens WhatsApp with your message ready to send.",
+      "wa": {
+        "hello": "Hi Paras, I'm {name}.",
+        "email": "Email"
+      }
     }
   },
   "body": {

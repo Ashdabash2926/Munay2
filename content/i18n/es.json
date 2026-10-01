@@ -569,15 +569,19 @@
         "ph": "Tu nombre"
       },
       "email": {
-        "word": "Correo electrónico",
+        "word": "Correo electrónico (opcional)",
         "ph": "tu@correo.com"
       },
       "message": {
         "word": "Mensaje",
         "ph": "Cuéntame un poco sobre lo que estás buscando…"
       },
-      "submit": "Enviar mensaje",
-      "note": "Responderé en pocos días. Para cualquier cosa urgente, WhatsApp es lo más rápido."
+      "submit": "Enviar por WhatsApp",
+      "note": "Se abre WhatsApp con tu mensaje listo para enviar.",
+      "wa": {
+        "hello": "Hola Paras, soy {name}.",
+        "email": "Correo"
+      }
     }
   },
   "body": {

@@ -95,14 +95,16 @@
       <div class="max-w-6xl mx-auto px-5 py-20 md:py-28 grid md:grid-cols-2 gap-12 md:gap-16 items-start">
         <div>
           <h2 class="reveal text-[clamp(1.9rem,4vw,2.8rem)]" data-i18n="contact.form.title"></h2>
-          <form action="#" method="post" class="mt-9 space-y-6 reveal" style="--d:.12s">
+          <!-- Sends nothing to a server: js/site.js opens WhatsApp to her number
+               with the visitor's message already typed (data-wa) -->
+          <form id="waForm" data-wa="{{ site.contact.whatsapp }}" class="mt-9 space-y-6 reveal" style="--d:.12s">
             <div class="field">
               <label for="f-name" data-i18n="contact.form.name"></label>
               <input id="f-name" name="name" type="text" required autocomplete="name" data-i18n-ph="contact.form.name.ph" />
             </div>
             <div class="field">
               <label for="f-email" data-i18n="contact.form.email"></label>
-              <input id="f-email" name="email" type="email" required autocomplete="email" data-i18n-ph="contact.form.email.ph" />
+              <input id="f-email" name="email" type="email" autocomplete="email" data-i18n-ph="contact.form.email.ph" />
             </div>
             <div class="field">
               <label for="f-message" data-i18n="contact.form.message"></label>
