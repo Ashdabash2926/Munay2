@@ -474,6 +474,8 @@ html[lang="fa"] .hero__counter { -webkit-text-stroke: 0; color: rgba(226,188,125
 .card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lift); }
 .card__media { overflow: hidden; }
 .card__media img { transition: transform 1.2s var(--ease-out); }
+/* retreat posters sit whole in a portrait slot; any leftover edge is cream */
+.card__media--poster { background: var(--cream-2); }
 .card:hover .card__media img { transform: scale(1.06); }
 /* A finished retreat: kept as a record, quieter than the bookable ones. */
 .card--past .card__media img { filter: saturate(.55); opacity: .85; }

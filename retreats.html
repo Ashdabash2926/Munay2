@@ -52,18 +52,20 @@
 
         {% if retreats.length %}
         {# One retreat fills the section as a wide feature card, image beside the copy.
-           Two or more share the section width evenly. #}
+           Two or more share the section width evenly. Image slots are portrait
+           (4:5) because her event posters are; a poster is shown whole
+           (object-contain), never cropped, while the stand-in photo fills. #}
         {% set solo = retreats.length == 1 %}
         <div id="retreatGrid" class="mt-12 grid gap-6 md:gap-7{% if retreats.length == 2 %} sm:grid-cols-2{% elif retreats.length > 2 %} sm:grid-cols-2 lg:grid-cols-3{% endif %}">
           {% for r in retreats %}
           <article class="card reveal flex flex-col{% if solo %} md:flex-row md:min-h-[380px]{% endif %}"
                    data-retreat-end="{{ r.end }}" style="--d:{{ loop.index0 * 0.08 }}s">
-            <div class="card__media aspect-[3/2]{% if solo %} md:w-1/2 md:shrink-0{% endif %}">
+            <div class="card__media card__media--poster aspect-[4/5]{% if solo %} md:w-2/5 md:shrink-0{% endif %}">
               {% if r.usesFallbackImage %}
               <img class="object-cover w-full h-full" loading="lazy"
                    src="{{ r.image | imgsrc }}" alt="" role="presentation" />
               {% else %}
-              <img class="object-cover w-full h-full" loading="lazy"
+              <img class="object-contain w-full h-full" loading="lazy"
                    src="{{ r.image | imgsrc }}" alt="{{ r.name }}, {{ r.location }}" />
               {% endif %}
             </div>
@@ -73,7 +75,7 @@
                  data-i18n="retreat.status.{{ r.statusKey }}"></p>
               {% endif %}
               <h3 class="font-display leading-snug mt-2 {% if solo %}text-[clamp(1.5rem,3vw,2.1rem)]{% else %}text-[1.35rem]{% endif %}">{{ r.name }}</h3>
-              <dl class="mt-4 space-y-2.5 text-[.92rem] text-[var(--muted)]">
+              <dl class="mt-4 mb-7 space-y-2.5 text-[.92rem] text-[var(--muted)]">
                 <div>
                   <dt class="text-[.66rem] font-semibold tracking-[.16em] uppercase opacity-70"
                       data-i18n="retreat.label.dates"></dt>
@@ -117,12 +119,12 @@
           <div id="retreatPastGrid" class="mt-10 grid gap-6 md:gap-7 sm:grid-cols-2 lg:grid-cols-3">
             {% for r in pastRetreats %}
             <article class="card card--past reveal flex flex-col" style="--d:{{ loop.index0 * 0.08 }}s">
-              <div class="card__media aspect-[3/2]">
+              <div class="card__media card__media--poster aspect-[4/5]">
                 {% if r.usesFallbackImage %}
                 <img class="object-cover w-full h-full" loading="lazy"
                      src="{{ r.image | imgsrc }}" alt="" role="presentation" />
                 {% else %}
-                <img class="object-cover w-full h-full" loading="lazy"
+                <img class="object-contain w-full h-full" loading="lazy"
                      src="{{ r.image | imgsrc }}" alt="{{ r.name }}{% if r.location %}, {{ r.location }}{% endif %}" />
                 {% endif %}
               </div>

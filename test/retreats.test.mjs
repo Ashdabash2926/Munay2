@@ -351,6 +351,20 @@ test("resolveImage downloads, converts to webp and returns a site path", async (
   await rm(dir, { recursive: true, force: true });
 });
 
+test("resolveImage keeps a whole portrait poster: scaled to fit, never cropped", async () => {
+  const dir = await mkdtemp(join(tmpdir(), "retreats-"));
+  const poster = await sharp({ create: { width: 1240, height: 1754, channels: 3, background: "#3c5046" } })
+    .png().toBuffer();
+  const fetchImpl = async () => ({ ok: true, status: 200, arrayBuffer: async () => poster });
+
+  const path = await resolveImage("https://example.com/p.png", "poster-1", { outDir: dir, fetchImpl });
+
+  const { width, height } = await sharp(await readFile(join(dir, path))).metadata();
+  assert.ok(height <= 1400 && width <= 1000, `${width}x${height} fits the portrait box`);
+  assert.ok(Math.abs(width / height - 1240 / 1754) < 0.01, "same shape as the poster");
+  await rm(dir, { recursive: true, force: true });
+});
+
 test("resolveImage falls back and warns when the download fails", async () => {
   const warnings = [];
   const fetchImpl = async () => { throw new Error("boom"); };
